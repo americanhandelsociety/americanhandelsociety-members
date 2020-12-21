@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.views.generic.base import View
 from django.views.generic.list import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.views import LoginView, LogoutView
 
 from .models import Member
 
@@ -26,3 +27,11 @@ class Profile(ProtectedView, View):
 
     def get(self, request, *args, **kwargs):
         return render(request, self.template_name)
+
+
+class Login(LoginView):
+    template_name = "login.html"
+
+
+class Logout(LogoutView):
+    pass

@@ -16,10 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from americanhandelsociety_app.views import MembersDirectory, Profile
+from americanhandelsociety_app.views import MembersDirectory, Profile, Login, Logout
 
 urlpatterns = [
     path("members-directory/", MembersDirectory.as_view(), name="members-directory"),
     path("profile/", Profile.as_view(), name="profile"),
+    path("logout/", Logout.as_view(), name="logout"),
+    path("login/", Login.as_view(), name="login"),
     path("admin/", admin.site.urls),
 ]
