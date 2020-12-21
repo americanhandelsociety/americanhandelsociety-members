@@ -4,7 +4,11 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Member
 
 
-class MembersDirectory(LoginRequiredMixin, ListView):
+class ProtectedView(LoginRequiredMixin):
+    raise_exception = True
+
+
+class MembersDirectory(ProtectedView, ListView):
     model = Member
 
     def get_template_names(self):
