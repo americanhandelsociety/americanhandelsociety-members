@@ -8,6 +8,12 @@ Standup postgres.
 docker-compose up
 ```
 
+Run migrations.
+
+```
+pipenv run python manage.py migrate
+```
+
 Run the app.
 
 ```
