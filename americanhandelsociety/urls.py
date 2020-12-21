@@ -16,9 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from americanhandelsociety_app.views import MembersDirectory
+from americanhandelsociety_app.views import MembersDirectory, Profile
 
 urlpatterns = [
     path("members-directory/", MembersDirectory.as_view(), name="members-directory"),
+    path("profile/", Profile.as_view(), name="profile"),
     path("admin/", admin.site.urls),
 ]
