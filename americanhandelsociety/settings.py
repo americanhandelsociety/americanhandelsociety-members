@@ -31,7 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    "members.apps.MembersConfig",
+    "americanhandelsociety_app.apps.AmericanHandelSocietyAppConfig",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -103,7 +103,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-AUTH_USER_MODEL = "members.Member"
+AUTH_USER_MODEL = "americanhandelsociety_app.Member"
 
 
 # Internationalization
