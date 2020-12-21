@@ -1,0 +1,11 @@
+version: "3"
+services:
+  postgres:
+    image: postgres:12
+    container_name: american_handel_society
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=ahs_admin
+      - POSTGRES_PASSWORD=gfhandel
+      - POSTGRES_DB=american_handel_society
