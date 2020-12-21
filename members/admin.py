@@ -1,24 +1,37 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 
-from .models import Member
+from .models import Member, Address
 
 
 class Admin(UserAdmin):
     model = Member
     list_display = (
+        "first_name",
+        "last_name",
         "email",
-        "is_staff",
-        "is_active",
     )
     list_filter = (
         "email",
+        "available_in_directory",
+        "address",
         "is_staff",
         "is_active",
     )
     fieldsets = (
-        (None, {"fields": ("email", "password")}),
-        ("Permissions", {"fields": ("is_staff", "is_active")}),
+        ("Authentication", {"fields": ("email", "password")}),
+        (
+            "Member Info",
+            {
+                "fields": (
+                    "first_name",
+                    "last_name",
+                    "address",
+                    "available_in_directory",
+                )
+            },
+        ),
+        ("Authorization", {"fields": ("is_staff", "is_active")}),
     )
     add_fieldsets = (
         (
@@ -33,4 +46,5 @@ class Admin(UserAdmin):
     ordering = ("email",)
 
 
-admin.site.register(Member)
+admin.site.register(Member, Admin)
+admin.site.register(Address)

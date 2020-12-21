@@ -25,27 +25,31 @@ class MemberManager(BaseUserManager):
 
     def create_superuser(self, email, password, **fields):
         superuser = self.create_user(email, password=password, **fields)
-        superuser.is_admin = True
+        superuser.is_superuser = True
+        superuser.is_staff = True
         superuser.save(using=self._db)
         return superuser
 
 
 class Member(AbstractUser):
     username = None
+    first_name = models.CharField(max_length=150, verbose_name="first name")
+    last_name = models.CharField(max_length=150, verbose_name="last name")
     email = models.EmailField(
         error_messages={"unique": "A member with that email already exists."},
-        help_text="Required. 150 characters or fewer.",
         max_length=150,
         unique=True,
         verbose_name="email",
     )
     available_in_directory = models.BooleanField(default=True)
-    address = models.ForeignKey("Address", on_delete=models.CASCADE, null=True)
+    address = models.ForeignKey(
+        "Address", on_delete=models.CASCADE, null=True, blank=True
+    )
 
     objects = MemberManager()
 
     USERNAME_FIELD = "email"
-    REQUIRED_FIELDS = []
+    REQUIRED_FIELDS = ["first_name", "last_name"]
 
 
 class Address(models.Model):
@@ -55,3 +59,6 @@ class Address(models.Model):
     state_province_region = models.CharField(max_length=150)
     zip_postal_code = models.CharField(max_length=50)
     country = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.street_address
