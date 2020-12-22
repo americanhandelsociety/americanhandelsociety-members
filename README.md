@@ -41,6 +41,7 @@ You also can run the tests with different options, depending on your needs:
 ```bash
 # Print all logger output to terminal
 pipenv run pytest --log-cli-level=INFO
-# Do not stop the Neo4j database container after running tests
+
+# Do not stop the Postgres database container after running tests
 DO_NOT_KILL_DB=true pipenv run pytest
 ```
