@@ -16,9 +16,17 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from americanhandelsociety_app.views import MembersDirectory, Profile, Login, Logout
+from americanhandelsociety_app.views import (
+    Join,
+    MembersDirectory,
+    Profile,
+    Login,
+    Logout,
+)
 
 urlpatterns = [
+    path("join/", Join.as_view(), name="join"),
+    path("paypal/", include("paypal.standard.ipn.urls")),
     path("members-directory/", MembersDirectory.as_view(), name="members-directory"),
     path("profile/", Profile.as_view(), name="profile"),
     path("logout/", Logout.as_view(), name="logout"),

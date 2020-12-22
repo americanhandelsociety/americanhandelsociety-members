@@ -27,6 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+PAYPAL_TEST = True
+
 
 # Application definition
 
@@ -38,6 +40,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "paypal.standard.ipn",
 ]
 
 MIDDLEWARE = [

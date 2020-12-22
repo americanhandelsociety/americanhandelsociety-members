@@ -6,6 +6,7 @@ name = "pypi"
 [packages]
 django = "*"
 psycopg2-binary = "*"
+django-paypal = {editable = true, ref = "master", git = "https://github.com/spookylukey/django-paypal.git"}
 
 [dev-packages]
 black = "*"
