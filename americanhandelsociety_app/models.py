@@ -4,17 +4,15 @@ from django.contrib.auth.base_user import BaseUserManager
 
 
 class MemberManager(BaseUserManager):
-    """
-    A custom manager for the Member model.
+    """A custom manager for the Member model.
 
     This manager enables instantiating a new Member with the "email" as the "username."
     Reference: https://github.com/django/django/blob/2a76f4313423a3b91caade4fce71790630ef9152/tests/auth_tests/models/custom_user.py#L8-L33
     """
 
     def create_user(self, email, password=None, **fields):
-        """
-        Creates and saves a user (Member) with the given email and password.
-        """
+        """Creates and saves a user (Member) with the given email and
+        password."""
         if not email:
             raise ValueError("Members/users must have an email address")
 

@@ -15,6 +15,7 @@ os.environ["APP_ENV"] = "TESTING"
 
 class PostgreSQLContainer:
     """A PostgreSQL Container Object.
+
     This class provides a mechanism for managing PostgreSQL Docker
     containers so that a database can be injected into tests. Class
     Attributes:     config (object): A Configuration Factory object.
@@ -39,6 +40,7 @@ class PostgreSQLContainer:
 
     def get_postgresql_image(self):
         """Output the PostgreSQL image from the configuration.
+
         Returns:
             str: The PostgreSQL image name and version tag.
         """
@@ -102,7 +104,7 @@ def django_db_setup(
     django_db_createdb,
     django_db_modify_db_settings,
 ):
-    """Top level fixture to ensure test databases are available"""
+    """Top level fixture to ensure test databases are available."""
     from django.test.utils import setup_databases, teardown_databases
 
     setup_databases_args = {}
