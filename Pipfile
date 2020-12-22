@@ -9,6 +9,9 @@ psycopg2-binary = "*"
 
 [dev-packages]
 black = "*"
+pytest = "*"
+pytest-django = "*"
+docker = "*"
 
 [requires]
 python_version = "3.9"
