@@ -6,20 +6,18 @@ from django.contrib.auth.views import LoginView, LogoutView
 
 from .models import Member
 
+# views for authentication
+class Login(LoginView):
+    template_name = "login.html"
 
+
+class Logout(LogoutView):
+    template_name = "logout.html"
+
+
+# views that require (some) authorization
 class ProtectedView(LoginRequiredMixin):
     raise_exception = True
-
-
-class MembersDirectory(ProtectedView, ListView):
-    model = Member
-
-    def get_template_names(self):
-        return ["members_directory.html"]
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        return context
 
 
 class Profile(ProtectedView, View):
@@ -29,24 +27,20 @@ class Profile(ProtectedView, View):
         return render(request, self.template_name)
 
 
-class Login(LoginView):
-    template_name = "login.html"
+class People(ListView):
+    model = Member
+
+    def get_template_names(self):
+        return ["people.html"]
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
 
 
-class Logout(LogoutView):
-    template_name = "logout.html"
-
-
-# static views
+# public-facing views with static content
 class About(View):
     template_name = "about.html"
-
-    def get(self, request, *args, **kwargs):
-        return render(request, self.template_name)
-
-
-class People(View):
-    template_name = "people.html"
 
     def get(self, request, *args, **kwargs):
         return render(request, self.template_name)
