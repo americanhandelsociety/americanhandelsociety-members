@@ -34,7 +34,7 @@ class Login(LoginView):
 
 
 class Logout(LogoutView):
-    pass
+    template_name = "logout.html"
 
 
 # static views
