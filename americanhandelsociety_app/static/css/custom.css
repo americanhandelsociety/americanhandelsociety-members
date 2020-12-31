@@ -40,6 +40,11 @@ h3 {
   padding: 8%;
 }
 
+.btn {
+  font-size: 1.6rem;
+  padding: 10px 50px;
+}
+
 /* Banner */
 .page-banner-header {
   padding: 10rem 8rem;
@@ -132,4 +137,13 @@ h3 {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
+}
+
+/* Profile */
+.profile-card {
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  margin: 8% 10% 0% 10%;
+  padding: 4%;
 }
