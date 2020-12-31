@@ -31,19 +31,25 @@
 					<a class="nav-link active" aria-current="page" href="{% url 'people' %}">People</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="{% url 'login' %}">Join</a>
-				</li>
-				<li class="nav-item">
 					<a class="nav-link" href="{% url 'login' %}">Donate</a>
 				</li>
-				<li class="nav-item nav-link">|</li>
+
+
 				{% if request.user.is_authenticated %}
+					<li class="nav-item nav-link">|</li>
 					<li class="nav-item">
-						<a class="nav-link" href="{% url 'logout' %}">Logout</a>
+						<a class="nav-link" href="{% url 'profile' %}">My Profile</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Logout</a>
 					</li>
 				{% else %}
 					<li class="nav-item">
-						<a class="nav-link" href="{% url 'login' %}">Login</a>
+						<a class="nav-link" href="{% url 'login' %}">Join</a>
+					</li>
+					<li class="nav-item nav-link">|</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{% url 'login' %}"><i class="fas fa-sign-in-alt"></i> Login</a>
 					</li>
 				{% endif %}
 			</ul>
