@@ -19,7 +19,6 @@ from django.urls import path, include
 from americanhandelsociety_app.views import (
     About,
     People,
-    MembersDirectory,
     Profile,
     Login,
     Logout,
@@ -28,7 +27,6 @@ from americanhandelsociety_app.views import (
 urlpatterns = [
     path("about/", About.as_view(), name="about"),
     path("people/", People.as_view(), name="people"),
-    path("members-directory/", MembersDirectory.as_view(), name="members-directory"),
     path("profile/", Profile.as_view(), name="profile"),
     path("logout/", Logout.as_view(), name="logout"),
     path("login/", Login.as_view(), name="login"),
