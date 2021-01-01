@@ -151,6 +151,22 @@ def member():
         "password": "cuzzoni",
         "first_name": "Queen",
         "last_name": "Rodelinda",
+        "available_in_directory": True,
+    }
+
+    member = Member.objects.create(**data)
+
+    return member
+
+
+@pytest.fixture
+def member_not_in_directory():
+    data = {
+        "email": "gismonda@rome.sa",
+        "password": "durastanti",
+        "first_name": "Lady",
+        "last_name": "Gismonda",
+        "available_in_directory": False,
     }
 
     member = Member.objects.create(**data)
