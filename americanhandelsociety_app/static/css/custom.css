@@ -45,6 +45,14 @@ h3 {
   padding: 10px 50px;
 }
 
+/* TODO: Find colors */
+.alert-success {
+  color: #0f5132;
+  background-color: #d1e7dd;
+  border: 2px solid #badbcc;
+  padding: 1rem;
+}
+
 /* Banner */
 .page-banner-header {
   padding: 10rem 8rem;
