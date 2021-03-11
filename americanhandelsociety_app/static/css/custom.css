@@ -41,8 +41,21 @@ h3 {
 }
 
 .btn {
-  font-size: 1.6rem;
-  padding: 10px 50px;
+  padding: 1rem;
+  font-size: 22px;
+  border-radius: 0.3rem;
+  height: auto;
+}
+
+.btn-primary {
+  background-color: var(--red-color);
+  color: #fff;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: #991e41;
+  color: #fff;
 }
 
 /* TODO: Find colors */
@@ -154,4 +167,29 @@ h3 {
   border-radius: 5px;
   margin: 4% 18% 0% 18%;
   padding: 4%;
+}
+
+/* Forms */
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 50%;
+  margin: auto;
+  padding-top: 100px;
+  height: 100vh;
+}
+
+input {
+  padding-left: 8px;
+  border-radius: 0;
+  border: solid 0.5px #b0b0b0;
+  height: 44px;
+  font-size: 1.8rem;
+}
+
+label {
+  color: #000000;
+  margin-bottom: 0.8rem;
+  margin-top: 2rem;
 }
