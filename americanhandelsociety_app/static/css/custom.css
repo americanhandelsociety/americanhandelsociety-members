@@ -2,6 +2,7 @@
 :root {
   --red-color: #7d1935;
   --blue-color: #267abf;
+  --error-color: #ff3333;
   --font-headers: "IM Fell English SC", serif;
   --font-text: "Antic Slab", serif;
 }
@@ -192,4 +193,10 @@ label {
   color: #000000;
   margin-bottom: 0.8rem;
   margin-top: 2rem;
+}
+
+.errorlist {
+  list-style-type: none;
+  padding-left: 0;
+  color: var(--error-color);
 }
