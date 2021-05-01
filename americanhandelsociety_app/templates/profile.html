@@ -35,8 +35,12 @@
 						<p class="alert-success">
 							Bravo! You successfully changed your password.
 						</p>
+					{% elif form_name == 'change-member-info-success' %}
+						<p class="alert-success">
+							Bravo! You successfully updated your user info.
+						</p>
 					{% endif %}
-					<a class="btn btn-primary mt-4 ms-4 float-end" href="{# url 'edit-profile' #}">Edit My Information</a>
+					<a class="btn btn-primary mt-4 ms-4 float-end" href="{% url 'edit-member' member_uuid=request.user.id %}">Edit My Information</a>
 					<a class="btn btn-primary mt-4 ms-4 float-end" href="{% url 'change-password' %}">Change Password</a>
 				</div>
 			</div>

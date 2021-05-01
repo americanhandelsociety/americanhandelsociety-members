@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Change Password{% endblock %}
+
+{% block content %}
+
+<div>
+    <form action="" method="post">{% csrf_token %}
+        {{ form.first_name.errors }}
+        <label for="id_first_name">First name:</label>{{form.first_name}}
+
+        {{ form.last_name.errors }}
+        <label for="id_last_name">Last name:</label>{{form.last_name}}
+
+        {{ form.email.errors }}
+        <label for="id_email">Email:</label>{{form.email}}
+
+        <input type="submit" value="Update" class="btn btn-primary mt-5" />
+    </form>
+
+</div>
+
+{% endblock %}

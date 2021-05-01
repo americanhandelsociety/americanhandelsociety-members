@@ -9,8 +9,10 @@ from django.contrib.auth.views import (
     PasswordChangeView,
     PasswordChangeDoneView,
 )
+from django.http import HttpResponseRedirect
 
 from .models import Member
+from .forms import MemberChangeForm
 
 # views for authentication
 class Login(LoginView):
@@ -30,12 +32,6 @@ class Profile(ProtectedView, View):
     template_name = "profile.html"
 
     def get(self, request, *args, **kwargs):
-        # data = {"change_password_success": False}
-
-        # print(kwargs, "!!!")
-        # if "form-name" in kwargs and :
-        #     data["change_password_success"] = True
-
         return render(
             request,
             self.template_name,
@@ -48,6 +44,34 @@ class PasswordChange(PasswordChangeView, View):
     success_url = reverse_lazy(
         "success", kwargs={"form_name": "change-password-success"}
     )
+
+
+class EditMember(ProtectedView, View):
+    template_name = "forms/edit_member.html"
+
+    def get(self, request, member_uuid):
+        member = Member.objects.get(id=member_uuid)
+        form = MemberChangeForm(
+            initial={
+                "first_name": member.first_name,
+                "last_name": member.last_name,
+                "email": member.email,
+            },
+            instance=member,
+        )
+        return render(request, self.template_name, {"form": form})
+
+    def post(self, request, member_uuid):
+        member = Member.objects.get(id=member_uuid)
+        form = MemberChangeForm(request.POST, instance=member)
+
+        if form.is_valid():
+            form.save()
+            success_url = reverse_lazy(
+                "success", kwargs={"form_name": "change-member-info-success"}
+            )
+
+            return HttpResponseRedirect(success_url)
 
 
 class People(ListView):
