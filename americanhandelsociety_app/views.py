@@ -12,7 +12,7 @@ from django.contrib.auth.views import (
 from django.http import HttpResponseRedirect
 
 from .models import Member
-from .forms import MemberChangeForm
+from .forms import MemberChangeForm, AddressChangeForm
 
 # views for authentication
 class Login(LoginView):
@@ -59,14 +59,34 @@ class EditMember(ProtectedView, View):
             },
             instance=member,
         )
-        return render(request, self.template_name, {"form": form})
+
+        address = member.address or {}
+
+        address_form = AddressChangeForm(
+            initial={
+                "street_address": address.get("street_address"),
+                "street_address_2": address.get("street_address_2"),
+                "city": address.get("city"),
+                "state_province_region": address.get("state_province_region"),
+                "zip_postal_code": address.get("zip_postal_code"),
+                "country": address.get("country"),
+            }
+        )
+
+        return render(
+            request, self.template_name, {"form": form, "address_form": address_form}
+        )
 
     def post(self, request, member_uuid):
         member = Member.objects.get(id=member_uuid)
         form = MemberChangeForm(request.POST, instance=member)
 
-        if form.is_valid():
+        # FIXME!
+        address_form = AddressChangeForm(request.POST, instance=member.address)
+
+        if form.is_valid() and address_form.is_valid():
             form.save()
+            address_form.save()
             success_url = reverse_lazy(
                 "success", kwargs={"form_name": "change-member-info-success"}
             )
