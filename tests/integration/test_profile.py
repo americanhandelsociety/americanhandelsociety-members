@@ -25,6 +25,29 @@ def test_profile_shows_user_info(client, member):
 
 
 @pytest.mark.django_db
+def test_profile_shows_address_info(client, member):
+    client.force_login(member)
+
+    resp = client.get("/profile/")
+
+    assert "Mailing Address" in resp.content.decode("utf-8")
+    assert member.address.street_address in resp.content.decode("utf-8")
+    assert member.address.city in resp.content.decode("utf-8")
+
+
+@pytest.mark.django_db
+def test_profile_hides_address_info_when_member_has_no_address(client, member):
+    member.address = None
+    member.save()
+
+    client.force_login(member)
+
+    resp = client.get("/profile/")
+
+    assert "Mailing Address" not in resp.content.decode("utf-8")
+
+
+@pytest.mark.django_db
 def test_profile_shows_user_directory_preference(
     client, member, member_not_in_directory
 ):
