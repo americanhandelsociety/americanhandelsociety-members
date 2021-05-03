@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}Change Password{% endblock %}
+
+{% block content %}
+
+<div>
+    <form action="" method="post">{% csrf_token %}
+        {{ form.first_name.errors }}
+        <label for="id_first_name">First name:</label>{{form.first_name}}
+
+        {{ form.last_name.errors }}
+        <label for="id_last_name">Last name:</label>{{form.last_name}}
+
+        {{ form.email.errors }}
+        <label for="id_email">Email:</label>{{form.email}}
+
+        {{ address_form.street_address.errors }}
+        <label for="id_street_address">Street Address:</label>{{address_form.street_address}}
+
+        {{ address_form.street_address_2.errors }}
+        <label for="id_street_address_2">Street Address (additional):</label>{{address_form.street_address_2}}
+
+        {{ address_form.city.errors }}
+        <label for="id_city">City:</label>{{address_form.city}}
+
+        {{ address_form.state_province_region.errors }}
+        <label for="id_id_state_province_region">State, Province, or Region:</label>{{address_form.state_province_region}}
+
+        {{ address_form.zip_postal_code.errors }}
+        <label for="id_id_zip_postal_code">ZIP Code:</label>{{address_form.zip_postal_code}}
+
+        {{ address_form.country.errors }}
+        <label for="id_id_country">Country:</label>{{address_form.country}}
+
+        <input type="submit" value="Update" class="btn btn-primary mt-5" />
+    </form>
+
+</div>
+
+{% endblock %}

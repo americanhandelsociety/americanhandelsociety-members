@@ -2,6 +2,7 @@
 :root {
   --red-color: #7d1935;
   --blue-color: #267abf;
+  --error-color: #ff3333;
   --font-headers: "IM Fell English SC", serif;
   --font-text: "Antic Slab", serif;
 }
@@ -38,6 +39,32 @@ h3 {
 
 .col-12 {
   padding: 8%;
+}
+
+.btn {
+  padding: 1rem;
+  font-size: 22px;
+  border-radius: 0.3rem;
+  height: auto;
+}
+
+.btn-primary {
+  background-color: var(--red-color);
+  color: #fff;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: #991e41;
+  color: #fff;
+}
+
+/* TODO: Find colors */
+.alert-success {
+  color: #0f5132;
+  background-color: #d1e7dd;
+  border: 2px solid #badbcc;
+  padding: 1rem;
 }
 
 /* Banner */
@@ -87,7 +114,7 @@ h3 {
 }
 
 .navbar-nav li a {
-  font-size: 1.2em;
+  font-size: 1em;
 }
 
 .navbar-brand,
@@ -132,4 +159,44 @@ h3 {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
+}
+
+/* Profile */
+.profile-card {
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  margin: 4% 18% 0% 18%;
+  padding: 4%;
+}
+
+/* Forms */
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 50%;
+  margin: auto;
+  padding-top: 100px;
+  height: 140vh;
+}
+
+input {
+  padding-left: 8px;
+  border-radius: 0;
+  border: solid 0.5px #b0b0b0;
+  height: 44px;
+  font-size: 1.8rem;
+}
+
+label {
+  color: #000000;
+  margin-bottom: 0.8rem;
+  margin-top: 2rem;
+}
+
+.errorlist {
+  list-style-type: none;
+  padding-left: 0;
+  color: var(--error-color);
 }

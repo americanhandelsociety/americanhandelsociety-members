@@ -6,7 +6,7 @@ from time import sleep
 import docker
 import pytest
 
-from americanhandelsociety_app.models import Member
+from americanhandelsociety_app.models import Member, Address
 
 
 DO_NOT_KILL_DB = os.getenv("DO_NOT_KILL_DB", False)
@@ -146,11 +146,31 @@ def django_db_setup(
 
 @pytest.fixture
 def member():
+    address_data = {"street_address": "25 Brook Street", "city": "London"}
+    address = Address.objects.create(**address_data)
+
     data = {
         "email": "rodelinda@lombardy.sa",
         "password": "cuzzoni",
         "first_name": "Queen",
         "last_name": "Rodelinda",
+        "available_in_directory": True,
+        "address": address,
+    }
+
+    member = Member.objects.create(**data)
+
+    return member
+
+
+@pytest.fixture
+def member_not_in_directory():
+    data = {
+        "email": "gismonda@rome.sa",
+        "password": "durastanti",
+        "first_name": "Lady",
+        "last_name": "Gismonda",
+        "available_in_directory": False,
     }
 
     member = Member.objects.create(**data)

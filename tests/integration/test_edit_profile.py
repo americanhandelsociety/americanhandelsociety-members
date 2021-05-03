@@ -1,0 +1,93 @@
+import pytest
+
+from django.forms.models import model_to_dict
+
+from americanhandelsociety_app.models import Address
+
+
+@pytest.mark.django_db
+def test_updates_user_info(client, member):
+    client.force_login(member)
+    data = {**model_to_dict(member), "first_name": "Julia", "last_name": "Agrippina"}
+
+    resp = client.post(f"/edit-member/{member.id}", data=data)
+    assert resp.status_code == 302
+
+    resp = client.get("/profile/")
+    assert data["first_name"] in resp.content.decode("utf-8")
+    assert data["last_name"] in resp.content.decode("utf-8")
+
+
+@pytest.mark.django_db
+def test_updates_address_info_edit_existing(client, member):
+    client.force_login(member)
+    data = {
+        **model_to_dict(member),
+        "street_address": "Teatro La Fenice",
+        "city": "Venice",
+        "country": "Italy",
+    }
+    resp = client.post(f"/edit-member/{member.id}", data=data)
+    assert resp.status_code == 302
+
+    resp = client.get("/profile/")
+    assert data["street_address"] in resp.content.decode("utf-8")
+    assert data["city"] in resp.content.decode("utf-8")
+    assert data["country"] in resp.content.decode("utf-8")
+
+    address = Address.objects.get(
+        street_address=data["street_address"],
+        city=data["city"],
+        country=data["country"],
+    )
+    assert address
+
+
+@pytest.mark.django_db
+def test_updates_address_info_remove_existing(client, member):
+    client.force_login(member)
+    resp = client.get(f"/edit-member/{member.id}")
+    assert member.address.street_address in resp.content.decode("utf-8")
+
+    resp = client.post(f"/edit-member/{member.id}", data=model_to_dict(member))
+    assert resp.status_code == 302
+
+    resp = client.get("/profile/")
+    assert member.address.street_address not in resp.content.decode("utf-8")
+
+    with pytest.raises(Address.DoesNotExist) as e_info:
+        Address.objects.get(street_address=member.address.street_address)
+
+
+@pytest.mark.django_db
+def test_updates_address_info_create_new(client, member):
+    client.force_login(member)
+
+    member.address = None
+    member.save()
+    Address.objects.all().delete()
+
+    data = {
+        **model_to_dict(member),
+        "address": "",
+        "street_address": "Teatro La Fenice",
+        "city": "Venice",
+        "country": "Italy",
+    }
+    resp = client.post(f"/edit-member/{member.id}", data=data)
+    assert resp.status_code == 302
+
+    resp = client.get("/profile/")
+    assert data["street_address"] in resp.content.decode("utf-8")
+    assert data["city"] in resp.content.decode("utf-8")
+    assert data["country"] in resp.content.decode("utf-8")
+
+    address = Address.objects.get(
+        street_address=data["street_address"],
+        city=data["city"],
+        country=data["country"],
+    )
+    assert address
+
+    addresses = Address.objects.all()
+    assert len(addresses) == 1
