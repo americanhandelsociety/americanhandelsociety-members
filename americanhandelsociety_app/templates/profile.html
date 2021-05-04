@@ -50,14 +50,25 @@
 	</div>
 
 	<div class="row">
-		<div class='col profile-card'>
+		<div class='col profile-card mb-5'>
 			<h2>Membership</h2>
-			<p>{{ request.user.date_joined }}</p>
-			<p>{{ request.user.last_login }}</p>
-
+			<table class="profile-table">
+				<tr>
+					<th>Date Joined</th>
+					<td>{{ request.user.date_joined|date:'DATE_FORMAT' }}</td>
+				</tr>
+				<tr>
+					<th>Last Login</th>
+					<td>{{ request.user.last_login|date:'DATETIME_FORMAT' }}</td>
+				</tr>
+				<tr>
+					<th>AHS Administrator</th>
+					<td>{{ is_superuser }}</td>
+				</tr>
+			</table>
 			<div class="row">
 				<div class="col">
-					<a class="btn btn-primary" href="{# url 'edit-profile' #}">Renew My Membership</a>
+					<a class="btn btn-primary mt-4 ms-4 float-end" href="{# url 'edit-profile' #}">Renew My Membership</a>
 				</div>
 			</div>
 		</div>

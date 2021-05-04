@@ -170,6 +170,21 @@ h3 {
   padding: 4%;
 }
 
+.profile-table {
+  width: 100%;
+  margin-bottom: 2.2rem;
+}
+.profile-table th {
+  width: 40%;
+  margin-right: 60px;
+  vertical-align: top;
+  padding: 1.2rem 1.2rem 1.2rem 0;
+}
+.profile-table td {
+  vertical-align: top;
+  padding: 1.2rem 1.2rem 1.2rem 0;
+}
+
 /* Forms */
 form {
   display: flex;
