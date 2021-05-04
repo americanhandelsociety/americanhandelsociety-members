@@ -5,6 +5,12 @@ from django.forms import ModelForm
 from .models import Member, Address
 
 
+class MemberCreationForm(UserCreationForm):
+    class Meta:
+        model = Member
+        fields = ("first_name", "last_name", "email", "password1", "password2")
+
+
 class MemberChangeForm(UserChangeForm):
     class Meta:
         model = Member

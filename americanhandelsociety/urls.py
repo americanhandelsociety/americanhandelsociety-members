@@ -3,6 +3,7 @@ from django.urls import path, re_path, include
 
 from americanhandelsociety_app.views import (
     Join,
+    Pay,
     Profile,
     Login,
     Logout,
@@ -29,5 +30,6 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     # Paypal
     path("join/", Join.as_view(), name="join"),
+    path("pay/", Pay.as_view(), name="pay"),
     path("paypal/", include("paypal.standard.ipn.urls")),
 ]

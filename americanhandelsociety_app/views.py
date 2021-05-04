@@ -15,7 +15,7 @@ from django.http import HttpResponseRedirect
 from paypal.standard.forms import PayPalPaymentsForm
 
 from .models import Member
-from .forms import MemberChangeForm, AddressChangeForm
+from .forms import MemberCreationForm, MemberChangeForm, AddressChangeForm
 
 # views for authentication
 class Login(LoginView):
@@ -141,19 +141,42 @@ class About(View):
 
 
 class Join(View):
-    template_name = "join.html"
+    template_name = "forms/join.html"
+
+    def get(self, request):
+        form = MemberCreationForm()
+
+        return render(request, self.template_name, {"form": form})
+
+    def post(self, request):
+        form = MemberCreationForm(request.POST)
+
+        if form.is_valid():
+            member = form.save(commit=False)
+            member.is_active = False
+            member.save()
+
+            success_url = reverse_lazy("pay")
+
+            request.session["member_id"] = str(member.id)
+
+            return HttpResponseRedirect(success_url)
+
+        return render(request, self.template_name, {"form": form})
+
+
+class Pay(View):
+    template_name = "forms/pay.html"
 
     def get(self, request, *args, **kwargs):
-        # TODO:
-        # (1) How to show a stylized form with dropdown? https://github.com/spookylukey/django-paypal/blob/master/paypal/standard/forms.py
-        # (2) How to redirect to a payment page where you can "Pay without a PayPal account"?
+        # TODO: How to redirect to a payment page where you can "Pay without a PayPal account"?
 
+        member_id = request.session.get("member_id")
         invoice_num = str(uuid.uuid4())[:13]
-        # What you want the button to do.
         paypal_dict = {
             "business": "reginafcompton@gmail.com",
-            "amount": "35.00",
-            "item_name": "Regular Membership",
+            "amount": "0",
+            "item_name": "Membership in the American Handel Society",
             "invoice": invoice_num,
             "notify_url": request.build_absolute_uri(reverse("paypal-ipn")),
             "return": request.build_absolute_uri(
@@ -164,7 +187,7 @@ class Join(View):
             # "cancel_return": request.build_absolute_uri(reverse("your-cancel-view")),
         }
 
-        # Create the instance.
         form = PayPalPaymentsForm(initial=paypal_dict)
-        context = {"form": form}
+        context = {"form": form, "member_id": member_id}
+
         return render(request, self.template_name, context)
