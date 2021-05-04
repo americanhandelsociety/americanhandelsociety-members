@@ -37,21 +37,29 @@ class Profile(ProtectedView, View):
     def get(self, request, *args, **kwargs):
         is_superuser = "Yes" if request.user.is_superuser else "No"
 
+        try:
+            form_name = request.session.pop("form_name")
+        except KeyError:
+            form_name = None
+
         return render(
             request,
             self.template_name,
-            context={
-                **kwargs,
-                "is_superuser": is_superuser,
-            },
+            context={**kwargs, "is_superuser": is_superuser, "form_name": form_name},
         )
 
 
 class PasswordChange(PasswordChangeView, View):
     template_name = "password_change.html"
-    success_url = reverse_lazy(
-        "success", kwargs={"form_name": "change-password-success"}
-    )
+    success_url = reverse_lazy("profile")
+
+    def post(self, request, *args, **kwargs):
+        form = self.get_form()
+        if form.is_valid():
+            request.session["form_name"] = "change-password-success"
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)
 
 
 class EditMember(ProtectedView, View):
@@ -81,6 +89,7 @@ class EditMember(ProtectedView, View):
             }
         except AttributeError:
             initial_data = {}
+
         address_form = AddressChangeForm(initial=initial_data)
 
         return render(
@@ -94,7 +103,6 @@ class EditMember(ProtectedView, View):
 
         if form.is_valid() and address_form.is_valid():
             member = form.save(commit=False)
-
             address_form_data = [
                 val for val in address_form.cleaned_data.values() if val
             ]
@@ -109,10 +117,8 @@ class EditMember(ProtectedView, View):
                 except AttributeError:
                     pass
             member.save()
-
-            success_url = reverse_lazy(
-                "success", kwargs={"form_name": "change-member-info-success"}
-            )
+            request.session["form_name"] = "change-member-info-success"
+            success_url = reverse_lazy("profile")
 
             return HttpResponseRedirect(success_url)
 
