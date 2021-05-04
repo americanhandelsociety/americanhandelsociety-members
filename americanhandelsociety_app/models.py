@@ -1,20 +1,20 @@
+import uuid
+
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.base_user import BaseUserManager
 
 
 class MemberManager(BaseUserManager):
-    """
-    A custom manager for the Member model.
+    """A custom manager for the Member model.
 
     This manager enables instantiating a new Member with the "email" as the "username."
     Reference: https://github.com/django/django/blob/2a76f4313423a3b91caade4fce71790630ef9152/tests/auth_tests/models/custom_user.py#L8-L33
     """
 
     def create_user(self, email, password=None, **fields):
-        """
-        Creates and saves a user (Member) with the given email and password.
-        """
+        """Creates and saves a user (Member) with the given email and
+        password."""
         if not email:
             raise ValueError("Members/users must have an email address")
 
@@ -32,6 +32,9 @@ class MemberManager(BaseUserManager):
 
 
 class Member(AbstractUser):
+    id = models.UUIDField(
+        primary_key=True, unique=True, default=uuid.uuid4, editable=False
+    )
     username = None
     first_name = models.CharField(max_length=150, verbose_name="first name")
     last_name = models.CharField(max_length=150, verbose_name="last name")

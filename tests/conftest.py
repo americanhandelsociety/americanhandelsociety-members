@@ -6,7 +6,7 @@ from time import sleep
 import docker
 import pytest
 
-from americanhandelsociety_app.models import Member
+from americanhandelsociety_app.models import Member, Address
 
 
 DO_NOT_KILL_DB = os.getenv("DO_NOT_KILL_DB", False)
@@ -15,6 +15,7 @@ os.environ["APP_ENV"] = "TESTING"
 
 class PostgreSQLContainer:
     """A PostgreSQL Container Object.
+
     This class provides a mechanism for managing PostgreSQL Docker
     containers so that a database can be injected into tests. Class
     Attributes:     config (object): A Configuration Factory object.
@@ -39,6 +40,7 @@ class PostgreSQLContainer:
 
     def get_postgresql_image(self):
         """Output the PostgreSQL image from the configuration.
+
         Returns:
             str: The PostgreSQL image name and version tag.
         """
@@ -102,7 +104,7 @@ def django_db_setup(
     django_db_createdb,
     django_db_modify_db_settings,
 ):
-    """Top level fixture to ensure test databases are available"""
+    """Top level fixture to ensure test databases are available."""
     from django.test.utils import setup_databases, teardown_databases
 
     setup_databases_args = {}
@@ -144,11 +146,31 @@ def django_db_setup(
 
 @pytest.fixture
 def member():
+    address_data = {"street_address": "25 Brook Street", "city": "London"}
+    address = Address.objects.create(**address_data)
+
     data = {
         "email": "rodelinda@lombardy.sa",
         "password": "cuzzoni",
         "first_name": "Queen",
         "last_name": "Rodelinda",
+        "available_in_directory": True,
+        "address": address,
+    }
+
+    member = Member.objects.create(**data)
+
+    return member
+
+
+@pytest.fixture
+def member_not_in_directory():
+    data = {
+        "email": "gismonda@rome.sa",
+        "password": "durastanti",
+        "first_name": "Lady",
+        "last_name": "Gismonda",
+        "available_in_directory": False,
     }
 
     member = Member.objects.create(**data)

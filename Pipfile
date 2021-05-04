@@ -4,15 +4,17 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-django = "*"
 psycopg2-binary = "*"
-django-paypal = {editable = true, ref = "master", git = "https://github.com/spookylukey/django-paypal.git"}
+django-paypal = "*"
+fontawesome-free = "*"
+django = "==3.1.9"
 
 [dev-packages]
 black = "*"
 pytest = "*"
 pytest-django = "*"
 docker = "*"
+pre-commit = "*"
 
 [requires]
 python_version = "3.9"

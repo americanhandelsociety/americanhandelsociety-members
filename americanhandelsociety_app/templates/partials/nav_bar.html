@@ -1,0 +1,56 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light ms-4 me-4">
+	<div class="d-flex flex-grow-1">
+			<span class="w-100 d-lg-none d-block">
+					<!-- hidden spacer to center brand on mobile --></span>
+			<a class="navbar-brand d-none d-lg-inline-block" href="{% url 'about' %}">American Handel Society</a>
+			<div class="w-100 text-right">
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbar">
+							<span class="navbar-toggler-icon"></span>
+					</button>
+			</div>
+	</div>
+	<div class="collapse navbar-collapse flex-grow-1 text-right" id="myNavbar">
+			<ul class="navbar-nav ms-auto flex-nowrap">
+				<li class="nav-item">
+					<a class="nav-link active" aria-current="page" href="{% url 'about' %}">Events</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link active" aria-current="page" href="{% url 'about' %}">Awards</a>
+				</li>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						Learn
+					</a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<a class="dropdown-item" href="#">Newsletter</a>
+						<a class="dropdown-item" href="#">Explore</a>
+						<a class="dropdown-item" href="#">Research Materials</a>
+					</div>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link active" aria-current="page" href="{% url 'people' %}">People</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{% url 'login' %}">Donate</a>
+				</li>
+
+				{% if request.user.is_authenticated %}
+					<li class="nav-item nav-link">|</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{% url 'profile' %}">My Profile</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Logout</a>
+					</li>
+				{% else %}
+					<li class="nav-item">
+						<a class="nav-link" href="{% url 'login' %}">Join</a>
+					</li>
+					<li class="nav-item nav-link">|</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{% url 'login' %}"><i class="fas fa-sign-in-alt"></i> Login</a>
+					</li>
+				{% endif %}
+			</ul>
+	</div>
+</nav>
