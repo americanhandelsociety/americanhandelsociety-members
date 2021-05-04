@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+    {{ form.cmd }}
+    {{ form.charset }}
+    {{ form.currency_code }}
+    {{ form.no_shipping }}
+    {{ form.business }}
+    {{ form.amount }}
+    <table>
+        <tr>
+            <td>
+                {{ form.item_name }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <select name="amount">
+                    <option value="35.00">Regular $35 USD</option>
+                    <option value="42.00">Joint (one set of publications) $42 USD</option>
+                    <option value="56.00">Donor $56 USD</option>
+                    <option value="20.00">Student $20 USD</option>
+                    <option value="20.00">Retired $20 USD</option>
+                    <option value="100.00">Sponsor $100 USD</option>
+                    <option value="200.00">Patron $200 USD</option>
+                    <option value="500.00">Life $500 USD</option>
+                    <option value="42.00">Subscriber (Institutions Only) $42 USD</option>
+                </select>
+            </td>
+        </tr>
+    </table>
+
+    {{ form.invoice }}
+    {{ form.notify_url }}
+    {{ form.return }}
+    {{ form.custom }}
+
+    <input type="submit" value="Process Payment" name="submit" title="PayPal - The safer, easier way to pay online!" class="btn btn-primary mt-5">
+</form>
+{% endblock %}
