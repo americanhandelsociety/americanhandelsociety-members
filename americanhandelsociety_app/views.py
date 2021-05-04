@@ -10,6 +10,7 @@ from django.contrib.auth.views import (
     PasswordChangeDoneView,
 )
 from django.http import HttpResponseRedirect
+from django.utils import timezone
 
 from .models import Member
 from .forms import MemberChangeForm, AddressChangeForm
@@ -32,10 +33,15 @@ class Profile(ProtectedView, View):
     template_name = "profile.html"
 
     def get(self, request, *args, **kwargs):
+        is_superuser = "Yes" if request.user.is_superuser else "No"
+
         return render(
             request,
             self.template_name,
-            kwargs,
+            context={
+                **kwargs,
+                "is_superuser": is_superuser,
+            },
         )
 
 

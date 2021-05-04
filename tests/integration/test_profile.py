@@ -1,4 +1,5 @@
 import pytest
+from django.conf import settings
 
 
 @pytest.mark.django_db
@@ -63,4 +64,17 @@ def test_profile_shows_user_directory_preference(
     assert (
         "Members of the AHS cannot view my information in the online Members Directory."
         in resp.content.decode("utf-8")
+    )
+
+
+@pytest.mark.django_db
+def test_profile_shows_member_info(client, member):
+    client.force_login(member)
+    resp = client.get("/profile/")
+
+    assert member.date_joined.strftime(settings.DATE_FORMAT) in resp.content.decode(
+        "utf-8"
+    )
+    assert member.last_login.strftime(settings.DATETIME_FORMAT) in resp.content.decode(
+        "utf-8"
     )
