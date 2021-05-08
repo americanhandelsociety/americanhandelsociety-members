@@ -24,9 +24,11 @@ SECRET_KEY = "q%swky07(1_$tjo1+u=il*#d8@8weup(iz#fpg)9^y9*%%+zeu"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["e6f57fd4f8ca.ngrok.io"]
 
 PAYPAL_TEST = True
+
+PAYPAL_RECEIVER_EMAIL = "americanhandelsociety-facilitator@gmail.com"
 
 
 # Application definition
