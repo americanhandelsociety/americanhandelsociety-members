@@ -1,21 +1,24 @@
 import uuid
 
-from django.shortcuts import render
-from django.urls import reverse, reverse_lazy
-from django.views.generic.base import View
-from django.views.generic.list import ListView
+from django.conf import settings
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import (
     LoginView,
     LogoutView,
-    PasswordChangeView,
     PasswordChangeDoneView,
+    PasswordChangeView,
 )
 from django.http import HttpResponseRedirect
+from django.shortcuts import render
+from django.urls import reverse, reverse_lazy
+from django.views.decorators.csrf import csrf_exempt
+from django.views.generic.base import View
+from django.views.generic.list import ListView
 from paypal.standard.forms import PayPalPaymentsForm
 
+from .forms import AddressChangeForm, MemberChangeForm, MemberCreationForm
 from .models import Member
-from .forms import MemberCreationForm, MemberChangeForm, AddressChangeForm
+
 
 # views for authentication
 class Login(LoginView):
@@ -178,22 +181,38 @@ class Pay(View):
         # TODO: How to redirect to a payment page where you can "Pay without a PayPal account"?
 
         member_id = request.session.get("member_id")
-        invoice_num = str(uuid.uuid4())[:13]
+        invoice_num = f"{member_id}_join"
         paypal_dict = {
-            "business": "reginafcompton@gmail.com",
+            "business": settings.PAYPAL_RECEIVER_EMAIL,
             "amount": "0",
             "item_name": "Membership in the American Handel Society",
             "invoice": invoice_num,
             "notify_url": request.build_absolute_uri(reverse("paypal-ipn")),
             "return": request.build_absolute_uri(
-                reverse("login")
+                reverse("pay-confirm")
             ),  # The URL to which PayPal redirects buyers' browser after they complete their payments.
-            "custom": "premium_plan",  # Custom command to correlate to some function later (optional)
             # TODO: How will we deal with cancelled payments?
             # "cancel_return": request.build_absolute_uri(reverse("your-cancel-view")),
         }
+
+        # test buyer
+        # username: americanhandelsociety-buyer@gmail.com
+        # password: computer-man
 
         form = PayPalPaymentsForm(initial=paypal_dict)
         context = {"form": form, "member_id": member_id}
 
         return render(request, self.template_name, context)
+
+
+class PaymentConfirmation(View):
+    template_name = (
+        "payment_confirmation.html"  # TODO: Add template with "Good work! Login."
+    )
+
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name)
+
+    @csrf_exempt
+    def dispatch(self, *args, **kwargs):
+        return super(PaymentConfirmation, self).dispatch(*args, **kwargs)
