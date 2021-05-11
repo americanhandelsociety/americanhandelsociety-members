@@ -11,6 +11,8 @@ ALLOWED_HOSTS = []
 
 PAYPAL_TEST = True
 
+PAYPAL_RECEIVER_EMAIL = "americanhandelsociety-facilitator@gmail.com"
+
 # Application definition
 
 INSTALLED_APPS = [

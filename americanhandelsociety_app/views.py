@@ -205,9 +205,7 @@ class Pay(View):
 
 
 class PaymentConfirmation(View):
-    template_name = (
-        "payment_confirmation.html"  # TODO: Add template with "Good work! Login."
-    )
+    template_name = "payment_confirmation.html"
 
     def get(self, request, *args, **kwargs):
         return render(request, self.template_name)
