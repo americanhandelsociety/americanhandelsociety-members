@@ -34,7 +34,7 @@ class PostgreSQLContainer:
             "POSTGRES_PASSWORD={}".format("gfhandel"),
             "POSTGRES_DB={}".format("american_handel_society"),
         ]
-        self.db_ports = {"5432/tcp": 5432}
+        self.db_ports = {"5432/tcp": 5433}
         self.image_name = "postgres"
         self.image_version = "12"
 
