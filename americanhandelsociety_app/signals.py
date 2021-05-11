@@ -36,7 +36,7 @@ def listen_for_paypal_please(sender, **kwargs):
 
     member_uuid = ipn_obj.invoice.replace("_join", "")
     member = Member.objects.get(uuid=member_uuid)
-    member.active = True
+    member.is_active = True
     member.save()
 
     # TODO: Set membership type
