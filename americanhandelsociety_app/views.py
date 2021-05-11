@@ -179,6 +179,9 @@ class Pay(View):
 
     def get(self, request, *args, **kwargs):
         # TODO: How to redirect to a payment page where you can "Pay without a PayPal account"?
+        # test buyer
+        # username: americanhandelsociety-buyer@gmail.com
+        # password: computer-man
 
         member_id = request.session.get("member_id")
         invoice_num = f"{member_id}_join"
@@ -194,10 +197,6 @@ class Pay(View):
             # TODO: How will we deal with cancelled payments?
             # "cancel_return": request.build_absolute_uri(reverse("your-cancel-view")),
         }
-
-        # test buyer
-        # username: americanhandelsociety-buyer@gmail.com
-        # password: computer-man
 
         form = PayPalPaymentsForm(initial=paypal_dict)
         context = {"form": form, "member_id": member_id}

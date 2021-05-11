@@ -5,7 +5,10 @@
 
 {% block content %}
 
-<h1>Success! Please login.</h1>
+<div class="flex-container card">
+    <h1>Payment successfully submitted!</h1>
+    <p>Thank you for joining the American Handel Society. <a href="{% url 'login' %}">Please login.</a></p>
+</div>
 
 
 {% endblock %}
