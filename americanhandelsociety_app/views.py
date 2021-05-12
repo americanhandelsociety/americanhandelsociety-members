@@ -1,19 +1,24 @@
-from django.shortcuts import render
-from django.urls import reverse_lazy
-from django.views.generic.base import View
-from django.views.generic.list import ListView
+import uuid
+
+from django.conf import settings
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import (
     LoginView,
     LogoutView,
-    PasswordChangeView,
     PasswordChangeDoneView,
+    PasswordChangeView,
 )
 from django.http import HttpResponseRedirect
-from django.utils import timezone
+from django.shortcuts import render
+from django.urls import reverse, reverse_lazy
+from django.views.decorators.csrf import csrf_exempt
+from django.views.generic.base import View
+from django.views.generic.list import ListView
+from paypal.standard.forms import PayPalPaymentsForm
 
+from .forms import AddressChangeForm, MemberChangeForm, MemberCreationForm
 from .models import Member
-from .forms import MemberChangeForm, AddressChangeForm
+
 
 # views for authentication
 class Login(LoginView):
@@ -35,21 +40,29 @@ class Profile(ProtectedView, View):
     def get(self, request, *args, **kwargs):
         is_superuser = "Yes" if request.user.is_superuser else "No"
 
+        try:
+            form_name = request.session.pop("form_name")
+        except KeyError:
+            form_name = None
+
         return render(
             request,
             self.template_name,
-            context={
-                **kwargs,
-                "is_superuser": is_superuser,
-            },
+            context={**kwargs, "is_superuser": is_superuser, "form_name": form_name},
         )
 
 
 class PasswordChange(PasswordChangeView, View):
     template_name = "password_change.html"
-    success_url = reverse_lazy(
-        "success", kwargs={"form_name": "change-password-success"}
-    )
+    success_url = reverse_lazy("profile")
+
+    def post(self, request, *args, **kwargs):
+        form = self.get_form()
+        if form.is_valid():
+            request.session["form_name"] = "change-password-success"
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)
 
 
 class EditMember(ProtectedView, View):
@@ -79,6 +92,7 @@ class EditMember(ProtectedView, View):
             }
         except AttributeError:
             initial_data = {}
+
         address_form = AddressChangeForm(initial=initial_data)
 
         return render(
@@ -92,7 +106,6 @@ class EditMember(ProtectedView, View):
 
         if form.is_valid() and address_form.is_valid():
             member = form.save(commit=False)
-
             address_form_data = [
                 val for val in address_form.cleaned_data.values() if val
             ]
@@ -107,10 +120,8 @@ class EditMember(ProtectedView, View):
                 except AttributeError:
                     pass
             member.save()
-
-            success_url = reverse_lazy(
-                "success", kwargs={"form_name": "change-member-info-success"}
-            )
+            request.session["form_name"] = "change-member-info-success"
+            success_url = reverse_lazy("profile")
 
             return HttpResponseRedirect(success_url)
 
@@ -136,3 +147,69 @@ class About(View):
 
     def get(self, request, *args, **kwargs):
         return render(request, self.template_name)
+
+
+class Join(View):
+    template_name = "forms/join.html"
+
+    def get(self, request):
+        form = MemberCreationForm()
+
+        return render(request, self.template_name, {"form": form})
+
+    def post(self, request):
+        form = MemberCreationForm(request.POST)
+
+        if form.is_valid():
+            member = form.save(commit=False)
+            member.is_active = False
+            member.save()
+
+            success_url = reverse_lazy("pay")
+
+            request.session["member_id"] = str(member.id)
+
+            return HttpResponseRedirect(success_url)
+
+        return render(request, self.template_name, {"form": form})
+
+
+class Pay(View):
+    template_name = "forms/pay.html"
+
+    def get(self, request, *args, **kwargs):
+        # TODO: How to redirect to a payment page where you can "Pay without a PayPal account"?
+        # test buyer
+        # username: americanhandelsociety-buyer@gmail.com
+        # password: computer-man
+
+        member_id = request.session.get("member_id")
+        invoice_num = f"{member_id}_join"
+        paypal_dict = {
+            "business": settings.PAYPAL_RECEIVER_EMAIL,
+            "amount": "0",
+            "item_name": "Membership in the American Handel Society",
+            "invoice": invoice_num,
+            "notify_url": request.build_absolute_uri(reverse("paypal-ipn")),
+            "return": request.build_absolute_uri(
+                reverse("pay-confirm")
+            ),  # The URL to which PayPal redirects buyers' browser after they complete their payments.
+            # TODO: How will we deal with cancelled payments?
+            # "cancel_return": request.build_absolute_uri(reverse("your-cancel-view")),
+        }
+
+        form = PayPalPaymentsForm(initial=paypal_dict)
+        context = {"form": form, "member_id": member_id}
+
+        return render(request, self.template_name, context)
+
+
+class PaymentConfirmation(View):
+    template_name = "payment_confirmation.html"
+
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name)
+
+    @csrf_exempt
+    def dispatch(self, *args, **kwargs):
+        return super(PaymentConfirmation, self).dispatch(*args, **kwargs)

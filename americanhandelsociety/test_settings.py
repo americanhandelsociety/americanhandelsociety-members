@@ -9,6 +9,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+PAYPAL_TEST = True
+
+PAYPAL_RECEIVER_EMAIL = "americanhandelsociety-facilitator@gmail.com"
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -20,6 +24,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "fontawesome-free",
+    "paypal.standard.ipn",
 ]
 
 MIDDLEWARE = [
@@ -63,7 +68,7 @@ DATABASES = {
         "USER": "ahs_admin",
         "PASSWORD": "gfhandel",
         "HOST": "127.0.0.1",
-        "PORT": "5432",
+        "PORT": "5433",
     }
 }
 

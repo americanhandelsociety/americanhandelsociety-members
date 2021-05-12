@@ -24,7 +24,11 @@ SECRET_KEY = "q%swky07(1_$tjo1+u=il*#d8@8weup(iz#fpg)9^y9*%%+zeu"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["732c557b6424.ngrok.io", "127.0.0.1"]
+
+PAYPAL_TEST = True
+
+PAYPAL_RECEIVER_EMAIL = "americanhandelsociety-facilitator@gmail.com"
 
 
 # Application definition
@@ -38,6 +42,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "fontawesome-free",
+    "paypal.standard.ipn",
 ]
 
 MIDDLEWARE = [

@@ -4,12 +4,10 @@
 
 {% block content %}
 
-<div class='container-fluid'>
-	<div class="row">
-		<div class="col mt-5 d-flex justify-content-center">
-			<h2>Logout successful!</h2>
-		</div>
-	</div>
+
+<div class="flex-container card">
+    <h1>Logout successful!</h1>
+    <p>Thank you for visiting. <a href="{% url 'about' %}">Return home.</a></p>
 </div>
 
 {% endblock %}
