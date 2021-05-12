@@ -39,4 +39,6 @@ def listen_for_paypal_please(sender, **kwargs):
     member.is_active = True
     member.save()
 
+    print("Successful payment! Member updated.")
+
     # TODO: Set membership type
