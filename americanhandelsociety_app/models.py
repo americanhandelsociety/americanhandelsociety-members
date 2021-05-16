@@ -48,6 +48,7 @@ class Member(AbstractUser):
     address = models.ForeignKey(
         "Address", on_delete=models.CASCADE, null=True, blank=True
     )
+    date_of_last_membership_payment = models.DateTimeField(auto_now_add=True)
 
     objects = MemberManager()
 
