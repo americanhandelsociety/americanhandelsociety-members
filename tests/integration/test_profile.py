@@ -1,4 +1,7 @@
+from datetime import datetime, timezone
+
 import pytest
+from dateutil.relativedelta import relativedelta
 from django.conf import settings
 
 
@@ -72,9 +75,43 @@ def test_profile_shows_member_info(client, member):
     client.force_login(member)
     resp = client.get("/profile/")
 
+    assert member.date_of_last_membership_payment.strftime(
+        settings.DATE_FORMAT
+    ) in resp.content.decode("utf-8")
     assert member.date_joined.strftime(settings.DATE_FORMAT) in resp.content.decode(
         "utf-8"
     )
     assert member.last_login.strftime(settings.DATETIME_FORMAT) in resp.content.decode(
+        "utf-8"
+    )
+
+
+@pytest.mark.django_db
+def test_profile_renewal_msg(client, member):
+    # 'date_of_last_membership_payment' must be within 12 months of NOW, otherwise payment will be overdue
+    not_overdue_timestamp = datetime.now(timezone.utc) - relativedelta(months=6)
+    member.date_of_last_membership_payment = not_overdue_timestamp
+    member.save()
+
+    client.force_login(member)
+    resp = client.get("/profile/")
+
+    assert (
+        "Renew your membership on or before this date to maintain membership benefits."
+        in resp.content.decode("utf-8")
+    )
+
+
+@pytest.mark.django_db
+def test_profile_renewal_msg_error(client, member):
+    # 'date_of_last_membership_payment' must be within 12 months of NOW, otherwise payment will be overdue
+    overdue_timestamp = datetime.now(timezone.utc) - relativedelta(months=13)
+    member.date_of_last_membership_payment = overdue_timestamp
+    member.save()
+
+    client.force_login(member)
+    resp = client.get("/profile/")
+
+    assert "Membership payment overdue! Please renew today." in resp.content.decode(
         "utf-8"
     )

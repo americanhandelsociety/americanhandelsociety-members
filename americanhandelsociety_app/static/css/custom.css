@@ -267,6 +267,9 @@ h3 {
   width: 100%;
   margin-bottom: 2.2rem;
 }
+.profile-table tr {
+  border-bottom: 1px #ccd0d5 solid;
+}
 .profile-table th {
   width: 40%;
   margin-right: 60px;
@@ -276,6 +279,16 @@ h3 {
 .profile-table td {
   vertical-align: top;
   padding: 1.2rem 1.2rem 1.2rem 0;
+}
+.renewal-msg {
+  font-size: 1.6rem;
+  color: #b0b0b0;
+}
+
+.renewal-msg-error {
+  font-size: 1.6rem;
+  color: var(--error-color);
+  font-weight: 700;
 }
 
 /* Forms */

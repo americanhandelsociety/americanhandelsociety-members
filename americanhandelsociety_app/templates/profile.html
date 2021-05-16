@@ -54,16 +54,28 @@
 			<h2>Membership</h2>
 			<table class="profile-table">
 				<tr>
+					<th>Renewal Date</th>
+					<td>
+						{{ renewal_date|date:'DATE_FORMAT' }}
+						<br>
+						{% if payment_overdue %}
+							<span class="renewal-msg-error"><i class="fas fa-bell"></i> {{ renewal_msg }}</span>
+						{% else %}
+							<span class="renewal-msg">{{ renewal_msg }}</span>
+						{% endif %}
+					</td>
+				</tr>
+				<tr>
+					<th>Date of Last Membership Payment</th>
+					<td>{{ request.user.date_of_last_membership_payment|date:'DATE_FORMAT' }}</td>
+				</tr>
+				<tr>
 					<th>Date Joined</th>
 					<td>{{ request.user.date_joined|date:'DATE_FORMAT' }}</td>
 				</tr>
 				<tr>
 					<th>Last Login</th>
 					<td>{{ request.user.last_login|date:'DATETIME_FORMAT' }}</td>
-				</tr>
-				<tr>
-					<th>AHS Administrator</th>
-					<td>{{ is_superuser }}</td>
 				</tr>
 			</table>
 			<div class="row">

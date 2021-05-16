@@ -9,3 +9,4 @@ __pycache__/
 # Dev artifacts
 local_settings.py
 *.DS_Store
+**/.vscode
