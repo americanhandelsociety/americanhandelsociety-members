@@ -1,5 +1,7 @@
 import uuid
+from datetime import datetime, timezone
 
+from dateutil.relativedelta import relativedelta
 from django.conf import settings
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import (
@@ -38,7 +40,15 @@ class Profile(ProtectedView, View):
     template_name = "profile.html"
 
     def get(self, request, *args, **kwargs):
-        is_superuser = "Yes" if request.user.is_superuser else "No"
+        date_of_last_membership_payment = request.user.date_of_last_membership_payment
+        renewal_date = date_of_last_membership_payment + relativedelta(years=1)
+
+        if renewal_date > datetime.now(timezone.utc):
+            renewal_msg = "Renew your membership on or before this date to maintain membership benefits."
+            payment_overdue = False
+        else:
+            renewal_msg = "Membership payment overdue! Please renew today."
+            payment_overdue = True
 
         try:
             form_name = request.session.pop("form_name")
@@ -48,7 +58,13 @@ class Profile(ProtectedView, View):
         return render(
             request,
             self.template_name,
-            context={**kwargs, "is_superuser": is_superuser, "form_name": form_name},
+            context={
+                **kwargs,
+                "form_name": form_name,
+                "renewal_date": renewal_date,
+                "payment_overdue": payment_overdue,
+                "renewal_msg": renewal_msg,
+            },
         )
 
 
