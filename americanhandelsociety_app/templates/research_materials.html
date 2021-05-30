@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Research Materials{% endblock %}
+
+{% block content %}
+
+<div class='container-fluid'>
+    <!-- banner -->
+    <div class="row">
+        <div class='col-sm-5 page-banner-quote'>
+            <p class="apple-pie">"Behold fair Truth, the heav'nly image see,<br>Not decked, but fairest in simplicity"</p>
+            <p>Thomas Morell, <em>The Triumph of Time and Truth</em>, 1757</p>
+        </div>
+        <div class='col-sm-7 page-banner-header'>
+            <h1>Research Materials</h1>
+        </div>
+    </div>
+</div>
+
+<div class="research-container">
+    <section>Handel scholars and enthusiasts have access to a growing repository of resources, including many digital and online materials. The following links to research materials that may be useful to anyone engaged in the study of Handel.</section>
+    <hr>
+    <h3>Open Access Resources</h3>
+    {% for material in research_materials.open_source %}
+        <div class="research-row">
+            <p><a href={{material.url}} target="_blank" class="open-access-badge">{{material.title}} <i class="fas fa-chevron-circle-right"></i></a></p>
+            <p>{{material.description}}</p>
+        </div>
+    {% endfor %}
+    <hr>
+    <h3>Subscription-Based Resources</h3>
+    {% for material in research_materials.subscription_based %}
+    <div class="research-row">
+        <p><a href={{material.url}} target="_blank" class="open-access-badge">{{material.title}} <i
+                    class="fas fa-chevron-circle-right"></i></a></p>
+        <p>{{material.description}}</p>
+    </div>
+    {% endfor %}
+</div>
+
+
+
+{% endblock %}

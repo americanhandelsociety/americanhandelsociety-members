@@ -9,6 +9,7 @@ from americanhandelsociety_app.views import (
     Login,
     Logout,
     Home,
+    ResearchMaterials,
     People,
     Profile,
     Login,
@@ -19,6 +20,7 @@ from americanhandelsociety_app.views import (
 
 urlpatterns = [
     path("", Home.as_view(), name="home"),
+    path("research-materials/", ResearchMaterials.as_view(), name="research-materials"),
     path("people/", People.as_view(), name="people"),
     # Profile
     path("profile/", Profile.as_view(), name="profile"),
