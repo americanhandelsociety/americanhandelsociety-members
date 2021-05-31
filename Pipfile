@@ -11,11 +11,11 @@ django = "==3.1.9"
 python-dateutil = "*"
 
 [dev-packages]
-black = "*"
 pytest = "*"
 pytest-django = "*"
 docker = "*"
 pre-commit = "*"
+black = "*"
 
 [requires]
 python_version = "3.9"
