@@ -165,11 +165,15 @@ class Home(View):
     def get(self, request, *args, **kwargs):
         return render(request, self.template_name)
 
+
 class ResearchMaterials(View):
     template_name = "research_materials.html"
 
     def get(self, request, *args, **kwargs):
-        return render(request, self.template_name, {"research_materials": RESEARCH_MATERIALS})
+        return render(
+            request, self.template_name, {"research_materials": RESEARCH_MATERIALS}
+        )
+
 
 class Join(View):
     template_name = "forms/join.html"
