@@ -129,12 +129,12 @@ h3 {
   padding-top: 0;
 }
 
-.navbar a.item {
-  color: #333;
+.navbar-light .navbar-nav .nav-link {
+  color: rgba(0,0,0,.9);
 }
 
-.navbar a.item:hover {
-  color: #333333;
+.navbar-light .navbar-nav .nav-link:hover {
+  color: rgba(0,0,0,.55);
 }
 
 .nav-item {
@@ -148,12 +148,12 @@ h3 {
 }
 
 .dropdown-item {
-  color:rgba(0,0,0,.55);
+  color: rgba(0,0,0,.9);
 }
 
-.dropdown-item:hover {
-  background:var(--red-color);
-  color: #fff;
+.dropdown-item:hover, .dropdown-item:after {
+  color: rgba(0,0,0,.55);
+  background: #f8f9fa!important;
 }
 
 /* Home */
@@ -288,7 +288,7 @@ h3 {
   font-weight: 900;
 }
 
-/* Research Materials */
+/* Research */
 .research-container {
   display: flex;
   flex-direction: column;
