@@ -18,6 +18,7 @@ from django.views.generic.base import View
 from django.views.generic.list import ListView
 from paypal.standard.forms import PayPalPaymentsForm
 
+from .constants import RESEARCH_MATERIALS
 from .forms import AddressChangeForm, MemberChangeForm, MemberCreationForm
 from .models import Member
 
@@ -158,11 +159,20 @@ class People(ListView):
 
 
 # public-facing views with static content
-class About(View):
-    template_name = "about.html"
+class Home(View):
+    template_name = "home.html"
 
     def get(self, request, *args, **kwargs):
         return render(request, self.template_name)
+
+
+class ResearchMaterials(View):
+    template_name = "research_materials.html"
+
+    def get(self, request, *args, **kwargs):
+        return render(
+            request, self.template_name, {"research_materials": RESEARCH_MATERIALS}
+        )
 
 
 class Join(View):
