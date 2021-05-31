@@ -129,16 +129,18 @@ h3 {
   padding-top: 0;
 }
 
-.navbar-light .navbar-nav .nav-link {
+.nav-link {
   color: rgba(0,0,0,.9);
 }
 
-.navbar-light .navbar-nav .nav-link:hover {
+.nav-link:hover {
   color: rgba(0,0,0,.55);
 }
 
 .nav-item {
   margin-left: 16px;
+  list-style-type: none;
+  color: rgba(0,0,0,.55);
 }
 
 .dropdown-menu {
@@ -154,6 +156,21 @@ h3 {
 .dropdown-item:hover, .dropdown-item:after {
   color: rgba(0,0,0,.55);
   background: #f8f9fa!important;
+}
+
+.navbar hr {
+  color: #a4a4a4;
+}
+
+.navbar-light .navbar-toggler {
+    color: rgba(0,0,0,.55);
+    border-color: #f8f9fa!important;
+}
+
+.navbar-toggler:focus {
+    text-decoration: #f8f9fa!important;
+    outline: 0;
+    box-shadow: none;
 }
 
 /* Home */
