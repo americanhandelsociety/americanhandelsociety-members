@@ -14,7 +14,7 @@ class MemberCreationForm(UserCreationForm):
 class MemberChangeForm(UserChangeForm):
     class Meta:
         model = Member
-        fields = ("first_name", "last_name", "email")
+        fields = ("first_name", "last_name", "email", "available_in_directory")
 
 
 class AddressChangeForm(ModelForm):

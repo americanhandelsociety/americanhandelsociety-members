@@ -1,0 +1,24 @@
+.flex-container {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    margin: auto;
+    padding-top: 4%;
+}
+
+form {
+    height: auto;
+    padding: 0 0 8% 0;
+}
+
+.checkbox-container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    margin: 3rem 0 3rem 0;
+}
+
+.checkbox-container input {
+    height: auto;
+    margin: 8px 12px 8px 0;
+}

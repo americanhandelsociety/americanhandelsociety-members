@@ -91,3 +91,29 @@ def test_updates_address_info_create_new(client, member):
 
     addresses = Address.objects.all()
     assert len(addresses) == 1
+
+@pytest.mark.django_db
+def test_update_available_in_directory(client, member):
+    client.force_login(member)
+
+    data = {
+        **model_to_dict(member),
+        "available_in_directory": False
+    }
+    resp = client.post(f"/edit-member/{member.id}", data=data)
+    assert resp.status_code == 302
+
+    resp = client.get("/profile/")
+    assert "Members of the AHS cannot view my information in the online Members Directory." in resp.content.decode("utf-8")
+
+    revise_data = {
+        **data,
+        "available_in_directory": True
+    }
+    resp = client.post(f"/edit-member/{member.id}", data=revise_data)
+    assert resp.status_code == 302
+
+    resp = client.get("/profile/")
+    assert "Members of the AHS can view my information in the online Members Directory." in resp.content.decode("utf-8")
+
+
