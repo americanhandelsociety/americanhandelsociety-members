@@ -18,7 +18,7 @@ from django.views.generic.base import View
 from django.views.generic.list import ListView
 from paypal.standard.forms import PayPalPaymentsForm
 
-from .constants import RESEARCH_MATERIALS
+from .constants import RESEARCH_MATERIALS, BOARD_OF_DIRECTORS, HONORARY_DIRECTORS
 from .forms import AddressChangeForm, MemberChangeForm, MemberCreationForm
 from .models import Member
 
@@ -155,6 +155,8 @@ class People(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context["board_of_directors"] = BOARD_OF_DIRECTORS
+        context["honorary_directors"] = HONORARY_DIRECTORS
         return context
 
 

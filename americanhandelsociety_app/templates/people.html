@@ -3,6 +3,11 @@
 
 {% block title %}People{% endblock %}
 
+{% block extra_css %}
+<link href="{% static 'css/people.css' %}" rel="stylesheet">
+{% endblock %}
+
+
 {% block content %}
 
 <div class='container-fluid'>
@@ -16,43 +21,61 @@
 			<h1>People</h1>
 		</div>
 	</div>
+</div>
 
+<div class="people-container pt-lg">
+	<h2>Officers</h2>
+	<p><strong>Graydon Beeks</strong>, <em>President</em></p>
+	<p><strong>Nathan Link</strong>, <em>Vice President</em></p>
+	<p><strong>Marjorie Pomeroy</strong>, <em>Secretary/Treasurer</em></p>
+</div>
+
+<div class="people-container">
+	<h2>Board of Directors</h2>
+	<table class="d-none d-sm-block">
+		{% for director_1, director_2 in board_of_directors %}
+		<tr>
+			<td>{{director_1}}</td>
+			<td>{{director_2}}</td>
+		</tr>
+		{% endfor %}
+		<tr>
+			<td>Minji Kim, <em>Newsletter editor</em></td>
+		</tr>
+		<tr>
+			<td>Regina Compton, <em>Web developer</em></td>
+		</tr>
+	</table>
+
+	<div class="d-block d-sm-none">
+		{% for director_1, director_2 in board_of_directors %}
+			<p>{{director_1}}</p>
+			<p>{{director_2}}</p>
+		{% endfor %}
+		<p>Minji Kim, <em>Newsletter editor</em></p>
+		<p>Regina Compton, <em>Web developer</em></p>
+	</div>
+</div>
+
+<div class="people-container">
+	<h2>Honorary Directors</h2>
+	{% for director in honorary_directors %}
+	<p>{{director}}</p>
+	{% endfor %}
+</div>
+
+{% if request.user.is_authenticated %}
 	<div class="row">
 		<div class='col-12'>
-			<h2>Officers</h2>
-			<table>
-				<tr>
-					<td width='60%'><p><strong>President</strong></p></td>
-					<td align="right"><p>Graydon Beeks</p></td>
-				</tr>
-				<tr>
-					<td width='60%'><p><strong>Vice President</strong></p></td>
-					<td align="right"><p>Nathan Link</p></td>
-				</tr>
-				<tr>
-					<td width='60%'><p><strong>Secretary/Treasurer</strong></p></td>
-					<td align="right"><p>Marjorie Pomeroy</p></td>
-				</tr>
-			</table>
-			<h2>Board of Directors</h2>
-			<p>Graydon Beeks; Ireri Chávez-Bárcenas; Norbert Dubowy; Fredric Fehleisen; Roger Freitas; William Gudger<span class="red-font">*</span>; Ellen Harris; Wendy Heller; David Hurley; Robert Ketterer; Richard King<span class="red-font">*</span>; Nathan Link; Nicholas McGegan<span class="red-font">*</span>; Ken Nott; Marjorie Pomeroy; John Roberts; Marty Ronish<span class="red-font">*</span>; Ellen Rosand; Ayana Smith; Minji Kim (Newsletter editor); Regina Compton (Web designer) </p>
-			<p class="text-muted"><small><span class="red-font">*</span> Honorary Director</small></p>
+			<h2>Members Directory</h2>
+			<ul>
+			{% for member in object_list %}
+				<li>{{ member.email }}</li>
+			{% empty %}
+				<li>No members yet.</li>
+			{% endfor %}
+			</ul>
 		</div>
 	</div>
-
-	{% if request.user.is_authenticated %}
-		<div class="row">
-			<div class='col-12'>
-				<h2>Members Directory</h2>
-				<ul>
-				{% for member in object_list %}
-					<li>{{ member.email }}</li>
-				{% empty %}
-					<li>No members yet.</li>
-				{% endfor %}
-				</ul>
-			</div>
-		</div>
-	{% endif %}
-</div>
+{% endif %}
 {% endblock %}
