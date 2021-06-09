@@ -129,3 +129,7 @@ RESEARCH_MATERIALS = {
         },
     ],
 }
+
+BOARD_OF_DIRECTORS = [("Graydon Beeks", "Ireri Chávez-Bárcenas"), ("Norbert Dubowy", "Fredric Fehleisen"), ("Roger Freitas", "Ellen Harris"), ("Wendy Heller", "David Hurley"), ("Robert Ketterer", "Nathan Link"), ("Ken Nott", "Marjorie Pomeroy"), ("John Roberts", "Ellen Rosand"), ("Ayana Smith","")]
+
+HONORARY_DIRECTORS = ["Richard King", "William Gudger", "Nicholas McGegan", "Marty Ronish"]
