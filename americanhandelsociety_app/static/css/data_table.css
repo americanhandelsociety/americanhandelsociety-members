@@ -1,0 +1,57 @@
+:root {
+  --dark-color: #212529;
+}
+
+#dark-color-please {
+  color: var(--dark-color);
+}
+
+thead {
+  background: #dbdbdb
+}
+
+table.dataTable tbody tr {
+  background: transparent;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled, .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:hover, .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:active > img {
+  color: var(--dark-color);
+  background: transparent;
+  box-shadow: none;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+  padding: 0.3em 0.8em;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover
+ {
+    background: transparent;
+    border: 1px solid #dbdbdb;
+}
+
+.dataTables_wrapper .dataTables_filter input {
+    border-radius: 20px;
+    padding: 5px 14px;
+    border: 1px solid var(--dark-color);
+    color: var(--dark-color);
+    background: transparent;
+}
+
+.dataTables_wrapper .dataTables_filter input:focus {
+    outline: none;
+    box-shadow: 0 0 8px #5c83ad;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: var(--dark-color);
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: var(--dark-color);
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+  color: var(--dark-color);
+}

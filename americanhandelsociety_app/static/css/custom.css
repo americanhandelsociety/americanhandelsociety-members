@@ -410,3 +410,60 @@ label {
   padding-left: 0;
   color: var(--error-color);
 }
+
+
+
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled, .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:hover, .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:active > img {
+  color: #212529 !important;
+  background: transparent;
+  box-shadow: none;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+  padding: 0.3em 0.8em !important;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover
+ {
+    background: transparent !important;
+    border: 1px solid #dbdbdb !important;
+}
+
+.dataTables_wrapper .dataTables_filter input {
+    border-radius: 20px !important;
+    padding: 5px 14px !important;
+    border: 1px solid #212529 !important;
+    color: #212529;
+    background: transparent !important;
+}
+
+.dataTables_wrapper .dataTables_filter input:focus {
+    outline: none !important;
+    box-shadow: 0 0 8px #5c83ad;
+}
+
+table.dataTable tbody tr {
+  background: transparent !important;
+}
+
+thead {
+  background: #dbdbdb
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #212529;
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #212529;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+  color: #212529;
+}
+
+#dark-color-please {
+  color: #212529;
+}

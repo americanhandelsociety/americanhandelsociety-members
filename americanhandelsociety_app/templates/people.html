@@ -5,6 +5,7 @@
 
 {% block extra_css %}
 <link href="{% static 'css/jquery.dataTables.css' %}" rel="stylesheet">
+<link href="{% static 'css/data_table.css' %}" rel="stylesheet">
 <link href="{% static 'css/people.css' %}" rel="stylesheet">
 {% endblock %}
 
@@ -26,7 +27,7 @@
 {% if request.user.is_authenticated %}
 <div class="people-container pt-lg">
 	<h2>Members Directory</h2>
-	<table id="members-directory" class="table">
+	<table id="members-directory" class="table table-striped">
 		<thead>
 			<tr>
 				<th>First Name</th>
@@ -46,7 +47,6 @@
 	</table>
 </div>
 {% endif %}
-
 
 <div class="people-container pt-lg">
 	<h2>Officers</h2>
@@ -97,7 +97,17 @@
 		$(document).ready(function () {
 			var myTable = $('#members-directory').dataTable({
 				"retrieve": true, // https://datatables.net/manual/tech-notes/3
-				"lengthChange": false
+				"lengthChange": false,
+				"ordering": false,
+				"language": {
+					"search": "",
+					"searchPlaceholder": "Search...",
+					"info": "Page _PAGE_ of _PAGES_",
+					"paginate": {
+						"previous": '<i class="fas fa-arrow-circle-left" id="dark-color-please"></i>',
+						"next": '<i class="fas fa-arrow-circle-right" id="dark-color-please"></i>'
+					}
+				},
 			});
 		});
 	</script>
