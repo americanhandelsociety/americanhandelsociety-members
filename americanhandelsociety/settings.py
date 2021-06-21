@@ -24,7 +24,7 @@ SECRET_KEY = "q%swky07(1_$tjo1+u=il*#d8@8weup(iz#fpg)9^y9*%%+zeu"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["732c557b6424.ngrok.io", "127.0.0.1"]
+ALLOWED_HOSTS = ["732c557b6424.ngrok.io", "127.0.0.1", "0.0.0.0"]
 
 PAYPAL_TEST = True
 
@@ -82,10 +82,11 @@ WSGI_APPLICATION = "americanhandelsociety.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "american_handel_society",
+        "NAME": "americanhandelsociety_postgres",
         "USER": "ahs_admin",
         "PASSWORD": "gfhandel",
-        "HOST": "127.0.0.1",
+        # "HOST": "127.0.0.1",
+        "HOST": "postgres", # name of docker service
         "PORT": "5432",
     }
 }
