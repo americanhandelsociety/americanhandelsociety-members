@@ -44,7 +44,7 @@ class Member(AbstractUser):
         unique=True,
         verbose_name="email",
     )
-    available_in_directory = models.BooleanField(default=True)
+    available_in_directory = models.BooleanField(default=False)
     address = models.ForeignKey(
         "Address", on_delete=models.CASCADE, null=True, blank=True
     )
