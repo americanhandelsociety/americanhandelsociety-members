@@ -148,7 +148,8 @@ class EditMember(ProtectedView, View):
 
 
 class People(ListView):
-    model = Member
+    context_object_name = "ahs_members"
+    queryset = Member.objects.exclude(available_in_directory=False)
 
     def get_template_names(self):
         return ["people.html"]
