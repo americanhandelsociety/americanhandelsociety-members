@@ -132,3 +132,4 @@ DATETIME_FORMAT = "%B %-d, %Y, %-I:%M"
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = "/static/"
+STATIC_ROOT = "/static"
