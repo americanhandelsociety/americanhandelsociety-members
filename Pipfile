@@ -9,6 +9,7 @@ django-paypal = "*"
 fontawesome-free = "*"
 django = "==3.1.9"
 python-dateutil = "*"
+whitenoise = "*"
 
 [dev-packages]
 pytest = "*"
