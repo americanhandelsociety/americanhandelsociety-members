@@ -53,7 +53,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "whitenoise.middleware.WhiteNoiseMiddleware"
+    "whitenoise.middleware.WhiteNoiseMiddleware",
 ]
 
 ROOT_URLCONF = "americanhandelsociety.urls"
@@ -87,7 +87,7 @@ DATABASES = {
         "USER": "ahs_admin",
         "PASSWORD": "gfhandel",
         # "HOST": "127.0.0.1",
-        "HOST": "postgres", # name of docker service
+        "HOST": "postgres",  # name of docker service
         "PORT": "5432",
     }
 }
@@ -134,3 +134,4 @@ DATETIME_FORMAT = "%B %-d, %Y, %-I:%M"
 
 STATIC_URL = "/static/"
 STATIC_ROOT = "/static"
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
