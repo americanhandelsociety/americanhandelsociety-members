@@ -14,6 +14,7 @@ services:
       - DJANGO_SECRET_KEY=supersecretkey
       - DJANGO_DEBUG=True
       - DJANGO_ALLOWED_HOSTS=127.0.0.1,0.0.0.0
+      - DJANGO_LOG_LEVEL=INFO
     # Allow container to be attached to, e.g., to access the pdb shell
     stdin_open: true
     tty: true
