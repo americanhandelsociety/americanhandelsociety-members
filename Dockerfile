@@ -1,11 +1,14 @@
 # Credit: https://github.com/datamade/how-to/blob/master/docker/templates/python-docker-env/%7B%7Bcookiecutter.directory_name%7D%7D/Dockerfile
 # Extend the base Python image
 # https://hub.docker.com/_/python
-FROM python:3.9.5-slim-buster
+FROM python:3.9
 
 LABEL maintainer "Regina Compton <reginafcompton@gmail.com>"
 
 WORKDIR /app
+
+RUN apt-get update && \
+    apt-get install curl
 
 COPY ./Pipfile /app/Pipfile
 COPY ./Pipfile.lock /app/Pipfile.lock
