@@ -2,10 +2,27 @@ version: "3"
 services:
   postgres:
     image: postgres:12
-    container_name: american_handel_society
     ports:
       - 5432:5432
     environment:
       - POSTGRES_USER=ahs_admin
       - POSTGRES_PASSWORD=gfhandel
-      - POSTGRES_DB=american_handel_society
+      - POSTGRES_DB=americanhandelsociety_postgres
+  app:
+    build: .
+    environment:
+      - DJANGO_SECRET_KEY=supersecretkey
+      - DJANGO_DEBUG=True
+      - DJANGO_ALLOWED_HOSTS=127.0.0.1,0.0.0.0
+      - DJANGO_LOG_LEVEL=INFO
+    # Allow container to be attached to, e.g., to access the pdb shell
+    stdin_open: true
+    tty: true
+    ports:
+      - 8000:8000
+    depends_on:
+      - postgres
+    volumes:
+      # Mount the development directory as a volume into the container, so
+      # Docker automatically recognizes your changes.
+      - .:/app
