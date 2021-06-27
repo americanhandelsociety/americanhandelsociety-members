@@ -11,13 +11,12 @@ COPY ./Pipfile /app/Pipfile
 COPY ./Pipfile.lock /app/Pipfile.lock
 RUN pip install pipenv && pipenv install --system && pipenv install --dev --system
 
-# Copy entrypoint script (runs migrations and server).
 COPY entrypoint.sh entrypoint.sh
 RUN chmod +x entrypoint.sh
 # Copy the contents of the current host directory (i.e., our app code) into
 # the container.
 COPY . /app
 
-RUN python manage.py collectstatic
+# RUN python manage.py collectstatic
 
 ENTRYPOINT [ "/app/entrypoint.sh" ]
