@@ -9,6 +9,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 import os
+import dj_database_url
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -70,17 +71,20 @@ TEMPLATES = [
 WSGI_APPLICATION = "americanhandelsociety.wsgi.application"
 
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "americanhandelsociety_postgres",
-        "USER": "ahs_admin",
-        "PASSWORD": "gfhandel",
-        # "HOST": "127.0.0.1",
-        "HOST": "postgres",  # name of docker service
-        "PORT": "5432",
-    }
-}
+PSQL_DATABASE_NAME = "americanhandelsociety_postgres"
+PSQL_USER = "ahs_admin"
+PSQL_PASSWORD = "gfhandel"
+# PSQL_HOST = "127.0.0.1"
+PSQL_HOST = "postgres"  # name of docker service
+
+DATABASES = {}
+
+DATABASES['default'] = dj_database_url.parse(
+    os.getenv('DATABASE_URL', f'postgres://{PSQL_USER}:{PSQL_PASSWORD}@{PSQL_HOST}:5432/{PSQL_DATABASE_NAME}'),
+    conn_max_age=600,
+    ssl_require=True if os.getenv('POSTGRES_REQUIRE_SSL') else False,
+    engine='django.db.backends.postgresql'
+)
 
 AUTH_PASSWORD_VALIDATORS = [
     {
