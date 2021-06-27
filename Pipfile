@@ -11,6 +11,7 @@ django = "==3.1.9"
 python-dateutil = "*"
 whitenoise = "*"
 dj-database-url = "*"
+gunicorn = "*"
 
 [dev-packages]
 pytest = "*"
