@@ -17,6 +17,13 @@ RUN chmod +x entrypoint.sh
 # the container.
 COPY . /app
 
-# RUN python manage.py collectstatic
+# Add a bogus env var for the Django secret key in order to allow us to run
+# the 'collectstatic' management command
+ENV DJANGO_SECRET_KEY 'foobar'
+# Add a bogus env var for Debug to make sure that Django compressor can run
+ENV DJANGO_DEBUG 'False'
+
+# Build static files into the container
+RUN python manage.py collectstatic --noinput
 
 ENTRYPOINT [ "/app/entrypoint.sh" ]
