@@ -29,4 +29,4 @@ ENV DJANGO_DEBUG 'False'
 # Build static files into the container
 RUN python manage.py collectstatic --noinput
 
-ENTRYPOINT [ "/app/entrypoint.sh" ]
+# ENTRYPOINT [ "/app/entrypoint.sh" ]
