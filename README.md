@@ -1,21 +1,33 @@
 # americanhandelsociety-members
 
-# Get Started
+# Get Started: Dockerize Database and App
+
+```bash
+docker compose up
+```
+
+# (Alternate) Get Started: Dockerize Database, but not App
 
 **1. Standup containerized version of Postgres.**
 
 ```bash
-docker-compose up
+docker compose up postgres
 ```
 
-**2. Run migrations.**
+**2. Setup Environment.**
+
+```bash
+cp .env.example .env
+```
+
+**3. Run migrations.**
 
 ```bash
 # in another terminal window
 pipenv run python manage.py migrate
 ```
 
-**3. Run the app.**
+**4. Run the app.**
 
 ```bash
 # in the terminal window where you ran migrations

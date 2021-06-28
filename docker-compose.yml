@@ -15,7 +15,8 @@ services:
       - DJANGO_DEBUG=True
       - DJANGO_ALLOWED_HOSTS=127.0.0.1,0.0.0.0
       - DJANGO_LOG_LEVEL=INFO
-    # Allow container to be attached to, e.g., to access the pdb shell
+      - DATABASE_URL=postgres://ahs_admin:gfhandel@postgres:5432/americanhandelsociety_postgres # corresponds with postgres 'environment' above
+    # Allow 'attach' when running container (e.g., to access the pdb shell)
     stdin_open: true
     tty: true
     ports:
@@ -26,3 +27,4 @@ services:
       # Mount the development directory as a volume into the container, so
       # Docker automatically recognizes your changes.
       - .:/app
+    entrypoint: /app/entrypoint.sh

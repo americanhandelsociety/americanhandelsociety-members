@@ -1,6 +1,4 @@
 # Credit: https://github.com/datamade/how-to/blob/master/docker/templates/python-docker-env/%7B%7Bcookiecutter.directory_name%7D%7D/Dockerfile
-# Extend the base Python image
-# https://hub.docker.com/_/python
 FROM python:3.9
 
 LABEL maintainer "Regina Compton <reginafcompton@gmail.com>"
@@ -28,5 +26,3 @@ ENV DJANGO_DEBUG 'False'
 
 # Build static files into the container
 RUN python manage.py collectstatic --noinput
-
-# ENTRYPOINT [ "/app/entrypoint.sh" ]
