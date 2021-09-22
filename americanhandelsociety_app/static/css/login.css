@@ -13,22 +13,10 @@
     gap: 15px;
     width: 100%;
     margin: auto;
-    margin-top: 2rem;
+    margin-top: 2.5rem;
 }
 
 form {
     height: auto;
     padding: 0 0 8% 0;
-}
-
-.checkbox-container {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    margin: 3rem 0 3rem 0;
-}
-
-.checkbox-container input {
-    height: auto;
-    margin: 8px 12px 8px 0;
 }
