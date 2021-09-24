@@ -1,30 +1,43 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link href="{% static 'css/forms.css' %}" rel="stylesheet">
+{% endblock %}
 
 {% block content %}
-<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
-    {{ form.cmd }}
-    {{ form.charset }}
-    {{ form.currency_code }}
-    {{ form.no_shipping }}
-    {{ form.business }}
-    {{ form.amount }}
-    {{ form.item_name }}
-    <select name="amount">
-        <option value="35.00">Regular $35 USD</option>
-        <option value="42.00">Joint (one set of publications) $42 USD</option>
-        <option value="56.00">Donor $56 USD</option>
-        <option value="20.00">Student $20 USD</option>
-        <option value="20.00">Retired $20 USD</option>
-        <option value="100.00">Sponsor $100 USD</option>
-        <option value="200.00">Patron $200 USD</option>
-        <option value="500.00">Life $500 USD</option>
-        <option value="42.00">Subscriber (Institutions Only) $42 USD</option>
-    </select>
-    {{ form.invoice }}
-    {{ form.notify_url }}
-    {{ form.return }}
-    {{ form.custom }}
-
-    <input type="submit" value="Submit Payment on Paypal" name="submit" title="PayPal - The safer, easier way to pay online!" class="btn btn-primary mt-5">
-</form>
+<div>
+    <div class="flex-container-column">
+        <h3>Join</h3>
+        <p>Select your membership type, and then, wait for the site to redirect you to Paypal.</p>
+    </div>
+    <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+        {{ form.cmd }}
+        {{ form.charset }}
+        {{ form.currency_code }}
+        {{ form.no_shipping }}
+        {{ form.business }}
+        {{ form.amount }}
+        {{ form.item_name }}
+        <select name="amount">
+            <option value="35.00">Regular $35 USD</option>
+            <option value="42.00">Joint (one set of publications) $42 USD</option>
+            <option value="56.00">Donor $56 USD</option>
+            <option value="20.00">Student $20 USD</option>
+            <option value="20.00">Retired $20 USD</option>
+            <option value="100.00">Sponsor $100 USD</option>
+            <option value="200.00">Patron $200 USD</option>
+            <option value="500.00">Life $500 USD</option>
+            <option value="42.00">Subscriber (Institutions Only) $42 USD</option>
+        </select>
+        {{ form.invoice }}
+        {{ form.notify_url }}
+        {{ form.return }}
+        {{ form.custom }}
+        <input type="submit" value="Submit Payment on Paypal" name="submit" title="PayPal - The safer, easier way to pay online!" class="btn btn-primary mt-5">
+    </form>
+    <form method="post">{% csrf_token %}
+        <input type="submit" value="Cancel" class="btn btn-black" />
+    </form>
+</div>
 {% endblock %}
