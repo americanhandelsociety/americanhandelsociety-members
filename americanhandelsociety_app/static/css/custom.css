@@ -35,7 +35,7 @@ h3 {
 }
 
 .btn {
-  padding: 1rem;
+  padding: 1rem 1.5rem;
   font-size: 22px;
   border-radius: 0.3rem;
   height: auto;
@@ -52,6 +52,18 @@ h3 {
   background-color: #991e41;
   color: #fff;
   border-color: var(--red-color);
+}
+
+.btn-black {
+  background-color: #212529;
+  color: #fff;
+  border-color: #212529;
+}
+
+.btn-black:hover, .btn-black:focus {
+  background-color: #424547;
+  color: #fff;
+  border-color: #424547;
 }
 
 .flex-container {

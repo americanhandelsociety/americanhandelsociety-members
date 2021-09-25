@@ -1,17 +1,18 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}Change Password{% endblock %}
+{% block title %}Update Information{% endblock %}
 
 {% block extra_css %}
 <link href="{% static 'css/edit_member.css' %}" rel="stylesheet">
+<link href="{% static 'css/forms.css' %}" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
 
 <div>
-    <div class="flex-container">
-        <h3>Edit My Information</h3>
+    <div class="flex-container-column">
+        <h3>Update Information</h3>
         <p>Use this form to update your general membership information, mailing address, and preference to show or hide your
             information in the members directory.</p>
     </div>
@@ -42,12 +43,15 @@
 
         <label for="id_id_country">Country</label>{{address_form.country}}
         {{ address_form.country.errors }}
-        
+
         <div class="checkbox-container">
             {{form.available_in_directory}} Check this box to be included in the online members directory. (Only members of the American Handel Society can view this directory.)
         </div>
 
-        <input type="submit" value="Update" class="btn btn-primary mt-5" />
+        <div class="flex-container-row">
+            <a href="{% url 'profile' %}" class="btn btn-black">Cancel</a>
+            <input type="submit" value="Update Information" class="btn btn-primary" />
+        </div>
     </form>
 </div>
 

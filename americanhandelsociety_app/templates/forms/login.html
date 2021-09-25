@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Login{% endblock %}
+
+{% block extra_css %}
+<link href="{% static 'css/forms.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+<div>
+    <div class="flex-container-column">
+        <h3>Login</h3>
+        <p>Login to access your profile, the membership directory, and other member benefits. Not a member? <a href="{% url 'join' %}">Join the American Handel Society now.</a></p>
+    </div>
+    <form method="post" action="{% url 'login' %}">
+        {% if form.errors %}
+            {% for error in form.errors %}
+                {{error}}
+            {% endfor %}
+        {% endif %}
+
+        {% csrf_token %}
+        {{ form.username.label_tag }}
+        {{ form.username }}
+
+        {{ form.password.label_tag }}
+        {{ form.password }}
+    <div class="flex-container-row">
+        <a href="{% url 'home' %}" class="btn btn-black">Return Home</a>
+        <input class="btn btn-primary" type="submit" value="Login">
+    </div>
+    <input type="hidden" name="next" value="{% url 'profile' %}">
+    </form>
+</div>
+
+{% endblock %}

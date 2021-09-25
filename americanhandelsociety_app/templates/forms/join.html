@@ -1,17 +1,26 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link href="{% static 'css/forms.css' %}" rel="stylesheet">
+{% endblock %}
 
 {% block content %}
 
 <div>
+    <div class="flex-container-column">
+        <h3>Join</h3>
+        <p>Welcome to the American Handel Society! To become a member, please complete this simple form. On subsequent pages, you will select your membership type and be redirected to Paypal, where you can submit annual dues.</p>
+    </div>
     <form action="" method="post">{% csrf_token %}
+        <label for="id_email">Email</label>{{form.email}}
+        {{ form.email.errors }}
+
         <label for="id_first_name">First name</label>{{form.first_name}}
         {{ form.first_name.errors }}
 
         <label for="id_last_name">Last name</label>{{form.last_name}}
         {{ form.last_name.errors }}
-
-        <label for="id_email">Email</label>{{form.email}}
-        {{ form.email.errors }}
 
         <label for="id_password1">Password</label>{{form.password1}}
         {{ form.password1.errors }}
@@ -19,7 +28,10 @@
         <label for="id_password2">Re-enter Password</label>{{form.password2}}
         {{ form.password2.errors }}
 
-        <input type="submit" value="Continue" class="btn btn-primary mt-5" />
+        <div class="flex-container-row">
+            <a href="{% url 'home' %}" class="btn btn-black">Return Home</a>
+            <input type="submit" value="Continue" class="btn btn-primary" />
+        </div>
     </form>
 </div>
 

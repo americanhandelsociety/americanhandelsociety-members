@@ -25,7 +25,7 @@ from .models import Member
 
 # views for authentication
 class Login(LoginView):
-    template_name = "login.html"
+    template_name = "forms/login.html"
 
 
 class Logout(LogoutView):
@@ -70,7 +70,7 @@ class Profile(ProtectedView, View):
 
 
 class PasswordChange(PasswordChangeView, View):
-    template_name = "password_change.html"
+    template_name = "forms/password_change.html"
     success_url = reverse_lazy("profile")
 
     def post(self, request, *args, **kwargs):
@@ -231,6 +231,16 @@ class Pay(View):
         context = {"form": form, "member_id": member_id}
 
         return render(request, self.template_name, context)
+
+    def post(self, request):
+        member_id = request.session.get("member_id")
+        try:
+            member = Member.objects.get(id=member_id)
+            member.delete()
+        except Member.DoesNotExist:
+            pass
+
+        return HttpResponseRedirect(reverse_lazy("join"))
 
 
 class PaymentConfirmation(View):

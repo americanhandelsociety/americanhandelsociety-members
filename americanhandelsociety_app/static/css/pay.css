@@ -1,0 +1,35 @@
+.flex-container-column {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    margin: auto;
+    padding-top: 4%;
+}
+
+.flex-container-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 15px;
+    width: 60%;
+    margin: auto;
+    margin-top: 2.5rem;
+}
+
+form#payForm {
+    height: auto;
+    padding: 2% 0 2% 0;
+}
+
+form#cancelForm {
+    height: 0;
+    padding: 0;
+}
+
+select {
+    padding: 0 8px 0 8px;
+    border-radius: 0;
+    border: solid 0.5px #b0b0b0;
+    height: 44px;
+    font-size: 1.8rem;
+}
