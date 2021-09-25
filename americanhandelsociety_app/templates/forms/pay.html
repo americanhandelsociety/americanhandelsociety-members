@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block extra_css %}
-<link href="{% static 'css/forms.css' %}" rel="stylesheet">
+<link href="{% static 'css/pay.css' %}" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
@@ -11,7 +11,7 @@
         <h3>Join</h3>
         <p>Select your membership type, and then, wait for the site to redirect you to Paypal.</p>
     </div>
-    <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+    <form id="payForm" action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
         {{ form.cmd }}
         {{ form.charset }}
         {{ form.currency_code }}
@@ -34,10 +34,11 @@
         {{ form.notify_url }}
         {{ form.return }}
         {{ form.custom }}
-        <input type="submit" value="Submit Payment on Paypal" name="submit" title="PayPal - The safer, easier way to pay online!" class="btn btn-primary mt-5">
     </form>
-    <form method="post">{% csrf_token %}
-        <input type="submit" value="Cancel" class="btn btn-black" />
-    </form>
+    <form id="cancelForm" method="post">{% csrf_token %}</form>
+    <div class="flex-container-row">
+        <input form="cancelForm" type="submit" value="Cancel" class="btn btn-black" />
+        <input form="payForm" type="submit" value="Go to PayPal" name="submit" title="PayPal - The safer, easier way to pay online!" class="btn btn-primary">
+    </div>
 </div>
 {% endblock %}
