@@ -1,0 +1,135 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Events{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+<link href="{% static 'css/data_table.css' %}" rel="stylesheet">
+<link href="{% static 'css/events.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+<div class='container-fluid'>
+    <!-- banner -->
+    <div class="row">
+        <div class='col-sm-8 page-banner-quote'>
+            <p class="apple-pie">"...not to forget Handel's works, as they always offer the best nourishment for your ripe musical mind..."</p>
+            <p>Ludwig van Beethoven, letter to Archduke Rudolph, 1819</p>
+        </div>
+        <div class='col-sm-4 page-banner-header'>
+            <h1>Events</h1>
+        </div>
+    </div>
+</div>
+
+<div class="flex-container-cols">
+    <section>
+        <p>The American Handel Society hosts a biennial festival. The festival includes: academic panels, the Serwer Lecture, and performances of music by Handel and his contemporaries.</p>
+    </section>
+    <h2>Recently Past Festivals</h2>
+    <div class="flex-container-rows">
+        <div class="item">
+            <img class="img-events" src="{% static 'images/chandos.png' %}" alt="G.F. Handel">
+        </div>
+        <div class="flex-container-cols-events">
+            <p><strong>MARCH 11–14, 2021</strong></p>
+            <p>Virtual Conference</br>Hosted by Indiana University</p>
+            <p><a href="https://iu.pressbooks.pub/ahsconference2021/front-matter/introduction/" target="_blank"><i class="fas fa-external-link-square-alt"></i> Visit website</a></p>
+        </div>
+    </div>
+    <div class="flex-container-rows">
+        <div class="item">
+            <img class="img-events" src="{% static 'images/se_tu_non_lasci_amore.png' %}" alt="G.F. Handel">
+        </div>
+        <div class="flex-container-cols-events">
+            <p><strong>FEBRUARY 7–10, 2019</strong></p>
+            <p>Jacobs School of Music</br>Indiana University</p>
+            <p><a href="https://music.indiana.edu/news-events/news/info/2018/10/iu-jacobs-school-of-music-welcomes-2019-american-handel-festival.html" target="_blank"><i class="fas fa-external-link-square-alt"></i> Visit website</a></p>
+        </div>
+    </div>
+    <div class="flex-container-rows">
+        <div class="item">
+            <img class="img-events" src="{% static 'images/letter.png' %}" alt="G.F. Handel">
+        </div>
+        <div class="flex-container-cols-events">
+            <p><strong>APRIL 6-9, 2017</strong></p>
+            <p>Princeton University</p>
+            <p><a href="https://ahs2017.princeton.edu/" target="_blank"><i class="fas fa-external-link-square-alt" aria-hidden="true"></i> Visit website</a></p>
+        </div>
+    </div>
+</div>
+
+<div class="flex-container-cols">
+    <h2>Past Howard Serwer Memorial Lectures</h2>
+    <table id="lectures" class="table">
+        <thead>
+            <tr>
+                <th>Year</th>
+                <th>Speaker</th>
+                <th>Title</th>
+                <th>Location</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for lecture in howard_serwer_lectures %}
+            <tr>
+                <td>{{lecture.year}}</td>
+                <td>{{lecture.speaker}}</td>
+                <td>{{lecture.title|safe}}</td>
+                <td>{{lecture.location}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<div class="flex-container-cols">
+    <h2>Other Conferences and Events</h2>
+    <p>
+        <strong>Handel Institute Conference</strong><br>
+        "Handel: Interactions and Influences"<br>
+        November 20–21, 2021<br>
+        The Foundling Museum, London WC1N 1AZ<br>
+    </p>
+    <p><a href="https://handelinstitute.org/conferences/" target="_blank"><i class="fas fa-external-link-square-alt"aria-hidden="true"></i> Learn more</a></p>
+</div>
+
+<div class="footer">
+    <p class="footer-bold">Images (in order of appearance)</p>
+    <p class="footer-muted">
+        <em>"Chandos" Anthems</em>, George Frideric Handel, British Library, Add MS 62099.</br>
+        "Se tu non lasci amore," HWV 201a, George Frideric Handel, British Library, MS Mus. 1818.<br>
+        Letter from King George III to Mrs. Delaney, British Library, MS Mus. 1818.<br>
+    </p>
+    <br>
+    <p class="footer-bold">
+        Copyright &#169; American Handel Society
+    </p>
+</div>
+
+{% block extra_js %}
+<!-- TODO: Why do I need jQuery import if I import it in base.html -->
+<script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+<script>
+    $(document).ready(function () {
+        var myTable = $('#lectures').dataTable({
+            "retrieve": true, // https://datatables.net/manual/tech-notes/3
+            "lengthChange": false,
+            "ordering": false,
+            "paging": false,
+            "infoCallback": function (settings, start, end, max, total, pre) {
+                return `Showing ${total} of ${max}`;
+            },
+            "language": {
+                "search": "",
+                "searchPlaceholder": "Search...",
+            },
+        });
+    });
+</script>
+{% endblock %}
+
+{% endblock %}
