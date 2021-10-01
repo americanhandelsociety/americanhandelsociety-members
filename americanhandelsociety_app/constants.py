@@ -147,3 +147,126 @@ HONORARY_DIRECTORS = [
     "Nicholas McGegan",
     "Marty Ronish",
 ]
+
+HOWARD_SERWER_LECTURES = [
+    {
+        "year": 2019,
+        "speaker": "Ellen Rosand",
+        "title": "Handel's 'Music'",
+        "location": "Bloomington, IN – Indiana University",
+    },
+    {
+        "year": 2017,
+        "speaker": "John Butt",
+        "title": "Handel and Messiah: Harmonizing the Bible for a Modern World?",
+        "location": "Princeton, NJ – Princeton University",
+    },
+    {
+        "year": 2015,
+        "speaker": "Nicholas McGegan",
+        "title": "Handel in My Lifetime",
+        "location": "Iowa City, IA – University of Iowa",
+    },
+    {
+        "year": 2013,
+        "speaker": "Reinhard Strohm",
+        "title": "Handel: Opera and Ritual",
+        "location": "Princeton, NJ – Princeton University",
+    },
+    {
+        "year": 2011,
+        "speaker": "David Hurley",
+        "title": "Once More with Feeling: Da Capo Patterns in Handel's Oratorios",
+        "location": "Seattle, WA",
+    },
+    {
+        "year": 2009,
+        "speaker": "Robert Ketterer",
+        "title": "London as Athens: <em>Teseo</em> and <em>Arianna in Creta</em>",
+        "location": "Danville, KY - Centre College",
+    },
+    {
+        "year": 2007,
+        "speaker": "Andrew Porter",
+        "title": "How Handel's Operas Entered the Modern Repertory",
+        "location": "Princeton, NJ – Princeton University",
+    },
+    {
+        "year": 2005,
+        "speaker": "Graydon Beeks",
+        "title": "Private Patronage of Church Music in the Reign of George I",
+        "location": "Santa Fe, NM",
+    },
+    {
+        "year": 2003,
+        "speaker": "Terence Best",
+        "title": "Handel Editions",
+        "location": "Iowa City, IA – University of Iowa",
+    },
+    {
+        "year": 2001,
+        "speaker": "Nicholas Temperley",
+        "title": "'In Virtue's Cause': How Handel's Music was Sanctified",
+        "location": "College Park, MD – University of Maryland",
+    },
+    {
+        "year": 2000,
+        "speaker": "Ruth Smith",
+        "title": "Fifteen Ways to Skin an Oratorio, of Understanding <em>Theodora</em>",
+        "location": "College Park, MD – University of Maryland",
+    },
+    {
+        "year": 1998,
+        "speaker": "Anthony Hicks",
+        "title": "Handel's Jephtha: A Sacridice to Theology?",
+        "location": "College Park, MD – University of Maryland",
+    },
+    {
+        "year": 1996,
+        "speaker": "Donald Burrows",
+        "title": "M. Handel's Friends: Contemporary Accounts of the Composer from the papers of James Harris",
+        "location": "College Park, MD – University of Maryland",
+    },
+    {
+        "year": 1994,
+        "speaker": "Winton Dean",
+        "title": "Handel's Operas in the Theatre",
+        "location": "College Park, MD – University of Maryland",
+    },
+    {
+        "year": 1992,
+        "speaker": "John Roberts",
+        "title": "The <em>Song for St Cecilia's Day</em> and Handel's 'Borrowing' from other Composers",
+        "location": "College Park, MD - University of Maryland",
+    },
+    {
+        "year": 1991,
+        "speaker": "Paul Brainard",
+        "title": "Bach and Handel: Another Look",
+        "location": "Washington, D.C. – George Washington University",
+    },
+    {
+        "year": 1990,
+        "speaker": "Don E. Saliers",
+        "title": "Words and The Word: Sounding the Text of Handel's <em>Messiah</em>",
+        "location": "College Park, MD – University of Maryland",
+    },
+    {
+        "year": 1989,
+        "speaker": "Bernd Baselt",
+        "title": "The War of Spanish Succession, Italy, and Handel",
+        "location": "College Park, MD – University of Maryland",
+    },
+    {
+        "year": 1988,
+        "speaker": "Ellen T. Harris",
+        "title": "Integrity and Improvisation in the Music of Handel",
+        "location": "College Park, MD – University of Maryland",
+    },
+    {
+        "year": 1987,
+        "speaker": "Jens Peter Larsen",
+        "title": "The Turning Point in Handel's Oratorio Tradition",
+        "location": "College Park, MD – University of Maryland",
+    },
+]

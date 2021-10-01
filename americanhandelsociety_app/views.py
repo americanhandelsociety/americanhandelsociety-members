@@ -18,7 +18,12 @@ from django.views.generic.base import View
 from django.views.generic.list import ListView
 from paypal.standard.forms import PayPalPaymentsForm
 
-from .constants import RESEARCH_MATERIALS, BOARD_OF_DIRECTORS, HONORARY_DIRECTORS
+from .constants import (
+    RESEARCH_MATERIALS,
+    BOARD_OF_DIRECTORS,
+    HONORARY_DIRECTORS,
+    HOWARD_SERWER_LECTURES,
+)
 from .forms import AddressChangeForm, MemberChangeForm, MemberCreationForm
 from .models import Member
 
@@ -167,6 +172,17 @@ class Home(View):
 
     def get(self, request, *args, **kwargs):
         return render(request, self.template_name)
+
+
+class Events(View):
+    template_name = "events.html"
+
+    def get(self, request, *args, **kwargs):
+        return render(
+            request,
+            self.template_name,
+            {"howard_serwer_lectures": HOWARD_SERWER_LECTURES},
+        )
 
 
 class ResearchMaterials(View):
