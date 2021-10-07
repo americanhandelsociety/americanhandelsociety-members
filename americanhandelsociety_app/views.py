@@ -7,7 +7,6 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import (
     LoginView,
     LogoutView,
-    PasswordChangeDoneView,
     PasswordChangeView,
 )
 from django.http import HttpResponseRedirect

@@ -12,6 +12,7 @@ python-dateutil = "*"
 whitenoise = "*"
 dj-database-url = "*"
 gunicorn = "*"
+django-simple-captcha = "*"
 
 [dev-packages]
 pytest = "*"
