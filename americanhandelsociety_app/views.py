@@ -194,6 +194,12 @@ class ResearchMaterials(View):
         )
 
 
+class Donate(View):
+    template_name = "donate.html"
+
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name)
+
 class Join(View):
     template_name = "forms/join.html"
 

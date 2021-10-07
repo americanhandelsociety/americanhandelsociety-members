@@ -95,6 +95,15 @@ a {
   padding: 1rem;
 }
 
+/* Reusable flex containers and items */
+.primary-container {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin: auto;
+}
+
+
 /* Banner */
 .page-banner-header {
   padding: 10rem 8rem;
@@ -199,7 +208,6 @@ a {
   align-items: center;
 
   background-image: url("/static/images/happy_we.png");
-  /* background: rgba(242, 245, 247, 0.1); */
   background-repeat: no-repeat;
   background-size: 100%;
   background-position-x: 50%;
@@ -219,12 +227,8 @@ a {
 .button-frame {
   display: flex;
   flex-direction: column;
-  border-radius: 0.5rem;
-
-  display: flex;
-  flex-direction: column;
   justify-content: center;
-
+  border-radius: 0.5rem;
   padding: 5%;
   font-weight: 800;
   font-size: 2.4rem;
