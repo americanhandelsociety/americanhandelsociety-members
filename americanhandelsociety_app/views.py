@@ -200,6 +200,7 @@ class Donate(View):
     def get(self, request, *args, **kwargs):
         return render(request, self.template_name)
 
+
 class Join(View):
     template_name = "forms/join.html"
 
