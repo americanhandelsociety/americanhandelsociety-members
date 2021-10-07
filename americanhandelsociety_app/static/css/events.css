@@ -35,3 +35,15 @@
   border-bottom: 1px solid #e8e8e8;
   margin-bottom: 6%;
 }
+
+p.font-sm {
+    font-size: 1.6rem;
+}
+
+p.margin-sm {
+    margin-bottom: 2px;
+}
+
+div.padding-md {
+    padding-bottom: 5rem;
+}

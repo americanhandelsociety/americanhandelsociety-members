@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Donate{% endblock %}
+
+{% block extra_css %}
+<link href="{% static 'css/donate.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<div class='container-fluid'>
+    <!-- banner -->
+    <div class="row">
+        <div class='col-sm-7 page-banner-quote'>
+            <p class="apple-pie">"What the Devil I throw my money away for that the blockhead wish."</p>
+            <p>George Frideric Handel, according to Thomas Busby, <em>Concert Room and Orchestra Anecdotes</em>, 1825</p>
+        </div>
+        <div class='col-sm-5 page-banner-header'>
+            <h1>Donate</h1>
+        </div>
+    </div>
+</div>
+
+<div class="primary-container">
+    <p>The American Handel Society accepts donations in support of the following five categories:</p>
+    <ol class="donate-list">
+        <li>Conference travel grants to assist graduate students and independent scholars</li>
+        <li>Support for Howard Serwer Memorial Lecture</li>
+        <li>Support for J. Merrill Knapp Research Fellowship</li>
+        <li>Support for Paul Traver Memorial Concert</li>
+        <li>Support for ongoing activities of the Society</li>
+    </ol>
+    <p>If you wish to contribute to these causes, you may do so by clicking the "Donate Now" button below. Please specify the category or categories you wish to support by entering a message during checkout.</p>
+</div>
+
+<div class="donate-banner">
+    <h1>Donate to the American Handel Society.</h1>
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+        <input type="hidden" name="cmd" value="_s-xclick">
+        <input type="hidden" name="hosted_button_id" value="537HKFG7JQTVC">
+        <input type="submit" value="Donate Now" name="submit" title="PayPal - The safer, easier way to pay online!"
+            class="btn btn-primary">
+    </form>
+</div>
+
+<div class="primary-container">
+    <p>You can also make a donation by mail. Please download and complete the application form and send it to the appropriate address as indicated.</p>
+    <p><a href="{% static 'AHS_membership_form_2021.pdf' %}" target="_blank"><i class="fas fa-download" aria-hidden="true"></i> Download application form</a></p>
+
+</div>
+
+<div class="footer">
+    <p class="footer-bold">Images (in order of appearance)</p>
+    <p class="footer-muted">
+        "Deeds of kindness," <em>Theodora</em>, HWV 68, British Library, R.M.20.f.9.
+    </p>
+    <br>
+    <p class="footer-bold">
+        Copyright &#169; American Handel Society
+    </p>
+</div>
+
+{% endblock %}
