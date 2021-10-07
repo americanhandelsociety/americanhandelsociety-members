@@ -1,19 +1,13 @@
 import pytest
 
 from americanhandelsociety_app.models import Member
+from tests.utils import post_valid_user
 
 
 @pytest.mark.django_db
 def test_can_cancel_join_and_remove_member_entity(client):
     # POST new member and assert its existence (based on data in 'request.session')
-    data = {
-        "first_name": "Queen",
-        "last_name": "Cleopatra",
-        "email": "cleo@egypt.ico",
-        "password1": "1724handel",
-        "password2": "1724handel",
-    }
-    client.post(f"/join/", data=data)
+    post_valid_user(client)
     member_id = client.session["member_id"]
     Member.objects.get(id=member_id)
 

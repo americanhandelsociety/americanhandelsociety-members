@@ -3,6 +3,7 @@
 
 {% block extra_css %}
 <link href="{% static 'css/forms.css' %}" rel="stylesheet">
+<link href="{% static 'css/join.css' %}" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
@@ -27,6 +28,9 @@
 
         <label for="id_password2">Re-enter Password</label>{{form.password2}}
         {{ form.password2.errors }}
+
+        <label class="captcha-label" for="id_captcha_1">Are you a robot? Type the word as it appears in the image.</label>{{form.captcha}}
+        {{form.errors.captcha}}
 
         <div class="flex-container-row">
             <a href="{% url 'home' %}" class="btn btn-black">Return Home</a>

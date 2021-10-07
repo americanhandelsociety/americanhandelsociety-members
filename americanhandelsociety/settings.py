@@ -26,7 +26,13 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "fontawesome-free",
     "paypal.standard.ipn",
+    "captcha",
 ]
+
+CAPTCHA_2X_IMAGE = True
+CAPTCHA_BACKGROUND_COLOR = "transparent"
+CAPTCHA_IMAGE_SIZE = [150, 75]
+CAPTCHA_FONT_SIZE = 40
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
