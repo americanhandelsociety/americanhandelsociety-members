@@ -6,8 +6,6 @@ from .models import Member
 
 
 def listen_for_paypal_please(sender, **kwargs):
-    print("wheeee!!!!")
-
     ipn_obj = sender
     if ipn_obj.payment_status != ST_PP_COMPLETED:
         print("Payment not complete.")
