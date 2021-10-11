@@ -22,23 +22,12 @@ def listen_for_paypal_please(sender, **kwargs):
         print("Currency mismatch. Not a valid payment!")
         return
 
-    payment_membership_map = {
-        "35.00": "Regular",
-        "42.00": "Joint",
-        "56.00": "Donor",
-        "20.00": "Student",
-        "20.00": "Retired",
-        "100.00": "Sponsor",
-        "200.00": "Patron",
-        "500.00": "Life",
-        "42.00": "Subscriber",
-    }
-
     member_uuid = ipn_obj.invoice.replace("_join", "")
     member = Member.objects.get(id=member_uuid)
     member.is_active = True
+    member.membership_type = ipn_obj.item_name
+    # Run full_clean to validate membership_type choices.
+    member.full_clean()
     member.save()
 
     print("Successful payment! Member updated.")
-
-    # TODO: Set membership type

@@ -155,6 +155,7 @@ def member():
         "first_name": "Queen",
         "last_name": "Rodelinda",
         "available_in_directory": True,
+        "membership_type": "REGULAR",
         "address": address,
     }
 
@@ -171,6 +172,7 @@ def member_not_in_directory():
         "first_name": "Lady",
         "last_name": "Gismonda",
         "available_in_directory": False,
+        "membership_type": "REGULAR",
     }
 
     member = Member.objects.create(**data)

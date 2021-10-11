@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load pay_extras %}
 
 {% block extra_css %}
 <link href="{% static 'css/pay.css' %}" rel="stylesheet">
@@ -19,16 +20,10 @@
         {{ form.business }}
         {{ form.amount }}
         {{ form.item_name }}
-        <select name="amount">
-            <option value="35.00">Regular $35 USD</option>
-            <option value="42.00">Joint (one set of publications) $42 USD</option>
-            <option value="56.00">Donor $56 USD</option>
-            <option value="20.00">Student $20 USD</option>
-            <option value="20.00">Retired $20 USD</option>
-            <option value="100.00">Sponsor $100 USD</option>
-            <option value="200.00">Patron $200 USD</option>
-            <option value="500.00">Life $500 USD</option>
-            <option value="42.00">Subscriber (Institutions Only) $42 USD</option>
+        <select id="membership_select" name="amount">
+            {% for membership in membership_types %}
+                <option id={{membership.value}} value={{membership.label}}>{{membership.value|format_membership_type}} ${{membership.label}} USD</option>
+            {% endfor %}
         </select>
         {{ form.invoice }}
         {{ form.notify_url }}
@@ -41,4 +36,16 @@
         <input form="payForm" type="submit" value="Go to PayPal" name="submit" title="PayPal - The safer, easier way to pay online!" class="btn btn-primary">
     </div>
 </div>
+
+{% block extra_js %}
+<!-- TODO: Why do I need jQuery import if I import it in base.html -->
+<script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+<script>
+    $('#membership_select').on('change', function () {
+        var membership_type = $(this).find('option:selected').attr("id");
+        $('#id_item_name').val(membership_type);
+    });
+</script>
+{% endblock %}
+
 {% endblock %}
