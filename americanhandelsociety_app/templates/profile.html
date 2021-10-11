@@ -54,6 +54,10 @@
 			<h2>Membership</h2>
 			<table class="profile-table">
 				<tr>
+					<th>Membership Type</th>
+					<td>{{ request.user.membership_type }}</td>
+				</tr>
+				<tr>
 					<th>Renewal Date</th>
 					<td>
 						{{ renewal_date|date:'DATE_FORMAT' }}

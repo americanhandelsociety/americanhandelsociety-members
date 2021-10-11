@@ -33,15 +33,15 @@ class MemberManager(BaseUserManager):
 
 class Member(AbstractUser):
     class MembershipType(models.TextChoices):
-        REGULAR = "REGULAR", "Regular"
-        JOINT = "JOINT", "Joint"
-        DONOR = "DONOR", "Donor"
-        STUDENT = "STUDENT", "Student"
-        RETIRED = "RETIRED", "Retired"
-        SPONSOR = "SPONSOR", "Sponsor"
-        PATRON = "PATRON", "Patron"
-        LIFE = "LIFE", "Life"
-        SUBSCRIBER = "SUBSCRIBER", "Subscriber"
+        REGULAR = "REGULAR", "35.00"
+        JOINT = "JOINT", "42.00"
+        DONOR = "DONOR", "56.00"
+        STUDENT = "STUDENT", "20.00"
+        RETIRED = "RETIRED", "20.00"
+        SPONSOR = "SPONSOR", "100.00"
+        PATRON = "PATRON", "200.00"
+        LIFE = "LIFE", "500.00"
+        SUBSCRIBER = "SUBSCRIBER", "42.00"
 
         @classmethod
         def max_length(cls):

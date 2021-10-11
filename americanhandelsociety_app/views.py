@@ -239,7 +239,7 @@ class Pay(View):
         paypal_dict = {
             "business": settings.PAYPAL_RECEIVER_EMAIL,
             "amount": "0",
-            "item_name": "Membership in the American Handel Society",
+            "item_name": "REGULAR",  # default to REGULAR membership type
             "invoice": invoice_num,
             "notify_url": request.build_absolute_uri(reverse("paypal-ipn")),
             "return": request.build_absolute_uri(
@@ -250,7 +250,11 @@ class Pay(View):
         }
 
         form = PayPalPaymentsForm(initial=paypal_dict)
-        context = {"form": form, "member_id": member_id}
+        context = {
+            "form": form,
+            "member_id": member_id,
+            "membership_types": Member.MembershipType,
+        }
 
         return render(request, self.template_name, context)
 
