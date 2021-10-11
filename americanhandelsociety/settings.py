@@ -30,6 +30,14 @@ INSTALLED_APPS = [
     "fontawesome-free",
     "paypal.standard.ipn",
     "captcha",
+    "axes",
+]
+
+AUTHENTICATION_BACKENDS = [
+    # AxesBackend should be the first backend in the AUTHENTICATION_BACKENDS list.
+    "axes.backends.AxesBackend",
+    # Django ModelBackend is the default authentication backend.
+    "django.contrib.auth.backends.ModelBackend",
 ]
 
 CAPTCHA_2X_IMAGE = True
@@ -46,6 +54,12 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
+    # AxesMiddleware should be the last middleware in the MIDDLEWARE list.
+    # It only formats user lockout messages and renders Axes lockout responses
+    # on failed user authentication attempts from login views.
+    # If you do not want Axes to override the authentication response
+    # you can skip installing the middleware and use your own views.
+    "axes.middleware.AxesMiddleware",
 ]
 
 ROOT_URLCONF = "americanhandelsociety.urls"
