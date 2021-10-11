@@ -1,13 +1,17 @@
 {% extends "base.html" %}
+{% load static %}
 
-{% block title %}Login{% endblock %}
+{% block title %}Logout{% endblock %}
+
+{% block extra_css %}
+<link href="{% static 'css/logout.css' %}" rel="stylesheet">
+{% endblock %}
 
 {% block content %}
 
-
-<div class="flex-container card">
-    <h1>Logout successful!</h1>
-    <p>Thank you for visiting. <a href="{% url 'home' %}">Return home.</a></p>
+<div class="primary-container">
+    <h3>Logout successful</h3>
+    <p>Thank you for visiting! The American Handel Society appreciates your membership. Learn about <a href="{% url 'events' %}">upcoming and past events</a>, make a <a href="{% url 'donate' %}">contribution</a>, or return <a href="{% url 'home' %}"> home</a>.</p>
 </div>
 
 {% endblock %}

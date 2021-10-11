@@ -20,3 +20,7 @@ form {
     height: auto;
     padding: 0 0 8% 0;
 }
+
+ol {
+    padding-left: 0;
+}
