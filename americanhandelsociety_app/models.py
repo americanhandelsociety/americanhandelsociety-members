@@ -32,6 +32,21 @@ class MemberManager(BaseUserManager):
 
 
 class Member(AbstractUser):
+    class MembershipType(models.TextChoices):
+        REGULAR = "REGULAR", "Regular"
+        JOINT = "JOINT", "Joint"
+        DONOR = "DONOR", "Donor"
+        STUDENT = "STUDENT", "Student"
+        RETIRED = "RETIRED", "Retired"
+        SPONSOR = "SPONSOR", "Sponsor"
+        PATRON = "PATRON", "Patron"
+        LIFE = "LIFE", "Life"
+        SUBSCRIBER = "SUBSCRIBER", "Subscriber"
+
+        @classmethod
+        def max_length(cls):
+            return max(*(len(choice.value) for choice in cls))
+
     id = models.UUIDField(
         primary_key=True, unique=True, default=uuid.uuid4, editable=False
     )
@@ -44,6 +59,9 @@ class Member(AbstractUser):
         unique=True,
         verbose_name="email",
     )
+    membership_type = models.CharField(
+        max_length=MembershipType.max_length(), choices=MembershipType.choices
+    )
     available_in_directory = models.BooleanField(default=False)
     address = models.ForeignKey(
         "Address", on_delete=models.CASCADE, null=True, blank=True
@@ -53,7 +71,7 @@ class Member(AbstractUser):
     objects = MemberManager()
 
     USERNAME_FIELD = "email"
-    REQUIRED_FIELDS = ["first_name", "last_name"]
+    REQUIRED_FIELDS = ["first_name", "last_name", "membership_type"]
 
 
 class Address(models.Model):
