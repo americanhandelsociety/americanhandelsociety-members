@@ -16,7 +16,6 @@ def test_custom_abstract_user():
         password="cuzzoni",
         first_name="Queen",
         last_name="Rodelinda",
-        membership_type="PATRON",
     )
 
     assert not new_member.username
@@ -32,7 +31,6 @@ def test_create_superuser():
         password="cuzzoni",
         first_name="Queen",
         last_name="Rodelinda",
-        membership_type="PATRON",
     )
 
     assert new_superuser.is_superuser == True

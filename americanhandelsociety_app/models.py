@@ -60,7 +60,10 @@ class Member(AbstractUser):
         verbose_name="email",
     )
     membership_type = models.CharField(
-        max_length=MembershipType.max_length(), choices=MembershipType.choices
+        max_length=MembershipType.max_length(),
+        choices=MembershipType.choices,
+        null=True,
+        blank=True,
     )
     available_in_directory = models.BooleanField(default=False)
     address = models.ForeignKey(
@@ -71,7 +74,7 @@ class Member(AbstractUser):
     objects = MemberManager()
 
     USERNAME_FIELD = "email"
-    REQUIRED_FIELDS = ["first_name", "last_name", "membership_type"]
+    REQUIRED_FIELDS = ["first_name", "last_name"]
 
 
 class Address(models.Model):
