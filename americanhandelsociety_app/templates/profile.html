@@ -9,15 +9,18 @@
 			<h2>Basic Information</h2>
 			<div class="row mb-4">
 				<div class="col-md-6 mb-4 pb-4">
-					<p class="text-muted">Name and Email</p>
+					<p class="text-muted">About You</p>
 					<p class="mb-0">{{ request.user.first_name }} {{ request.user.last_name }}</p>
-					<p>{{ request.user.email }}</p>
+					<p class="mb-0">{{ request.user.email }}</p>
+					<p class="mb-0">{{ request.user.phone_number }}</p>
+					<p>{{ request.user.institution }}</p>
 				</div>
 				<div class="col-md-6">
 					{% if request.user.address %}
 						<p class="text-muted">Mailing Address</p>
 						<p class="mb-0">{{ request.user.address.street_address }}</p>
 						<p class="mb-0">{{ request.user.address.street_address_2 }}</p>
+						<p class="mb-0">{{ request.user.address.street_address_3 }}</p>
 						<p class="mb-0">{{ request.user.address.city }} {{ request.user.address.state_province_region }} {{ request.user.address.zip_postal_code }}</p>
 						<p>{{ request.user.address.country }}</p>
 					{% endif %}
@@ -84,7 +87,7 @@
 			</table>
 			<div class="row">
 				<div class="col">
-					<a class="btn btn-primary mt-4 ms-4 float-end" href="{# url 'edit-profile' #}">Renew Membership</a>
+					<a class="disabled btn btn-primary mt-4 ms-4 float-end" href="{# url 'edit-profile' #}">Renew Membership</a>
 				</div>
 			</div>
 		</div>

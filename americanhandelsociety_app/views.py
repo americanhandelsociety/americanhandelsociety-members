@@ -96,6 +96,8 @@ class EditMember(ProtectedView, View):
                 "first_name": member.first_name,
                 "last_name": member.last_name,
                 "email": member.email,
+                "phone_number": member.phone_number,
+                "institution": member.institution,
             },
             instance=member,
         )
@@ -106,6 +108,7 @@ class EditMember(ProtectedView, View):
             initial_data = {
                 "street_address": address.street_address,
                 "street_address_2": address.street_address_2,
+                "street_address_3": address.street_address_3,
                 "city": address.city,
                 "state_province_region": address.state_province_region,
                 "zip_postal_code": address.zip_postal_code,

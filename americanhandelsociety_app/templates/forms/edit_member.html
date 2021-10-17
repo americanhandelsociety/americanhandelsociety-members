@@ -17,20 +17,29 @@
             information in the members directory.</p>
     </div>
     <form method="post">{% csrf_token %}
-        <label for="id_first_name">First name</label>{{form.first_name}}
+        <label for="id_first_name">First name*</label>{{form.first_name}}
         {{ form.first_name.errors }}
 
-        <label for="id_last_name">Last name</label>{{form.last_name}}
+        <label for="id_last_name">Last name*</label>{{form.last_name}}
         {{ form.last_name.errors }}
 
-        <label for="id_email">Email</label>{{form.email}}
+        <label for="id_email">Email*</label>{{form.email}}
         {{ form.email.errors }}
+
+        <label for="id_phone_number">Phone number</label>{{form.phone_number}}
+        {{ form.phone_number.errors }}
+
+        <label for="id_institution">Institution</label>{{form.institution}}
+        {{ form.institution.errors }}
 
         <label for="id_street_address">Street Address</label>{{address_form.street_address}}
         {{ address_form.street_address.errors }}
 
         <label for="id_street_address_2">Street Address (additional)</label>{{address_form.street_address_2}}
         {{ address_form.street_address_2.errors }}
+
+        <label for="id_street_address_3">Street Address (additional)</label>{{address_form.street_address_3}}
+        {{ address_form.street_address_3.errors }}
 
         <label for="id_city">City</label>{{address_form.city}}
         {{ address_form.city.errors }}
@@ -46,6 +55,10 @@
 
         <div class="checkbox-container">
             {{form.available_in_directory}} Check this box to be included in the online members directory. (Only members of the American Handel Society can view this directory.)
+        </div>
+
+        <div class="flex-container-row small">
+            * Denotes a required field
         </div>
 
         <div class="flex-container-row">

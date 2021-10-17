@@ -36,6 +36,11 @@ a {
     text-decoration: none;
 }
 
+a.disabled {
+  pointer-events: none;
+  cursor: default;
+}
+
 .col-12 {
   padding: 8%;
 }
