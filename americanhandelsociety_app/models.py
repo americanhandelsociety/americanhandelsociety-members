@@ -47,6 +47,15 @@ class Member(AbstractUser):
         def max_length(cls):
             return max(*(len(choice.value) for choice in cls))
 
+    class ContactPreference(models.TextChoices):
+        PRINT = "PRINT"
+        EMAIL = "EMAIL"
+        ALL = "ALL"
+
+        @classmethod
+        def max_length(cls):
+            return max(*(len(choice.value) for choice in cls))
+
     id = models.UUIDField(
         primary_key=True, unique=True, default=uuid.uuid4, editable=False
     )
@@ -62,10 +71,16 @@ class Member(AbstractUser):
     membership_type = models.CharField(
         max_length=MembershipType.max_length(),
         choices=MembershipType.choices,
-        null=True,
         blank=True,
     )
     available_in_directory = models.BooleanField(default=False)
+    contact_preference = models.CharField(
+        max_length=ContactPreference.max_length(),
+        choices=ContactPreference.choices,
+        blank=True,
+    )
+    phone_number = models.CharField(max_length=15, blank=True)
+    institution = models.CharField(max_length=150, blank=True)
     address = models.ForeignKey(
         "Address", on_delete=models.CASCADE, null=True, blank=True
     )
@@ -79,11 +94,12 @@ class Member(AbstractUser):
 
 class Address(models.Model):
     street_address = models.CharField(max_length=500)
-    street_address_2 = models.CharField(max_length=500)
-    city = models.CharField(max_length=150)
-    state_province_region = models.CharField(max_length=150)
-    zip_postal_code = models.CharField(max_length=50)
-    country = models.CharField(max_length=50)
+    street_address_2 = models.CharField(max_length=500, blank=True)
+    street_address_3 = models.CharField(max_length=500, blank=True)
+    city = models.CharField(max_length=150, blank=True)
+    state_province_region = models.CharField(max_length=150, blank=True)
+    zip_postal_code = models.CharField(max_length=50, blank=True)
+    country = models.CharField(max_length=50, blank=True)
 
     def __str__(self):
         return self.street_address

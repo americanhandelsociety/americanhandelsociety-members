@@ -156,6 +156,9 @@ def member():
         "last_name": "Rodelinda",
         "available_in_directory": True,
         "membership_type": "REGULAR",
+        "contact_preference": "EMAIL",
+        "phone_number": "44 20 7495 1685",
+        "institution": "Handel House Foundation of America",
         "address": address,
     }
 
@@ -173,6 +176,9 @@ def member_not_in_directory():
         "last_name": "Gismonda",
         "available_in_directory": False,
         "membership_type": "REGULAR",
+        "contact_preference": "EMAIL",
+        "phone_number": "44 20 7495 1685",
+        "institution": "Handel House Foundation of America",
     }
 
     member = Member.objects.create(**data)
