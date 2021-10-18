@@ -32,7 +32,7 @@
         <label for="id_institution">Institution</label>{{form.institution}}
         {{ form.institution.errors }}
 
-        <label for="id_street_address">Street Address</label>{{address_form.street_address}}
+        <label class="label-with-border" for="id_street_address">Street Address</label>{{address_form.street_address}}
         {{ address_form.street_address.errors }}
 
         <label for="id_street_address_2">Street Address (additional)</label>{{address_form.street_address_2}}
@@ -52,6 +52,9 @@
 
         <label for="id_id_country">Country</label>{{address_form.country}}
         {{ address_form.country.errors }}
+
+        <label class="label-with-border" for="id_contact_preference">Indicate how you prefer to receive the AHS Newsletter.</label>{{form.contact_preference}}
+        {{ form.contact_preference.errors }}
 
         <div class="checkbox-container">
             {{form.available_in_directory}} Check this box to be included in the online members directory. (Only members of the American Handel Society can view this directory.)

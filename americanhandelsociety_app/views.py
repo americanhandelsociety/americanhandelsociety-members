@@ -97,6 +97,7 @@ class EditMember(ProtectedView, View):
                 "last_name": member.last_name,
                 "email": member.email,
                 "phone_number": member.phone_number,
+                "contact_preference": member.contact_preference,
                 "institution": member.institution,
             },
             instance=member,

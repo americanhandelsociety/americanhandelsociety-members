@@ -25,6 +25,7 @@ class MemberChangeForm(UserChangeForm):
             "email",
             "phone_number",
             "institution",
+            "contact_preference",
             "available_in_directory",
         )
 

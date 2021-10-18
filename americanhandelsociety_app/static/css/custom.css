@@ -418,7 +418,7 @@ form {
   height: 140vh;
 }
 
-input {
+input, select {
   padding-left: 8px;
   border-radius: 0;
   border: solid 0.5px #b0b0b0;

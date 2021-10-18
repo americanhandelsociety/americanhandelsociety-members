@@ -50,7 +50,7 @@ class Member(AbstractUser):
     class ContactPreference(models.TextChoices):
         PRINT = "PRINT"
         EMAIL = "EMAIL"
-        ALL = "ALL"
+        BOTH = "BOTH"
 
         @classmethod
         def max_length(cls):
