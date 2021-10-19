@@ -116,3 +116,52 @@ def test_update_available_in_directory(client, member):
         "Members of the AHS can view your information in the online Members Directory."
         in resp.content.decode("utf-8")
     )
+
+
+@pytest.mark.django_db
+def test_update_contact_preference(client, member):
+    client.force_login(member)
+
+    data = {**model_to_dict(member), "contact_preference": "EMAIL"}
+    resp = client.post(f"/edit-member/{member.id}", data=data)
+    assert resp.status_code == 302
+
+    resp = client.get("/profile/")
+    assert (
+        "You receive the AHS newsletter in <strong>EMAIL</strong> format."
+        in resp.content.decode("utf-8")
+    )
+
+    revise_data = {**model_to_dict(member), "contact_preference": "PRINT"}
+    resp = client.post(f"/edit-member/{member.id}", data=revise_data)
+    assert resp.status_code == 302
+
+    resp = client.get("/profile/")
+    assert (
+        "You receive the AHS newsletter in <strong>PRINT</strong> format."
+        in resp.content.decode("utf-8")
+    )
+
+
+@pytest.mark.django_db
+def test_update_phone_number(client, member):
+    client.force_login(member)
+
+    data = {**model_to_dict(member), "phone_number": "999-777-1111"}
+    resp = client.post(f"/edit-member/{member.id}", data=data)
+    assert resp.status_code == 302
+
+    resp = client.get("/profile/")
+    assert "999-777-1111" in resp.content.decode("utf-8")
+
+
+@pytest.mark.django_db
+def test_update_institution(client, member):
+    client.force_login(member)
+
+    data = {**model_to_dict(member), "institution": "Eastman School of Music"}
+    resp = client.post(f"/edit-member/{member.id}", data=data)
+    assert resp.status_code == 302
+
+    resp = client.get("/profile/")
+    assert "Eastman School of Music" in resp.content.decode("utf-8")

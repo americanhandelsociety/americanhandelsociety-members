@@ -36,6 +36,11 @@ a {
     text-decoration: none;
 }
 
+a.disabled {
+  pointer-events: none;
+  cursor: default;
+}
+
 .col-12 {
   padding: 8%;
 }
@@ -413,7 +418,7 @@ form {
   height: 140vh;
 }
 
-input {
+input, select {
   padding-left: 8px;
   border-radius: 0;
   border: solid 0.5px #b0b0b0;

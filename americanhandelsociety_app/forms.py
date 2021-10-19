@@ -19,12 +19,21 @@ class MemberCreationForm(UserCreationForm):
 class MemberChangeForm(UserChangeForm):
     class Meta:
         model = Member
-        fields = ("first_name", "last_name", "email", "available_in_directory")
+        fields = (
+            "first_name",
+            "last_name",
+            "email",
+            "phone_number",
+            "institution",
+            "contact_preference",
+            "available_in_directory",
+        )
 
 
 class AddressChangeForm(ModelForm):
     street_address = forms.CharField(required=False)
     street_address_2 = forms.CharField(required=False)
+    street_address_3 = forms.CharField(required=False)
     city = forms.CharField(required=False)
     state_province_region = forms.CharField(required=False)
     zip_postal_code = forms.CharField(required=False)
