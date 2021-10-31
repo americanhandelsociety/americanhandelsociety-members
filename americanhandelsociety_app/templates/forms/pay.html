@@ -12,7 +12,7 @@
         <h3>Join</h3>
         <p>Select your membership type, and then, wait for the site to redirect you to Paypal.</p>
     </div>
-    <form id="payForm" action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+    <form id="payForm" action={{PAYPAL_ACTION_URL}} method="post">
         {{ form.cmd }}
         {{ form.charset }}
         {{ form.currency_code }}
@@ -21,6 +21,8 @@
         {{ form.amount }}
         {{ form.item_name }}
         <select id="membership_select" name="amount">
+            <!-- TECHDEBT: Remove after closing Issue #51 -->
+            <option id="TEST" value="1.00">TEST 1.00 USD</option>
             {% for membership in membership_types %}
                 <option id={{membership.value}} value={{membership.label}}>{{membership.value|format_membership_type}} ${{membership.label}} USD</option>
             {% endfor %}
