@@ -25,7 +25,11 @@ def listen_for_paypal_please(sender, **kwargs):
     member_uuid = ipn_obj.invoice.replace("_join", "")
     member = Member.objects.get(id=member_uuid)
     member.is_active = True
-    member.membership_type = ipn_obj.item_name
+
+    # TECHDEBT: Remove after closing Issue #51
+    if not ipn_obj.item_name == "FREE":
+        member.membership_type = ipn_obj.item_name
+
     # Run full_clean to validate membership_type choices.
     member.full_clean()
     member.save()

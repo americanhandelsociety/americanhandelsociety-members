@@ -233,11 +233,9 @@ class Pay(View):
     template_name = "forms/pay.html"
 
     def get(self, request, *args, **kwargs):
-        # TODO: How to redirect to a payment page where you can "Pay without a PayPal account"?
         # test buyer
         # username: americanhandelsociety-buyer@gmail.com
         # password: computer-man
-
         member_id = request.session.get("member_id")
         invoice_num = f"{member_id}_join"
         paypal_dict = {
@@ -258,6 +256,7 @@ class Pay(View):
             "form": form,
             "member_id": member_id,
             "membership_types": Member.MembershipType,
+            "PAYPAL_ACTION_URL": settings.PAYPAL_ACTION_URL,
         }
 
         return render(request, self.template_name, context)
