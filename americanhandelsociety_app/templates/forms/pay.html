@@ -21,8 +21,6 @@
         {{ form.amount }}
         {{ form.item_name }}
         <select id="membership_select" name="amount">
-            <!-- TECHDEBT: Remove after closing Issue #51 -->
-            <option id="TEST" value="1.00">TEST 1.00 USD</option>
             {% for membership in membership_types %}
                 <option id={{membership.value}} value={{membership.label}}>{{membership.value|format_membership_type}} ${{membership.label}} USD</option>
             {% endfor %}
