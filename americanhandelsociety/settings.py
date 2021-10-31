@@ -14,10 +14,15 @@ allowed_hosts = os.getenv("DJANGO_ALLOWED_HOSTS", [])
 ALLOWED_HOSTS = allowed_hosts.split(",") if allowed_hosts else []
 
 # For Paypal integration testing
-ALLOWED_HOSTS.append("1e0b-2601-249-8c00-4a80-885-c4ec-52ce-7408.ngrok.io")
+ALLOWED_HOSTS.append("3bd6-2601-249-8c00-4a80-9c58-2f37-d271-10f.ngrok.io")
 
-PAYPAL_TEST = True
-PAYPAL_RECEIVER_EMAIL = "americanhandelsociety-facilitator@gmail.com"
+PAYPAL_TEST = True if os.getenv("PAYPAL_TEST") == "True" else False
+if PAYPAL_TEST:
+    PAYPAL_RECEIVER_EMAIL = "americanhandelsociety-facilitator@gmail.com"
+    PAYPAL_ACTION_URL = "https://www.sandbox.paypal.com/cgi-bin/webscr"
+else:
+    PAYPAL_RECEIVER_EMAIL = "americanhandelsociety@gmail.com"
+    PAYPAL_ACTION_URL = "https://www.paypal.com/cgi-bin/webscr"
 
 INSTALLED_APPS = [
     "americanhandelsociety_app.apps.AmericanHandelSocietyAppConfig",
