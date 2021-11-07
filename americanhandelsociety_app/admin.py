@@ -27,6 +27,10 @@ class Admin(UserAdmin):
                     "first_name",
                     "last_name",
                     "address",
+                    "membership_type",
+                    "contact_preference",
+                    "phone_number",
+                    "institution",
                     "available_in_directory",
                 )
             },
