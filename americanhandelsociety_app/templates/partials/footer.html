@@ -1,0 +1,23 @@
+<footer>
+    <div>
+        <h3>American Handel Society</h3>
+        <p class="footer-bold">
+            Copyright &#169; American Handel Society
+        </p>
+    </div>
+
+    <div>
+        <h4 class="footer-bold">Resources</h4>
+        <p><a href="#">Newsletter</a></p>
+        <p><a href="{% url 'events' %}">Events</a></p>
+        <p><a href="#">Awards</a></p>
+        <p><a href="{% url 'privacy-policy' %}">Privacy Policy</a></p>
+    </div>
+
+    <div class="images">
+        <h4 class="footer-bold">Images (in order of appearance)</h4>
+        {% for img in images_content %}
+            <p class="footer-muted">{{ img|safe }}</p>
+        {% endfor %}
+    </div>
+</footer>

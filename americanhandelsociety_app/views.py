@@ -173,25 +173,37 @@ class People(ListView):
 class Home(View):
     template_name = "home.html"
 
-    def get(self, request, *args, **kwargs):
-        return render(request, self.template_name)
+    def get(self, request):
+        images_content = [
+            '"Happy we," <em>Acis and Galatea</em>, HWV 49, George Frideric Handel, 1715-32.',
+            '"George Frideric Handel," attributed to Balthasar Denner, 1726–8, The National Portrait Gallery, London.',
+            '"Berenstadt, Cuzzoni and Senesino," attributed to John Vanderbank, 1723, The British Museum, London.',
+            '"Tu fedel? tu costante?," HWV 171a, George Frideric Handel, 1705-6.',
+        ]
+        return render(request, self.template_name, {"images_content": images_content})
 
 
 class Events(View):
     template_name = "events.html"
 
-    def get(self, request, *args, **kwargs):
+    def get(self, request):
+        images_content = [
+            "Letter from King George III to Mrs. Delaney, British Library, MS Mus. 1818."
+        ]
         return render(
             request,
             self.template_name,
-            {"howard_serwer_lectures": HOWARD_SERWER_LECTURES},
+            {
+                "howard_serwer_lectures": HOWARD_SERWER_LECTURES,
+                "images_content": images_content,
+            },
         )
 
 
 class ResearchMaterials(View):
     template_name = "research_materials.html"
 
-    def get(self, request, *args, **kwargs):
+    def get(self, request):
         return render(
             request, self.template_name, {"research_materials": RESEARCH_MATERIALS}
         )
@@ -200,8 +212,11 @@ class ResearchMaterials(View):
 class Donate(View):
     template_name = "donate.html"
 
-    def get(self, request, *args, **kwargs):
-        return render(request, self.template_name)
+    def get(self, request):
+        images_content = [
+            '"Deeds of kindness," <em>Theodora</em>, HWV 68, British Library, R.M.20.f.9.'
+        ]
+        return render(request, self.template_name, {"images_content": images_content})
 
 
 class Join(View):
@@ -281,3 +296,10 @@ class PaymentConfirmation(View):
     @csrf_exempt
     def dispatch(self, *args, **kwargs):
         return super(PaymentConfirmation, self).dispatch(*args, **kwargs)
+
+
+class PrivacyPolicy(View):
+    template_name = "privacy_policy.html"
+
+    def get(self, request):
+        return render(request, self.template_name)

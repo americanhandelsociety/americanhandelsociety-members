@@ -5,6 +5,7 @@ from americanhandelsociety_app.views import (
     Join,
     Pay,
     PaymentConfirmation,
+    PrivacyPolicy,
     Profile,
     Login,
     Logout,
@@ -26,6 +27,7 @@ urlpatterns = [
     path("research-materials/", ResearchMaterials.as_view(), name="research-materials"),
     path("donate/", Donate.as_view(), name="donate"),
     path("people/", People.as_view(), name="people"),
+    path("privacy-policy", PrivacyPolicy.as_view(), name="privacy-policy"),
     # Profile
     path("profile/", Profile.as_view(), name="profile"),
     path("change-password/", PasswordChange.as_view(), name="change-password"),

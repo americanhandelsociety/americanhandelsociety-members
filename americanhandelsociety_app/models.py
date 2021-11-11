@@ -85,6 +85,7 @@ class Member(AbstractUser):
         "Address", on_delete=models.CASCADE, null=True, blank=True
     )
     date_of_last_membership_payment = models.DateTimeField(auto_now_add=True)
+    accepts_privacy_policy = models.BooleanField(default=False)
 
     objects = MemberManager()
 

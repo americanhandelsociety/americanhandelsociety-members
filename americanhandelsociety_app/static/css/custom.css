@@ -313,15 +313,17 @@ a.disabled {
   border-radius: 2%;
 }
 
-.footer {
+/* Footer */
+footer {
   display: flex;
-  flex-direction: column;
   width: 80%;
   margin: auto;
   padding-top: 4rem;
   padding-bottom: 4rem;
   font-size: 1.5rem;
   border-top: 1px solid #e8e8e8;
+  justify-content: space-between;
+  gap: 30px;
 }
 
 .footer-muted {
@@ -330,6 +332,15 @@ a.disabled {
 
 .footer-bold {
   font-weight: 900;
+}
+
+footer h4 {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+footer .images {
+  width: 50%;
 }
 
 /* Research */
@@ -436,4 +447,20 @@ label {
   list-style-type: none;
   padding-left: 0;
   color: var(--error-color);
+}
+
+.checkbox-container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    margin: 5rem 0 3rem 0;
+}
+
+.checkbox-container input {
+    height: auto;
+    margin: 8px 12px 8px 0;
+}
+
+.checkbox-container label {
+    margin: 0;
 }
