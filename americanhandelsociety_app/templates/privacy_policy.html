@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Privacy Policy{% endblock %}
+
+{% block extra_css %}
+<link href="{% static 'css/privacy_policy.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+<div class="primary-container">
+    <h3>Privacy Policy</h3>
+    <p>The American Handel Society (AHS) collects and stores data about its members. This privacy policy explains how and why
+    the American Handel Society collects member data.</p>
+
+    <h4>What data does the American Handel Society collect?</h4>
+    <p>The American Handel Society requires members to provide the following Personal Identifiable Information (PII) when
+    joining the AHS:</p>
+    <ul>
+        <li>First name</li>
+        <li>Last name</li>
+        <li>Email</li>
+        <li>Membership type (e.g., Regular, Student, Retired, etc.)</li>
+    </ul>
+    <p>The American Handel Society optionally asks members to provide the following:</p>
+    <ul>
+        <li>Address</li>
+        <li>Phone number</li>
+        <li>Institution</li>
+    </ul>
+    <p>The American Handel Society also collects the following:</p>
+    <ul>
+        <li>Date of last membership purchase/renewal</li>
+        <li>Date and time of last login to the AHS website</li>
+    </ul>
+
+    <h4>How does the American Handel Society use your data?</h4>
+    <ul>
+        <li>To manage your membership</li>
+        <li>To send you a newsletter three times a year, either via email or physical mail</li>
+        <li>To send you information about upcoming conferences and events</li>
+    </ul>
+
+    <h4>How does the American Handel Society store your data?</h4>
+    <p>The American Handel Society stores your data in a secure relational database managed by <a href="https://devcenter.heroku.com/categories/data-management" target="_blank">a third party</a>.</p>
+
+    <h4>What are your data protection rights?</h4>
+    <p>Every user of our website and member of the American Handel Society is entitled to the following:</p>
+    <ul>
+        <li><strong>The right to access</strong> – You have the right to request copies of your personal data.</li>
+        <li><strong>The right to rectification</strong> – You have the right to request that the American Handel Society correct any information you believe is inaccurate.</li>
+        <li><strong>The right to erasure</strong> – You have the right to request that the American Handel Society erases your personal data, under certain conditions.</li>
+        <li><strong>The right to restrict processing</strong> – You have the right to request that the American Handel Society restrict the processing of your personal data, under certain conditions.</li>
+        <li><strong>The right to object to processing</strong> – You have the right to object to the processing of your personal data by the American Handel Society, under certain conditions.</li>
+        <li><strong>The right to data portability</strong> – You have the right to request that the American Handel Society transfers the data that the AHS has collected directly to you, under certain conditions.</li>
+    </ul>
+</div>
+<div class="footer">Last updated: November 11, 2021</div>
+
+{% endblock %}

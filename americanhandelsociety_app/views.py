@@ -281,3 +281,10 @@ class PaymentConfirmation(View):
     @csrf_exempt
     def dispatch(self, *args, **kwargs):
         return super(PaymentConfirmation, self).dispatch(*args, **kwargs)
+
+
+class PrivacyPolicy(View):
+    template_name = "privacy_policy.html"
+
+    def get(self, request):
+        return render(request, self.template_name)
