@@ -20,6 +20,7 @@ def post_valid_user(client):
         "email": "cleo@egypt.ico",
         "password1": "1724handel",
         "password2": "1724handel",
+        "accepts_privacy_policy": True,
         "captcha_0": hash,
         "captcha_1": captcha,
     }

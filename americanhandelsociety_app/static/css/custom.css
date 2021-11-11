@@ -437,3 +437,19 @@ label {
   padding-left: 0;
   color: var(--error-color);
 }
+
+.checkbox-container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    margin: 5rem 0 3rem 0;
+}
+
+.checkbox-container input {
+    height: auto;
+    margin: 8px 12px 8px 0;
+}
+
+.checkbox-container label {
+    margin: 0;
+}

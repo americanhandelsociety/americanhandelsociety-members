@@ -29,6 +29,12 @@
         <label for="id_password2">Re-enter Password</label>{{form.password2}}
         {{ form.password2.errors }}
 
+        <div class="checkbox-container">
+            {{ form.accepts_privacy_policy }} <label>By joining the American Handel Society you agree to the terms of the Privacy Policy. Check this box to acknowledge that you read and understand this policy.</label>
+        </div>
+        {{ form.accepts_privacy_policy.errors }}
+
+
         <label class="captcha-label" for="id_captcha_1">Are you a robot? Type the word as it appears in the image.</label>{{form.captcha}}
         {{form.errors.captcha}}
 

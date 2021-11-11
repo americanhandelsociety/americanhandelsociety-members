@@ -34,6 +34,7 @@ def test_join_fails_with_invalid_captcha(client):
         "email": "cleo@egypt.ico",
         "password1": "1724handel",
         "password2": "1724handel",
+        "accepts_privacy_policy": True,
         "captcha_0": hash,
         "captcha_1": "the wrong answer",
     }
@@ -44,3 +45,24 @@ def test_join_fails_with_invalid_captcha(client):
     ]
 
     assert expected_error_msg in str(response.content)
+
+
+@pytest.mark.django_db
+def test_join_fails_when_user_does_not_accept_privacy_policy(client):
+    response = client.get("/join/")
+    hash, captcha = extract_hash_and_response(response)
+
+    data = {
+        "first_name": "Queen",
+        "last_name": "Cleopatra",
+        "email": "cleo@egypt.ico",
+        "password1": "1724handel",
+        "password2": "1724handel",
+        "accepts_privacy_policy": False,
+        "captcha_0": hash,
+        "captcha_1": captcha,
+    }
+
+    response = client.post("/join/", data=data)
+
+    assert MemberCreationForm.PRIVACY_POLICY_VALIDATION_MSG in str(response.content)
