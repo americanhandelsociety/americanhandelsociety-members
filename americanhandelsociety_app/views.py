@@ -17,6 +17,7 @@ from django.views.generic.list import ListView
 from paypal.standard.forms import PayPalPaymentsForm
 
 from .constants import (
+    KNAPP_FELLOWSHIP_WINNERS,
     RESEARCH_MATERIALS,
     BOARD_OF_DIRECTORS,
     HONORARY_DIRECTORS,
@@ -196,6 +197,23 @@ class Events(View):
             {
                 "howard_serwer_lectures": HOWARD_SERWER_LECTURES,
                 "images_content": images_content,
+            },
+        )
+
+
+class Awards(View):
+    template_name = "awards.html"
+
+    def get(self, request):
+        # images_content = [
+        #     "Letter from King George III to Mrs. Delaney, British Library, MS Mus. 1818."
+        # ]
+        return render(
+            request,
+            self.template_name,
+            {
+                "knapp_fellowship_winners": KNAPP_FELLOWSHIP_WINNERS
+                # "images_content": images_content,
             },
         )
 

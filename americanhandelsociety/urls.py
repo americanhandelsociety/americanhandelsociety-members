@@ -11,6 +11,7 @@ from americanhandelsociety_app.views import (
     Logout,
     Home,
     Events,
+    Awards,
     ResearchMaterials,
     Donate,
     People,
@@ -24,6 +25,7 @@ from americanhandelsociety_app.views import (
 urlpatterns = [
     path("", Home.as_view(), name="home"),
     path("events/", Events.as_view(), name="events"),
+    path("awards/", Awards.as_view(), name="awards"),
     path("research-materials/", ResearchMaterials.as_view(), name="research-materials"),
     path("donate/", Donate.as_view(), name="donate"),
     path("people/", People.as_view(), name="people"),

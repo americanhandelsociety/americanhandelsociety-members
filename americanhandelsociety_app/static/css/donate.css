@@ -1,15 +1,11 @@
-.primary-container {
+.outer-container {
     padding-top: 10rem;
     padding-bottom: 10rem;
     border-bottom: 1px solid #e8e8e8;
 }
 
-ol.donate-list {
+ul.donate-list {
     padding: 2.5rem 6rem;
-}
-
-ol.donate-list li::marker {
-    content: "➻ ";
 }
 
 .donate-banner {

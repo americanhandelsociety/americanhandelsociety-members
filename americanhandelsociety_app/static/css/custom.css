@@ -101,7 +101,7 @@ a.disabled {
 }
 
 /* Reusable flex containers and items */
-.primary-container {
+.outer-container {
     display: flex;
     flex-direction: column;
     width: 80%;

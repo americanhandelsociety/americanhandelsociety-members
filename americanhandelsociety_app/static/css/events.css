@@ -1,9 +1,11 @@
-.flex-container-cols {
-    display: flex;
-    flex-direction: column;
-    width: 80%;
-    margin: auto;
-    padding: 5rem 0;
+.outer-container {
+    margin-bottom: 6%;
+}
+
+.outer-container > section {
+  padding: 8% 0 8% 0;
+  border-bottom: 1px solid #e8e8e8;
+  margin-bottom: 6%;
 }
 
 .flex-container-rows {
@@ -28,12 +30,6 @@
 .img-events {
     max-width: 100%;
     height: auto;
-}
-
-.flex-container-cols > section {
-  padding: 6% 0 6% 0;
-  border-bottom: 1px solid #e8e8e8;
-  margin-bottom: 6%;
 }
 
 p.font-sm {

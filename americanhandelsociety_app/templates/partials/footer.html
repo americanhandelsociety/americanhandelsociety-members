@@ -10,14 +10,16 @@
         <h4 class="footer-bold">Resources</h4>
         <p><a href="#">Newsletter</a></p>
         <p><a href="{% url 'events' %}">Events</a></p>
-        <p><a href="#">Awards</a></p>
+        <p><a href="{% url 'awards' %}">Awards</a></p>
         <p><a href="{% url 'privacy-policy' %}">Privacy Policy</a></p>
     </div>
 
     <div class="images">
+    {% if images_content %}
         <h4 class="footer-bold">Images (in order of appearance)</h4>
         {% for img in images_content %}
             <p class="footer-muted">{{ img|safe }}</p>
         {% endfor %}
+    {% endif %}
     </div>
 </footer>
