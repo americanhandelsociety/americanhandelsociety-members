@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Awards{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+<link href="{% static 'css/data_table.css' %}" rel="stylesheet">
+<link href="{% static 'css/awards.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<div class='container-fluid'>
+    <!-- banner -->
+    <div class="row">
+        <div class='col-sm-8 page-banner-quote'>
+            <p class="apple-pie">"...not to forget Handel's works, as they always offer the best nourishment for your
+                ripe musical mind..."</p>
+            <p>Ludwig van Beethoven, letter to Archduke Rudolph, 1819</p>
+        </div>
+        <div class='col-sm-4 page-banner-header'>
+            <h1>Awards</h1>
+        </div>
+    </div>
+</div>
+
+<div class="outer-container">
+    <section>
+        <p>The AHS offers the J. Merrill Knapp Research Fellowship, a grant for advanced graduate students and scholars in the early stages of their careers to support work in Handel studies or related fields.</p>
+    </section>
+    <h2>The J. Merrill Knapp Research Fellowship</h2>
+    <p>The Board of Directors of The American Handel Society invites applications for the J. Merrill Knapp Research Fellowship to support scholarly projects related to Handel and his world. One or more fellowships may be awarded in a calendar year up to a total of $2,000. Requests for funding may including, but not limited to, purchase of microfilms, travel for research, and production expenses for publications. This fellowship may be used on its own or to augment other grants or fellowships.</p>
+    <p>In awarding the Knapp Fellowship, preference will be given to graduate students, scholars in the early stages of their careers, and independent scholars with no source of institutional support.</p>
+    <p><strong>The deadline for applications will be March 1, 2022.</strong></p>
+    <p>There is no application form. Each applicant should submit an outline of the project, a budget showing how and when the funds will be used, and a description of other funding for the same project applied for and/or received. In addition, applicants should have two letters of recommendation sent directly to the Knapp Fellowship Committee. Electronic submissions are preferred; letters of recommendation and the application can be emailed to Professor Wendy Heller at <a href="mailto:wbheller@princeton.edu">wbheller@princeton.edu</a>. Paper submissions – which must arrive by March 1, 2022 – can be mailed to:</p>
+    <p>
+        Professor Wendy Heller<br>
+        Princeton University<br>
+        Woolworth Center 316<br>
+        Princeton, NJ 08544
+    </p>
+</div>
+
+<div class="outer-container">
+    <h2>Previous winners of the Knapp Fellowship</h2>
+    <table id="knappWinners" class="table">
+        <thead>
+            <tr>
+                <th>Year</th>
+                <th>Recipient</th>
+                <th>Affiliation</th>
+                <th>Supported Research</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for winner in knapp_fellowship_winners %}
+            <tr>
+                <td>{{winner.year}}</td>
+                <td>{{winner.recipient}}</td>
+                <td>{{winner.affiliation}}</td>
+                <td>{{winner.supported_research|safe}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<div class="outer-container">
+    <h2>Other Awards</h2>
+    <p><strong>We encourage Handel researchers to also consider the following fellowships:</strong></p>
+    <ul>
+        <li><a href="https://www.haendel.de/handel-research-prize/handel-research-prize-2021/?lang=en" target="_blank">The Händel Gesellschaft's International Handel Research Prize</a></li>
+        <li><a href="https://handelinstitute.org/award/research-awards/ " target="_blank">The Handel Institute Research Award</a></li>
+        <li><a href="https://handelinstitute.org/award/conference-awards/" target="_blank">The Handel Institute Conference Award</a></li>
+    </ul>
+</div>
+
+{% include 'partials/footer.html' %}
+
+{% block extra_js %}
+<!-- TODO: Why do I need jQuery import if I import it in base.html -->
+<script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+<script>
+    $(document).ready(function () {
+        var myTable = $('#knappWinners').dataTable({
+            "retrieve": true, // https://datatables.net/manual/tech-notes/3
+            "lengthChange": false,
+            "ordering": false,
+            "paging": false,
+            "infoCallback": function (settings, start, end, max, total, pre) {
+                return `Showing ${total} of ${max}`;
+            },
+            "language": {
+                "search": "",
+                "searchPlaceholder": "Search...",
+            },
+        });
+    });
+</script>
+{% endblock %}
+
+{% endblock %}
