@@ -1,6 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django import forms
 from django.forms import ModelForm
+from django.core.validators import EmailValidator
 from django.core.exceptions import ValidationError
 from captcha.fields import CaptchaField
 
@@ -10,6 +11,9 @@ from .models import Member, Address
 class MemberCreationForm(UserCreationForm):
     captcha = CaptchaField(
         error_messages=dict(invalid="Invalid captcha. Please try again.")
+    )
+    email = forms.CharField(
+        validators=[EmailValidator(message="Please enter a valid email address.")]
     )
 
     PRIVACY_POLICY_VALIDATION_MSG = "You must acknowledge receipt of the Privacy Policy to become a member of the American Handel Society."
@@ -27,7 +31,7 @@ class MemberCreationForm(UserCreationForm):
         fields = (
             "first_name",
             "last_name",
-            "email",
+            # "email",
             "password1",
             "password2",
             "accepts_privacy_policy",
