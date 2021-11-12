@@ -2,7 +2,7 @@ import pytest
 
 from americanhandelsociety_app.models import Member
 from americanhandelsociety_app.forms import MemberCreationForm
-from tests.utils import extract_hash_and_response, post_valid_user
+from tests.utils import extract_hash_and_response, make_valid_user_data, post_valid_user
 
 
 @pytest.mark.django_db
@@ -25,19 +25,8 @@ def test_join_does_not_set_user_to_active(client):
 
 @pytest.mark.django_db
 def test_join_fails_with_invalid_captcha(client):
-    response = client.get("/join/")
-    hash, _ = extract_hash_and_response(response)
-
-    data = {
-        "first_name": "Queen",
-        "last_name": "Cleopatra",
-        "email": "cleo@egypt.ico",
-        "password1": "1724handel",
-        "password2": "1724handel",
-        "accepts_privacy_policy": True,
-        "captcha_0": hash,
-        "captcha_1": "the wrong answer",
-    }
+    data = make_valid_user_data(client)
+    data["captcha_1"] = "the wrong answer"
 
     response = client.post("/join/", data=data)
     expected_error_msg = MemberCreationForm.base_fields["captcha"].error_messages[
@@ -49,20 +38,19 @@ def test_join_fails_with_invalid_captcha(client):
 
 @pytest.mark.django_db
 def test_join_fails_when_user_does_not_accept_privacy_policy(client):
-    response = client.get("/join/")
-    hash, captcha = extract_hash_and_response(response)
-
-    data = {
-        "first_name": "Queen",
-        "last_name": "Cleopatra",
-        "email": "cleo@egypt.ico",
-        "password1": "1724handel",
-        "password2": "1724handel",
-        "accepts_privacy_policy": False,
-        "captcha_0": hash,
-        "captcha_1": captcha,
-    }
+    data = make_valid_user_data(client)
+    data["accepts_privacy_policy"] = False
 
     response = client.post("/join/", data=data)
 
     assert MemberCreationForm.PRIVACY_POLICY_VALIDATION_MSG in str(response.content)
+
+
+@pytest.mark.django_db
+def test_join_fails_when_user_enters_invalid_email(client):
+    data = make_valid_user_data(client)
+    data["email"] = "gobbledygook"
+
+    response = client.post("/join/", data=data)
+
+    assert "Please enter a valid email address." in str(response.content)

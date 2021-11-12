@@ -10,11 +10,11 @@ def extract_hash_and_response(response):
     return hash, captcha
 
 
-def post_valid_user(client):
+def make_valid_user_data(client):
     response = client.get("/join/")
     hash, captcha = extract_hash_and_response(response)
 
-    data = {
+    return {
         "first_name": "Queen",
         "last_name": "Cleopatra",
         "email": "cleo@egypt.ico",
@@ -24,5 +24,9 @@ def post_valid_user(client):
         "captcha_0": hash,
         "captcha_1": captcha,
     }
+
+
+def post_valid_user(client):
+    data = make_valid_user_data(client)
 
     return client.post("/join/", data=data)

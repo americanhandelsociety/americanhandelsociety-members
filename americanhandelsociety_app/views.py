@@ -1,4 +1,3 @@
-import uuid
 from datetime import datetime, timezone
 
 from dateutil.relativedelta import relativedelta
@@ -101,6 +100,7 @@ class EditMember(ProtectedView, View):
                 "institution": member.institution,
             },
             instance=member,
+            use_required_attribute=False,
         )
 
         address = member.address
@@ -223,7 +223,7 @@ class Join(View):
     template_name = "forms/join.html"
 
     def get(self, request):
-        form = MemberCreationForm()
+        form = MemberCreationForm(use_required_attribute=False)
 
         return render(request, self.template_name, {"form": form})
 
