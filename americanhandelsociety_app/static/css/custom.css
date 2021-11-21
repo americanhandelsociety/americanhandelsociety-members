@@ -108,6 +108,12 @@ a.disabled {
     margin: auto;
 }
 
+.fluid-outer-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: auto;
+}
 
 /* Banner */
 .page-banner-header {
