@@ -14,12 +14,12 @@
 <div class='container-fluid'>
     <!-- banner -->
     <div class="row">
-        <div class='col-sm-8 page-banner-quote'>
-            <p class="apple-pie">"...not to forget Handel's works, as they always offer the best nourishment for your ripe musical mind..."</p>
-            <p>Ludwig van Beethoven, letter to Archduke Rudolph, 1819</p>
-        </div>
         <div class='col-sm-4 page-banner-header'>
             <h1>Events</h1>
+        </div>
+        <div class='col-sm-8 page-banner-quote'>
+            <p class="apple-pie">". . . not to forget Handel's works, as they always offer the best nourishment for your ripe musical mind . . ."</p>
+            <p>Ludwig van Beethoven, letter to Archduke Rudolph, 1819</p>
         </div>
     </div>
 </div>
@@ -36,6 +36,7 @@
             <h2>Recently Past Festivals</h2>
         </div>
         <div class="item-right">
+            <h2>Recently Past Festivals</h2>
             <div class="inner-container-col padding-md">
                 <p class="font-sm margin-sm"><strong>March 11–14, 2021</strong></p>
                 <p class="margin-sm">Virtual Conference</br>Hosted by Indiana University</p>
@@ -55,7 +56,7 @@
     </div>
 </div>
 
-<div class="outer-container padding-lg">
+<div class="outer-container padding-md">
     <h2>Past Howard Serwer Memorial Lectures</h2>
     <table id="lectures" class="table">
         <thead>
@@ -63,7 +64,7 @@
                 <th>Year</th>
                 <th>Speaker</th>
                 <th>Title</th>
-                <th>Location</th>
+                <th class="location">Location</th>
             </tr>
         </thead>
         <tbody>
@@ -72,14 +73,14 @@
                 <td>{{lecture.year}}</td>
                 <td>{{lecture.speaker}}</td>
                 <td>{{lecture.title|safe}}</td>
-                <td>{{lecture.location}}</td>
+                <td class="location">{{lecture.location}}</td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
 </div>
 
-<div class="outer-container padding-lg">
+<div class="outer-container padding-md">
     <h2>Other Conferences and Events</h2>
     <p>
         <strong>Handel Institute Conference</strong><br>

@@ -64,3 +64,13 @@ table.dataTable {
 ::-ms-input-placeholder { /* Microsoft Edge */
   color: var(--dark-color);
 }
+
+/* Responsive */
+@media screen and (min-width: 0px) and (max-width: 768px) {
+  .dataTables_wrapper .dataTables_filter {
+    text-align: start;
+  }
+  .dataTables_wrapper .dataTables_info {
+    text-align: end;
+  }
+}

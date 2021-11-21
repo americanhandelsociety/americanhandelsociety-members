@@ -349,6 +349,12 @@ footer .images {
   width: 50%;
 }
 
+@media screen and (min-width: 0px) and (max-width: 768px) {
+  footer .images {
+    display: none;
+  }
+}
+
 /* Research */
 .research-container {
   display: flex;
