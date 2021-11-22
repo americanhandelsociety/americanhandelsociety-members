@@ -19,7 +19,7 @@ body {
   background-color: #fafafa;
 }
 
-h1, h2, h3, h4, h5, nav, footer > p {
+h1, h2, h3, h4, h5, nav, footer>p {
   font-family: var(--font-headers);
 }
 
@@ -32,8 +32,8 @@ h3 {
 }
 
 a {
-    color: #267abf;
-    text-decoration: none;
+  color: #267abf;
+  text-decoration: none;
 }
 
 a.disabled {
@@ -102,20 +102,27 @@ a.disabled {
 
 /* Reusable flex containers and items */
 .outer-container {
-    display: flex;
-    flex-direction: column;
-    width: 80%;
-    margin: auto;
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: auto;
 }
 
 .fluid-outer-container {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    margin: auto;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: auto;
 }
 
 /* Banner */
+.banner-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  margin: auto;
+}
+
 .page-banner-header {
   padding: 10rem 8rem;
   background-color: #dbdbdb;
@@ -125,7 +132,9 @@ a.disabled {
 }
 
 .page-banner-header h1 {
-  font-size: 10rem;
+  /* viewport width */
+  font-size: 8vw;
+  margin: auto;
 }
 
 .page-banner-quote {
@@ -142,6 +151,17 @@ a.disabled {
   font-family: "Homemade Apple", cursive;
 }
 
+/* Small screens */
+@media screen and (min-width: 0px) and (max-width: 768px) {
+  .page-banner-header {
+    display: none;
+  }
+
+  .page-banner-quote {
+    width: 100% !important;
+  }
+}
+
 /* Navbar */
 .navbar {
   margin-bottom: 0;
@@ -154,7 +174,14 @@ a.disabled {
 }
 
 .navbar-brand {
-  font-size: 1.5em;
+  font-size: 3vw;
+}
+
+/* Small screens */
+@media screen and (min-width: 0px) and (max-width: 768px) {
+  .navbar-brand {
+    font-size: 1em;
+  }
 }
 
 .navbar-nav li a {
@@ -168,32 +195,32 @@ a.disabled {
 }
 
 .nav-link {
-  color: rgba(0,0,0,.9);
+  color: rgba(0, 0, 0, .9);
 }
 
 .nav-link:hover {
-  color: rgba(0,0,0,.55);
+  color: rgba(0, 0, 0, .55);
 }
 
 .nav-item {
   margin-left: 16px;
   list-style-type: none;
-  color: rgba(0,0,0,.55);
+  color: rgba(0, 0, 0, .55);
 }
 
 .dropdown-menu {
   font-size: inherit;
-  background: #f8f9fa!important;
+  background: #f8f9fa !important;
   border: none;
 }
 
 .dropdown-item {
-  color: rgba(0,0,0,.9);
+  color: rgba(0, 0, 0, .9);
 }
 
 .dropdown-item:hover, .dropdown-item:after {
-  color: rgba(0,0,0,.55);
-  background: #f8f9fa!important;
+  color: rgba(0, 0, 0, .55);
+  background: #f8f9fa !important;
 }
 
 .navbar hr {
@@ -201,14 +228,14 @@ a.disabled {
 }
 
 .navbar-light .navbar-toggler {
-    color: rgba(0,0,0,.55);
-    border-color: #f8f9fa!important;
+  color: rgba(0, 0, 0, .55);
+  border-color: #f8f9fa !important;
 }
 
 .navbar-toggler:focus {
-    text-decoration: #f8f9fa!important;
-    outline: 0;
-    box-shadow: none;
+  text-decoration: #f8f9fa !important;
+  outline: 0;
+  box-shadow: none;
 }
 
 /* Home */
@@ -349,6 +376,7 @@ footer .images {
   width: 50%;
 }
 
+/* Small screens */
 @media screen and (min-width: 0px) and (max-width: 768px) {
   footer .images {
     display: none;
@@ -364,11 +392,11 @@ footer .images {
   padding-bottom: 6%;
 }
 
-.research-container > section {
+.research-container>section {
   padding: 6% 0 6% 0;
 }
 
-.research-container > h3 {
+.research-container>h3 {
   border-top: 1px solid #e8e8e8;
   padding-top: 6%;
 }
@@ -406,19 +434,23 @@ footer .images {
   width: 100%;
   margin-bottom: 2.2rem;
 }
+
 .profile-table tr {
   border-bottom: 1px #ccd0d5 solid;
 }
+
 .profile-table th {
   width: 40%;
   margin-right: 60px;
   vertical-align: top;
   padding: 1.2rem 1.2rem 1.2rem 0;
 }
+
 .profile-table td {
   vertical-align: top;
   padding: 1.2rem 1.2rem 1.2rem 0;
 }
+
 .renewal-msg {
   font-size: 1.6rem;
   color: #b0b0b0;
@@ -462,17 +494,17 @@ label {
 }
 
 .checkbox-container {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    margin: 5rem 0 3rem 0;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  margin: 5rem 0 3rem 0;
 }
 
 .checkbox-container input {
-    height: auto;
-    margin: 8px 12px 8px 0;
+  height: auto;
+  margin: 8px 12px 8px 0;
 }
 
 .checkbox-container label {
-    margin: 0;
+  margin: 0;
 }

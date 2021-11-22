@@ -1,5 +1,13 @@
-.outer-container > section {
-  padding: 8% 0 8% 0;
+.page-banner-header {
+    width: 40%;
+}
+
+.page-banner-quote {
+    width: 60%;
+}
+
+.outer-container>section {
+    padding: 8% 0 8% 0;
 }
 
 .inner-container {
@@ -55,21 +63,34 @@ div.padding-md {
 /* Responsive */
 /* Small screens */
 @media screen and (min-width: 0px) and (max-width: 768px) {
+
     /* Hide image with background */
-    .item-left { display: none; }
+    .item-left {
+        display: none;
+    }
+
     /* Show header on right */
-    .item-right h2 { display: block}
+    .item-right h2 {
+        display: block
+    }
+
     .item-right {
         width: 80%;
         margin: auto;
         margin-bottom: 8%;
     }
+
     /* Hide "Location" column in table */
-    th.location, td.location { display: none; }
+    th.location, td.location {
+        display: none;
+    }
 }
 
 /* Not small screens */
 @media screen and (min-width: 769px) {
+
     /* Hide header on right */
-    .item-right h2 { display: none}
+    .item-right h2 {
+        display: none
+    }
 }

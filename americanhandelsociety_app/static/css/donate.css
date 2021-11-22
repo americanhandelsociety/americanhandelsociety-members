@@ -1,3 +1,11 @@
+.page-banner-header {
+    width: 40%;
+}
+
+.page-banner-quote {
+    width: 60%;
+}
+
 .outer-container {
     padding-top: 10rem;
     padding-bottom: 10rem;
@@ -24,7 +32,7 @@ ul.donate-list {
     background-position-y: 20%;
 }
 
-.donate-banner > h1 {
+.donate-banner>h1 {
     color: #fff;
     font-size: 4.6rem;
     padding-bottom: 3rem;

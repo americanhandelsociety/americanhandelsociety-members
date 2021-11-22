@@ -1,3 +1,11 @@
+.page-banner-header {
+    width: 35%;
+}
+
+.page-banner-quote {
+    width: 65%;
+}
+
 .outer-container {
     margin-bottom: 6%;
 }
