@@ -87,6 +87,8 @@
 	{% endfor %}
 </div>
 
+{% include 'partials/footer.html' %}
+
 {% block extra_js %}
 	<!-- TODO: Why do I need jQuery import if I import it in base.html -->
 	<script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
