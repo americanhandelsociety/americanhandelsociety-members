@@ -23,3 +23,12 @@ p {
 ul {
     padding-left: 5rem;
 }
+
+/* Small screens */
+@media screen and (min-width: 0px) and (max-width: 768px) {
+
+    /* Hide "Affiliation" column in table */
+    th.affiliation, td.affiliation {
+        display: none;
+    }
+}

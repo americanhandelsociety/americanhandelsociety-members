@@ -60,7 +60,6 @@ div.padding-md {
     padding-bottom: 8%;
 }
 
-/* Responsive */
 /* Small screens */
 @media screen and (min-width: 0px) and (max-width: 768px) {
 

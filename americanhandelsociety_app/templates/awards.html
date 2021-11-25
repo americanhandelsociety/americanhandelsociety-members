@@ -45,7 +45,7 @@
             <tr>
                 <th>Year</th>
                 <th>Recipient</th>
-                <th>Affiliation</th>
+                <th class="affiliation">Affiliation</th>
                 <th>Supported Research</th>
             </tr>
         </thead>
@@ -54,7 +54,7 @@
             <tr>
                 <td>{{winner.year}}</td>
                 <td>{{winner.recipient}}</td>
-                <td>{{winner.affiliation}}</td>
+                <td class="affiliation">{{winner.affiliation}}</td>
                 <td>{{winner.supported_research|safe}}</td>
             </tr>
             {% endfor %}

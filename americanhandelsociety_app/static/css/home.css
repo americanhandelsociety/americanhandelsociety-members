@@ -18,18 +18,18 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	width: 100%;
+	height: 400px;
+	font-weight: 800;
+	font-size: 100px;
+	color: #fff;
 
+	/* Background */
 	background-image: url("/static/images/happy_we.png");
 	background-repeat: no-repeat;
 	background-size: 100%;
 	background-position-x: 50%;
 	background-position-y: 50%;
-	height: 400px;
-	font-weight: 800;
-	font-size: 100px;
-	color: #fff;
-	/* overwrite  .flex-container*/
-	width: 100%;
 }
 
 .join-banner h1 {
