@@ -112,9 +112,14 @@
 	border-radius: 2%;
 }
 
+/* Small screens */
 @media screen and (min-width: 0px) and (max-width: 768px) {
 	.info-newsletter-text, .info-events-text, .info-study-text {
 		width: 100%;
+	}
+
+	.info-newsletter-img, .info-events-img, .info-study-img {
+		display: none;
 	}
 
 	.outer-container {
