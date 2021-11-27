@@ -115,7 +115,6 @@ a.disabled {
   margin: auto;
 }
 
-/* Banner */
 .banner-container {
   display: flex;
   flex-direction: row;
@@ -159,7 +158,24 @@ a.disabled {
 
   .page-banner-quote {
     width: 100% !important;
+    padding: 5rem !important;
   }
+}
+
+.img-banner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.img-banner h1 {
+  text-align: center;
+  color: #fff;
+  font-size: 4.6rem;
+  padding-bottom: 3rem;
+  width: 80%;
 }
 
 /* Navbar */
