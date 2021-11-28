@@ -1,3 +1,11 @@
+.page-banner-header {
+    width: 40%;
+}
+
+.page-banner-quote {
+    width: 60%;
+}
+
 .outer-container {
     padding-top: 10rem;
     padding-bottom: 10rem;
@@ -8,31 +16,32 @@ ul.donate-list {
     padding: 2.5rem 6rem;
 }
 
-.donate-banner {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 300px;
-    margin: auto;
+.img-banner {
     /* Background */
     background-size: cover;
     background-image: url("/static/images/theodora.png");
     background-repeat: no-repeat;
     background-position-x: 50%;
     background-position-y: 20%;
+    height: 300px;
 }
 
-.donate-banner > h1 {
-    color: #fff;
-    font-size: 4.6rem;
-    padding-bottom: 3rem;
-}
-
-form {
+.img-banner form {
     width: 80%;
     height: auto;
     margin: 0;
     padding: 0;
+}
+
+/* Small screens */
+@media screen and (min-width: 0px) and (max-width: 768px) {
+    .outer-container {
+        padding-top: 5rem;
+        padding-bottom: 5rem;
+    }
+
+    .img-banner {
+        background-size: 300%;
+        height: 400px;
+    }
 }

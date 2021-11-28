@@ -19,7 +19,7 @@ body {
   background-color: #fafafa;
 }
 
-h1, h2, h3, h4, h5, nav, footer > p {
+h1, h2, h3, h4, h5, nav, footer>p {
   font-family: var(--font-headers);
 }
 
@@ -32,8 +32,8 @@ h3 {
 }
 
 a {
-    color: #267abf;
-    text-decoration: none;
+  color: #267abf;
+  text-decoration: none;
 }
 
 a.disabled {
@@ -102,14 +102,26 @@ a.disabled {
 
 /* Reusable flex containers and items */
 .outer-container {
-    display: flex;
-    flex-direction: column;
-    width: 80%;
-    margin: auto;
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: auto;
 }
 
+.fluid-outer-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: auto;
+}
 
-/* Banner */
+.banner-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  margin: auto;
+}
+
 .page-banner-header {
   padding: 10rem 8rem;
   background-color: #dbdbdb;
@@ -119,7 +131,9 @@ a.disabled {
 }
 
 .page-banner-header h1 {
-  font-size: 10rem;
+  /* viewport width */
+  font-size: 8vw;
+  margin: auto;
 }
 
 .page-banner-quote {
@@ -136,6 +150,34 @@ a.disabled {
   font-family: "Homemade Apple", cursive;
 }
 
+/* Small screens */
+@media screen and (min-width: 0px) and (max-width: 768px) {
+  .page-banner-header {
+    display: none;
+  }
+
+  .page-banner-quote {
+    width: 100% !important;
+    padding: 5rem !important;
+  }
+}
+
+.img-banner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.img-banner h1 {
+  text-align: center;
+  color: #fff;
+  font-size: 4.6rem;
+  padding-bottom: 3rem;
+  width: 80%;
+}
+
 /* Navbar */
 .navbar {
   margin-bottom: 0;
@@ -148,7 +190,14 @@ a.disabled {
 }
 
 .navbar-brand {
-  font-size: 1.5em;
+  font-size: 3vw;
+}
+
+/* Small screens */
+@media screen and (min-width: 0px) and (max-width: 768px) {
+  .navbar-brand {
+    font-size: 1em;
+  }
 }
 
 .navbar-nav li a {
@@ -162,32 +211,32 @@ a.disabled {
 }
 
 .nav-link {
-  color: rgba(0,0,0,.9);
+  color: rgba(0, 0, 0, .9);
 }
 
 .nav-link:hover {
-  color: rgba(0,0,0,.55);
+  color: rgba(0, 0, 0, .55);
 }
 
 .nav-item {
-  margin-left: 16px;
+  margin-left: 12px;
   list-style-type: none;
-  color: rgba(0,0,0,.55);
+  color: rgba(0, 0, 0, .55);
 }
 
 .dropdown-menu {
   font-size: inherit;
-  background: #f8f9fa!important;
+  background: #f8f9fa !important;
   border: none;
 }
 
 .dropdown-item {
-  color: rgba(0,0,0,.9);
+  color: rgba(0, 0, 0, .9);
 }
 
 .dropdown-item:hover, .dropdown-item:after {
-  color: rgba(0,0,0,.55);
-  background: #f8f9fa!important;
+  color: rgba(0, 0, 0, .55);
+  background: #f8f9fa !important;
 }
 
 .navbar hr {
@@ -195,122 +244,14 @@ a.disabled {
 }
 
 .navbar-light .navbar-toggler {
-    color: rgba(0,0,0,.55);
-    border-color: #f8f9fa!important;
+  color: rgba(0, 0, 0, .55);
+  border-color: #f8f9fa !important;
 }
 
 .navbar-toggler:focus {
-    text-decoration: #f8f9fa!important;
-    outline: 0;
-    box-shadow: none;
-}
-
-/* Home */
-.join-banner {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  background-image: url("/static/images/happy_we.png");
-  background-repeat: no-repeat;
-  background-size: 100%;
-  background-position-x: 50%;
-  background-position-y: 50%;
-  height: 400px;
-  font-weight: 800;
-  font-size: 100px;
-  color: #fff;
-  /* overwrite  .flex-container*/
-  width: 100%;
-}
-
-.join-banner h1 {
-  font-size: 4.6rem;
-}
-
-.button-frame {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  border-radius: 0.5rem;
-  padding: 5%;
-  font-weight: 800;
-  font-size: 2.4rem;
-}
-
-.info-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 80%;
-  margin: auto;
-  padding-top: 5rem;
-}
-
-.info-row {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  padding: 5% 0 5% 0;
-}
-
-.info-col {
-  display: flex;
-  flex-direction: column;
-  margin: 2rem;
-}
-
-.subheader {
-  margin-bottom: 0;
-  color: rgba(121, 121, 121);
-}
-
-.info-header {
-  font-size: 5rem;
-  font-family: var(--font-headers);
-}
-
-.info-newsletter-img {
-  width: 28%;
-}
-
-.info-newsletter-text {
-  width: 62%;
-}
-
-.newsletter-img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 50%;
-}
-
-.info-events-img {
-  width: 42%;
-}
-
-.info-events-text {
-  width: 54%;
-}
-
-.events-img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 2%;
-}
-
-.info-study-img {
-  width: 48%;
-}
-
-.info-study-text {
-  width: 52%;
-}
-
-.study-img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 2%;
+  text-decoration: #f8f9fa !important;
+  outline: 0;
+  box-shadow: none;
 }
 
 /* Footer */
@@ -343,6 +284,13 @@ footer .images {
   width: 50%;
 }
 
+/* Small screens */
+@media screen and (min-width: 0px) and (max-width: 768px) {
+  footer .images {
+    display: none;
+  }
+}
+
 /* Research */
 .research-container {
   display: flex;
@@ -352,11 +300,11 @@ footer .images {
   padding-bottom: 6%;
 }
 
-.research-container > section {
+.research-container>section {
   padding: 6% 0 6% 0;
 }
 
-.research-container > h3 {
+.research-container>h3 {
   border-top: 1px solid #e8e8e8;
   padding-top: 6%;
 }
@@ -379,43 +327,6 @@ footer .images {
   background: var(--red-color);
   padding: 6px;
   color: #fff;
-}
-
-/* Profile */
-.profile-card {
-  background-color: #fff;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  border-radius: 5px;
-  margin: 4% 18% 0% 18%;
-  padding: 4%;
-}
-
-.profile-table {
-  width: 100%;
-  margin-bottom: 2.2rem;
-}
-.profile-table tr {
-  border-bottom: 1px #ccd0d5 solid;
-}
-.profile-table th {
-  width: 40%;
-  margin-right: 60px;
-  vertical-align: top;
-  padding: 1.2rem 1.2rem 1.2rem 0;
-}
-.profile-table td {
-  vertical-align: top;
-  padding: 1.2rem 1.2rem 1.2rem 0;
-}
-.renewal-msg {
-  font-size: 1.6rem;
-  color: #b0b0b0;
-}
-
-.renewal-msg-error {
-  font-size: 1.6rem;
-  color: var(--error-color);
-  font-weight: 700;
 }
 
 /* Forms */
@@ -450,17 +361,17 @@ label {
 }
 
 .checkbox-container {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    margin: 5rem 0 3rem 0;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  margin: 5rem 0 3rem 0;
 }
 
 .checkbox-container input {
-    height: auto;
-    margin: 8px 12px 8px 0;
+  height: auto;
+  margin: 8px 12px 8px 0;
 }
 
 .checkbox-container label {
-    margin: 0;
+  margin: 0;
 }

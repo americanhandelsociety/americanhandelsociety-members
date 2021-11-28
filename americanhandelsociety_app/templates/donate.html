@@ -8,16 +8,13 @@
 {% endblock %}
 
 {% block content %}
-<div class='container-fluid'>
-    <!-- banner -->
-    <div class="row">
-        <div class='col-sm-7 page-banner-quote'>
-            <p class="apple-pie">"What the Devil I throw my money away for that the blockhead wish."</p>
-            <p>George Frideric Handel, according to Thomas Busby, <em>Concert Room and Orchestra Anecdotes</em>, 1825</p>
-        </div>
-        <div class='col-sm-5 page-banner-header'>
-            <h1>Donate</h1>
-        </div>
+<div class='banner-container'>
+    <div class='page-banner-quote'>
+        <p class="apple-pie">"What the Devil I throw my money away for that the blockhead wish."</p>
+        <p>George Frideric Handel, according to Thomas Busby, <em>Concert Room and Orchestra Anecdotes</em>, 1825</p>
+    </div>
+    <div class='page-banner-header'>
+        <h1>Donate</h1>
     </div>
 </div>
 
@@ -33,13 +30,12 @@
     <p>If you wish to contribute to these causes, you may do so by clicking the "Donate Now" button below. Please specify the category or categories you wish to support by entering a message during checkout.</p>
 </div>
 
-<div class="donate-banner">
+<div class="img-banner">
     <h1>Donate to the American Handel Society.</h1>
     <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
         <input type="hidden" name="cmd" value="_s-xclick">
         <input type="hidden" name="hosted_button_id" value="537HKFG7JQTVC">
-        <input type="submit" value="Donate Now" name="submit" title="PayPal - The safer, easier way to pay online!"
-            class="btn btn-primary">
+        <input type="submit" value="Donate Now" name="submit" title="PayPal - The safer, easier way to pay online!" class="btn btn-primary">
     </form>
 </div>
 

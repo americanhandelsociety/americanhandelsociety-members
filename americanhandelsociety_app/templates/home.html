@@ -3,24 +3,22 @@
 
 {% block title %}Home{% endblock %}
 
+{% block extra_css %}
+<link href="{% static 'css/home.css' %}" rel="stylesheet">
+{% endblock %}
+
 {% block content %}
-
-<div class='container-fluid'>
-	<!-- banner -->
-	<div class="row">
-		<div class='col-md-8 page-banner-header'>
-			<h1>American Handel Society</h1>
-		</div>
-		<div class='col page-banner-quote'>
-			<p class="apple-pie">"Strong in new arms the giant Handel stands,
-				Like bold Briareus with a hundred hands."
-			</p>
-			<p>
-				William Coxe, <em>Anecdotes of G.F. Handel and J.C. Smith</em>
-			</p>
-		</div>
+<div class='banner-container'>
+	<div class='page-banner-header'>
+		<h1>American Handel Society</h1>
 	</div>
+	<div class='page-banner-quote'>
+		<p class="apple-pie">"Strong in new arms the giant Handel stands,<br>Like bold Briareus with a hundred hands."</p>
+		<p>William Coxe, <em>Anecdotes of G.F. Handel and J.C. Smith</em></p>
+	</div>
+</div>
 
+<div class="outer-container">
 	<div class="row">
 		<div class='col-12'>
 			<p>Founded in 1986 by Howard Serwer, Paul Traver, and J. Merrill Knapp, The American Handel Society seeks to foster study of the life, works, and times of <strong>George Frideric Handel</strong>, and to encourage and support the performance of his music.</p>
@@ -28,17 +26,15 @@
 	</div>
 </div>
 
-<div class="join-banner">
-	<div class="button-frame">
-		<h1 class="mb-5">Become a member of the American Handel Society.</h1>
-		<a class="btn btn-primary" href="{% url 'join' %}">Join</a>
-	</div>
+<div class="img-banner">
+	<h1>Become a member of the American Handel Society.</h1>
+	<a class="btn btn-primary" href="{% url 'join' %}">Join</a>
 </div>
 
 <!-- Use bootstrap classes ("d-none d-lg-inline-block") to responsively hide images. -->
-<div class="info-container">
+<div class="outer-container">
 	<div class="info-row">
-		<div class="info-col info-newsletter-img d-none d-lg-inline-block">
+		<div class="info-col info-newsletter-img">
 			<img class="newsletter-img" src="{% static 'images/handel-bw.jpg' %}" alt="G.F. Handel">
 		</div>
 		<div class="info-col info-newsletter-text">
@@ -53,12 +49,12 @@
 			<p class="info-header">Events</p>
 			<p>The AHS sponsors a conference and festival every two years, featuring papers and panel discussions, the Howard Serwer Lecture, and the Paul Traver Memorial Concert.</p>
 		</div>
-		<div class="info-col info-events-img d-none d-lg-inline-block">
+		<div class="info-col info-events-img">
 			<img class="events-img" src="{% static 'images/Senesino_Cuzzoni_Berenstadt_BW.jpg' %}" alt="G.F. Handel">
 		</div>
 	</div>
 	<div class="info-row">
-		<div class="info-col info-study-img d-none d-lg-inline-block">
+		<div class="info-col info-study-img">
 			<img class="study-img" src="{% static 'images/discovery-bw.jpg' %}" alt="G.F. Handel">
 		</div>
 		<div class="info-col info-study-text">

@@ -11,16 +11,14 @@
 
 {% block content %}
 
-<div class='container-fluid'>
-	<!-- banner -->
-	<div class="row">
-		<div class='col-sm-8 page-banner-quote'>
-			<p class="apple-pie">"Oh! Let me know when you will do that, and I will advertise it. For I am sure more people will come to see you jump, than to hear you sing."</p>
-			<p>George Frideric Handel</p>
-		</div>
-		<div class='col-sm-4 page-banner-header'>
-			<h1>People</h1>
-		</div>
+<div class='banner-container'>
+	<div class='page-banner-header'>
+		<h1>People</h1>
+	</div>
+	<div class='page-banner-quote'>
+		<p class="apple-pie">"Oh! Let me know when you will do that, and I will advertise it. For I am sure more people will
+			come to see you jump, than to hear you sing."</p>
+		<p>George Frideric Handel</p>
 	</div>
 </div>
 
@@ -89,9 +87,11 @@
 	{% endfor %}
 </div>
 
+{% include 'partials/footer.html' %}
+
 {% block extra_js %}
 	<!-- TODO: Why do I need jQuery import if I import it in base.html -->
-	<script src="{% static 'js/jquery-3.6.0.min.js' %}"></script> 
+	<script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
 	<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
 	<script>
 		$(document).ready(function () {

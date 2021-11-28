@@ -1,0 +1,117 @@
+/* Overwrite reusable properties */
+.page-banner-header {
+	width: 68%;
+}
+
+.page-banner-quote {
+	width: 32%;
+	padding: 7.5rem 8rem;
+}
+
+.outer-container {
+	justify-content: center;
+}
+
+.img-banner {
+	/* Background */
+	background-image: url("/static/images/happy_we.png");
+	background-repeat: no-repeat;
+	background-size: 100%;
+	background-position-x: 50%;
+	background-position-y: 50%;
+	height: 380px;
+}
+
+.img-banner .btn {
+	width: 80%
+}
+
+/* Newsletter, Events, Awards */
+.info-row {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	padding: 4% 0;
+}
+
+.info-col {
+	display: flex;
+	flex-direction: column;
+	margin: 2rem;
+}
+
+.subheader {
+	margin-bottom: 0;
+	color: rgba(121, 121, 121);
+}
+
+.info-header {
+	font-size: 5rem;
+	font-family: var(--font-headers);
+}
+
+.info-newsletter-img {
+	width: 28%;
+}
+
+.info-newsletter-text {
+	width: 62%;
+}
+
+.newsletter-img {
+	max-width: 100%;
+	height: auto;
+	border-radius: 50%;
+}
+
+.info-events-img {
+	width: 42%;
+}
+
+.info-events-text {
+	width: 54%;
+}
+
+.events-img {
+	max-width: 100%;
+	height: auto;
+	border-radius: 2%;
+}
+
+.info-study-img {
+	width: 48%;
+}
+
+.info-study-text {
+	width: 52%;
+}
+
+.study-img {
+	max-width: 100%;
+	height: auto;
+	border-radius: 2%;
+}
+
+/* Small screens */
+@media screen and (min-width: 0px) and (max-width: 768px) {
+	.info-newsletter-text, .info-events-text, .info-study-text {
+		width: 100%;
+	}
+
+	.info-newsletter-img, .info-events-img, .info-study-img {
+		display: none;
+	}
+
+	.outer-container {
+		padding: 1.5rem 0;
+	}
+
+	.img-banner {
+		background-size: 400%;
+		height: 450px
+	}
+
+	.info-row {
+		padding: 2% 0;
+	}
+}

@@ -1,35 +1,51 @@
-.outer-container {
-    margin-bottom: 6%;
+.page-banner-header {
+    width: 40%;
 }
 
-.outer-container > section {
-  padding: 8% 0 8% 0;
-  border-bottom: 1px solid #e8e8e8;
-  margin-bottom: 6%;
+.page-banner-quote {
+    width: 60%;
 }
 
-.flex-container-rows {
+.outer-container>section {
+    padding: 8% 0 8% 0;
+}
+
+.inner-container {
     display: flex;
     flex-direction: row;
     width: 100%;
-    padding: 3.5rem 0;
     gap: 35px;
-
 }
 
-.flex-container-cols-events {
+.item-left {
+    width: 70%;
+}
+
+.item-right {
+    padding: 4% 0;
+}
+
+.background-img {
+    padding: 5%;
+    height: 500px;
+    margin-bottom: 8%;
+    /* Background */
+    background-size: cover;
+    background-image: url("/static/images/king_letter.png");
+    background-repeat: no-repeat;
+    background-position-y: 95%;
+}
+
+.item-left h2 {
+    color: #fff;
+    text-align: end;
+    border-bottom: 5px solid #7d1935;
+}
+
+.inner-container-col {
     display: flex;
     flex-direction: column;
     width: 100%;
-}
-
-.item {
-    width: 45%
-}
-
-.img-events {
-    max-width: 100%;
-    height: auto;
 }
 
 p.font-sm {
@@ -41,5 +57,39 @@ p.margin-sm {
 }
 
 div.padding-md {
-    padding-bottom: 5rem;
+    padding-bottom: 8%;
+}
+
+/* Small screens */
+@media screen and (min-width: 0px) and (max-width: 768px) {
+
+    /* Hide image with background */
+    .item-left {
+        display: none;
+    }
+
+    /* Show header on right */
+    .item-right h2 {
+        display: block
+    }
+
+    .item-right {
+        width: 80%;
+        margin: auto;
+        margin-bottom: 8%;
+    }
+
+    /* Hide "Location" column in table */
+    th.location, td.location {
+        display: none;
+    }
+}
+
+/* Not small screens */
+@media screen and (min-width: 769px) {
+
+    /* Hide header on right */
+    .item-right h2 {
+        display: none;
+    }
 }

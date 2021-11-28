@@ -2,3 +2,10 @@
     width: 60%;
     padding-top: 4%;
 }
+
+/* Small screens */
+@media screen and (min-width: 0px) and (max-width: 768px) {
+    .outer-container {
+        width: 80%;
+    }
+}

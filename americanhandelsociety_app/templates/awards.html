@@ -10,17 +10,14 @@
 {% endblock %}
 
 {% block content %}
-<div class='container-fluid'>
-    <!-- banner -->
-    <div class="row">
-        <div class='col-sm-8 page-banner-quote'>
-            <p class="apple-pie">"...not to forget Handel's works, as they always offer the best nourishment for your
-                ripe musical mind..."</p>
-            <p>Ludwig van Beethoven, letter to Archduke Rudolph, 1819</p>
-        </div>
-        <div class='col-sm-4 page-banner-header'>
-            <h1>Awards</h1>
-        </div>
+<div class='banner-container'>
+    <div class='page-banner-quote'>
+        <p class="apple-pie">". . . not to forget Handel's works, as they always offer the best nourishment for your
+            ripe musical mind . . ."</p>
+        <p>Ludwig van Beethoven, letter to Archduke Rudolph, 1819</p>
+    </div>
+    <div class='page-banner-header'>
+        <h1>Awards</h1>
     </div>
 </div>
 
@@ -48,7 +45,7 @@
             <tr>
                 <th>Year</th>
                 <th>Recipient</th>
-                <th>Affiliation</th>
+                <th class="affiliation">Affiliation</th>
                 <th>Supported Research</th>
             </tr>
         </thead>
@@ -57,7 +54,7 @@
             <tr>
                 <td>{{winner.year}}</td>
                 <td>{{winner.recipient}}</td>
-                <td>{{winner.affiliation}}</td>
+                <td class="affiliation">{{winner.affiliation}}</td>
                 <td>{{winner.supported_research|safe}}</td>
             </tr>
             {% endfor %}

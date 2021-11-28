@@ -24,3 +24,14 @@ form {
 ol {
     padding-left: 0;
 }
+
+/* Small screens */
+@media screen and (min-width: 0px) and (max-width: 768px) {
+    .btn-home {
+        display: none;
+    }
+
+    .flex-container-column, form {
+        width: 80%;
+    }
+}
