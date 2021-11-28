@@ -20,3 +20,16 @@ ul {
     padding-top: 5rem;
     font-size: 1.5rem;
 }
+
+/* Small screens */
+@media screen and (min-width: 0px) and (max-width: 768px) {
+    .outer-container {
+        width: 80%;
+    }
+
+    .last-updated {
+        margin-top: 3.5rem;
+        padding-top: 3.5rem;
+        padding-bottom: 3.5rem;
+    }
+}

@@ -90,6 +90,6 @@ div.padding-md {
 
     /* Hide header on right */
     .item-right h2 {
-        display: none
+        display: none;
     }
 }
