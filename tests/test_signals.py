@@ -30,7 +30,7 @@ def test_listen_for_paypal_please_updates_member(client, member):
         "last_name": b"Handel",
         "receiver_email": settings.PAYPAL_RECEIVER_EMAIL,
         "payment_status": b"Completed",
-        "payment_gross": b"35.00",
+        "payment_gross": b"40.00",
         "invoice": bytes(invoice, encoding="utf-8"),
         "payer_status": b"verified",
         "item_name": bytes(expected_membership_type, encoding="utf-8"),

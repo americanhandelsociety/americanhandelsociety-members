@@ -65,7 +65,7 @@ def test_membership_type_does_not_accept_choice_longer_than_max_length():
             membership_type=invalid_choice,
         )
 
-    assert "value too long for type character varying(10)" in str(exc.value)
+    assert "value too long for type character varying(16)" in str(exc.value)
 
 
 @pytest.mark.django_db
