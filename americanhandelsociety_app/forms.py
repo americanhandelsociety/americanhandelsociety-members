@@ -31,7 +31,7 @@ class MemberCreationForm(UserCreationForm):
         fields = (
             "first_name",
             "last_name",
-            # "email",
+            "email",
             "password1",
             "password2",
             "accepts_privacy_policy",

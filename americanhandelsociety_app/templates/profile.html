@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
-{% load profile_extras %}
+{% load profile_extras pay_extras %}
 
 {% block title %}Profile{% endblock %}
 
@@ -69,7 +69,7 @@
 			<table class="profile-table">
 				<tr>
 					<th>Membership Type</th>
-					<td>{{ request.user.membership_type }}</td>
+					<td>{{ request.user.membership_type|format_membership_type }}</td>
 				</tr>
 				<tr>
 					<th>Renewal Date</th>

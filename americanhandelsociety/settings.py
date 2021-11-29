@@ -14,7 +14,7 @@ allowed_hosts = os.getenv("DJANGO_ALLOWED_HOSTS", [])
 ALLOWED_HOSTS = allowed_hosts.split(",") if allowed_hosts else []
 
 # For Paypal integration testing
-ALLOWED_HOSTS.append("3bd6-2601-249-8c00-4a80-9c58-2f37-d271-10f.ngrok.io")
+ALLOWED_HOSTS.append("ef47-2601-249-8c00-4a80-bdfa-78f-bdaa-6fd2.ngrok.io")
 
 PAYPAL_TEST = True if os.getenv("PAYPAL_TEST") == "True" else False
 if PAYPAL_TEST:
