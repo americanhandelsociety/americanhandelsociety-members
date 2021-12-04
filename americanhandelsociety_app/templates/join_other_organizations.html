@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Logout{% endblock %}
+
+{% block extra_css %}
+<link href="{% static 'css/join_other_organizations.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+<div class="outer-container">
+    <h3>Join Other Organizations</h3>
+    <p>Members of the American Handel Society can also become: a member of the Georg-Friedrich-Händel-Gesellschaft in
+        Halle (to receive the <em>Händel-Jahrbuch</em>) or a Friend of The Handel Institute in Great Britain (to receive
+        The Handel Institute Newsletter).</p>
+    <p>Please select the appropriate class of membership from the drop-down list below, click "add to cart," and
+        complete the payment process.</p>
+
+    <h4>Friends of the Handel Institute, London<span class="red-font">*</span></h4>
+    <form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+        <input type="hidden" name="cmd" value="_s-xclick">
+        <input type="hidden" name="hosted_button_id" value="QTB483UE75HYQ">
+        <table>
+            <tr>
+                <td><input type="hidden" name="on0" value="Friend of the Handel Institute, London"></td>
+            </tr>
+            <tr>
+                <td>
+                    <select name="os0">
+                        <option value="Regular">Regular $30 USD</option>
+                        <option value="Student">Student $15 USD</option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+        <br>
+        <input type="hidden" name="currency_code" value="USD">
+        <input type="submit" value="Add to Cart" name="submit" title="PayPal - The safer, easier way to pay online!"
+            class="btn btn-primary">
+    </form>
+</div>
+
+{% endblock %}

@@ -20,6 +20,7 @@ from americanhandelsociety_app.views import (
     Logout,
     PasswordChange,
     EditMember,
+    JoinOtherOrganizations,
 )
 
 urlpatterns = [
@@ -34,6 +35,11 @@ urlpatterns = [
     path("profile/", Profile.as_view(), name="profile"),
     path("change-password/", PasswordChange.as_view(), name="change-password"),
     path("edit-member/<str:member_uuid>", EditMember.as_view(), name="edit-member"),
+    path(
+        "join-other-organizations/",
+        JoinOtherOrganizations.as_view(),
+        name="join-other-organizations",
+    ),
     # Auth
     path("logout/", Logout.as_view(), name="logout"),
     path("login/", Login.as_view(), name="login"),
