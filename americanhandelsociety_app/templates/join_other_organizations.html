@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}Logout{% endblock %}
+{% block title %}Join Other Organizations{% endblock %}
 
 {% block extra_css %}
 <link href="{% static 'css/join_other_organizations.css' %}" rel="stylesheet">
@@ -21,24 +21,86 @@
     <form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
         <input type="hidden" name="cmd" value="_s-xclick">
         <input type="hidden" name="hosted_button_id" value="QTB483UE75HYQ">
-        <table>
-            <tr>
-                <td><input type="hidden" name="on0" value="Friend of the Handel Institute, London"></td>
-            </tr>
-            <tr>
-                <td>
-                    <select name="os0">
-                        <option value="Regular">Regular $30 USD</option>
-                        <option value="Student">Student $15 USD</option>
-                    </select>
-                </td>
-            </tr>
-        </table>
-        <br>
+        <input type="hidden" name="on0" value="Friend of the Handel Institute">
+        <select name="os0">
+            <option value="Regular">Regular $30 USD</option>
+            <option value="Student">Student $15 USD</option>
+        </select>
         <input type="hidden" name="currency_code" value="USD">
         <input type="submit" value="Add to Cart" name="submit" title="PayPal - The safer, easier way to pay online!"
             class="btn btn-primary">
     </form>
+
+    <h4>Georg-Friedrich-Händel-Gesellschaft, Halle</h4>
+    <p>Members of Georg-Friedrich-Händel-Gesellschaft can join the Goettingen and Karlsruhe Handel societies for half price. The below provides three options for bundling together memberships.</p>
+    <p class="member-description"><em>Single membership</em> – Georg-Friedrich-Händel-Gesellschaft<span class="red-font">*</span></p>
+    <form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+        <input type="hidden" name="cmd" value="_s-xclick">
+        <input type="hidden" name="hosted_button_id" value="69AKSH6AHC9TE">
+        <input type="hidden" name="on0" value="Membership in the GFHG">
+        <select name="os0">
+            <option value="Regular">Regular - $45 USD</option>
+            <option value="Student">Student - $20 USD</option>
+        </select>
+        <input type="hidden" name="currency_code" value="USD">
+        <input type="submit" value="Add to Cart" name="submit" title="PayPal - The safer, easier way to pay online!"
+            class="btn btn-primary">
+    </form>
+
+    <p class="member-description"><em>Dual membership</em> – Georg-Friedrich-Händel-Gesellschaft / Göttinger-Händel-Gesellschaft<span class="red-font">*</span><span class="red-font">†</span></p>
+    <form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+        <input type="hidden" name="cmd" value="_s-xclick">
+        <input type="hidden" name="hosted_button_id" value="TZHLDC2UYZPJC">
+        <input type="hidden" name="on0" value="Dual Membership in GFHG and GHG">
+        <select name="os0">
+            <option value="Regular">Regular – $75 USD</option>
+            <option value="Regular with GHB">Regular (with Gottinger Handel Beitrage) – $115 USD</option>
+            <option value="Student">Student – $27 USD</option>
+            <option value="Student with GHB">Student (with Gottinger Handel Beitrage) – $56 USD</option>
+        </select>
+        <input type="hidden" name="currency_code" value="USD">
+        <input type="submit" value="Add to Cart" name="submit" title="PayPal - The safer, easier way to pay online!"
+            class="btn btn-primary">
+    </form>
+
+    <p class="member-description"><em>Dual membership</em> - Georg-Friedrich-Händel-Gesellschaft / Handel-Gesellschaft Karlsruhe<span
+            class="red-font">*</span></p>
+    <form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+        <input type="hidden" name="cmd" value="_s-xclick">
+        <input type="hidden" name="hosted_button_id" value="SLY99ZLYLCFSS">
+        <input type="hidden" name="on0" value="Dual Membership in GFHG and Karlsruhe">
+        <select name="os0">
+            <option value="Regular">Regular - $63 USD</option>
+            <option value="Student">Student - $23 USD</option>
+        </select>
+        <input type="hidden" name="currency_code" value="USD">
+        <input type="submit" value="Add to Cart" name="submit" title="PayPal - The safer, easier way to pay online!"
+            class="btn btn-primary">
+    </form>
+
+    <p class="member-description"><em>Triple membership</em> – Georg-Friedrich-Händel-Gesellschaft / Göttinger-Händel-Gesellschaft /
+        Händel-Gesellschaft Karlsruhe<span class="red-font">*</span></p>
+    <form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+        <input type="hidden" name="cmd" value="_s-xclick">
+        <input type="hidden" name="hosted_button_id" value="DW9QC6CQL3UDQ">
+        <input type="hidden" name="on0" value="Triple Membership">
+        <select name="os0">
+            <option value="Regular">Regular – $93 USD</option>
+            <option value="Regular with GHB">Regular (with Gottinger Handel Beitrage) – $125 USD</option>
+            <option value="Student">Student – $30 USD</option>
+            <option value="Student with GHB">Student (with Gottinger Handel Beitrage) - $60 USD</option>
+        </select>
+        <input type="hidden" name="currency_code" value="USD">
+        <input type="submit" value="Add to Cart" name="submit" title="PayPal - The safer, easier way to pay online!"
+            class="btn btn-primary">
+    </form>
+
+    <p class="member-description">
+        <small><span class="red-font">*</span> This organization does not have a reduced rate for retirees.</small><br>
+        <small><span class="red-font">†</span> This organization has additional categories of Regular Membership that require a higher membership fee but provide additional benefits <a href="https://www.haendel-festspiele.de/en/partners-and-supporters/getting-involved-in-person/haendel-gesellschaft/mitgliedschaft.html" target="_blank">(see its website)</a>. Arrangements for these other categories may be made directly with Mrs. Pomeroy Kelly by mail: Marjorie Pomeroy Kelly, Secretary/Treasurer, THE AMERICAN HANDEL SOCIETY, 49 Christopher Hollow Road, Sandwich, MA 02563.</small>
+    </p>
 </div>
+
+{% include 'partials/footer.html' %}
 
 {% endblock %}
