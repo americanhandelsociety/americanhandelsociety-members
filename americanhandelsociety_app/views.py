@@ -184,7 +184,7 @@ class Home(View):
     def get(self, request):
         images_content = [
             '"Happy we," <em>Acis and Galatea</em>, HWV 49, George Frideric Handel, 1715-32.',
-            '"George Frideric Handel," attributed to Balthasar Denner, 1726–8, The National Portrait Gallery, London.',
+            '"George Frideric Handel," photo by Thomas Hawk, licensed with Creative Commons BY-NC 2.0.',
             '"Berenstadt, Cuzzoni and Senesino," attributed to John Vanderbank, 1723, The British Museum, London.',
             '"Tu fedel? tu costante?," HWV 171a, George Frideric Handel, 1705-6.',
         ]
