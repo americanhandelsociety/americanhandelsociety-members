@@ -96,11 +96,9 @@
 					<td>{{ request.user.last_login|date:'DATETIME_FORMAT' }}</td>
 				</tr>
 			</table>
-			<!-- <div class="row">
-				<div class="col">
-					<a class="disabled btn btn-primary mt-4 ms-4 float-end" href="{# url 'edit-profile' #}">Renew Membership</a>
-				</div>
-			</div> -->
+			<div class="inner-container other-organizations">
+				<p>Members of the American Handel Society can also become: a member of the Georg-Friedrich-Händel-Gesellschaft in Halle (to receive the <em>Händel-Jahrbuch</em>) or a Friend of The Handel Institute in Great Britain (to receive The Handel Institute Newsletter). <a href="{% url 'join-other-organizations' %}"><strong><i class="fas fa-users"></i> Join Other Organizations.</strong></a></p>
+			</div>
 		</div>
 	</div>
 

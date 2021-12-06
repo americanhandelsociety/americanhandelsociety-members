@@ -170,6 +170,13 @@ class People(ListView):
         return context
 
 
+class JoinOtherOrganizations(ProtectedView, View):
+    template_name = "join_other_organizations.html"
+
+    def get(self, request):
+        return render(request, self.template_name)
+
+
 # public-facing views with static content
 class Home(View):
     template_name = "home.html"

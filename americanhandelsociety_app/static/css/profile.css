@@ -39,6 +39,11 @@
     font-weight: 700;
 }
 
+.other-organizations {
+    padding-top: 2.5rem;
+    padding-bottom: 2rem;
+}
+
 /* Small screens */
 @media screen and (min-width: 0px) and (max-width: 768px) {
     .profile-card {

@@ -1,0 +1,41 @@
+.outer-container {
+    width: 60%;
+    padding-top: 4%;
+    padding-bottom: 4%;
+}
+
+.red-font {
+    color: #7d1935;
+}
+
+h4 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    padding-top: 4%;
+}
+
+form {
+    width: 100%;
+    height: auto;
+    padding: 2% 0 2% 0;
+}
+
+select {
+    padding: 8px;
+    border-radius: 0;
+    border: solid 0.5px #b0b0b0;
+    height: 44px;
+    font-size: 1.8rem;
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+p.member-description {
+    margin-top: 4%;
+    margin-bottom: 0;
+}
+
+input.btn {
+    width: 20%;
+    font-size: 18px;
+}
