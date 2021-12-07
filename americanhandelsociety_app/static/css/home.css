@@ -42,6 +42,16 @@
 	padding-bottom: 4rem;
 }
 
+.intro-text {
+	font-size: 2.8rem;
+	padding: 8% 6%;
+}
+
+.font-enhance {
+	font-family: var(--font-headers);
+}
+
+
 /* Newsletter, Events, Awards */
 .info-row {
 	display: flex;
@@ -62,17 +72,16 @@
 }
 
 .info-header {
-	font-size: 8rem;
+	font-size: 6.8rem;
 	font-family: var(--font-headers);
 }
 
 .info-newsletter-img {
-	height: 500px;
+	height: 550px;
 }
 
 .info-newsletter-text {
-	padding-top: 9%;
-	padding-right: 2%;
+	padding: 10% 3%;
 	width: 62%;
 }
 
@@ -121,6 +130,10 @@
 
 /* Small screens */
 @media screen and (min-width: 0px) and (max-width: 768px) {
+	.banner-container {
+		height: auto;
+	}
+
 	.info-newsletter-text, .info-events-text, .info-study-text {
 		width: 100%;
 		padding: 2% 4%;
