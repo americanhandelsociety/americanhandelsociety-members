@@ -1,6 +1,6 @@
 /* Overwrite reusable properties */
 .banner-container, .page-banner-header {
-	height: 600px;
+	height: 46vw;
 	background-color: #182978;
 }
 
@@ -10,14 +10,14 @@
 
 .page-banner-quote {
 	width: 64%;
-	padding: 14rem 4rem;
+	padding: 10vw 2vw;
 	flex-direction: column;
-	font-size: 2.8rem;
+	font-size: 2.2vw;
 	line-height: 2;
 }
 
 .home-img {
-	height: 600px;
+	height: 46vw;
 }
 
 .outer-container {
@@ -56,7 +56,6 @@
 .info-row {
 	display: flex;
 	flex-direction: row;
-	justify-content: space-around;
 	padding: 3% 0;
 }
 
@@ -72,16 +71,16 @@
 }
 
 .info-header {
-	font-size: 6.8rem;
+	font-size: 4.8vw;
 	font-family: var(--font-headers);
 }
 
 .info-newsletter-img {
-	height: 550px;
+	height: 45vw;
 }
 
 .info-newsletter-text {
-	padding: 10% 3%;
+	padding: 5%;
 	width: 62%;
 }
 
@@ -93,7 +92,7 @@
 
 .info-events-img {
 	width: 62%;
-	height: 500px;
+	height: 40vw;
 	margin: 0;
 	/* Background */
 	background-size: cover;
@@ -114,17 +113,16 @@
 }
 
 .info-study-img {
-	width: 42%;
+	width: 45%;
 	margin: 0;
 	/* Background */
 	background-size: cover;
 	background-image: url("/static/images/discovery-bw.jpg");
 	background-repeat: no-repeat;
-	background-position-y: 68%;
 }
 
 .info-study-text {
-	width: 58%;
+	width: 55%;
 	padding: 2%;
 }
 
