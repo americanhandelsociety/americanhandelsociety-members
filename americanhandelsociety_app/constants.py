@@ -132,16 +132,18 @@ RESEARCH_MATERIALS = {
 
 BOARD_OF_DIRECTORS = [
     ("Graydon Beeks", "Ireri Chávez-Bárcenas"),
-    ("Norbert Dubowy", "Fredric Fehleisen"),
-    ("Roger Freitas", "Ellen Harris"),
-    ("Wendy Heller", "David Hurley"),
-    ("Robert Ketterer", "Nathan Link"),
-    ("Ken Nott", "Marjorie Pomeroy"),
+    ("Alison DeSimone", "Norbert Dubowy"),
+    ("Fredric Fehleisen", "Roger Freitas"),
+    ("Wendy Heller", "Robert Ketterer"),
+    ("Nathan Link", "Ken Nott"),
+    ("Marjorie Pomeroy", "Mark Risinger"),
     ("John Roberts", "Ellen Rosand"),
     ("Ayana Smith", ""),
 ]
 
 HONORARY_DIRECTORS = [
+    "Ellen T. Harris",
+    "David Hurley",
     "Richard King",
     "William Gudger",
     "Nicholas McGegan",
@@ -224,7 +226,7 @@ HOWARD_SERWER_LECTURES = [
     {
         "year": 1996,
         "speaker": "Donald Burrows",
-        "title": "M. Handel's Friends: Contemporary Accounts of the Composer from the papers of James Harris",
+        "title": "M. Handel's Friends: Contemporary Accounts of the Composer from the papers of James T. ",
         "location": "College Park, MD – University of Maryland",
     },
     {
@@ -259,7 +261,7 @@ HOWARD_SERWER_LECTURES = [
     },
     {
         "year": 1988,
-        "speaker": "Ellen T. Harris",
+        "speaker": "Ellen T. T. ",
         "title": "Integrity and Improvisation in the Music of Handel",
         "location": "College Park, MD – University of Maryland",
     },
@@ -280,7 +282,7 @@ KNAPP_FELLOWSHIP_WINNERS = [
     },
     {
         "year": 2018,
-        "recipient": "Alison C. DeSimone",
+        "recipient": "Alison DeSimone",
         "affiliation": "University of Missouri–Kansas City",
         "supported_research": 'To support a research trip to the United Kingdom for work on her monograph-in-progress, "The Power of Pastiche: Musical Miscellany and the Creation of Cultural Identity in Early Eighteenth-Century England."',
     },
