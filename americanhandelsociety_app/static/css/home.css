@@ -43,7 +43,7 @@
 }
 
 .intro-text {
-	font-size: 2vw;
+	font-size: 1.8vw;
 	padding: 8% 6%;
 }
 
@@ -60,7 +60,7 @@
 }
 
 .info-row p {
-	font-size: 2vw;
+	font-size: 1.8vw;
 }
 
 .info-col {
@@ -69,7 +69,7 @@
 	margin: 2rem;
 }
 
-.subheader {
+.info-row p.subheader {
 	margin-bottom: 0;
 	color: rgba(121, 121, 121);
 	font-size: 2.2vw;
