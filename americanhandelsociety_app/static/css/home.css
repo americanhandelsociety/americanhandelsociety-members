@@ -11,9 +11,8 @@
 .page-banner-quote {
 	width: 64%;
 	padding: 10vw 2vw;
-	flex-direction: column;
 	font-size: 2.2vw;
-	line-height: 2;
+	flex-direction: column;
 }
 
 .home-img {
@@ -43,7 +42,7 @@
 }
 
 .intro-text {
-	font-size: 1.8vw;
+	/* font-size: 1.8vw; */
 	padding: 8% 6%;
 }
 
@@ -59,10 +58,6 @@
 	padding: 2% 0;
 }
 
-.info-row p {
-	font-size: 1.8vw;
-}
-
 .info-col {
 	display: flex;
 	flex-direction: column;
@@ -72,7 +67,7 @@
 .info-row p.subheader {
 	margin-bottom: 0;
 	color: rgba(121, 121, 121);
-	font-size: 2.2vw;
+	font-size: 2vw;
 }
 
 .info-header {
@@ -85,7 +80,7 @@
 }
 
 .info-newsletter-text {
-	padding: 5%;
+	padding: 8% 5% 0 5%;
 	width: 62%;
 }
 
@@ -108,7 +103,7 @@
 
 .info-events-text {
 	width: 38%;
-	padding: 4%;
+	padding: 6% 4% 0 4%;
 }
 
 .events-img {
@@ -138,7 +133,6 @@
 	}
 
 	.intro-text {
-		font-size: 2.2rem;
 		padding: 8% 4%;
 	}
 
@@ -157,10 +151,6 @@
 
 	.info-row {
 		padding: 1% 0;
-	}
-
-	.info-row p {
-		font-size: 2.2rem;
 	}
 
 	.info-newsletter-text, .info-events-text, .info-study-text {
