@@ -1,18 +1,39 @@
 /* Overwrite reusable properties */
-.banner-container, .page-banner-header {
-	height: 46vw;
-	background-color: #182978;
+.home-banner-container {
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	margin: auto;
+	height: 35vw;
 }
 
-.page-banner-header {
+.home-page-banner-header {
+	padding: 7rem;
+	background-color: #dbdbdb;
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
 	padding: 0;
 }
 
-.page-banner-quote {
+.home-page-banner-quote {
+	padding: 7%;
+	font-size: 2vw;
+	line-height: 2;
+	background-color: #182978;
+	color: #fff;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
 	width: 64%;
 	padding: 10vw 2vw;
 	font-size: 2.2vw;
 	flex-direction: column;
+}
+
+.home-banner-container, .home-page-banner-header {
+	height: 46vw;
+	background-color: #182978;
 }
 
 .home-img {
@@ -136,7 +157,7 @@
 		padding: 8% 4%;
 	}
 
-	.banner-container {
+	.home-banner-container {
 		height: auto;
 	}
 
