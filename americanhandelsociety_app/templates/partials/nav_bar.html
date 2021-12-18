@@ -11,25 +11,23 @@
 			<li class="nav-item">
 				<a class="nav-link" href="{% url 'events' %}">Events</a>
 			</li>
-			<li class="nav-item dropdown">
-				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-					data-bs-toggle="dropdown" aria-expanded="false">
-					Learn
-				</a>
-				<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-					<a class="dropdown-item" href="#">Newsletter</a>
-					<a class="dropdown-item" href="#">Explore</a>
-					<a class="dropdown-item" href="{% url 'research-materials' %}">Research Materials</a>
-				</ul>
-			</li>
 			<li class="nav-item">
 				<a class="nav-link" href="{% url 'awards' %}">Awards</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="{% url 'people' %}">People</a>
+				<a class="nav-link" href="#">Newsletter</a>
 			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="{% url 'donate' %}">Donate</a>
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+					data-bs-toggle="dropdown" aria-expanded="false">
+					More
+				</a>
+				<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+					<a class="dropdown-item" href="{% url 'people' %}">People</a>
+					<!-- <a class="dropdown-item" href="#">Explore</a> -->
+					<a class="dropdown-item" href="{% url 'research-materials' %}">Research Materials</a>
+					<a class="dropdown-item" href="{% url 'donate' %}">Donate</a>
+				</ul>
 			</li>
 			{% if request.user.is_authenticated %}
 			<!-- Pipe or HR to demarcate profile items-->

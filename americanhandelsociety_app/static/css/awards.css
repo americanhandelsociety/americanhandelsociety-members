@@ -1,19 +1,10 @@
+
 .page-banner-header {
     width: 35%;
 }
 
 .page-banner-quote {
     width: 65%;
-}
-
-.outer-container {
-    margin-bottom: 6%;
-}
-
-.outer-container section {
-    padding: 8% 0 8% 0;
-    border-bottom: 1px solid #e8e8e8;
-    margin-bottom: 6%;
 }
 
 p {
@@ -23,6 +14,22 @@ p {
 ul {
     padding-left: 5rem;
 }
+
+.outer-container {
+    margin-bottom: 6%;
+}
+
+.outer-container section {
+    padding: 6% 0;
+    border-bottom: 1px solid #e8e8e8;
+    margin-bottom: 6%;
+}
+
+.outer-container section p {
+    padding-bottom: 0;
+}
+
+
 
 /* Small screens */
 @media screen and (min-width: 0px) and (max-width: 768px) {
