@@ -161,14 +161,7 @@ class Newsletter(View):
     template_name = "newsletter.html"
 
     def get(self, request):
-        newsletter_filenames = os.listdir(
-            os.path.join(settings.STATIC_ROOT, "newsletters")
-        )
-        # from django.contrib.staticfiles import finders
-        # result = finders.find("static/newsletters")
-        # print(result)
-
-        print(settings.STATIC_ROOT)
+        # newsletter_filenames = os.listdir(os.path.join(settings.STATIC_ROOT, "newsletters"))
 
         return render(request, self.template_name)
 
