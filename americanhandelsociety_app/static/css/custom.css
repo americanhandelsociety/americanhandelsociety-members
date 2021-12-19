@@ -305,44 +305,6 @@ footer .images {
   }
 }
 
-/* Research */
-.research-container {
-  display: flex;
-  flex-direction: column;
-  width: 80%;
-  margin: auto;
-  padding-bottom: 6%;
-}
-
-.research-container>section {
-  padding: 6% 0;
-}
-
-.research-container>h3 {
-  border-top: 1px solid #e8e8e8;
-  padding-top: 6%;
-}
-
-.research-row {
-  margin: 1.6rem 0 1.6rem 0;
-}
-
-.research-material-title {
-  margin-bottom: 0;
-}
-
-.research-material-title a {
-  text-decoration: none;
-  color: black;
-  font-weight: 800;
-}
-
-.research-material-title a:hover {
-  background: var(--red-color);
-  padding: 6px;
-  color: #fff;
-}
-
 /* Forms */
 form {
   display: flex;

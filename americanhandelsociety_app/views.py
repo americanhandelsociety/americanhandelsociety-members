@@ -196,15 +196,11 @@ class Events(View):
     template_name = "events.html"
 
     def get(self, request):
-        images_content = [
-            "Letter from King George III to Mrs. Delaney, British Library, MS Mus. 1818."
-        ]
         return render(
             request,
             self.template_name,
             {
                 "howard_serwer_lectures": HOWARD_SERWER_LECTURES,
-                "images_content": images_content,
             },
         )
 
