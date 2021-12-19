@@ -1,3 +1,4 @@
+import os
 from datetime import datetime, timezone
 
 from dateutil.relativedelta import relativedelta
@@ -160,6 +161,15 @@ class Newsletter(View):
     template_name = "newsletter.html"
 
     def get(self, request):
+        newsletter_filenames = os.listdir(
+            os.path.join(settings.STATIC_ROOT, "newsletters")
+        )
+        # from django.contrib.staticfiles import finders
+        # result = finders.find("static/newsletters")
+        # print(result)
+
+        print(settings.STATIC_ROOT)
+
         return render(request, self.template_name)
 
 
