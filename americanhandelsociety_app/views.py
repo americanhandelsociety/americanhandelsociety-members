@@ -156,6 +156,13 @@ class EditMember(ProtectedView, View):
         )
 
 
+class Newsletter(View):
+    template_name = "newsletter.html"
+
+    def get(self, request):
+        return render(request, self.template_name)
+
+
 class People(ListView):
     context_object_name = "ahs_members"
     queryset = Member.objects.exclude(available_in_directory=False)

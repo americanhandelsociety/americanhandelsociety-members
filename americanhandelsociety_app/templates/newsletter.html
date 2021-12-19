@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Newsletter{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+<link href="{% static 'css/data_table.css' %}" rel="stylesheet">
+<link href="{% static 'css/newsletter.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+<div class='banner-container'>
+    <div class='page-banner-quote'>
+        <p class="apple-pie">"It was from Handel that I learned that style consists in force of assertion. If you can say a thing with stroke unanswerably you have style. . . . Handel has this power."</p>
+        <p>George Bernard Shaw, “Causerie on Handel in England,” 1913</p>
+    </div>
+    <div class='page-banner-header'>
+        <h1>Newsletter</h1>
+    </div>
+</div>
+
+<div class="outer-container">
+    <section>
+        <p>askdfjalsdkfjlksdaj</p>
+    </section>
+</div>
+
+{% include 'partials/footer.html' %}
+
+{% endblock %}
