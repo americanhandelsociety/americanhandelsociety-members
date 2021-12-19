@@ -5,8 +5,8 @@ LABEL maintainer "Regina Compton <reginafcompton@gmail.com>"
 
 WORKDIR /app
 
-RUN apt-get update && \
-    apt-get install curl
+RUN apt-get update
+RUN apt-get install --no-install-recommends --assume-yes curl
 
 COPY ./Pipfile /app/Pipfile
 COPY ./Pipfile.lock /app/Pipfile.lock

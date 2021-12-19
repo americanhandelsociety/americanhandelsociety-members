@@ -1,6 +1,10 @@
+.page-banner-quote {
+    padding: 8% 6%;
+}
+
 .outer-container {
-    padding-top: 10rem;
-    padding-bottom: 10rem;
+    padding-top: 8%;
+    padding-bottom: 8%;
     border-bottom: 1px solid #e8e8e8;
 }
 

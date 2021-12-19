@@ -7,12 +7,16 @@ ul {
     padding-left: 5rem;
 }
 
+.page-banner-quote {
+    padding: 6%;
+}
+
 .outer-container {
     margin-bottom: 6%;
 }
 
 .outer-container section {
-    padding: 6% 0;
+    padding: 8% 0 6% 0;
     border-bottom: 1px solid #e8e8e8;
     margin-bottom: 6%;
 }

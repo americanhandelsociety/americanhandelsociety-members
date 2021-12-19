@@ -142,5 +142,6 @@ DATETIME_FORMAT = "%B %-d, %Y, %-I:%M"
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 STATIC_URL = "/static/"
-STATIC_ROOT = "/static"
+STATIC_ROOT = BASE_DIR / "americanhandelsociety_app/static"
+
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"

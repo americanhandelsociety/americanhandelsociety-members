@@ -1,3 +1,4 @@
+import os
 from datetime import datetime, timezone
 
 from dateutil.relativedelta import relativedelta
@@ -156,6 +157,15 @@ class EditMember(ProtectedView, View):
         )
 
 
+class Newsletter(View):
+    template_name = "newsletter.html"
+
+    def get(self, request):
+        # newsletter_filenames = os.listdir(os.path.join(settings.STATIC_ROOT, "newsletters"))
+
+        return render(request, self.template_name)
+
+
 class People(ListView):
     context_object_name = "ahs_members"
     queryset = Member.objects.exclude(available_in_directory=False)
@@ -196,15 +206,11 @@ class Events(View):
     template_name = "events.html"
 
     def get(self, request):
-        images_content = [
-            "Letter from King George III to Mrs. Delaney, British Library, MS Mus. 1818."
-        ]
         return render(
             request,
             self.template_name,
             {
                 "howard_serwer_lectures": HOWARD_SERWER_LECTURES,
-                "images_content": images_content,
             },
         )
 
