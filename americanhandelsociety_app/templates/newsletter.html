@@ -35,8 +35,50 @@
     <h2>Newsletter Archives</h2>
     <p>Newsletters are available in PDF format. Members of the AHS can view all Newsletters, including the latest three issues; non-members can view previews of the latest three issues. Complete Newsletters become publicly available online one year after their publication.</p>
 
+    <table id="newsletters" class="table">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Articles</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for newsletter in newsletters_data %}
+            <tr>
+                <td>
+                    <a href="{% static newsletter.filename %}" target="_blank">{{newsletter.friendly_name}}</a>
+                </td>
+                <td>adsfadsfasdfasd</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
 </div>
 
 {% include 'partials/footer.html' %}
+
+{% block extra_js %}
+<!-- TODO: Why do I need jQuery import if I import it in base.html -->
+<script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+<script>
+    $(document).ready(function () {
+        var myTable = $('#newsletters').dataTable({
+            "retrieve": true, // https://datatables.net/manual/tech-notes/3
+            "lengthChange": false,
+            "ordering": false,
+            "paging": false,
+            "infoCallback": function (settings, start, end, max, total, pre) {
+                return `Showing ${total} of ${max}`;
+            },
+            "language": {
+                "search": "",
+                "searchPlaceholder": "Search...",
+            },
+        });
+    });
+</script>
+{% endblock %}
 
 {% endblock %}

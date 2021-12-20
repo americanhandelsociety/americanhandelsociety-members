@@ -15,6 +15,7 @@ from django.urls import reverse, reverse_lazy
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic.base import View
 from django.views.generic.list import ListView
+from americanhandelsociety_app.newsletters import NewslettersData
 from paypal.standard.forms import PayPalPaymentsForm
 
 from .constants import (
@@ -161,9 +162,21 @@ class Newsletter(View):
     template_name = "newsletter.html"
 
     def get(self, request):
-        # newsletter_filenames = os.listdir(os.path.join(settings.STATIC_ROOT, "newsletters"))
+        newsletter_filenames = os.listdir(
+            os.path.join(settings.STATIC_ROOT, "newsletters")
+        )
 
-        return render(request, self.template_name)
+        newsletters_data = NewslettersData(
+            newsletter_filenames
+        ).generate_newsletters_data()
+
+        sorted_newsletters_data = sorted(
+            newsletters_data, key=lambda x: x["id"], reverse=True
+        )
+
+        return render(
+            request, self.template_name, {"newsletters_data": sorted_newsletters_data}
+        )
 
 
 class People(ListView):
