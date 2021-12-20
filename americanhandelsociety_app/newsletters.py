@@ -1,4 +1,5 @@
 import re
+from django.conf import settings
 
 # TODO:
 # 1. tests!
@@ -28,7 +29,7 @@ class NewslettersData:
             season, year = self._get_newsletter_season_and_year(filename)
             data["id"] = f"{year}_{season}".lower()
             data["friendly_name"] = f"{season} {year}".title()
-            data["filename"] = f"newsletters/{filename}"
+            data["filename"] = f"/static/newsletters/{filename}"
 
             newsletters_data.append(data)
 
