@@ -25,4 +25,5 @@ ENV DJANGO_SECRET_KEY 'foobar'
 ENV DJANGO_DEBUG 'False'
 
 # Build static files into the container
+RUN mkdir -p /app/americanhandelsociety_app/static
 RUN python manage.py collectstatic --noinput
