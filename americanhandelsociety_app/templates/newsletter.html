@@ -40,15 +40,25 @@
             <tr>
                 <th>Date</th>
                 <th>Articles</th>
+                <th>Test</th>
+                <th>Test</th>
             </tr>
         </thead>
         <tbody>
             {% for newsletter in newsletters_data %}
             <tr>
                 <td>
-                    <a href="{% static 'Winter_2010.pdf' %}" target="_blank">{{newsletter.friendly_name}}</a>
+                    <a href="{% static newsletter.filename %}" target="_blank">{{newsletter.friendly_name}} - With variable</a>
                 </td>
-                <td>adsfadsfasdfasd</td>
+                <td>
+                    <a href="{% static 'newsletters/Summer_1986.pdf' %}" target="_blank">newsletters/Summer_1986.pdf</a>
+                </td>
+                <td>
+                    <a href="{% static 'AHS_membership_form_2021.pdf' %}" target="_blank">AHS_membership_form_2021.pdf</a>
+                </td>
+                <td>
+                    <a href="static/newsletters/AHS_membership_form_2021.pdf" target="_blank">static/newsletters/AHS_membership_form_2021.pdf</a>
+                </td>
             </tr>
             {% endfor %}
         </tbody>
