@@ -33,12 +33,11 @@
 
 <div class="outer-container">
     <h2>Newsletter Archives</h2>
-    <p>Newsletters are available in PDF format. Members of the AHS can view all Newsletters, including the latest three issues; non-members can view previews of the latest three issues. Complete Newsletters become publicly available online one year after their publication.</p>
-
+    <p>Newsletters are available in PDF format. Members of the AHS can view all newsletters, including the latest three issues; non-members can view previews of the latest three issues. Complete newsletters become publicly available online one year after their publication.</p>
     <table id="newsletters" class="table">
         <thead>
             <tr>
-                <th>Date</th>
+                <th>Newsletter</th>
                 <th>Articles</th>
             </tr>
         </thead>
@@ -47,7 +46,7 @@
             <tr>
                 <td>
                     {% with newsletter.filename as filename %}
-                        <a href="{% static filename|safe %}" target="_blank">{{newsletter.friendly_name}}</a>
+                        <a href="{% static filename|safe %}" target="_blank">{{newsletter.friendly_name|safe}}</a>
                     {% endwith %}
                 </td>
                 <td>
@@ -57,7 +56,6 @@
             {% endfor %}
         </tbody>
     </table>
-
 </div>
 
 {% include 'partials/footer.html' %}
@@ -72,13 +70,15 @@
             "retrieve": true, // https://datatables.net/manual/tech-notes/3
             "lengthChange": false,
             "ordering": false,
-            "paging": false,
-            "infoCallback": function (settings, start, end, max, total, pre) {
-                return `Showing ${total} of ${max}`;
-            },
+            "pageLength": 15,
             "language": {
                 "search": "",
                 "searchPlaceholder": "Search...",
+                "info": "Page _PAGE_ of _PAGES_",
+                "paginate": {
+                    "previous": '<i class="fas fa-arrow-circle-left" id="dark-color-please"></i>',
+                    "next": '<i class="fas fa-arrow-circle-right" id="dark-color-please"></i>'
+                }
             },
         });
     });

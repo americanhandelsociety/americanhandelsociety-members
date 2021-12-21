@@ -11,3 +11,14 @@
     border-bottom: 1px solid #e8e8e8;
     margin-bottom: 6%;
 }
+
+td p:last-of-type {
+    margin-bottom: 0;
+}
+
+.preview-label, .members-only-label {
+    color: #fff;
+    background: #267abf;
+    border-radius: 8px;
+    padding: 1px 6px;
+}
