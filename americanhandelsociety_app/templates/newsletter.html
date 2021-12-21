@@ -46,7 +46,7 @@
             {% for newsletter in newsletters_data %}
             <tr>
                 <td>
-                    <a href="{{newsletter.filename}}" target="_blank">{{newsletter.friendly_name}}</a>
+                    <a href="{% static newsletter.filename %}" target="_blank">{{newsletter.friendly_name}}</a>
                 </td>
                 <td>adsfadsfasdfasd</td>
             </tr>

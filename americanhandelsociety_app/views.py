@@ -162,15 +162,6 @@ class Newsletter(View):
     template_name = "newsletter.html"
 
     def get(self, request):
-        # newsletter_filenames = os.listdir(
-        #     os.path.join(settings.STATIC_ROOT, "newsletters")
-        # )
-        # newsletters_data = NewslettersData(
-        #     newsletter_filenames
-        # ).generate_newsletters_data()
-        # sorted_newsletters_data = sorted(
-        #     newsletters_data, key=lambda x: x["id"], reverse=True
-        # )
 
         return render(
             request, self.template_name, {"newsletters_data": NEWSLETTERS_DATA}
