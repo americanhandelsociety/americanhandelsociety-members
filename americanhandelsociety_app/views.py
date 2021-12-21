@@ -1,5 +1,6 @@
 import os
 from datetime import datetime, timezone
+import copy
 
 from dateutil.relativedelta import relativedelta
 from django.conf import settings
@@ -15,6 +16,12 @@ from django.urls import reverse, reverse_lazy
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic.base import View
 from django.views.generic.list import ListView
+from americanhandelsociety_app.newsletters import (
+    MEMBERS_ONLY_NEWSLETTERS,
+    NEWSLETTERS_DATA,
+    PREVIEW_NEWSLETTERS,
+    NewslettersData,
+)
 from paypal.standard.forms import PayPalPaymentsForm
 
 from .constants import (
@@ -161,9 +168,18 @@ class Newsletter(View):
     template_name = "newsletter.html"
 
     def get(self, request):
-        # newsletter_filenames = os.listdir(os.path.join(settings.STATIC_ROOT, "newsletters"))
+        # TECH DEBT: https://github.com/americanhandelsociety/americanhandelsociety-members/issues/77
+        # print(NewslettersData(directory_path="newsletters").generate_newsletters_data())
 
-        return render(request, self.template_name)
+        complete_newsletters_data = copy.deepcopy(NEWSLETTERS_DATA)
+        if request.user.is_authenticated:
+            complete_newsletters_data[:0] = MEMBERS_ONLY_NEWSLETTERS
+        else:
+            complete_newsletters_data[:0] = PREVIEW_NEWSLETTERS
+
+        return render(
+            request, self.template_name, {"newsletters_data": complete_newsletters_data}
+        )
 
 
 class People(ListView):
@@ -219,16 +235,10 @@ class Awards(View):
     template_name = "awards.html"
 
     def get(self, request):
-        # images_content = [
-        #     "Letter from King George III to Mrs. Delaney, British Library, MS Mus. 1818."
-        # ]
         return render(
             request,
             self.template_name,
-            {
-                "knapp_fellowship_winners": KNAPP_FELLOWSHIP_WINNERS
-                # "images_content": images_content,
-            },
+            {"knapp_fellowship_winners": KNAPP_FELLOWSHIP_WINNERS},
         )
 
 
