@@ -40,8 +40,6 @@
             <tr>
                 <th>Date</th>
                 <th>Articles</th>
-                <th>Test</th>
-                <th>Test</th>
             </tr>
         </thead>
         <tbody>
@@ -49,17 +47,11 @@
             <tr>
                 <td>
                     {% with newsletter.filename as filename %}
-                        <a href="{% static filename|safe %}" target="_blank">{{newsletter.friendly_name}} - With variable</a>
+                        <a href="{% static filename|safe %}" target="_blank">{{newsletter.friendly_name}}</a>
                     {% endwith %}
                 </td>
                 <td>
-                    <a href="{% static 'newsletters/Summer_1986.pdf' %}" target="_blank">newsletters/Summer_1986.pdf</a>
-                </td>
-                <td>
-                    <a href="{% static 'AHS_membership_form_2021.pdf' %}" target="_blank">AHS_membership_form_2021.pdf</a>
-                </td>
-                <td>
-                    <a href="/static/newsletters/Handel_Summer_2020.pdf" target="_blank">/static/newsletters/Handel_Summer_2020.pdf</a>
+                    {{newsletter.articles|safe}}
                 </td>
             </tr>
             {% endfor %}

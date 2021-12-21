@@ -162,6 +162,7 @@ class Newsletter(View):
     template_name = "newsletter.html"
 
     def get(self, request):
+        print(NewslettersData().generate_newsletters_data())
 
         return render(
             request, self.template_name, {"newsletters_data": NEWSLETTERS_DATA}
