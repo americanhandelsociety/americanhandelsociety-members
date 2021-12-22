@@ -20,7 +20,6 @@ from americanhandelsociety_app.newsletters import (
     MEMBERS_ONLY_NEWSLETTERS,
     NEWSLETTERS_DATA,
     PREVIEW_NEWSLETTERS,
-    NewslettersData,
 )
 from paypal.standard.forms import PayPalPaymentsForm
 

@@ -115,10 +115,20 @@ LOGGING = {
         "console": {
             "class": "logging.StreamHandler",
         },
+        "slack": {
+            "class": "slack_logger.slack_handler.SlackHandler",
+        },
     },
     "loggers": {
         "django": {
             "handlers": ["console"],
+            "level": os.getenv("DJANGO_LOG_LEVEL", "INFO"),
+        },
+        "americanhandelsociety_app": {
+            "handlers": [
+                "console",
+                "slack",
+            ],
             "level": os.getenv("DJANGO_LOG_LEVEL", "INFO"),
         },
     },
@@ -151,3 +161,7 @@ STATICFILES_FINDERS = (
 )
 
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+
+# Slack integration
+SLACK_ALERTS_URL = os.getenv("SLACK_ALERTS_URL", "")
