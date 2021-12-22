@@ -6,17 +6,14 @@ from .models import Member, Address
 
 class Admin(UserAdmin):
     model = Member
-    list_display = (
-        "first_name",
-        "last_name",
-        "email",
-    )
+    list_display = ("first_name", "last_name", "email", "id")
     list_filter = (
         "email",
         "available_in_directory",
         "address",
         "is_staff",
         "is_active",
+        "id",
     )
     fieldsets = (
         ("Authentication", {"fields": ("email", "password")}),

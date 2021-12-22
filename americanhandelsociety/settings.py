@@ -14,7 +14,7 @@ allowed_hosts = os.getenv("DJANGO_ALLOWED_HOSTS", [])
 ALLOWED_HOSTS = allowed_hosts.split(",") if allowed_hosts else []
 
 # For Paypal integration testing
-ALLOWED_HOSTS.append("ef47-2601-249-8c00-4a80-bdfa-78f-bdaa-6fd2.ngrok.io")
+ALLOWED_HOSTS.append("7990-73-28-128-128.ngrok.io")
 
 PAYPAL_TEST = True if os.getenv("PAYPAL_TEST") == "True" else False
 if PAYPAL_TEST:
@@ -115,10 +115,20 @@ LOGGING = {
         "console": {
             "class": "logging.StreamHandler",
         },
+        "slack": {
+            "class": "slack_logger.slack_handler.SlackHandler",
+        },
     },
     "loggers": {
         "django": {
             "handlers": ["console"],
+            "level": os.getenv("DJANGO_LOG_LEVEL", "INFO"),
+        },
+        "americanhandelsociety_app": {
+            "handlers": [
+                "console",
+                "slack",
+            ],
             "level": os.getenv("DJANGO_LOG_LEVEL", "INFO"),
         },
     },
@@ -151,3 +161,7 @@ STATICFILES_FINDERS = (
 )
 
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+
+# Slack integration
+SLACK_ALERTS_URL = os.getenv("SLACK_ALERTS_URL", "")
