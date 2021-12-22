@@ -1,37 +1,37 @@
-import os
-from datetime import datetime, timezone
 import copy
+import logging
+from datetime import datetime, timezone
 
 from dateutil.relativedelta import relativedelta
 from django.conf import settings
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.views import (
-    LoginView,
-    LogoutView,
-    PasswordChangeView,
-)
+from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse, reverse_lazy
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic.base import View
 from django.views.generic.list import ListView
+from paypal.standard.forms import PayPalPaymentsForm
+
 from americanhandelsociety_app.newsletters import (
     MEMBERS_ONLY_NEWSLETTERS,
     NEWSLETTERS_DATA,
     PREVIEW_NEWSLETTERS,
 )
-from paypal.standard.forms import PayPalPaymentsForm
 
 from .constants import (
-    KNAPP_FELLOWSHIP_WINNERS,
-    RESEARCH_MATERIALS,
     BOARD_OF_DIRECTORS,
     HONORARY_DIRECTORS,
     HOWARD_SERWER_LECTURES,
+    KNAPP_FELLOWSHIP_WINNERS,
+    RESEARCH_MATERIALS,
 )
 from .forms import AddressChangeForm, MemberChangeForm, MemberCreationForm
 from .models import Member
+
+
+logger = logging.getLogger(__name__)
 
 
 # views for authentication
@@ -280,6 +280,10 @@ class Join(View):
 
             request.session["member_id"] = str(member.id)
 
+            logger.info(
+                f"Someone clicked 'Continue' on the 'Join' form! member_id starts with: {str(member.id)[0:8]}"
+            )
+
             return HttpResponseRedirect(success_url)
 
         return render(request, self.template_name, {"form": form})
@@ -324,6 +328,10 @@ class Pay(View):
             member.delete()
         except Member.DoesNotExist:
             pass
+
+        logger.info(
+            f"Someone hit 'Cancel' on the 'Pay' page. member_id starts with: {str(member_id)[0:8]}"
+        )
 
         return HttpResponseRedirect(reverse_lazy("join"))
 

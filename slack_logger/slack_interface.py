@@ -13,9 +13,9 @@ def _send(payload):
     )
 
 
-def message_success(message):
+def message_non_error(message):
     data = {
-        "text": f"Success Message!",
+        "text": f"INFO Message!",
         "attachments": [
             {
                 "color": "#70a839",

@@ -2,7 +2,7 @@ import logging
 
 from django.conf import settings
 
-from slack_logger.slack_interface import message_error, message_success
+from slack_logger.slack_interface import message_error, message_non_error
 
 
 class SlackHandler(logging.Handler):
@@ -13,4 +13,4 @@ class SlackHandler(logging.Handler):
         if record.levelno == logging.ERROR:
             message_error(record.message, record.funcName)
         else:
-            message_success(record.message)
+            message_non_error(record.message)
