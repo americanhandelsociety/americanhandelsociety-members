@@ -23,9 +23,9 @@
 
 <div class="outer-container">
     <section>
-        <p>The American Handel Society publishes a newsletter three times a year (Spring, Summer, Winter); it contains reports on scholarly developments, notices of upcoming conferences and performances, reviews, lists of recent publications, and news of the AHS.</p>
+        <p>The American Handel Society publishes a newsletter three times a year (Spring, Summer, Winter); it contains articles, reviews, reports on scholarly developments, notices of upcoming events, lists of recent publications, and news of the Society.</p>
         <p>
-            <strong>Minji Kim, editor of the newsletter, welcomes comments and suggestions for future issues. Please email <a href="mailto:minjik@gmail.com">minjik@gmail.com</a>.</strong>
+            <strong>Minji Kim, editor of the newsletter, welcomes articles, comments, and suggestions for future issues. Please email <a href="mailto:minjik@gmail.com">minjik@gmail.com</a>.</strong>
 
         </p>
     </section>
@@ -37,8 +37,8 @@
     <table id="newsletters" class="table">
         <thead>
             <tr>
-                <th>Newsletter</th>
-                <th>Articles</th>
+                <th>Issue</th>
+                <th class="articles">Articles</th>
             </tr>
         </thead>
         <tbody>
@@ -49,7 +49,7 @@
                         <a href="{% static filename|safe %}" target="_blank">{{newsletter.friendly_name|safe}}</a>
                     {% endwith %}
                 </td>
-                <td>
+                <td class="articles">
                     {{newsletter.articles|safe}}
                 </td>
             </tr>
@@ -70,7 +70,8 @@
             "retrieve": true, // https://datatables.net/manual/tech-notes/3
             "lengthChange": false,
             "ordering": false,
-            "pageLength": 15,
+            "pageLength": 10,
+            "pagingType": "simple",
             "language": {
                 "search": "",
                 "searchPlaceholder": "Search...",
@@ -80,6 +81,10 @@
                     "next": '<i class="fas fa-arrow-circle-right" id="dark-color-please"></i>'
                 }
             },
+            "columns": [
+                { "width": "20%" },
+                null,
+            ]
         });
     });
 </script>

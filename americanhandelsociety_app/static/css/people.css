@@ -9,3 +9,18 @@
 .pt-lg {
     padding-top: 8%;
 }
+
+/* Small screens */
+@media screen and (min-width: 0px) and (max-width: 768px) {
+    .dataTables_wrapper .dataTables_info {
+        text-align: center;
+    }
+
+    .dataTables_wrapper .dataTables_paginate .paginate_button {
+        padding: 0.3em 0.5em;
+    }
+
+    .dataTables_wrapper .dataTables_paginate {
+        margin-top: 0;
+    }
+}
