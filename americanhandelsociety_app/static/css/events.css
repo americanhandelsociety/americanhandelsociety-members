@@ -26,6 +26,11 @@ p.margin-sm {
     margin-bottom: 2px;
 }
 
+
+p.padding-sm {
+    padding-bottom: 1%;
+}
+
 p.padding-md {
     padding-bottom: 3%;
 }

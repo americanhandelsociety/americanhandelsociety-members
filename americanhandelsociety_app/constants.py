@@ -21,6 +21,11 @@ RESEARCH_MATERIALS = {
             "description": "A database of Italian operas and opera librettos 1600–1900 with links to digital copies of opera librettos.",
         },
         {
+            "title": "English Short Title Catalogue",
+            "url": "http://estc.bl.uk/F/?func=file&file_name=login-bl-estc",
+            "description": "A database of works published in the British Isles and North America between 1473 and 1800. Helpful in locating printed Handel wordbooks (including digitized copies) in libraries all over the world.",
+        },
+        {
             "title": "Gallica ",
             "url": "https://gallica.bnf.fr/accueil/en/content/accueil-en?mode=desktop ",
             "description": "Digital library created by the Bibliothèque nationale de France and its partner institutions. Millions of documents are available online including newspapers, manuscripts, musical scores, images, and books.",
@@ -53,7 +58,7 @@ RESEARCH_MATERIALS = {
         {
             "title": "HathiTrust Digital Library",
             "url": "https://www.hathitrust.org/",
-            "description": "Contains digitized images of various Handel scores and books on Handel. Emergency  temporary access is available to some copyrighted materials for subscribing institutions owning the originals.",
+            "description": "Contains digitized images of various Handel scores and books on Handel.",
         },
         {
             "title": "IMSLP Petrucci Music Library",
@@ -106,6 +111,11 @@ RESEARCH_MATERIALS = {
             "description": "Online catalog of extant musical sources worldwide, primarily manuscripts and printed music editions, with many links to digitized copies.",
         },
         {
+            "title": "Samuel Arnold Edition of Handel’s Works Digitized and Available Online",
+            "url": "https://docs.google.com/document/d/16cbVYno7wYEDDwby6yhnFAHeqUzbvUWXwjzvkKZjzz8/edit?usp=sharing",
+            "description": "A resource compiled by Patrick Rogers.",
+        },
+        {
             "title": "University of North Texas Digital Library",
             "url": "https://digital.library.unt.edu/search/?q=george+frideric+handel&t=fulltext&fq=dc_type%3Aimage_score",
             "description": "Contains digitized early Handel scores.",
@@ -142,10 +152,10 @@ BOARD_OF_DIRECTORS = [
 ]
 
 HONORARY_DIRECTORS = [
+    "William Gudger",
     "Ellen T. Harris",
     "David Hurley",
     "Richard King",
-    "William Gudger",
     "Nicholas McGegan",
     "Marty Ronish",
 ]
@@ -261,7 +271,7 @@ HOWARD_SERWER_LECTURES = [
     },
     {
         "year": 1988,
-        "speaker": "Ellen T. T. ",
+        "speaker": "Ellen T. Harris",
         "title": "Integrity and Improvisation in the Music of Handel",
         "location": "College Park, MD – University of Maryland",
     },
