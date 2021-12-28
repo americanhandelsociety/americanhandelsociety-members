@@ -40,6 +40,26 @@ pipenv run python manage.py runserver
 pipenv run pre-commit install
 ```
 
+# Logging
+
+This project uses the Django logging system. Logs reside in two locations:
+
+**ONE.** Heroku. Heroku makes available the log output of the app itself; however, Heroku only stores the last 1,500 lines, and they expire after one week.
+
+```bash
+# using the Heroku CLI
+heroku logs --app americanhandelsociety-staging
+heroku logs --app americanhandelsociety-staging --tail
+
+heroku logs --app americanhandelsociety
+heroku logs --app americanhandelsociety --tail
+```
+
+**TWO.** Slack. The American Handel Society has a Slack workspace with two channels: `#site-logs-staging` and `#site-logs-production`. Each channel hooks into a custom Slack "Incoming Webhook" (called `django-logger`) – or, in other words, each channel connects to a Webhook URL, which accepts POST requests that Slack renders as messages.
+
+The AHS Django project only logs critical user-flow events to the Slack channels (made possible by a `logging.Handler` custom class). These events include: a user completes the `Join` form, a user cancels the `Join` flow, and a user submits payment (with success or error).
+
+Reference: https://www.rootstrap.com/blog/real-time-monitoring-using-django-and-slack-webhooks-2/
 # Tests
 
 Run the tests like so:
