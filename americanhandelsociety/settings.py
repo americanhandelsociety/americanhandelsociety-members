@@ -10,6 +10,11 @@ SECRET_KEY = os.environ["DJANGO_SECRET_KEY"]
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False if os.getenv("DJANGO_DEBUG", True) == "False" else True
 
+# Redirect HTTP traffic to HTTPS
+if DEBUG is False:
+    SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+    SECURE_SSL_REDIRECT = True
+
 allowed_hosts = os.getenv("DJANGO_ALLOWED_HOSTS", [])
 ALLOWED_HOSTS = allowed_hosts.split(",") if allowed_hosts else []
 
