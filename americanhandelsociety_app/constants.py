@@ -112,7 +112,7 @@ RESEARCH_MATERIALS = {
         },
         {
             "title": "Samuel Arnold Edition of Handel’s Works Digitized and Available Online",
-            "url": "https://docs.google.com/document/d/16cbVYno7wYEDDwby6yhnFAHeqUzbvUWXwjzvkKZjzz8/edit?usp=sharing",
+            "url": "/static/Rogers_List_of_Arnold_Edition_of_Handels_Works.pdf",
             "description": "A resource compiled by Patrick Rogers.",
         },
         {
