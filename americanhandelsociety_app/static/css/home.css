@@ -153,12 +153,21 @@
 		padding: 1.5rem 0;
 	}
 
-	.intro-text {
-		padding: 8% 4%;
-	}
-
 	.home-banner-container {
 		height: auto;
+	}
+
+	.home-page-banner-quote {
+		font-size: 3.8vw;
+		padding: 6vw 2vw;
+	}
+
+	.attribution {
+		display: none;
+	}
+
+	.intro-text {
+		padding: 8% 4%;
 	}
 
 	.img-banner {
@@ -172,6 +181,10 @@
 
 	.info-row {
 		padding: 1% 0;
+	}
+
+	.info-row p.subheader {
+		font-size: 2.2rem;
 	}
 
 	.info-newsletter-text, .info-events-text, .info-study-text {

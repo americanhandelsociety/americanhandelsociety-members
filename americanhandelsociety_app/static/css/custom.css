@@ -100,6 +100,17 @@ a.disabled {
   padding: 1rem;
 }
 
+/* Small screens */
+@media screen and (min-width: 0px) and (max-width: 768px) {
+  body {
+    font-size: 1.6rem;
+  }
+
+  .navbar {
+    font-size: 2.2rem;
+  }
+}
+
 /* Reusable flex containers and items */
 .outer-container {
   display: flex;
@@ -170,8 +181,8 @@ a.disabled {
 
   .page-banner-quote {
     width: 100% !important;
-    padding: 5rem !important;
-    font-size: 2.2rem !important;
+    padding: 8% 12% !important;
+    font-size: 1.6rem !important;
     flex-wrap: wrap !important;
   }
 }
@@ -190,6 +201,13 @@ a.disabled {
   font-size: 4.7rem;
   padding-bottom: 3rem;
   width: 80%;
+}
+
+/* Small screens */
+@media screen and (min-width: 0px) and (max-width: 768px) {
+  .img-banner h1 {
+    font-size: 4rem;
+  }
 }
 
 /* Navbar */
