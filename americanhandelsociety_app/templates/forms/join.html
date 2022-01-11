@@ -10,8 +10,9 @@
 
 <div>
     <div class="flex-container-column">
-        <h3>Join</h3>
+        <h3>Join or Renew</h3>
         <p>Welcome to the American Handel Society! To become a member, please complete this simple form. On subsequent pages, you will select your membership type and be redirected to Paypal, where you can submit annual dues.</p>
+        <p><strong>Returning members should use this form to renew your membership and create a member profile.</strong> </p>
     </div>
     <form action="" method="post">{% csrf_token %}
         <label for="id_email">Email</label>{{form.email}}
