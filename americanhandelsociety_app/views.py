@@ -214,6 +214,7 @@ class Home(View):
             "Engraving by J. Faber the Younger, in Emma Marshall, <em>The Master of the Musicians</em>, Seeley & Co. 1896.",
             '"Berenstadt, Cuzzoni and Senesino," attributed to John Vanderbank, 1723, The British Museum, London.',
             '"Tu fedel? tu costante?," HWV 171a, George Frideric Handel, 1705-6.',
+            '"align-justify," favicon by Fontawesome, licensed by <a target="_blank" href="https://fontawesome.com/license">Fontawesome</a>.',
         ]
         return render(request, self.template_name, {"images_content": images_content})
 
