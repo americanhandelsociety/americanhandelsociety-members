@@ -9,6 +9,15 @@ img.captcha {
 	margin-bottom: 1.6rem;
 }
 
+form {
+	padding: 0;
+}
+
 .flex-container-row {
 	margin-top: 5rem;
+}
+
+.card {
+	margin-top: 5%;
+    margin-bottom: 5%;
 }
