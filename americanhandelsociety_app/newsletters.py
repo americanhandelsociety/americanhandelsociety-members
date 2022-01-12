@@ -13,7 +13,7 @@ class NewslettersData:
         self.articles = {
             "Spring 2021": '<p>Beeks, Graydon. "Alternate Performing Options for Handel\'s Op.2 Trio Sonatas found in Continental Sources," 1–3.</p><p>Kim, Minji. "2021 American Handel Society Conference: Scholarship, Performance, and Connection in the Age of COVID-19," 1, 4–5.</p>',
             "Summer 2021": '<p>Fehleisen, Fred. "Birmingham Baroque 2021 Conference Report," 1, 5.</p><p>Howard, Luke. "Boston, Birmingham, and the Reception of Robert Franz\'s Edition of Messiah," 1–4.</p>',
-            "Winter 2021": '<p>Fehleisen, Fred. "Handel: Interactions and Influences"—London, November 19–21, 2021."</p><p>Maust, Paula. "Book Review: Alison C. DeSimone, The Power of Pastiche: Musical Miscellany and Cultural Identity in Early Eighteenth-Century England (Clemson, SC: Clemson University Press, 2021)."</p>',
+            "Winter 2021": '<p>Fehleisen, Fred. "\'Handel: Interactions and Influences\'—London, November 19–21, 2021."</p><p>Maust, Paula. "Book Review: Alison C. Desimone, <em>The Power of Pastiche: Musical Miscellany and Cultural Identity in Early Eighteenth-Century England</em>. (Clemson, SC: Clemson University Press, 2021)."</p>',
             "Spring 2020": '<p>Beeks, Graydon. "John Langshaw as a Handel Copyist," 1–3.</p><p>DeSimone, Alison C. "My Summer on the J. Merrill Knapp Fellowship," 5.</p><p>Harris, Ellen T., "2020 London Handel Festival: Handel and the Hanoverians," 1, 4–5.</p>',
             "Summer 2020": '<p>Beeks, Graydon. "Handel and Improved Psalmody," 1–3.</p><p>Neff, Teresa M. "A Wealth of Music: Harry Christophers and the Handel and Haydn Society," 1, 4–5. ',
             "Winter 2020": 'Compton, Regina. "Hashtags and Handel:A Review of Acis and Galatea by the Haymarket Opera Company," 1–3.',
@@ -161,6 +161,12 @@ class NewslettersData:
 
 PREVIEW_NEWSLETTERS = [
     {
+        "id": "2021_winter",
+        "filename": "newsletters/previews/Handel_Winter_2021_Preview.pdf",
+        "articles": '<p>Fehleisen, Fred. "\'Handel: Interactions and Influences\'—London, November 19–21, 2021."</p><p>Maust, Paula. "Book Review: Alison C. Desimone, <em>The Power of Pastiche: Musical Miscellany and Cultural Identity in Early Eighteenth-Century England</em>. (Clemson, SC: Clemson University Press, 2021)."</p>',
+        "friendly_name": 'Winter 2021<br><span class="preview-label">Preview</span>',
+    },
+    {
         "id": "2021_summer",
         "filename": "newsletters/previews/Handel_Summer_2021_Preview.pdf",
         "articles": '<p>Fehleisen, Fred. "Birmingham Baroque 2021 Conference Report," 1, 5.</p><p>Howard, Luke. "Boston, Birmingham, and the Reception of Robert Franz\'s Edition of Messiah," 1–4.</p>',
@@ -175,6 +181,12 @@ PREVIEW_NEWSLETTERS = [
 ]
 
 MEMBERS_ONLY_NEWSLETTERS = [
+    {
+        "id": "2021_winter",
+        "filename": "newsletters/members_only/Handel_Winter_2021.pdf",
+        "articles": '<p>Fehleisen, Fred. "\'Handel: Interactions and Influences\'—London, November 19–21, 2021."</p><p>Maust, Paula. "Book Review: Alison C. Desimone, <em>The Power of Pastiche: Musical Miscellany and Cultural Identity in Early Eighteenth-Century England</em>. (Clemson, SC: Clemson University Press, 2021)."</p>',
+        "friendly_name": 'Winter 2021<br><span class="members-only-label">Members Only</span>',
+    },
     {
         "id": "2021_summer",
         "filename": "newsletters/members_only/Handel_Summer_2021.pdf",
