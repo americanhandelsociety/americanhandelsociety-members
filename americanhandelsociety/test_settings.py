@@ -34,3 +34,6 @@ MIDDLEWARE = [
 STATIC_URL = "/static/"
 STATIC_ROOT = None
 STATICFILES_STORAGE = None
+
+# Slack integration
+SLACK_ALERTS_URL = ""
