@@ -54,6 +54,8 @@ This project uses Heroku as its deployment and platform service. Our Heroku proj
 2. "Staging" pipeline: a production-like version of the AHS website available at https://americanhandelsociety-staging.herokuapp.com/; Heroku **automatically** deploys to staging when an engineer merges a branch into `main` or pushes to `main`.
 3. "Production" pipeline: the production version of the AHS website available at https://www.americanhandelsociety.org/; only authenticated Heroku users can deploy to production – they do so using the Heroku CLI.
 
+Thank you our friends at DataMade for [the lovely guide on Django and Heroku](https://github.com/datamade/how-to/tree/main/deployment/heroku).
+
 # Logging
 
 This project uses the Django logging system. Logs reside in two locations:
