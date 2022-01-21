@@ -1,5 +1,12 @@
-# americanhandelsociety-members
+# The Official Website of the American Handel Society
+The American Handel Society (AHS), an established 501(c)3 non-profit, seeks to foster study of the life, works, and times of the composer George Frideric Handel (1685-1759) and to encourage and support the performance of his music.
 
+This repo contains the code for the AHS website – a Django project with the following features:
+
+* a user flow for joining the Society (made possible, in part, by a Paypal integration)
+* secure user login and protected, members-only views
+* a Django admin dashboard for member management
+* interactive data tables for newsletters, awards, and people
 # Get Started: Dockerize Database and App
 
 ```bash
@@ -39,6 +46,15 @@ pipenv run python manage.py runserver
 ```bash
 pipenv run pre-commit install
 ```
+
+# Deployments
+This project uses Heroku as its deployment and platform service. Our Heroku project has three main components:
+
+1. "Review Apps": a complete, but short-lived version of the AHS website with a unique URL; Heroku **automatically** stands up a review app when an engineer pushes code to a branch of this repo.
+2. "Staging" pipeline: a production-like version of the AHS website available at https://americanhandelsociety-staging.herokuapp.com/; Heroku **automatically** deploys to staging when an engineer merges a branch into `main` or pushes to `main`.
+3. "Production" pipeline: the production version of the AHS website available at https://www.americanhandelsociety.org/; only authenticated Heroku users can deploy to production – they do so using the Heroku CLI.
+
+Thank you to our friends at DataMade for [the lovely guide on Django and Heroku](https://github.com/datamade/how-to/tree/main/deployment/heroku).
 
 # Logging
 
