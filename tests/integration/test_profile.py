@@ -1,4 +1,5 @@
 from datetime import datetime, timezone
+from americanhandelsociety_app.models import Member
 
 import pytest
 from dateutil.relativedelta import relativedelta
@@ -116,3 +117,28 @@ def test_profile_renewal_msg_error(client, member):
     assert "Membership payment overdue! Please renew today." in resp.content.decode(
         "utf-8"
     )
+
+
+@pytest.mark.django_db
+def test_profile_is_messiah_circle_member_is_true(client, member):
+    member.membership_type = Member.MembershipType.MESSIAH_CIRCLE
+    member.save()
+
+    client.force_login(member)
+    resp = client.get("/profile/")
+
+    assert "<th>Renewal Date</th>" not in resp.content.decode("utf-8")
+    assert "<th>Date of Last Membership Payment</th>" not in resp.content.decode(
+        "utf-8"
+    )
+    assert "<th>Date Joined</th>" not in resp.content.decode("utf-8")
+
+
+@pytest.mark.django_db
+def test_profile_is_messiah_circle_member_is_false(client, member):
+    client.force_login(member)
+    resp = client.get("/profile/")
+
+    assert "<th>Renewal Date</th>" in resp.content.decode("utf-8")
+    assert "<th>Date of Last Membership Payment</th>" in resp.content.decode("utf-8")
+    assert "<th>Date Joined</th>" in resp.content.decode("utf-8")
