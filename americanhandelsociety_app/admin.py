@@ -32,7 +32,7 @@ class Admin(UserAdmin):
                 )
             },
         ),
-        ("Authorization", {"fields": ("is_staff", "is_active")}),
+        ("Authorization", {"fields": ("is_staff", "is_active", "is_superuser")}),
     )
     add_fieldsets = (
         (
