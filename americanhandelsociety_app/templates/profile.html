@@ -71,6 +71,7 @@
 					<th>Membership Type</th>
 					<td>{{ request.user.membership_type|format_membership_type }}</td>
 				</tr>
+				{% if not is_messiah_circle_member %}
 				<tr>
 					<th>Renewal Date</th>
 					<td>
@@ -91,6 +92,7 @@
 					<th>Date Joined</th>
 					<td>{{ request.user.date_joined|date:'DATE_FORMAT' }}</td>
 				</tr>
+				{% endif %}
 				<tr>
 					<th>Last Login</th>
 					<td>{{ request.user.last_login|date:'DATETIME_FORMAT' }}</td>

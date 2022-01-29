@@ -52,6 +52,9 @@ class Profile(ProtectedView, View):
     template_name = "profile.html"
 
     def get(self, request, *args, **kwargs):
+        is_messiah_circle_member = (
+            request.user.membership_type == Member.MembershipType.MESSIAH_CIRCLE
+        )
         date_of_last_membership_payment = request.user.date_of_last_membership_payment
         renewal_date = date_of_last_membership_payment + relativedelta(years=1)
 
@@ -76,6 +79,7 @@ class Profile(ProtectedView, View):
                 "renewal_date": renewal_date,
                 "payment_overdue": payment_overdue,
                 "renewal_msg": renewal_msg,
+                "is_messiah_circle_member": is_messiah_circle_member,
             },
         )
 
