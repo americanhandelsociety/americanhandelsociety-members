@@ -11,3 +11,12 @@
   margin:  auto;
   flex-basis:  100%;
 }
+
+.status {
+    padding:  1em;
+}
+
+.quote {
+  padding: .5em;
+}
+
