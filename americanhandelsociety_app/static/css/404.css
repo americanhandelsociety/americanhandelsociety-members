@@ -5,7 +5,9 @@
 }
 
 .page-not-found-content {
-	text-align: center;
-	margin:  auto;
-	flex-basis:  100%;
+  color:  white;
+  background-color: #182978;
+  text-align: center;
+  margin:  auto;
+  flex-basis:  100%;
 }
