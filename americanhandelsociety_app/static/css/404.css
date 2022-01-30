@@ -1,22 +1,21 @@
 .page-not-found-container {
-	display:  flex;
-	flex-wrap:  wrap;
-	justify-content:  center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .page-not-found-content {
-  color:  white;
+  color: white;
   background-color: #182978;
   text-align: center;
-  margin:  auto;
-  flex-basis:  100%;
+  margin: auto;
+  flex-basis: 100%;
 }
 
 .status {
-    padding:  1em;
+  padding: 1em;
 }
 
 .quote {
   padding: .5em;
-}
-
+} 
