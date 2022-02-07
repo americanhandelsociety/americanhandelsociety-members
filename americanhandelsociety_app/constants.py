@@ -162,6 +162,12 @@ HONORARY_DIRECTORS = [
 
 HOWARD_SERWER_LECTURES = [
     {
+        "year": 2021,
+        "speaker": "Berta Joncus",
+        "title": "Posterity vs Celebrity: Handel Studies and the 21st Century",
+        "location": "Virtual Conference – Hosted by Indiana University",
+    },
+    {
         "year": 2019,
         "speaker": "Ellen Rosand",
         "title": "Handel's 'Music'",
