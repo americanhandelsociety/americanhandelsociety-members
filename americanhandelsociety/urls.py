@@ -54,3 +54,6 @@ urlpatterns = [
     # Django captcha
     path("captcha/", include("captcha.urls")),
 ]
+
+# Errors
+handler404 = "americanhandelsociety_app.views.page_not_found"
