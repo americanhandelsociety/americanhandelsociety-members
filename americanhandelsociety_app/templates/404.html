@@ -2,6 +2,10 @@
 {% load static %}
 {% block title %}Page Not Found{% endblock %}
 
+{% block extra_css %}
+<link href="{% static 'css/404.css' %}" rel="stylesheet">
+{% endblock %}
+
 
 {% block content %}
   <div class="page-not-found-container">
