@@ -1,0 +1,21 @@
+.page-not-found-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 7% 6%;
+  background-color: #182978;
+}
+
+.page-not-found-content {
+  line-height: 2;
+  color: #fff;
+}
+
+.status {
+  padding: 1em;
+}
+
+.quote {
+  padding: .5em;
+}

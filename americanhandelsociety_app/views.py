@@ -363,3 +363,11 @@ class PrivacyPolicy(View):
 
     def get(self, request):
         return render(request, self.template_name)
+
+
+# Custom Error Views
+
+
+def page_not_found(request, *args, **kwargs):
+    """Serve an AHS custom 404 page."""
+    return render(request, "404.html", status=404)
