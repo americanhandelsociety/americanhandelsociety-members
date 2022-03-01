@@ -6,7 +6,7 @@ from .models import Member, Address
 
 class Admin(UserAdmin):
     model = Member
-    list_display = ("first_name", "last_name", "email", "id")
+    list_display = ("first_name", "last_name", "email", "id", "address")
     list_filter = (
         "email",
         "available_in_directory",

@@ -145,10 +145,22 @@ def django_db_setup(
 
 
 @pytest.fixture
-def member():
-    address_data = {"street_address": "25 Brook Street", "city": "London"}
+def address():
+    address_data = {
+        "street_address": "The Handel House Trust Ltd",
+        "street_address_2": "25 Brook Street",
+        "city": "London",
+        "zip_postal_code": "W1K 4HB",
+        "country": "UK",
+    }
+
     address = Address.objects.create(**address_data)
 
+    return address
+
+
+@pytest.fixture
+def member(address):
     data = {
         "email": "rodelinda@lombardy.sa",
         "password": "cuzzoni",
