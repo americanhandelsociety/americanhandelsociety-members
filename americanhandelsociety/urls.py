@@ -23,6 +23,7 @@ from americanhandelsociety_app.views import (
     EditMember,
     JoinOtherOrganizations,
 )
+from django.contrib.auth.views import PasswordResetView
 
 urlpatterns = [
     path("", Home.as_view(), name="home"),
@@ -46,6 +47,7 @@ urlpatterns = [
     path("logout/", Logout.as_view(), name="logout"),
     path("login/", Login.as_view(), name="login"),
     path("admin/", admin.site.urls),
+    path("reset/", PasswordResetView.as_view(), name="reset_password"),
     # Paypal
     path("join/", Join.as_view(), name="join"),
     path("pay/", Pay.as_view(), name="pay"),
