@@ -25,6 +25,7 @@ from americanhandelsociety_app.views import (
 )
 from django.contrib.auth.views import (
     PasswordResetView,
+    PasswordResetConfirmView,
     PasswordResetDoneView,
 )
 
@@ -52,6 +53,11 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("reset/", PasswordResetView.as_view(), name="reset_password"),
     path("reset/done/", PasswordResetDoneView.as_view(), name="password_reset_done"),
+    path(
+        "reset/<uidb64>/<token>",
+        PasswordResetConfirmView.as_view(),
+        name="password_reset_confirm",
+    ),
     # Paypal
     path("join/", Join.as_view(), name="join"),
     path("pay/", Pay.as_view(), name="pay"),
