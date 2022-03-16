@@ -3,6 +3,7 @@ import uuid
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.base_user import BaseUserManager
+from django.forms.models import model_to_dict
 
 
 class MemberManager(BaseUserManager):
@@ -102,4 +103,8 @@ class Address(models.Model):
     country = models.CharField(max_length=50, blank=True)
 
     def __str__(self):
-        return self.street_address
+        full_address_values = [
+            val for val in model_to_dict(self, exclude=["id"]).values() if val
+        ]
+
+        return f"{', '.join(full_address_values)}"

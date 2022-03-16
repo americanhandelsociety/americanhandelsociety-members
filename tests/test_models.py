@@ -130,3 +130,11 @@ def test_address_model_is_valid_with_street_address_only():
 
     assert address.street_address == street_address
     assert str(address) == street_address
+
+
+@pytest.mark.django_db
+def test_address_model_str_representation(address):
+    assert (
+        str(address)
+        == "The Handel House Trust Ltd, 25 Brook Street, London, W1K 4HB, UK"
+    )
