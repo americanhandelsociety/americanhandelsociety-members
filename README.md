@@ -93,3 +93,26 @@ pipenv run pytest --log-cli-level=INFO
 # Do not stop the Postgres database container after running tests
 DO_NOT_KILL_DB=true pipenv run pytest
 ```
+# Emails
+
+This project sets SMTP values in the settings in order to enable password reset via e-mail.
+Those settings are largely hardcoded, except for e-mail and passsword. These two values read environment
+ variables. Here's a partial copy from `americanhandelsociety/settings.py`:
+
+```python
+EMAIL_HOST_USER = os.environ.get("AHS_EMAIL")
+EMAIL_HOST_PASSWORD = os.environ.get("AHS_EMAIL_PW")
+```
+
+These two values need to be set in your local environment for password reset to work in local development.
+
+You can set them this way:
+
+```bash
+export AHS_EMAIL=ahs.example@gmail.org
+export AHS_EMAIL_PW=super_secure_password
+```
+
+Production values are set in Heroku, and need not necessarily be exactly duplicated for local functionality.
+The settings file currently defaults to using gmail as a SMTP server, and it is assumed that whatever values
+you use locally are also gmail values.
