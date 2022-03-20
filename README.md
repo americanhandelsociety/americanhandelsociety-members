@@ -106,12 +106,14 @@ EMAIL_HOST_PASSWORD = os.environ.get("AHS_EMAIL_PW")
 
 These two values need to be set in your local environment for password reset to work in local development.
 
-You can set them this way:
+If you are running outside of docker, you can set them this way:
 
 ```bash
 export AHS_EMAIL=ahs.example@gmail.org
 export AHS_EMAIL_PW=super_secure_password
 ```
+
+If you are running from inside docker, you will need to update the values in your `.env` file.
 
 Production values are set in Heroku, and need not necessarily be exactly duplicated for local functionality.
 The settings file currently defaults to using gmail as a SMTP server, and it is assumed that whatever values
