@@ -15,6 +15,8 @@ services:
       - DJANGO_DEBUG=True
       - DJANGO_ALLOWED_HOSTS=127.0.0.1,0.0.0.0
       - DJANGO_LOG_LEVEL=INFO
+      - AHS_EMAIL
+      - AHS_EMAIL_PW
       - DATABASE_URL=postgres://ahs_admin:gfhandel@postgres:5432/americanhandelsociety_postgres # corresponds with postgres 'environment' above
     # Allow 'attach' when running container (e.g., to access the pdb shell)
     stdin_open: true

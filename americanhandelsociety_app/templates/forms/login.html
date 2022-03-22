@@ -31,12 +31,14 @@
             {% endfor %}
         </ol>
         {% endif %}
-
-    <div class="flex-container-row">
-        <a href="{% url 'home' %}" class="btn btn-black btn-home">Return Home</a>
-        <input class="btn btn-primary" type="submit" value="Login">
-    </div>
-    <input type="hidden" name="next" value="{% url 'profile' %}">
+        <div class="flex-container-row">
+            <a href="{% url 'home' %}" class="btn btn-black btn-home">Return Home</a>
+            <input class="btn btn-primary" type="submit" value="Login">
+        </div>
+        <div class="flex-container-row">
+            <a href="{% url 'reset_password' %}">Forgot Password?</a>
+        </div>
+        <input type="hidden" name="next" value="{% url 'profile' %}">
     </form>
 </div>
 
