@@ -46,6 +46,11 @@ RESEARCH_MATERIALS = {
             "description": "Includes digitized early printed editions of Handel by John Walsh, portraits of Handel, and other paintings and art relating to Handel. ",
         },
         {
+            "title": "Handel and Haydn Society (H+H) Digital Archive",
+            "url": "https://handelandhaydn.access.preservica.com",
+            "description": "An archive of more than 1,000 H+H concert program books going back to July 1818, containing records of Handel's works performed in America.",
+        },
+        {
             "title": "Handel Opera Performances Since 1705",
             "url": "https://haendelhaus.de/en/opernauffuehrung",
             "description": "A database of performances of Handel's music dramas in staged productions or concert performances since 1705 (including concert performances of operas but not including oratorio concerts).",
