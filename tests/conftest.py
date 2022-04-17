@@ -206,14 +206,14 @@ def generate_random_string(length=8):
     return "".join(sample(ascii_lowercase, length))
 
 
-def modify_auto_now(model, field_name, auto_now_setting):
+def modify_field_config(model, field_name, auto_now_setting):
     field = model._meta.get_field(field_name)
     field.auto_now = auto_now_setting
 
 
 @pytest.fixture
 def artificially_backdated_pre_004_migration_members():
-    modify_auto_now(Member, "last_updated", False)
+    modify_field_config(Member, "last_updated", False)
     members_list = [
         Member.objects.create(
             email=f"{generate_random_string()}@email.com",
@@ -224,5 +224,5 @@ def artificially_backdated_pre_004_migration_members():
         )
         for x in range(1, 4)
     ]
-    modify_auto_now(Member, "last_updated", True)
+    modify_field_config(Member, "last_updated", True)
     return members_list
