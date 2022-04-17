@@ -21,8 +21,8 @@ class UpdatedPastMonthFilter(SimpleListFilter):
     def queryset(self, request, queryset):
         if not self.value():
             return queryset
-        past_month = datetime.utcnow().replace(tzinfo=timezone.utc) + relativedelta(
-            days=-30
+        past_month = datetime.utcnow().replace(tzinfo=timezone.utc) - relativedelta(
+            days=30
         )
         if self.value() == "updated":
             return queryset.filter(last_updated__gte=past_month)
@@ -42,10 +42,11 @@ class Admin(UserAdmin):
     def updated_past_month(self, obj):
         if not obj.last_updated:
             return None
-        updated_past_month = obj.last_updated >= (
-            datetime.utcnow().replace(tzinfo=timezone.utc) + relativedelta(days=-30)
-        )
-        return updated_past_month or None
+        if obj.last_updated >= (
+            datetime.utcnow().replace(tzinfo=timezone.utc) - relativedelta(days=30)
+        ):
+            return "Yes"
+        return None
 
     updated_past_month.short_description = "Updated Past Month"
 
