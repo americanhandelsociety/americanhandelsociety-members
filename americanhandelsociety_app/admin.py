@@ -47,7 +47,7 @@ class Admin(UserAdmin):
         )
         return updated_past_month or None
 
-    updated_past_month.short_description = "Updated Past Month?"
+    updated_past_month.short_description = "Updated Past Month"
 
     list_filter = (
         "email",
