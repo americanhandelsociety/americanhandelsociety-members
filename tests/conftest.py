@@ -5,6 +5,10 @@ from time import sleep
 
 import docker
 import pytest
+from string import ascii_lowercase
+from random import sample
+from datetime import datetime
+from dateutil.relativedelta import relativedelta
 
 from americanhandelsociety_app.models import Member, Address
 
@@ -196,3 +200,29 @@ def member_not_in_directory():
     member = Member.objects.create(**data)
 
     return member
+
+
+def generate_random_string(length=8):
+    return "".join(sample(ascii_lowercase, length))
+
+
+def modify_auto_now(model, field_name, auto_now_setting):
+    field = model._meta.get_field(field_name)
+    field.auto_now = auto_now_setting
+
+
+@pytest.fixture
+def artificially_backdated_pre_004_migration_members():
+    modify_auto_now(Member, "last_updated", False)
+    members_list = [
+        Member.objects.create(
+            email=f"{generate_random_string()}@email.com",
+            password=generate_random_string(),
+            first_name=generate_random_string(length=5).upper(),
+            last_name=generate_random_string().upper(),
+            date_joined=datetime.utcnow() + relativedelta(years=-1 * x),
+        )
+        for x in range(1, 4)
+    ]
+    modify_auto_now(Member, "last_updated", True)
+    return members_list
