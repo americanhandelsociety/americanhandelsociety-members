@@ -86,7 +86,10 @@ class Member(AbstractUser):
     )
     date_of_last_membership_payment = models.DateTimeField(auto_now_add=True)
     accepts_privacy_policy = models.BooleanField(default=False)
-
+    last_updated = models.DateTimeField(
+        auto_now=True,
+        null=True,
+    )
     objects = MemberManager()
 
     USERNAME_FIELD = "email"
