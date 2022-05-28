@@ -43,6 +43,10 @@ div.padding-md {
     padding-bottom: 5rem;
 }
 
+.card {
+    margin: 90px 0;
+}
+
 /* Small screens */
 @media screen and (min-width: 0px) and (max-width: 768px) {
 
