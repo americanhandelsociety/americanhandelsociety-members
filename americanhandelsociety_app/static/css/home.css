@@ -67,11 +67,6 @@
 	padding: 8% 6%;
 }
 
-.font-enhance {
-	font-family: var(--font-headers);
-}
-
-
 /* Newsletter, Events, Awards */
 .info-row {
 	display: flex;

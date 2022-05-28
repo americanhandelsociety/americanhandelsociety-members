@@ -100,6 +100,10 @@ a.disabled {
   padding: 1rem;
 }
 
+.font-enhance {
+	font-family: var(--font-headers);
+}
+
 /* Small screens */
 @media screen and (min-width: 0px) and (max-width: 768px) {
   body {

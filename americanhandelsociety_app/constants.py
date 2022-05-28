@@ -152,8 +152,7 @@ BOARD_OF_DIRECTORS = [
     ("Wendy Heller", "Robert Ketterer"),
     ("Nathan Link", "Ken Nott"),
     ("Marjorie Pomeroy", "Mark Risinger"),
-    ("John Roberts", "Ellen Rosand"),
-    ("Ayana Smith", ""),
+    ("John Roberts", "Ayana Smith"),
 ]
 
 HONORARY_DIRECTORS = [
@@ -163,6 +162,7 @@ HONORARY_DIRECTORS = [
     "Richard King",
     "Nicholas McGegan",
     "Marty Ronish",
+    "Ellen Rosand",
 ]
 
 HOWARD_SERWER_LECTURES = [
