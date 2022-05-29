@@ -296,6 +296,12 @@ HOWARD_SERWER_LECTURES = [
 
 KNAPP_FELLOWSHIP_WINNERS = [
     {
+        "year": 2022,
+        "recipient": "Blake Johnson",
+        "affiliation": "University of Missouri-Kansas City Conservatory",
+        "supported_research": "To support travel to London to conduct research at the British Library and the National Archives on the performance styles of foreign oboists in eighteenth-century London.",
+    },
+    {
         "year": 2020,
         "recipient": "Patrick Rogers",
         "affiliation": "Independent scholar",
