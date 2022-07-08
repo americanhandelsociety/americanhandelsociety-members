@@ -53,7 +53,7 @@ def test_filter_matches_admin_updated_past_month(
     artificially_backdated_pre_004_migration_members, member, address
 ):
     qs = Member.objects.all()
-    random_member = choice(qs)
+    random_member = choice(artificially_backdated_pre_004_migration_members)
     random_member.address = address
     random_member.save()
     admin = Admin(Member, AdminSite)
