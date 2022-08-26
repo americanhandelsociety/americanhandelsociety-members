@@ -39,6 +39,10 @@ div.padding-sm {
     padding-bottom: 4%;
 }
 
+div.padding-top-xs {
+    padding-top: 2%;
+}
+
 div.padding-md {
     padding-bottom: 5rem;
 }
