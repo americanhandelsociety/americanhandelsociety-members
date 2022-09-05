@@ -178,3 +178,6 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = os.environ.get("AHS_EMAIL")
 EMAIL_HOST_PASSWORD = os.environ.get("AHS_EMAIL_PW")
+
+# Use an integer field for primary keys
+DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
