@@ -12,7 +12,7 @@ class NewslettersData:
         )
         self.articles = {
             "Summer 2022": '<p>Beeks, Graydon. "Report from Halle 2022," 1-3.</p><p>Johnson, Blake. "J. Merrill Knapp Research Fellowship Report," 1, 4.</p>',
-            "Spring 2022": '<p>Harris, Ellen T. "Handel House Restoration," 1-2.</p><p>Beeks, Graydon. "The English Concert Performs <em>Alcina</em>," 1, 3.</p>',
+            "Spring 2022": '<p>Beeks, Graydon. "The English Concert Performs <em>Alcina</em>," 1, 3.</p><p>Harris, Ellen T. "Handel House Restoration," 1-2.</p>',
             "Spring 2021": '<p>Beeks, Graydon. "Alternate Performing Options for Handel\'s Op.2 Trio Sonatas found in Continental Sources," 1–3.</p><p>Kim, Minji. "2021 American Handel Society Conference: Scholarship, Performance, and Connection in the Age of COVID-19," 1, 4–5.</p>',
             "Summer 2021": '<p>Fehleisen, Fred. "Birmingham Baroque 2021 Conference Report," 1, 5.</p><p>Howard, Luke. "Boston, Birmingham, and the Reception of Robert Franz\'s Edition of Messiah," 1–4.</p>',
             "Winter 2021": '<p>Fehleisen, Fred. "\'Handel: Interactions and Influences\'—London, November 19–21, 2021," 1, 4-5.</p><p>Maust, Paula. "Book Review: Alison C. Desimone, <em>The Power of Pastiche: Musical Miscellany and Cultural Identity in Early Eighteenth-Century England</em>. (Clemson, SC: Clemson University Press, 2021)," 1-3.</p>',
@@ -174,7 +174,7 @@ PREVIEW_NEWSLETTERS = [
     {
         "id": "2022_spring",
         "filename": "newsletters/previews/Handel_Spring_2022_Preview.pdf",
-        "articles": '<p>Harris, Ellen T. "Handel House Restoration," 1-2.</p><p>Beeks, Graydon. "The English Concert Performs <em>Alcina</em>," 1, 3.</p>',
+        "articles": '<p>Beeks, Graydon. "The English Concert Performs <em>Alcina</em>," 1, 3.</p><p>Harris, Ellen T. "Handel House Restoration," 1-2.</p>',
         "friendly_name": 'Spring 2022<br><span class="preview-label">Preview</span>',
     },
     {
@@ -195,7 +195,7 @@ MEMBERS_ONLY_NEWSLETTERS = [
     {
         "id": "2022_spring",
         "filename": "newsletters/members_only/Handel_Spring_2022.pdf",
-        "articles": '<p>Harris, Ellen T. "Handel House Restoration," 1-2.</p><p>Beeks, Graydon. "The English Concert Performs <em>Alcina</em>," 1, 3.</p>',
+        "articles": '<p>Beeks, Graydon. "The English Concert Performs <em>Alcina</em>," 1, 3.</p><p>Harris, Ellen T. "Handel House Restoration," 1-2.</p>',
         "friendly_name": 'Spring 2022<br><span class="members-only-label">Members Only</span>',
     },
     {
