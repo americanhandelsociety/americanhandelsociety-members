@@ -193,7 +193,9 @@ class Newsletter(View):
 
 class People(ListView):
     context_object_name = "ahs_members"
-    queryset = Member.objects.exclude(available_in_directory=False)
+    queryset = Member.objects.exclude(available_in_directory=False).order_by(
+        "last_name"
+    )
 
     def get_template_names(self):
         return ["people.html"]
