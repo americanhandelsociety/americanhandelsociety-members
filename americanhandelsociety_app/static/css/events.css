@@ -51,6 +51,10 @@ div.padding-md {
     margin: 90px 0;
 }
 
+div.alert-info {
+    margin: 30px 0px;
+}
+
 /* Small screens */
 @media screen and (min-width: 0px) and (max-width: 768px) {
 
