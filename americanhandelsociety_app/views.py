@@ -349,6 +349,43 @@ class Pay(View):
         return HttpResponseRedirect(reverse_lazy("join"))
 
 
+# TODO:
+# - Setup Signal for renewal (does this change the "notify_url"?)
+# - Add a "return" attribute, after doing: https://github.com/americanhandelsociety/americanhandelsociety-members/issues/132
+# - Can/should any of this be abstracted/DRY'd?
+class Renew(ProtectedView, View):
+    template_name = "forms/renew.html"
+
+    def get(self, request):
+        # test buyer
+        # username: americanhandelsociety-buyer@gmail.com
+        # password: computer-man
+        member = request.user
+        invoice_num = f"{member.id}_renew"
+        paypal_dict = {
+            "business": settings.PAYPAL_RECEIVER_EMAIL,
+            "amount": "0",
+            "item_name": member.membership_type,  # default to user's current membership type
+            "invoice": invoice_num,
+            "notify_url": request.build_absolute_uri(reverse("paypal-ipn")),
+            "return": request.build_absolute_uri(
+                reverse("pay-confirm")
+            ),  # The URL to which PayPal redirects buyers' browser after they complete their payments.
+            # TODO: How will we deal with cancelled payments?
+            # "cancel_return": request.build_absolute_uri(reverse("your-cancel-view")),
+        }
+
+        form = PayPalPaymentsForm(initial=paypal_dict)
+        context = {
+            "form": form,
+            "member_id": member.id,
+            "membership_types": Member.MembershipType,
+            "PAYPAL_ACTION_URL": settings.PAYPAL_ACTION_URL,
+        }
+
+        return render(request, self.template_name, context)
+
+
 class PaymentConfirmation(View):
     template_name = "payment_confirmation.html"
 

@@ -13,6 +13,7 @@ from americanhandelsociety_app.views import (
     Events,
     Awards,
     Newsletter,
+    Renew,
     ResearchMaterials,
     Donate,
     People,
@@ -68,6 +69,7 @@ urlpatterns = [
     path("join/", Join.as_view(), name="join"),
     path("pay/", Pay.as_view(), name="pay"),
     path("pay-confirm/", PaymentConfirmation.as_view(), name="pay-confirm"),
+    path("renew/", Renew.as_view(), name="renew"),
     path("paypal/", include("paypal.standard.ipn.urls")),
     # Django captcha
     path("captcha/", include("captcha.urls")),
