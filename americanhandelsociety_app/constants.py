@@ -2,7 +2,7 @@ RESEARCH_MATERIALS = {
     "open_source": [
         {
             "title": "Bibliothekssystem Universität Hamburg",
-            "url": "https://digitalisate.sub.uni-hamburg.de/musikalien.html",
+            "url": "https://digitalisate.sub.uni-hamburg.de/",
             "description": "Includes some digitized Handel conducting scores.",
         },
         {
