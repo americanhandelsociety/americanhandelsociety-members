@@ -2,7 +2,6 @@ import copy
 import logging
 from datetime import datetime, timezone
 
-from dateutil.relativedelta import relativedelta
 from django.conf import settings
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView
@@ -55,15 +54,23 @@ class Profile(ProtectedView, View):
         is_messiah_circle_member = (
             request.user.membership_type == Member.MembershipType.MESSIAH_CIRCLE
         )
-        date_of_last_membership_payment = request.user.date_of_last_membership_payment
-        renewal_date = date_of_last_membership_payment + relativedelta(years=1)
+        year_of_last_membership_payment = (
+            request.user.date_of_last_membership_payment.year
+        )
+        renewal_msg = ""
 
-        if renewal_date > datetime.now(timezone.utc):
-            renewal_msg = "Renew your membership on or before this date to maintain membership benefits."
-            payment_overdue = False
-        else:
+        if year_of_last_membership_payment < datetime.now(timezone.utc).year:
             renewal_msg = "Membership payment overdue! Please renew today."
             payment_overdue = True
+            renewal_date = datetime(year_of_last_membership_payment, 1, 1)
+        else:
+            if datetime.now(timezone.utc).month in (
+                11,
+                12,
+            ):
+                renewal_msg = "Renew your membership before the end of the year to maintain membership benefits."
+            payment_overdue = False
+            renewal_date = datetime(year_of_last_membership_payment + 1, 1, 1)
 
         try:
             form_name = request.session.pop("form_name")

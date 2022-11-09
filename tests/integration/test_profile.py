@@ -1,9 +1,11 @@
 from datetime import datetime, timezone
-from americanhandelsociety_app.models import Member
+from dateutil.relativedelta import relativedelta
 
 import pytest
-from dateutil.relativedelta import relativedelta
 from django.conf import settings
+from freezegun import freeze_time
+
+from americanhandelsociety_app.models import Member
 
 
 @pytest.mark.django_db
@@ -89,24 +91,8 @@ def test_profile_shows_member_info(client, member):
 
 
 @pytest.mark.django_db
-def test_profile_renewal_msg(client, member):
-    # 'date_of_last_membership_payment' must be within 12 months of NOW, otherwise payment will be overdue
-    not_overdue_timestamp = datetime.now(timezone.utc) - relativedelta(months=6)
-    member.date_of_last_membership_payment = not_overdue_timestamp
-    member.save()
-
-    client.force_login(member)
-    resp = client.get("/profile/")
-
-    assert (
-        "Renew your membership on or before this date to maintain membership benefits."
-        in resp.content.decode("utf-8")
-    )
-
-
-@pytest.mark.django_db
 def test_profile_renewal_msg_error(client, member):
-    # 'date_of_last_membership_payment' must be within 12 months of NOW, otherwise payment will be overdue
+    # Assert that the profile shows a "payment overdue" message if the date_of_last_membership_payment occurred in the previous year
     overdue_timestamp = datetime.now(timezone.utc) - relativedelta(months=13)
     member.date_of_last_membership_payment = overdue_timestamp
     member.save()
@@ -117,6 +103,35 @@ def test_profile_renewal_msg_error(client, member):
     assert "Membership payment overdue! Please renew today." in resp.content.decode(
         "utf-8"
     )
+
+
+@pytest.mark.django_db
+@freeze_time("2012-11-01")
+def test_profile_renewal_msg(client, member):
+    # Assert that the profile shows a "renewal" message if the member visits the site in November or December
+    member.date_of_last_membership_payment = datetime(2012, 1, 1)
+    member.save()
+
+    client.force_login(member)
+    resp = client.get("/profile/")
+
+    assert (
+        "Renew your membership before the end of the year to maintain membership benefits"
+        in resp.content.decode("utf-8")
+    )
+
+
+@pytest.mark.django_db
+@freeze_time("2012-06-01")
+def test_profile_no_renewal_msg(client, member):
+    # Assert that the profile does not show a message if the member visits the site in January through October
+    member.date_of_last_membership_payment = datetime(2012, 1, 1)
+    member.save()
+
+    client.force_login(member)
+    resp = client.get("/profile/")
+
+    assert "Renew your membership" not in resp.content.decode("utf-8")
 
 
 @pytest.mark.django_db

@@ -13,6 +13,7 @@ whitenoise = "*"
 dj-database-url = "*"
 gunicorn = "*"
 django-simple-captcha = "*"
+freezegun = "*"
 
 [dev-packages]
 pytest = "*"
