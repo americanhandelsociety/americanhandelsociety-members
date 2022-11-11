@@ -1,10 +1,14 @@
+from datetime import datetime, timezone
 import logging
+import re
 
 from django.core.exceptions import ObjectDoesNotExist
 from django.conf import settings
 from paypal.standard.models import ST_PP_COMPLETED
 
-from .models import Member
+from americanhandelsociety_app.utils import get_member_uuid_from_invoice
+from americanhandelsociety_app.models import Member
+
 
 logger = logging.getLogger(__name__)
 
@@ -30,8 +34,7 @@ def listen_for_paypal_please(sender, **kwargs):
         )
         return
 
-    member_uuid = ipn_obj.invoice.replace("_join", "")
-
+    member_uuid = get_member_uuid_from_invoice(ipn_obj.invoice)
     try:
         member = Member.objects.get(id=member_uuid)
     except ObjectDoesNotExist:
@@ -42,11 +45,10 @@ def listen_for_paypal_please(sender, **kwargs):
 
     member.is_active = True
     member.membership_type = ipn_obj.item_name
+    member.date_of_last_membership_payment = datetime.now(timezone.utc)
 
     # Run full_clean to validate membership_type choices.
     member.full_clean()
     member.save()
 
-    logger.info(
-        f"Successful payment! Welcome to our newest member of the Society. Member id starts with: {str(member_uuid)[0:8]}"
-    )
+    logger.info(f"Successful payment! Member id starts with: {str(member_uuid)[0:8]}")
