@@ -11,6 +11,10 @@ from django.urls import reverse, reverse_lazy
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic.base import View
 from django.views.generic.list import ListView
+from americanhandelsociety_app.utils import (
+    make_invoice_for_join,
+    make_invoice_for_renew,
+)
 from paypal.standard.forms import PayPalPaymentsForm
 
 from americanhandelsociety_app.newsletters import (
@@ -317,7 +321,7 @@ class Pay(View):
         # username: americanhandelsociety-buyer@gmail.com
         # password: computer-man
         member_id = request.session.get("member_id")
-        invoice_num = f"{member_id}_join"
+        invoice_num = make_invoice_for_join(member_id)
         paypal_dict = {
             "business": settings.PAYPAL_RECEIVER_EMAIL,
             "amount": "0",
@@ -356,10 +360,6 @@ class Pay(View):
         return HttpResponseRedirect(reverse_lazy("join"))
 
 
-# TODO:
-# - Setup Signal for renewal (does this change the "notify_url"?)
-# - Add a "return" attribute, after doing: https://github.com/americanhandelsociety/americanhandelsociety-members/issues/132
-# - Can/should any of this be abstracted/DRY'd?
 class Renew(ProtectedView, View):
     template_name = "forms/renew.html"
 
@@ -368,18 +368,17 @@ class Renew(ProtectedView, View):
         # username: americanhandelsociety-buyer@gmail.com
         # password: computer-man
         member = request.user
-        invoice_num = f"{member.id}_renew"
+        invoice_num = make_invoice_for_renew(member.id)
         paypal_dict = {
             "business": settings.PAYPAL_RECEIVER_EMAIL,
             "amount": "0",
             "item_name": member.membership_type,  # default to user's current membership type
             "invoice": invoice_num,
             "notify_url": request.build_absolute_uri(reverse("paypal-ipn")),
+            # https://github.com/americanhandelsociety/americanhandelsociety-members/issues/132
             "return": request.build_absolute_uri(
-                reverse("pay-confirm")
+                reverse("profile")
             ),  # The URL to which PayPal redirects buyers' browser after they complete their payments.
-            # TODO: How will we deal with cancelled payments?
-            # "cancel_return": request.build_absolute_uri(reverse("your-cancel-view")),
         }
 
         form = PayPalPaymentsForm(initial=paypal_dict)
