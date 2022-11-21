@@ -367,6 +367,13 @@ class PrivacyPolicy(View):
         return render(request, self.template_name)
 
 
+class RenewalConfirmation(ProtectedView, View):
+    template_name = "renewal_confirmation.html"
+
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name)
+
+
 # Custom Error Views
 
 
