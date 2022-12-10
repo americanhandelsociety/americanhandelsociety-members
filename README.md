@@ -47,6 +47,18 @@ pipenv run python manage.py runserver
 pipenv run pre-commit install
 ```
 
+# Paypal Integration
+The join and renewal flow integrate with Paypal. Do the following to setup Paypal for local testing:
+
+1. Serve your localhost using [ngrok](https://ngrok.com/).
+2. Include the ngrok domain in `ALLOWED_HOSTS.append` in `settings.py`.
+3. Move through the Join or Renewal flow as a user. The site will redirect to a Paypal sandbox. Use these credentials to login:
+
+```
+username: americanhandelsociety-buyer@gmail.com
+password: computer-man
+```
+
 # Deployments
 This project uses Heroku as its deployment and platform service. Our Heroku project has three main components:
 
