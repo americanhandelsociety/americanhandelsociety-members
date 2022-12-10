@@ -19,7 +19,7 @@ allowed_hosts = os.getenv("DJANGO_ALLOWED_HOSTS", [])
 ALLOWED_HOSTS = allowed_hosts.split(",") if allowed_hosts else []
 
 # For Paypal integration testing
-ALLOWED_HOSTS.append("7990-73-28-128-128.ngrok.io")
+ALLOWED_HOSTS.append("c1dc-2601-249-8c00-4a80-7564-842e-4d6-5a53.ngrok.io")
 
 PAYPAL_TEST = True if os.getenv("PAYPAL_TEST") == "True" else False
 if PAYPAL_TEST:
@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "fontawesomefree",
     "paypal.standard.ipn",
     "captcha",
+    "waffle",
 ]
 
 CAPTCHA_2X_IMAGE = True
@@ -56,6 +57,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
+    "waffle.middleware.WaffleMiddleware",
 ]
 
 ROOT_URLCONF = "americanhandelsociety.urls"
