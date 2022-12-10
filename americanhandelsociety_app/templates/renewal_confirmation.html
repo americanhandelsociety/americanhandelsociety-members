@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Membership Renewal Confirmation{% endblock %}
+
+{% block extra_css %}
+<link href="{% static 'css/confirmations.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+<div class="outer-container">
+    <h3>Membership successfully renewed</h3>
+    <p>Thank you for renewing your membership in the American Handel Society!</p>
+    <p>With your renewal, you will continue to enjoy all the benefits of membership in the society. If you have any questions about your renewal, or suspect an error, please contact <a href="mailto:reginafcompton@gmail.com">reginafcompton@gmail.com</a>.</p>
+</div>
+
+
+{% endblock %}
