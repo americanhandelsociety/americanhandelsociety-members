@@ -1,4 +1,3 @@
-import pytest
 from freezegun import freeze_time
 
 from americanhandelsociety_app.utils import (

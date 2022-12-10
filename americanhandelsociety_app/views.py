@@ -16,6 +16,7 @@ from americanhandelsociety_app.utils import (
     make_invoice_for_renew,
 )
 from paypal.standard.forms import PayPalPaymentsForm
+from waffle import flag_is_active
 
 from americanhandelsociety_app.newsletters import (
     MEMBERS_ONLY_NEWSLETTERS,
@@ -23,15 +24,20 @@ from americanhandelsociety_app.newsletters import (
     PREVIEW_NEWSLETTERS,
 )
 
-from .constants import (
+from americanhandelsociety_app.constants import (
     BOARD_OF_DIRECTORS,
     HONORARY_DIRECTORS,
     HOWARD_SERWER_LECTURES,
     KNAPP_FELLOWSHIP_WINNERS,
     RESEARCH_MATERIALS,
 )
-from .forms import AddressChangeForm, MemberChangeForm, MemberCreationForm
-from .models import Member
+from americanhandelsociety_app.forms import (
+    AddressChangeForm,
+    MemberChangeForm,
+    MemberCreationForm,
+)
+from americanhandelsociety_app.models import Member
+from americanhandelsociety.waffle import RENEWAL_FLOW
 
 
 logger = logging.getLogger(__name__)
@@ -61,20 +67,15 @@ class Profile(ProtectedView, View):
         year_of_last_membership_payment = (
             request.user.date_of_last_membership_payment.year
         )
+        payment_overdue = False
         renewal_msg = ""
+        renewal_date = datetime(year_of_last_membership_payment + 1, 1, 1)
 
-        if year_of_last_membership_payment < datetime.now(timezone.utc).year:
-            renewal_msg = "Membership payment overdue! Please renew today."
+        if year_of_last_membership_payment < datetime.now(
+            timezone.utc
+        ).year or flag_is_active(request, RENEWAL_FLOW):
+            renewal_msg = "Your annual membership payment is due. Please renew today!"
             payment_overdue = True
-            renewal_date = datetime(year_of_last_membership_payment, 1, 1)
-        else:
-            if datetime.now(timezone.utc).month in (
-                11,
-                12,
-            ):
-                renewal_msg = "Renew your membership before the end of the year to maintain membership benefits."
-            payment_overdue = False
-            renewal_date = datetime(year_of_last_membership_payment + 1, 1, 1)
 
         try:
             form_name = request.session.pop("form_name")
@@ -317,9 +318,6 @@ class Pay(View):
     template_name = "forms/pay.html"
 
     def get(self, request, *args, **kwargs):
-        # test buyer
-        # username: americanhandelsociety-buyer@gmail.com
-        # password: computer-man
         member_id = request.session.get("member_id")
         invoice_num = make_invoice_for_join(member_id)
         paypal_dict = {
@@ -364,9 +362,6 @@ class Renew(ProtectedView, View):
     template_name = "forms/renew.html"
 
     def get(self, request):
-        # test buyer
-        # username: americanhandelsociety-buyer@gmail.com
-        # password: computer-man
         member = request.user
         invoice_num = make_invoice_for_renew(member.id)
         paypal_dict = {
@@ -375,9 +370,8 @@ class Renew(ProtectedView, View):
             "item_name": member.membership_type,  # default to user's current membership type
             "invoice": invoice_num,
             "notify_url": request.build_absolute_uri(reverse("paypal-ipn")),
-            # https://github.com/americanhandelsociety/americanhandelsociety-members/issues/132
             "return": request.build_absolute_uri(
-                reverse("profile")
+                reverse("renew-confirm")
             ),  # The URL to which PayPal redirects buyers' browser after they complete their payments.
         }
 
