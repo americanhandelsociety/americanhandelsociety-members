@@ -52,7 +52,8 @@ The join and renewal flow integrate with Paypal. Do the following to setup Paypa
 
 1. Serve your localhost using [ngrok](https://ngrok.com/).
 2. Include the ngrok domain in `ALLOWED_HOSTS.append` in `settings.py`.
-3. Move through the Join or Renewal flow as a user. The site will redirect to a Paypal sandbox. Use these credentials to login:
+3. Visit your local site using the ngrok domain with the `http` protocol.
+4. Move through the Join or Renewal flow as a user. The site will redirect to a Paypal sandbox. Use these credentials to login:
 
 ```
 username: americanhandelsociety-buyer@gmail.com
