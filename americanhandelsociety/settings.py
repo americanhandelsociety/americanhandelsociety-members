@@ -18,13 +18,16 @@ if DEBUG is False:
 allowed_hosts = os.getenv("DJANGO_ALLOWED_HOSTS", [])
 ALLOWED_HOSTS = allowed_hosts.split(",") if allowed_hosts else []
 
-# For Paypal integration testing
-ALLOWED_HOSTS.append("a057-2601-249-8c00-4a80-7564-842e-4d6-5a53.ngrok.io")
-
 PAYPAL_TEST = True if os.getenv("PAYPAL_TEST") == "True" else False
 if PAYPAL_TEST:
     PAYPAL_RECEIVER_EMAIL = "americanhandelsociety-facilitator@gmail.com"
-    PAYPAL_ACTION_URL = "https://www.sandbox.paypal.com/cgi-bin/webscr"
+    PAYPAL_ACTION_URL = "https://sandbox.paypal.com/cgi-bin/webscr"
+    ngrok_domain = os.getenv("NGROK_DOMAIN", None)
+    if ngrok_domain:
+        ALLOWED_HOSTS.append(ngrok_domain)
+        CSRF_TRUSTED_ORIGINS = [
+            f"{header}{ngrok_domain}" for header in ("http://", "https://")
+        ]
 else:
     PAYPAL_RECEIVER_EMAIL = "americanhandelsociety@gmail.com"
     PAYPAL_ACTION_URL = "https://www.paypal.com/cgi-bin/webscr"

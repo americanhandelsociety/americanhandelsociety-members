@@ -51,9 +51,10 @@ pipenv run pre-commit install
 The join and renewal flow integrate with Paypal. Do the following to setup Paypal for local testing:
 
 1. Serve your localhost using [ngrok](https://ngrok.com/).
-2. Include the ngrok domain in `ALLOWED_HOSTS.append` in `settings.py`.
-3. Visit your local site using the ngrok domain with the `http` protocol.
-4. Move through the Join or Renewal flow as a user. The site will redirect to a Paypal sandbox. Use these credentials to login:
+1. Assign the value of your ngrok domain to `NGROK_DOMAIN` in your `.env` file, e.g., `NGROK_DOMAIN=a057-2601-249-8c00-4a80-7564-842e-4d6-5a53.ngrok.io`.
+1. Run `pipenv run python manage.py runserver`.
+1. Visit your local site using the ngrok url.
+1. Move through the Join or Renewal flow as a user. The site will redirect to a Paypal sandbox. Use these credentials to login:
 
 ```
 username: americanhandelsociety-buyer@gmail.com
