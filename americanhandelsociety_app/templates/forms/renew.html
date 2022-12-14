@@ -10,7 +10,7 @@
 <div>
     <div class="flex-container-column">
         <h3>Renew</h3>
-        <p>Thank you for renewing your membership! Select your membership type, and then, wait for the site to redirect you to Paypal.</p>
+        <p>Thank you for renewing your membership! Select your membership tier, and click "Go to Paypal." The site will redirect you to Paypal, where you can submit your payment.</p>
     </div>
     <form id="payForm" action={{PAYPAL_ACTION_URL}} method="post">
         {{ form.cmd }}
@@ -21,6 +21,7 @@
         {{ form.amount }}
         {{ form.item_name }}
         <select id="membership_select" name="amount">
+            <option value="none" selected disabled hidden>Select your membership</option>
             {% for membership in membership_types %}
                 <option id={{membership.value}} value={{membership.label}}>{{membership.value|format_membership_type}} ${{membership.label}} USD</option>
             {% endfor %}
