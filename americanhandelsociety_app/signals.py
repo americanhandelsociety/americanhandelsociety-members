@@ -1,6 +1,5 @@
 from datetime import datetime, timezone
 import logging
-import re
 
 from django.core.exceptions import ObjectDoesNotExist
 from django.conf import settings
