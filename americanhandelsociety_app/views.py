@@ -2,7 +2,6 @@ import copy
 import logging
 from datetime import datetime, timezone
 
-from dateutil.relativedelta import relativedelta
 from django.conf import settings
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView
@@ -12,7 +11,12 @@ from django.urls import reverse, reverse_lazy
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic.base import View
 from django.views.generic.list import ListView
+from americanhandelsociety_app.utils import (
+    make_invoice_for_join,
+    make_invoice_for_renew,
+)
 from paypal.standard.forms import PayPalPaymentsForm
+from waffle import flag_is_active
 
 from americanhandelsociety_app.newsletters import (
     MEMBERS_ONLY_NEWSLETTERS,
@@ -20,15 +24,20 @@ from americanhandelsociety_app.newsletters import (
     PREVIEW_NEWSLETTERS,
 )
 
-from .constants import (
+from americanhandelsociety_app.constants import (
     BOARD_OF_DIRECTORS,
     HONORARY_DIRECTORS,
     HOWARD_SERWER_LECTURES,
     KNAPP_FELLOWSHIP_WINNERS,
     RESEARCH_MATERIALS,
 )
-from .forms import AddressChangeForm, MemberChangeForm, MemberCreationForm
-from .models import Member
+from americanhandelsociety_app.forms import (
+    AddressChangeForm,
+    MemberChangeForm,
+    MemberCreationForm,
+)
+from americanhandelsociety_app.models import Member
+from americanhandelsociety.waffle import RENEWAL_FLOW
 
 
 logger = logging.getLogger(__name__)
@@ -55,14 +64,17 @@ class Profile(ProtectedView, View):
         is_messiah_circle_member = (
             request.user.membership_type == Member.MembershipType.MESSIAH_CIRCLE
         )
-        date_of_last_membership_payment = request.user.date_of_last_membership_payment
-        renewal_date = date_of_last_membership_payment + relativedelta(years=1)
+        year_of_last_membership_payment = (
+            request.user.date_of_last_membership_payment.year
+        )
+        payment_overdue = False
+        renewal_msg = ""
+        renewal_date = datetime(year_of_last_membership_payment + 1, 1, 1)
 
-        if renewal_date > datetime.now(timezone.utc):
-            renewal_msg = "Renew your membership on or before this date to maintain membership benefits."
-            payment_overdue = False
-        else:
-            renewal_msg = "Membership payment overdue! Please renew today."
+        if year_of_last_membership_payment < datetime.now(
+            timezone.utc
+        ).year or flag_is_active(request, RENEWAL_FLOW):
+            renewal_msg = "Your annual membership payment is due. Please renew today!"
             payment_overdue = True
 
         try:
@@ -306,11 +318,8 @@ class Pay(View):
     template_name = "forms/pay.html"
 
     def get(self, request, *args, **kwargs):
-        # test buyer
-        # username: americanhandelsociety-buyer@gmail.com
-        # password: computer-man
         member_id = request.session.get("member_id")
-        invoice_num = f"{member_id}_join"
+        invoice_num = make_invoice_for_join(member_id)
         paypal_dict = {
             "business": settings.PAYPAL_RECEIVER_EMAIL,
             "amount": "0",
@@ -347,6 +356,34 @@ class Pay(View):
         )
 
         return HttpResponseRedirect(reverse_lazy("join"))
+
+
+class Renew(ProtectedView, View):
+    template_name = "forms/renew.html"
+
+    def get(self, request):
+        member = request.user
+        invoice_num = make_invoice_for_renew(member.id)
+        paypal_dict = {
+            "business": settings.PAYPAL_RECEIVER_EMAIL,
+            "amount": "0",
+            "item_name": member.membership_type,  # default to user's current membership type
+            "invoice": invoice_num,
+            "notify_url": request.build_absolute_uri(reverse("paypal-ipn")),
+            "return": request.build_absolute_uri(
+                reverse("renew-confirm")
+            ),  # The URL to which PayPal redirects buyers' browser after they complete their payments.
+        }
+
+        form = PayPalPaymentsForm(initial=paypal_dict)
+        context = {
+            "form": form,
+            "member_id": member.id,
+            "membership_types": Member.MembershipType,
+            "PAYPAL_ACTION_URL": settings.PAYPAL_ACTION_URL,
+        }
+
+        return render(request, self.template_name, context)
 
 
 class PaymentConfirmation(View):

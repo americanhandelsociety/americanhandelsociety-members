@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load static %}
+{% load pay_extras %}
+
+{% block extra_css %}
+<link href="{% static 'css/pay.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<div>
+    <div class="flex-container-column">
+        <h3>Renew</h3>
+        <p>Thank you for renewing your membership! Select your membership tier, and click "Go to Paypal." The site will redirect you to Paypal, where you can submit your payment.</p>
+    </div>
+    <form id="payForm" action={{PAYPAL_ACTION_URL}} method="post">
+        {{ form.cmd }}
+        {{ form.charset }}
+        {{ form.currency_code }}
+        {{ form.no_shipping }}
+        {{ form.business }}
+        {{ form.amount }}
+        {{ form.item_name }}
+        <select id="membership_select" name="amount">
+            <option value="none" selected disabled hidden>Select your membership</option>
+            {% for membership in membership_types %}
+                <option id={{membership.value}} value={{membership.label}}>{{membership.value|format_membership_type}} ${{membership.label}} USD</option>
+            {% endfor %}
+        </select>
+        {{ form.invoice }}
+        {{ form.notify_url }}
+        {{ form.return }}
+        {{ form.custom }}
+    </form>
+    <div class="flex-container-row">
+        <a href="{% url 'profile' %}" class="btn btn-black">Cancel</a>
+        <input form="payForm" type="submit" value="Go to PayPal" name="submit" title="PayPal - The safer, easier way to pay online!" class="btn btn-primary">
+    </div>
+</div>
+
+{% block extra_js %}
+<!-- TODO: Why do I need jQuery import if I import it in base.html -->
+<script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+<script>
+    $('#membership_select').on('change', function () {
+        var membership_type = $(this).find('option:selected').attr("id");
+        $('#id_item_name').val(membership_type);
+    });
+</script>
+{% endblock %}
+
+{% endblock %}

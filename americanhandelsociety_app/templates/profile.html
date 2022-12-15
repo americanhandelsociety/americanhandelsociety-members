@@ -68,38 +68,43 @@
 			<h2>Membership</h2>
 			<table class="profile-table">
 				<tr>
+					<th>Last Login</th>
+					<td>{{ request.user.last_login|date:'DATETIME_FORMAT' }}</td>
+				</tr>
+				<tr>
 					<th>Membership Type</th>
 					<td>{{ request.user.membership_type|format_membership_type }}</td>
 				</tr>
 				{% if not is_messiah_circle_member %}
 				<tr>
-					<th>Renewal Date</th>
-					<td>
-						{{ renewal_date|date:'DATE_FORMAT' }}
-						<br>
-						{% if payment_overdue %}
-							<span class="renewal-msg-error"><i class="fas fa-bell"></i> {{ renewal_msg }}</span>
-						{% else %}
-							<span class="renewal-msg">{{ renewal_msg }}</span>
-						{% endif %}
-					</td>
+					<th>Date Joined</th>
+					<td>{{ request.user.date_joined|date:'DATE_FORMAT' }}</td>
 				</tr>
 				<tr>
 					<th>Date of Last Membership Payment</th>
 					<td>{{ request.user.date_of_last_membership_payment|date:'DATE_FORMAT' }}</td>
 				</tr>
 				<tr>
-					<th>Date Joined</th>
-					<td>{{ request.user.date_joined|date:'DATE_FORMAT' }}</td>
+					<th>Renewal Date</th>
+					<td>
+						{{ renewal_date|date:'DATE_FORMAT' }}
+						{% if renewal_msg %}
+							{% if payment_overdue %}
+								<div class="renewal-msg-error"><i class="fas fa-bell"></i> {{ renewal_msg }}</div>
+							{% else %}
+								<div class="renewal-msg">{{ renewal_msg }}</div>
+							{% endif %}
+							<a href="{% url 'renew' %}"><i class="fas fa-user"></i>&nbsp;Renew your membership</a>
+						{% endif %}
+					</td>
 				</tr>
 				{% endif %}
-				<tr>
-					<th>Last Login</th>
-					<td>{{ request.user.last_login|date:'DATETIME_FORMAT' }}</td>
-				</tr>
 			</table>
+			<div class="btn-container">
+
+			</div>
 			<div class="inner-container other-organizations">
-				<p>Members of the American Handel Society can also become: a member of the Georg-Friedrich-Händel-Gesellschaft in Halle (to receive the <em>Händel-Jahrbuch</em>) or a Friend of The Handel Institute in Great Britain (to receive The Handel Institute Newsletter). <a href="{% url 'join-other-organizations' %}"><strong><i class="fas fa-users"></i> Join Other Organizations.</strong></a></p>
+				<p>Members of the American Handel Society can also become: a member of the Georg-Friedrich-Händel-Gesellschaft in Halle (to receive the <em>Händel-Jahrbuch</em>) or a Friend of The Handel Institute in Great Britain (to receive The Handel Institute Newsletter). <a href="{% url 'join-other-organizations' %}"><strong><i class="fas fa-users"></i>&nbsp;Join Other Organizations.</strong></a></p>
 			</div>
 		</div>
 	</div>
