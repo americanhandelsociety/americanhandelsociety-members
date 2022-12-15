@@ -21,7 +21,7 @@ ALLOWED_HOSTS = allowed_hosts.split(",") if allowed_hosts else []
 PAYPAL_TEST = True if os.getenv("PAYPAL_TEST") == "True" else False
 if PAYPAL_TEST:
     PAYPAL_RECEIVER_EMAIL = "americanhandelsociety-facilitator@gmail.com"
-    PAYPAL_ACTION_URL = "https://sandbox.paypal.com/cgi-bin/webscr"
+    PAYPAL_ACTION_URL = "https://www.sandbox.paypal.com/cgi-bin/webscr"
     ngrok_domain = os.getenv("NGROK_DOMAIN", None)
     if ngrok_domain:
         ALLOWED_HOSTS.append(ngrok_domain)
