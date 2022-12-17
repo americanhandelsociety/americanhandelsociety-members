@@ -67,8 +67,6 @@ class Profile(ProtectedView, View):
         year_of_last_membership_payment = (
             request.user.date_of_last_membership_payment.year
         )
-        payment_overdue = False
-        renewal_msg = ""
         renewal_date = datetime(year_of_last_membership_payment + 1, 1, 1)
 
         if year_of_last_membership_payment < datetime.now(
@@ -76,6 +74,9 @@ class Profile(ProtectedView, View):
         ).year or flag_is_active(request, RENEWAL_FLOW):
             renewal_msg = "Your annual membership payment is due. Please renew today!"
             payment_overdue = True
+        else:
+            payment_overdue = False
+            renewal_msg = "No action required at this time! You can renew your membership on or after January 1. "
 
         try:
             form_name = request.session.pop("form_name")
