@@ -1,0 +1,8 @@
+.glow-nav-item {
+    display: flex;
+    align-items: center;
+}
+
+.glow-nav-item > a {
+    padding-left: 0;
+}
