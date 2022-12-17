@@ -1,3 +1,9 @@
+{% load static nav_bar_extras %}
+
+{% block extra_css %}
+<link href="{% static 'css/nav_bar.css' %}" rel="stylesheet">
+{% endblock %}
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light ms-4 me-4">
 	<div class="d-flex flex-grow-1">
 		<a class="navbar-brand" href="{% url 'home' %}">American Handel Society</a>
@@ -33,7 +39,22 @@
 			<!-- Pipe or HR to demarcate profile items-->
 			<li class="nav-item nav-link d-none d-lg-inline-block">|</li>
 			<hr class="d-lg-none d-xl-block">
-
+			{% if request.user|show_renew_nav_item %}
+				<li class="nav-item glow-nav-item">
+					<svg className={styles.letItGlowLarge} viewBox='0 0 1 1' height='30'>
+						<circle fill='#267abf' stroke='none' cx='.5' cy='.5' r='.2'>
+						<animate
+							attributeName='opacity'
+							dur='2s'
+							values='0.1;1;0.1'
+							repeatCount='indefinite'
+							begin='0.1'
+						/>
+						</circle>
+					</svg>
+					<a class="nav-link" href="{% url 'renew' %}">Renew</a>
+				</li>
+			{% endif %}
 			<li class="nav-item">
 				<a class="nav-link" href="{% url 'profile' %}">Profile</a>
 			</li>

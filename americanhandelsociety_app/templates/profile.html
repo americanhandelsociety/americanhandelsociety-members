@@ -88,13 +88,11 @@
 					<th>Renewal Date</th>
 					<td>
 						{{ renewal_date|date:'DATE_FORMAT' }}
-						{% if renewal_msg %}
-							{% if payment_overdue %}
-								<div class="renewal-msg-error"><i class="fas fa-bell"></i> {{ renewal_msg }}</div>
-							{% else %}
-								<div class="renewal-msg">{{ renewal_msg }}</div>
-							{% endif %}
+						{% if payment_overdue %}
+							<div class="renewal-msg-error"><i class="fas fa-bell"></i> {{ renewal_msg }}</div>
 							<a href="{% url 'renew' %}"><i class="fas fa-user"></i>&nbsp;Renew your membership</a>
+						{% else %}
+							<div class="renewal-msg">{{ renewal_msg }}</div>
 						{% endif %}
 					</td>
 				</tr>
