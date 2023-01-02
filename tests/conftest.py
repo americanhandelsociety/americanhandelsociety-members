@@ -1,4 +1,3 @@
-import json
 import logging
 import os
 from time import sleep
