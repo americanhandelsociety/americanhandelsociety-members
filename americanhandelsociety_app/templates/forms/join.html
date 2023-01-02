@@ -13,8 +13,9 @@
 <div>
     <div class="flex-container-column">
         <h3>Join</h3>
-        <p>Welcome to the American Handel Society! To become a member, please complete this simple form. On subsequent pages, you will select your membership type and be redirected to Paypal, where you can submit annual dues.</p>
-        <p><strong>Returning members! Please <a href="{% url 'login' %}">login</a> and visit your <a href="{% url 'profile' %}">profile</a> where you can renew your membership on or after January 1.</strong> </p>
+        <p>Welcome to the American Handel Society! To become a member, please complete this simple form. On subsequent pages, you will select your membership type and be redirected to Paypal, where you can submit your annual due.</p>
+        <p><strong>Returning members! Please <a href="{% url 'login' %}">login</a> and visit your profile to renew your membership; you can renew on or after January 1.</strong> </p>
+        <div class="alert-info"><i class="fa-solid fa-bell"></i> The American Handel Society uses a fixed membership model (as opposed to rolling). Members who join mid year will owe renewal fees on January 1 of the following year, regardless of member-creation date. Please contact the Society treasurer <a href="mailto:pomeroynna@aol.com">Marjorie Pomeroy</a> with questions, concerns, or considerations about joining at the end of the calendar year.</div>
     </div>
     <form action="" method="post">{% csrf_token %}
         <label for="id_email">Email</label>{{form.email}}
