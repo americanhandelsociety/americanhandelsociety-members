@@ -4,6 +4,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.base_user import BaseUserManager
 from django.forms.models import model_to_dict
+from django.utils import timezone
 
 
 class MemberManager(BaseUserManager):
@@ -84,7 +85,7 @@ class Member(AbstractUser):
     address = models.ForeignKey(
         "Address", on_delete=models.CASCADE, null=True, blank=True
     )
-    date_of_last_membership_payment = models.DateTimeField(auto_now_add=True)
+    date_of_last_membership_payment = models.DateTimeField(default=timezone.now)
     accepts_privacy_policy = models.BooleanField(default=False)
     last_updated = models.DateTimeField(
         auto_now=True,
