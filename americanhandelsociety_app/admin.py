@@ -36,6 +36,7 @@ class Admin(UserAdmin):
         "email",
         "id",
         "address",
+        "date_of_last_membership_payment",
         "updated_past_month",
     )
 
@@ -73,6 +74,7 @@ class Admin(UserAdmin):
                     "phone_number",
                     "institution",
                     "available_in_directory",
+                    "date_of_last_membership_payment",
                 )
             },
         ),
