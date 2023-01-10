@@ -1,11 +1,18 @@
 import random
 import string
+from unittest.mock import ANY, patch
 
 from django.db.utils import DataError
+from django.conf import settings
 from django.core.exceptions import ValidationError
 import pytest
 
 from americanhandelsociety_app.models import Address, Member
+from americanhandelsociety_app.management.commands.send_overdue_payment_email import (
+    get_members_with_overdue_payments,
+    send_overdue_payment_mail,
+)
+from americanhandelsociety_app.utils import year_now
 
 
 @pytest.mark.django_db
@@ -138,3 +145,47 @@ def test_address_model_str_representation(address):
         str(address)
         == "The Handel House Trust Ltd, 25 Brook Street, London, W1K 4HB, UK"
     )
+
+
+@pytest.mark.django_db
+def test_overdue_members_correctly_filter(mix_of_paid_and_overdue_members):
+    # This test relies on the configuration of dates and members
+    # in the pytest fixture passed in the function header. If that
+    # configuration changes, then this test might fail.
+    year = year_now()
+    members = get_members_with_overdue_payments()
+    assert all(
+        [m.membership_type != Member.MembershipType.MESSIAH_CIRCLE for m in members]
+    ), f"Messiah Circle members cannot be overdue by definition."
+    assert all(
+        [m.date_of_last_membership_payment.year < year for m in members]
+    ), "Member's payment year must be overdue to receive payment."
+    assert len(members) == 8, f"Only expected 8 members with overdue payments."
+
+
+@pytest.mark.django_db
+def test_overdue_members_correctly_filter(mix_of_paid_and_overdue_members):
+    # This test relies on the configuration of dates and members
+    # in the pytest fixture passed in the function header. If that
+    # configuration changes, then this test might fail.
+    year = year_now()
+    expected_subject = "A Notification Concerning Your AHS Membership Renewal"
+    expected_msg = "\n  Hello {},\n\n  This is a notification about your AHS membership renewal. Your membership renewal payment is due.\n\n  Please login and then click 'Renew your membership' from the Membership section of your profile page.\n\n  You may login at the url below:\n\n  https://www.americanhandelsociety.org/login/\n\n  Thank you,\n  American Handel Society\n\n"
+    expected_from = settings.DEFAULT_FROM_EMAIL
+    with patch(
+        "americanhandelsociety_app.management.commands.send_overdue_payment_email.send_mass_mail"
+    ) as mocked_send:
+        members = get_members_with_overdue_payments()
+        expected_args = [
+            (
+                expected_subject,
+                expected_msg.format(m.first_name),
+                expected_from,
+                [m.email],
+            )
+            for m in members
+        ]
+        mocked_send.side_effect = [len(members)]
+        result = send_overdue_payment_mail(members)
+        mocked_send.assert_called_once_with(expected_args, fail_silently=False)
+        assert result == len(members)
