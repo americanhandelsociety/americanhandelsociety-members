@@ -1,5 +1,5 @@
 import re
-from datetime import datetime
+from datetime import datetime, timezone
 
 
 def make_invoice_for_join(member_id: str):
@@ -13,3 +13,7 @@ def make_invoice_for_renew(member_id: str):
 
 def get_member_uuid_from_invoice(invoice: str):
     return re.sub("(_renew?.*)|(_join)", "", invoice)
+
+
+def year_now():
+    return datetime.now(timezone.utc).year
