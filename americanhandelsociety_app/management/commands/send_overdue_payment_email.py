@@ -1,7 +1,6 @@
 import logging
-from functools import wraps
 
-from django.core.management.base import BaseCommand, CommandError
+from django.core.management.base import BaseCommand
 from django.core.mail import send_mass_mail
 from django.conf import settings
 from django.template.loader import render_to_string
@@ -56,21 +55,21 @@ class Command(BaseCommand):
         parser.add_argument(
             "--quiet",
             action="store_true",
-            help="Skip print count and ID of users receiving e-mail. Does not send. No PII.",
+            help="Skip log count and ID of users receiving e-mail. No PII.",
         )
 
-    def print_info(self, members_with_overdue_payments):
-        print(
+    def log_info(self, members_with_overdue_payments):
+        logger.info(
             f"Found {members_with_overdue_payments.count()} users with overdue payments."
         )
         preface = "These are ids of users who will receive notifications:\n\t"
         info = preface + "\n\t".join([m.id for m in members_with_overdue_payments])
-        print(info)
+        logger.info(info)
 
     def send_overdue_payment_mail(self, quiet=False):
         members_with_overdue_payments = get_members_with_overdue_payments()
         if not quiet:
-            self.print_info(members_with_overdue_payments)
+            self.log_info(members_with_overdue_payments)
         sent_count = send_overdue_payment_mail(members_with_overdue_payments)
         logger.info(
             f"Sent {sent_count} total emails succesfully. Expected to send {len(members_with_overdue_payments)} e-mails."
