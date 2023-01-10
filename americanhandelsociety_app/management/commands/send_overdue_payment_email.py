@@ -1,6 +1,5 @@
 import logging
 from functools import wraps
-import time
 
 from django.core.management.base import BaseCommand, CommandError
 from django.core.mail import send_mass_mail
@@ -47,6 +46,7 @@ def send_overdue_payment_mail(members):
         ],
         fail_silently=False,
     )
+    return recipient_count
 
 
 class Command(BaseCommand):
@@ -71,7 +71,10 @@ class Command(BaseCommand):
         members_with_overdue_payments = get_members_with_overdue_payments()
         if not quiet:
             self.print_info(members_with_overdue_payments)
-        send_overdue_payment_mail(members_with_overdue_payments)
+        sent_count = send_overdue_payment_mail(members_with_overdue_payments)
+        logger.info(
+            f"Sent {sent_count} total emails succesfully. Expected to send {len(members_with_overdue_payments)} e-mails."
+        )
 
     def handle(self, *args, **kwargs):
         self.send_overdue_payment_mail(**kwargs)
