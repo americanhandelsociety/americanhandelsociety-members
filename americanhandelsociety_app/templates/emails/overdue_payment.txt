@@ -1,0 +1,14 @@
+{% autoescape off %}
+  Hello {{ first_name }},
+
+  This is a notification about your AHS membership renewal. Your membership renewal payment is due.
+
+  Please login and then click 'Renew your membership' from the Membership section of your profile page.
+
+  You may login at the url below:
+
+  {{ domain }}{% url 'login' %}
+
+  Thank you,
+  American Handel Society
+{% endautoescape %}
