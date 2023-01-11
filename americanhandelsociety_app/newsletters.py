@@ -11,6 +11,7 @@ class NewslettersData:
             f"americanhandelsociety_app/static/{directory_path}"
         )
         self.articles = {
+            "Winter 2022": '<p>Risinger, Mark. "Juilliard Opera: Atalanta review," 1-2.</p><p>Beeks, Graydon. "<em>Theodora</em> by Phiharmonia Baroque," 1, 3.</p>',
             "Summer 2022": '<p>Beeks, Graydon. "Report from Halle 2022," 1-3.</p><p>Johnson, Blake. "J. Merrill Knapp Research Fellowship Report," 1, 4.</p>',
             "Spring 2022": '<p>Beeks, Graydon. "The English Concert Performs <em>Alcina</em>," 1, 3.</p><p>Harris, Ellen T. "Handel House Restoration," 1-2.</p>',
             "Spring 2021": '<p>Beeks, Graydon. "Alternate Performing Options for Handel\'s Op.2 Trio Sonatas found in Continental Sources," 1–3.</p><p>Kim, Minji. "2021 American Handel Society Conference: Scholarship, Performance, and Connection in the Age of COVID-19," 1, 4–5.</p>',
@@ -166,6 +167,12 @@ class NewslettersData:
 # makes it challenging to dynamically iterate over static files in a production environment.
 PREVIEW_NEWSLETTERS = [
     {
+        "id": "2022_winter",
+        "filename": "newsletters/previews/AHS_Newsletter_Winter_2022_Preview.pdf",
+        "articles": '<p>Risinger, Mark. "Juilliard Opera: Atalanta review," 1-2.</p><p>Beeks, Graydon. "<em>Theodora</em> by Phiharmonia Baroque," 1, 3.</p>',
+        "friendly_name": 'Winter 2022<br><span class="preview-label">Preview</span>',
+    },
+    {
         "id": "2022_summer",
         "filename": "newsletters/previews/AHS_Newsletter_Summer_2022_Preview.pdf",
         "articles": '<p>Beeks, Graydon. "Report from Halle 2022," 1-3.</p><p>Johnson, Blake. "J. Merrill Knapp Research Fellowship Report," 1, 4.</p>',
@@ -177,15 +184,15 @@ PREVIEW_NEWSLETTERS = [
         "articles": '<p>Beeks, Graydon. "The English Concert Performs <em>Alcina</em>," 1, 3.</p><p>Harris, Ellen T. "Handel House Restoration," 1-2.</p>',
         "friendly_name": 'Spring 2022<br><span class="preview-label">Preview</span>',
     },
-    {
-        "id": "2021_winter",
-        "filename": "newsletters/previews/Handel_Winter_2021_Preview.pdf",
-        "articles": '<p>Fehleisen, Fred. "\'Handel: Interactions and Influences\'—London, November 19–21, 2021," 1, 4-5.</p><p>Maust, Paula. "Book Review: Alison C. Desimone, <em>The Power of Pastiche: Musical Miscellany and Cultural Identity in Early Eighteenth-Century England</em>. (Clemson, SC: Clemson University Press, 2021)," 1-3.</p>',
-        "friendly_name": 'Winter 2021<br><span class="preview-label">Preview</span>',
-    },
 ]
 
 MEMBERS_ONLY_NEWSLETTERS = [
+    {
+        "id": "2022_winter",
+        "filename": "newsletters/members_only/AHS_Newsletter_Winter_2022.pdf",
+        "articles": '<p>Risinger, Mark. "Juilliard Opera: Atalanta review," 1-2.</p><p>Beeks, Graydon. "<em>Theodora</em> by Phiharmonia Baroque," 1, 3.</p>',
+        "friendly_name": 'Winter 2022<br><span class="members-only-label">Members Only</span>',
+    },
     {
         "id": "2022_summer",
         "filename": "newsletters/members_only/AHS_Newsletter_Summer_2022.pdf",
@@ -198,15 +205,15 @@ MEMBERS_ONLY_NEWSLETTERS = [
         "articles": '<p>Beeks, Graydon. "The English Concert Performs <em>Alcina</em>," 1, 3.</p><p>Harris, Ellen T. "Handel House Restoration," 1-2.</p>',
         "friendly_name": 'Spring 2022<br><span class="members-only-label">Members Only</span>',
     },
-    {
-        "id": "2021_winter",
-        "filename": "newsletters/members_only/Handel_Winter_2021.pdf",
-        "articles": '<p>Fehleisen, Fred. "\'Handel: Interactions and Influences\'—London, November 19–21, 2021," 1, 4-5.</p><p>Maust, Paula. "Book Review: Alison C. Desimone, <em>The Power of Pastiche: Musical Miscellany and Cultural Identity in Early Eighteenth-Century England</em>. (Clemson, SC: Clemson University Press, 2021)," 1-3.</p>',
-        "friendly_name": 'Winter 2021<br><span class="members-only-label">Members Only</span>',
-    },
 ]
 
 NEWSLETTERS_DATA = [
+    {
+        "id": "2021_winter",
+        "filename": "newsletters/Handel_Winter_2021.pdf",
+        "articles": '<p>Fehleisen, Fred. "\'Handel: Interactions and Influences\'—London, November 19–21, 2021," 1, 4-5.</p><p>Maust, Paula. "Book Review: Alison C. Desimone, <em>The Power of Pastiche: Musical Miscellany and Cultural Identity in Early Eighteenth-Century England</em>. (Clemson, SC: Clemson University Press, 2021)," 1-3.</p>',
+        "friendly_name": "Winter 2021",
+    },
     {
         "id": "2021_summer",
         "filename": "newsletters/Handel_Summer_2021.pdf",
