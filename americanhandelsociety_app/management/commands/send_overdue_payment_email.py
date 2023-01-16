@@ -45,7 +45,11 @@ def send_overdue_payment_mail(members):
                 SUBJECT,
                 render_to_string(
                     "emails/overdue_payment.txt",
-                    {"domain": domain, "first_name": member.first_name},
+                    {
+                        "domain": domain,
+                        "first_name": member.first_name,
+                        "last_name": member.last_name,
+                    },
                 ),
                 FROM,
                 [member.email],

@@ -1,14 +1,12 @@
 {% autoescape off %}
-  Hello {{ first_name }},
+  {{first_name}} {{last_name}},
 
-  This is a notification about your AHS membership renewal. Your membership renewal payment is due.
+  Greetings! Your annual membership payment for the American Handel Society is overdue.
 
-  Please login and then click 'Renew your membership' from the Membership section of your profile page.
-
-  You may access the site homepage and then login at the url below:
+  Please login to the AHS website and complete the renewal form:
 
   {{ domain }}{% url 'home' %}
 
-  Thank you,
+  Kind regards,
   American Handel Society
 {% endautoescape %}
