@@ -1,9 +1,10 @@
 import logging
 
 from django.core.management.base import BaseCommand
-from django.core.mail import send_mass_mail
+from django.core.mail import send_mail
 from django.conf import settings
 from django.template.loader import render_to_string
+from smtplib import SMTPException
 
 from americanhandelsociety_app.models import Member
 from americanhandelsociety_app.utils import year_now
@@ -28,52 +29,55 @@ def get_members_with_overdue_payments():
     ).filter(date_of_last_membership_payment__year__lt=year_now())
 
 
+def log_expected(members):
+    logger.info(f"Found {members.count()} total users with overdue payments.")
+    preface = "These are ids of users who will receive notifications:\n\t"
+    info = preface + "\n\t".join([str(m.id) for m in members])
+    logger.info(info)
+
+
 def send_overdue_payment_mail(members):
     domain = assume_url()
-    recipient_count = send_mass_mail(
-        [
-            (
+    failed_ids = []
+    for member in members:
+        try:
+            send_mail(
                 SUBJECT,
                 render_to_string(
                     "emails/overdue_payment.txt",
-                    {"domain": domain, "first_name": m.first_name},
+                    {"domain": domain, "first_name": member.first_name},
                 ),
                 FROM,
-                [m.email],
+                [member.email],
+                fail_silently=False,
             )
-            for m in members
-        ],
-        fail_silently=False,
-    )
-    return recipient_count
+        except SMTPException:
+            failed_ids.append(member.id)
+    return failed_ids
+
+
+def send_and_log(members):
+    log_expected(members)
+    failures = send_overdue_payment_mail(members)
+    failed_count = len(failures)
+    sent_count = len(members) - failed_count
+    base = f"Sent a total of {sent_count} emails, with {failed_count} failures."
+    if failures:
+        base = (
+            base
+            + " IDs of members whose e-mail sending failed:\n\t"
+            + "\n\t".join(failed_ids)
+        )
+    logger.info(base)
+    return sent_count
 
 
 class Command(BaseCommand):
-    help = "Send a renewal e-mail."
+    help = "Send renewal e-mail to each overdue member."
 
-    def add_arguments(self, parser):
-        parser.add_argument(
-            "--quiet",
-            action="store_true",
-            help="Skip log count and ID of users receiving e-mail. No PII.",
-        )
-
-    def log_info(self, members_with_overdue_payments):
-        logger.info(
-            f"Found {members_with_overdue_payments.count()} users with overdue payments."
-        )
-        preface = "These are ids of users who will receive notifications:\n\t"
-        info = preface + "\n\t".join([m.id for m in members_with_overdue_payments])
-        logger.info(info)
-
-    def send_overdue_payment_mail(self, quiet=False):
+    def send_overdue_payment_mail(self):
         members_with_overdue_payments = get_members_with_overdue_payments()
-        if not quiet:
-            self.log_info(members_with_overdue_payments)
-        sent_count = send_overdue_payment_mail(members_with_overdue_payments)
-        logger.info(
-            f"Sent {sent_count} total emails succesfully. Expected to send {len(members_with_overdue_payments)} e-mails."
-        )
+        sent_count = send_and_log(members_with_overdue_payments)
 
     def handle(self, *args, **kwargs):
-        self.send_overdue_payment_mail(**kwargs)
+        self.send_overdue_payment_mail()

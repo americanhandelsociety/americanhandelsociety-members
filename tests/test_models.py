@@ -170,10 +170,9 @@ def test_overdue_members_correctly_filter(mix_of_paid_and_overdue_members):
     # configuration changes, then this test might fail.
     year = year_now()
     with patch(
-        "americanhandelsociety_app.management.commands.send_overdue_payment_email.send_mass_mail"
+        "americanhandelsociety_app.management.commands.send_overdue_payment_email.send_mail"
     ) as mocked_send:
         members = get_members_with_overdue_payments()
-        mocked_send.side_effect = [len(members)]
         result = send_overdue_payment_mail(members)
-        mocked_send.assert_called_once()
-        assert result == len(members)
+        mocked_send.assert_called()
+        assert len(result) == 0
