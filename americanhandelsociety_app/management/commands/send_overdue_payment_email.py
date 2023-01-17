@@ -4,7 +4,6 @@ from django.core.management.base import BaseCommand
 from django.core.mail import send_mail
 from django.conf import settings
 from django.template.loader import render_to_string
-from smtplib import SMTPException
 
 from americanhandelsociety_app.models import Member
 from americanhandelsociety_app.utils import year_now
@@ -55,7 +54,8 @@ def send_overdue_payment_mail(members):
                 [member.email],
                 fail_silently=False,
             )
-        except SMTPException:
+        except Exception as exc:
+            logger.info(f"Sending mail failed with {type(exc)}. Details: {exc}.")
             failed_ids.append(member.id)
     return failed_ids
 

@@ -1,6 +1,7 @@
 import random
 import string
 from unittest.mock import ANY, patch
+from smtplib import SMTPException
 
 from django.db.utils import DataError
 from django.conf import settings
@@ -176,3 +177,16 @@ def test_overdue_members_correctly_filter(mix_of_paid_and_overdue_members):
         result = send_overdue_payment_mail(members)
         mocked_send.assert_called()
         assert len(result) == 0
+
+
+@pytest.mark.django_db
+def test_exception_handling_for_overdue_payment_email(mix_of_paid_and_overdue_members):
+    year = year_now()
+    with patch(
+        "americanhandelsociety_app.management.commands.send_overdue_payment_email.send_mail"
+    ) as mocked_send:
+        mocked_send.side_effect = [SMTPException("Email delivery failure!")]
+        members = get_members_with_overdue_payments()
+        result = send_overdue_payment_mail(members)
+        mocked_send.assert_called()
+        assert len(result) == 8
