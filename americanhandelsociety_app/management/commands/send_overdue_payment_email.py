@@ -29,8 +29,10 @@ def get_members_with_overdue_payments():
 
 
 def log_expected(members):
-    logger.info(f"Found {members.count()} total users with overdue payments.")
-    preface = "These are ids of users who will receive notifications:\n\t"
+    logger.info(
+        f"Found {members.count()} total users with overdue payments while preparing e-mail notification."
+    )
+    preface = "These are ids of users who will receive overdue payment e-mail notifications:\n\t"
     info = preface + "\n\t".join([str(m.id) for m in members])
     logger.info(info)
 
