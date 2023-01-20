@@ -9,7 +9,6 @@ from americanhandelsociety_app.management.commands.send_overdue_payment_email im
     Command,
 )
 from americanhandelsociety_app.models import Member
-
 from americanhandelsociety_app.utils import year_now
 
 

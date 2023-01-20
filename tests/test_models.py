@@ -1,9 +1,7 @@
 import random
 import string
-from unittest.mock import ANY, patch
 
 from django.db.utils import DataError
-from django.conf import settings
 from django.core.exceptions import ValidationError
 import pytest
 
