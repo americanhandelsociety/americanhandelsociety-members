@@ -6,7 +6,7 @@ from django.conf import settings
 from django.template.loader import render_to_string
 
 from americanhandelsociety_app.models import Member
-from americanhandelsociety_app.utils import year_now
+from americanhandelsociety_app.utils import year_now, today_is_first_of_month
 
 logger = logging.getLogger(__name__)
 
@@ -80,8 +80,9 @@ class Command(BaseCommand):
     help = "Send renewal e-mail to each overdue member."
 
     def send_overdue_payment_mail(self):
-        members_with_overdue_payments = get_members_with_overdue_payments()
-        sent_count = send_and_log(members_with_overdue_payments)
+        if today_is_first_of_month():
+            members_with_overdue_payments = get_members_with_overdue_payments()
+            sent_count = send_and_log(members_with_overdue_payments)
 
     def handle(self, *args, **kwargs):
         self.send_overdue_payment_mail()
