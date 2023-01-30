@@ -14,6 +14,7 @@ from django.views.generic.list import ListView
 from americanhandelsociety_app.utils import (
     make_invoice_for_join,
     make_invoice_for_renew,
+    year_now,
 )
 from paypal.standard.forms import PayPalPaymentsForm
 from waffle import flag_is_active
@@ -69,9 +70,9 @@ class Profile(ProtectedView, View):
         )
         renewal_date = datetime(year_of_last_membership_payment + 1, 1, 1)
 
-        if year_of_last_membership_payment < datetime.now(
-            timezone.utc
-        ).year or flag_is_active(request, RENEWAL_FLOW):
+        if year_of_last_membership_payment < year_now() or flag_is_active(
+            request, RENEWAL_FLOW
+        ):
             renewal_msg = "Your annual membership payment is due. Please renew today!"
             payment_overdue = True
         else:

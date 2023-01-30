@@ -226,3 +226,27 @@ def artificially_backdated_pre_004_migration_members():
     ]
     modify_field_config(Member, "last_updated", True)
     return members_list
+
+
+@pytest.fixture
+def mix_of_paid_and_overdue_members():
+    membership_types = [Member.MembershipType.MESSIAH_CIRCLE] * 3 + [
+        Member.MembershipType.REGULAR
+    ] * 12
+    # Intentionally backdate the first three
+    dates = (
+        [datetime.utcnow() + relativedelta(years=-3)] * 3
+        + [datetime.utcnow()] * 4
+        + [datetime.utcnow() + relativedelta(years=-3)] * 8
+    )
+    members_list = [
+        Member.objects.create(
+            first_name=generate_random_string(),
+            last_name=generate_random_string(),
+            email=f"{generate_random_string(length=5)}@ahs.com",
+            membership_type=mem_type,
+            date_of_last_membership_payment=joined,
+        )
+        for mem_type, joined in zip(membership_types, dates)
+    ]
+    return members_list

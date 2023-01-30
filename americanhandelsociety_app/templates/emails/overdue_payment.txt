@@ -1,0 +1,12 @@
+{% autoescape off %}
+  {{first_name}} {{last_name}},
+
+  Greetings! Your annual membership payment for the American Handel Society is overdue.
+
+  Please login to the AHS website and complete the renewal form:
+
+  {{ domain }}{% url 'home' %}
+
+  Kind regards,
+  American Handel Society
+{% endautoescape %}
