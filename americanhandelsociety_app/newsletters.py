@@ -11,7 +11,7 @@ class NewslettersData:
             f"americanhandelsociety_app/static/{directory_path}"
         )
         self.articles = {
-            "Winter 2022": '<p>Risinger, Mark. "Juilliard Opera: Atalanta review," 1-2.</p><p>Beeks, Graydon. "<em>Theodora</em> by Phiharmonia Baroque," 1, 3.</p>',
+            "Winter 2022": '<p>Beeks, Graydon. "<em>Theodora</em> by Phiharmonia Baroque," 1, 3.</p><p>Risinger, Mark. "Juilliard Opera: Atalanta review," 1-2.</p>',
             "Summer 2022": '<p>Beeks, Graydon. "Report from Halle 2022," 1-3.</p><p>Johnson, Blake. "J. Merrill Knapp Research Fellowship Report," 1, 4.</p>',
             "Spring 2022": '<p>Beeks, Graydon. "The English Concert Performs <em>Alcina</em>," 1, 3.</p><p>Harris, Ellen T. "Handel House Restoration," 1-2.</p>',
             "Spring 2021": '<p>Beeks, Graydon. "Alternate Performing Options for Handel\'s Op.2 Trio Sonatas found in Continental Sources," 1–3.</p><p>Kim, Minji. "2021 American Handel Society Conference: Scholarship, Performance, and Connection in the Age of COVID-19," 1, 4–5.</p>',
@@ -169,7 +169,7 @@ PREVIEW_NEWSLETTERS = [
     {
         "id": "2022_winter",
         "filename": "newsletters/previews/AHS_Newsletter_Winter_2022_Preview.pdf",
-        "articles": '<p>Risinger, Mark. "Juilliard Opera: Atalanta review," 1-2.</p><p>Beeks, Graydon. "<em>Theodora</em> by Phiharmonia Baroque," 1, 3.</p>',
+        "articles": '<p>Beeks, Graydon. "<em>Theodora</em> by Phiharmonia Baroque," 1, 3.</p><p>Risinger, Mark. "Juilliard Opera: Atalanta review," 1-2.</p>',
         "friendly_name": 'Winter 2022<br><span class="preview-label">Preview</span>',
     },
     {
@@ -190,7 +190,7 @@ MEMBERS_ONLY_NEWSLETTERS = [
     {
         "id": "2022_winter",
         "filename": "newsletters/members_only/AHS_Newsletter_Winter_2022.pdf",
-        "articles": '<p>Risinger, Mark. "Juilliard Opera: Atalanta review," 1-2.</p><p>Beeks, Graydon. "<em>Theodora</em> by Phiharmonia Baroque," 1, 3.</p>',
+        "articles": '<p>Beeks, Graydon. "<em>Theodora</em> by Phiharmonia Baroque," 1, 3.</p><p>Risinger, Mark. "Juilliard Opera: Atalanta review," 1-2.</p>',
         "friendly_name": 'Winter 2022<br><span class="members-only-label">Members Only</span>',
     },
     {
