@@ -54,12 +54,7 @@ The join and renewal flow integrate with Paypal. Do the following to setup Paypa
 1. Assign the value of your ngrok domain to `NGROK_DOMAIN` in your `.env` file, e.g., `NGROK_DOMAIN=a057-2601-249-8c00-4a80-7564-842e-4d6-5a53.ngrok.io`.
 1. Run `pipenv run python manage.py runserver`.
 1. Visit your local site using the ngrok url.
-1. Move through the Join or Renewal flow as a user. The site will redirect to a Paypal sandbox. Use these credentials to login:
-
-```
-username: americanhandelsociety-buyer@gmail.com
-password: computer-man
-```
+1. Move through the Join or Renewal flow as a user. The site will redirect to a Paypal sandbox. Please ask a site administrator for login credentials, or you may create your own [sandbox account](https://www.sandbox.paypal.com).
 
 # Deployments
 This project uses Heroku as its deployment and platform service. Our Heroku project has three main components:
