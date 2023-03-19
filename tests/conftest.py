@@ -233,12 +233,17 @@ def mix_of_paid_and_overdue_members():
     membership_types = [Member.MembershipType.MESSIAH_CIRCLE] * 3 + [
         Member.MembershipType.REGULAR
     ] * 12
+
     # Intentionally backdate the first three
     dates = (
         [datetime.utcnow() + relativedelta(years=-3)] * 3
         + [datetime.utcnow()] * 4
         + [datetime.utcnow() + relativedelta(years=-3)] * 8
     )
+
+    # Make one of the overdue members someone who pays via another organization; such a member should be excluded from renewal reminders.
+    is_member_via_other_organization = [False] * 14 + [True]
+
     members_list = [
         Member.objects.create(
             first_name=generate_random_string(),
@@ -246,7 +251,10 @@ def mix_of_paid_and_overdue_members():
             email=f"{generate_random_string(length=5)}@ahs.com",
             membership_type=mem_type,
             date_of_last_membership_payment=joined,
+            is_member_via_other_organization=pays_other,
         )
-        for mem_type, joined in zip(membership_types, dates)
+        for mem_type, joined, pays_other in zip(
+            membership_types, dates, is_member_via_other_organization
+        )
     ]
     return members_list
