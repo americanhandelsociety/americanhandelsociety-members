@@ -15,6 +15,7 @@ gunicorn = "*"
 django-simple-captcha = "*"
 freezegun = "*"
 django-waffle = "*"
+django-add-default-value = "*"
 
 [dev-packages]
 pytest = "*"
