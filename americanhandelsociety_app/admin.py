@@ -38,6 +38,7 @@ class Admin(UserAdmin):
         "address",
         "date_of_last_membership_payment",
         "updated_past_month",
+        "is_member_via_other_organization",
     )
 
     def updated_past_month(self, obj):
@@ -75,6 +76,7 @@ class Admin(UserAdmin):
                     "institution",
                     "available_in_directory",
                     "date_of_last_membership_payment",
+                    "is_member_via_other_organization",
                 )
             },
         ),
@@ -89,8 +91,16 @@ class Admin(UserAdmin):
             },
         ),
     )
-    search_fields = ("email",)
-    ordering = ("email",)
+    search_fields = (
+        "email",
+        "first_name",
+        "last_name",
+    )
+    ordering = (
+        "email",
+        "first_name",
+        "last_name",
+    )
 
 
 admin.site.register(Member, Admin)
