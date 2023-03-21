@@ -85,6 +85,10 @@ class Member(AbstractUser):
     address = models.ForeignKey(
         "Address", on_delete=models.CASCADE, null=True, blank=True
     )
+    is_member_via_other_organization = models.BooleanField(
+        default=False,
+        help_text="Denotes if the member pays dues through a 'sister' organization, such as the Georg-Friedrich-Händel-Gesellschaft.",
+    )
     date_of_last_membership_payment = models.DateTimeField(default=timezone.now)
     accepts_privacy_policy = models.BooleanField(default=False)
     last_updated = models.DateTimeField(

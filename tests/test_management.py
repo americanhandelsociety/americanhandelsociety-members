@@ -58,11 +58,14 @@ def test_overdue_members_correctly_filter(mix_of_paid_and_overdue_members):
     assert all(
         [m.date_of_last_membership_payment.year < year for m in members]
     ), "Member's payment year must be overdue to receive payment."
-    assert len(members) == 8, f"Only expected 8 members with overdue payments."
+    assert all(
+        [m.is_member_via_other_organization == False for m in members]
+    ), "Members must have 'is_member_via_other_organization' set to False"
+    assert len(members) == 7, f"Only expected 7 members with overdue payments."
 
 
 @pytest.mark.django_db
-def test_overdue_members_correctly_filter(
+def test_overdue_members_correctly_filter_and_sends_mail_without_error(
     mix_of_paid_and_overdue_members, mock_send_mail_in_command
 ):
     # This test relies on the configuration of dates and members
@@ -82,7 +85,7 @@ def test_exception_handling_for_overdue_payment_email(
     members = get_members_with_overdue_payments()
     result = send_overdue_payment_mail(members)
     mock_send_mail_in_command.assert_called()
-    assert len(result) == 8
+    assert len(result) == 7
 
 
 @pytest.mark.django_db

@@ -1,5 +1,6 @@
 import logging
 
+from django.db.models import Q
 from django.core.management.base import BaseCommand
 from django.core.mail import send_mail
 from django.conf import settings
@@ -24,7 +25,8 @@ def assume_url():
 
 def get_members_with_overdue_payments():
     return Member.objects.exclude(
-        membership_type=Member.MembershipType.MESSIAH_CIRCLE
+        Q(membership_type=Member.MembershipType.MESSIAH_CIRCLE)
+        | Q(is_member_via_other_organization=True)
     ).filter(date_of_last_membership_payment__year__lt=year_now())
 
 
