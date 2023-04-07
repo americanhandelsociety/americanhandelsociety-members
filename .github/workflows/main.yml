@@ -9,13 +9,9 @@ jobs:
   test-job:
     runs-on: ubuntu-latest
 
-    # Service containers to run with `container-job`
     services:
-      # Label used to access the service container
       postgres:
-        # Docker Hub image
         image: postgres:12
-        # Provide the password for postgres
         env:
           POSTGRES_USER: ahs_admin
           POSTGRES_PASSWORD: gfhandel
