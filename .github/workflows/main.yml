@@ -10,6 +10,18 @@ jobs:
     name: Run tests
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
-    - name: Standup containers
-      run: docker compose up
+      - uses: actions/checkout@v3
+      - name: Standup containers
+        run: docker compose up postgres
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pipenv
+          pipenv install
+      - name: Run tests
+        run: pipenv run pytest
+        env:
+          DJANGO_SECRET_KEY: supersecretkey
+          DJANGO_DEBUG: True
+          DJANGO_ALLOWED_HOSTS: 127.0.0.1,0.0.0.0
+          PAYPAL_TEST: True
