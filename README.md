@@ -56,8 +56,10 @@ The join and renewal flow integrate with Paypal. Do the following to setup Paypa
 1. Visit your local site using the ngrok url.
 1. Move through the Join or Renewal flow as a user. The site will redirect to a Paypal sandbox. Please ask a site administrator for login credentials, or you may create your own [sandbox account](https://www.sandbox.paypal.com).
 
-# Deployments
-This project uses Heroku as its deployment and platform service. Our Heroku project has three main components:
+# CI and Deployments
+This project uses [GitHub Actions](https://docs.github.com/en/actions) to run tests. A workflow runs a job on every push to a branch against `main` and every push or merge to `main`.
+
+Separately, this project uses Heroku as its deployment and platform service. Our Heroku project has three main components:
 
 1. "Review Apps": a complete, but short-lived version of the AHS website with a unique URL; Heroku **automatically** stands up a review app when an engineer pushes code to a branch of this repo.
 2. "Staging" pipeline: a production-like version of the AHS website available at https://americanhandelsociety-staging.herokuapp.com/; Heroku **automatically** deploys to staging when an engineer merges a branch into `main` or pushes to `main`.
