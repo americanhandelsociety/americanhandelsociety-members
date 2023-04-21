@@ -1,0 +1,45 @@
+name: CI
+
+on:
+  push:
+    branches:
+    - main
+  pull_request:
+    branches:
+    - main
+
+jobs:
+  test-job:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:12
+        env:
+          POSTGRES_USER: ahs_admin
+          POSTGRES_PASSWORD: gfhandel
+          POSTGRES_DB: americanhandelsociety_postgres
+        # Set health checks to wait until postgres has started
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pipenv
+          pipenv install --dev
+      - name: Run tests
+        run: pipenv run pytest
+        env:
+          DJANGO_SECRET_KEY: supersecretkey
+          DJANGO_DEBUG: True
+          DJANGO_ALLOWED_HOSTS: 127.0.0.1,0.0.0.0
+          PAYPAL_TEST: True

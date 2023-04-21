@@ -21,12 +21,13 @@ class PostgreSQLContainer:
     """A PostgreSQL Container Object.
 
     This class provides a mechanism for managing PostgreSQL Docker
-    containers so that a database can be injected into tests. Class
-    Attributes:     config (object): A Configuration Factory object.
-    container (object): The Docker container object.     docker_client
-    (object): Docker client.     db_environment (list): Database
-    environment configuration variables.     db_ports (dict): Dictionary
-    of database port mappings.
+    containers so that a database can be injected into tests.
+    Class Attributes:
+    - config (object): A Configuration Factory object.
+    - container (object): The Docker container object.
+    - docker_client (object): Docker client.
+    - db_environment (list): Database environment configuration variables.
+    - db_ports (dict): Dictionary of database port mappings.
     """
 
     def __init__(self):
