@@ -167,6 +167,12 @@ HONORARY_DIRECTORS = [
 
 HOWARD_SERWER_LECTURES = [
     {
+        "year": 2023,
+        "speaker": "Nathan Link",
+        "title": "Narrative and Drama in Handel's Operas",
+        "location": "Bloomington, IN – Indiana University",
+    },
+    {
         "year": 2021,
         "speaker": "Berta Joncus",
         "title": "Posterity vs Celebrity: Handel Studies and the 21st Century",
