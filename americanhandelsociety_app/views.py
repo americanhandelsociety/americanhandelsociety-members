@@ -185,12 +185,12 @@ class Newsletter(View):
     template_name = "newsletter.html"
 
     def get(self, request):
-        # TECH DEBT: https://github.com/americanhandelsociety/americanhandelsociety-members/issues/77
+        # # TECH DEBT: https://github.com/americanhandelsociety/americanhandelsociety-members/issues/77
         # from americanhandelsociety_app.newsletters import NewslettersData
 
         # print(
         #     NewslettersData(
-        #         directory_path="newsletters/members_only"
+        #         directory_path="newsletters"
         #     ).generate_newsletters_data()
         # )
 
