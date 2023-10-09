@@ -78,7 +78,7 @@ class Member(AbstractUser):
     contact_preference = models.CharField(
         max_length=ContactPreference.max_length(),
         choices=ContactPreference.choices,
-        blank=True,
+        blank=False,
     )
     phone_number = models.CharField(max_length=15, blank=True)
     institution = models.CharField(max_length=150, blank=True)
