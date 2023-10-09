@@ -2,6 +2,7 @@ import re
 
 from captcha.models import CaptchaStore
 
+
 # Utility test function from django-simple-captcha
 # https://github.com/mbi/django-simple-captcha/blob/8129ef0276de3c099e838d00f44a102243e2db91/captcha/tests/tests.py#L72-L75
 def extract_hash_and_response(response):
@@ -18,6 +19,7 @@ def make_valid_user_data(client):
         "first_name": "Queen",
         "last_name": "Cleopatra",
         "email": "cleo@egypt.ico",
+        "contact_preference": "EMAIL",
         "password1": "1724handel",
         "password2": "1724handel",
         "accepts_privacy_policy": True,
