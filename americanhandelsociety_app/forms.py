@@ -32,6 +32,7 @@ class MemberCreationForm(UserCreationForm):
             "first_name",
             "last_name",
             "email",
+            "contact_preference",
             "password1",
             "password2",
             "accepts_privacy_policy",

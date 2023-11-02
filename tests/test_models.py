@@ -78,6 +78,7 @@ def test_membership_type_does_not_accept_invalid_choice():
         password="cuzzoni",
         first_name="Queen",
         last_name="Rodelinda",
+        contact_preference="EMAIL",
         membership_type="INVALID",
     )
 
