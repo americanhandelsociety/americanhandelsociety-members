@@ -5,6 +5,7 @@ from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.base_user import BaseUserManager
 from django.forms.models import model_to_dict
 from django.utils import timezone
+from americanhandelsociety_app.utils import year_now
 
 
 class MemberManager(BaseUserManager):
@@ -31,6 +32,57 @@ class MemberManager(BaseUserManager):
         superuser.is_staff = True
         superuser.save(using=self._db)
         return superuser
+
+    def with_member_payment_status(self):
+        """Annotate the Members queryset to indicate payment status.
+
+        inactive: payment date is < last calendar year (ex: payment date: 2022, calendar year: 2024)
+        pending: payment date = last calendar year (ex: payment date: 2023, calendar year: 2024)
+        active: payment date = current calendar year (ex: payment date: 2024, calendar year: 2024)
+        """
+        return self.annotate(
+            _member_payment_status=models.Case(
+                models.When(
+                    models.Q(is_member_via_other_organization=False)
+                    & ~models.Q(
+                        membership_type=self.model.MembershipType.MESSIAH_CIRCLE
+                    )
+                    & models.Q(
+                        date_of_last_membership_payment__year__lt=year_now() - 1
+                    ),
+                    then=models.Value("inactive"),
+                ),
+                models.When(
+                    models.Q(is_member_via_other_organization=False)
+                    & ~models.Q(
+                        membership_type=self.model.MembershipType.MESSIAH_CIRCLE
+                    )
+                    & models.Q(date_of_last_membership_payment__year=year_now() - 1),
+                    then=models.Value("pending"),
+                ),
+                models.When(
+                    models.Q(is_member_via_other_organization=True)
+                    | models.Q(membership_type=self.model.MembershipType.MESSIAH_CIRCLE)
+                    | models.Q(date_of_last_membership_payment__year=year_now()),
+                    then=models.Value("active"),
+                ),
+                default=None,
+                output_field=models.CharField(),
+            )
+        )
+
+    def dues_payment_pending(self):
+        """Select members with overdue payments.
+
+        Excludes:
+        - lifetime membership members (Messiah Circle)
+        - members with membership via partner organizations
+        - members with payments in the current calendar year
+        - previous members, who haven't paid in > calendar year
+        """
+        return self.with_member_payment_status().filter(
+            _member_payment_status="pending"
+        )
 
 
 class Member(AbstractUser):

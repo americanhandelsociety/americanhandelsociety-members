@@ -20,4 +20,16 @@ def year_now():
 
 
 def today_is_first_of_month():
+    """Returns boolean indicating if today is the first of the month."""
     return datetime.now(timezone.utc).day == 1
+
+
+def is_month_when_overdue_payments_emails_do_not_send():
+    """Returns boolean indicating month compatibility with e-mail."""
+    return datetime.now(timezone.utc).month == 1
+
+
+def is_month_when_final_overdue_payments_sent_to_pending_members():
+    """Returns boolean indicating if is month a pending member recives final
+    notification."""
+    return datetime.now(timezone.utc).month == 1
