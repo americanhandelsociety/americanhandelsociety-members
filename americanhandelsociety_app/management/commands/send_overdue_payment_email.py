@@ -9,8 +9,8 @@ from django.template.loader import render_to_string
 from americanhandelsociety_app.models import Member
 from americanhandelsociety_app.utils import (
     today_is_first_of_month,
-    is_month_when_overdue_payments_emails_do_not_send,
-    is_month_when_final_overdue_payments_sent_to_pending_members,
+    is_january,
+    is_december,
     year_now,
 )
 
@@ -81,9 +81,7 @@ def send_overdue_payment_mail(
 
 
 def send_and_log(members):
-    is_final_notice_month = (
-        is_month_when_final_overdue_payments_sent_to_pending_members()
-    )
+    is_final_notice_month = is_december()
     log_expected(members)
     failures = send_overdue_payment_mail(
         members,
@@ -108,8 +106,8 @@ class Command(BaseCommand):
     help = "Send renewal e-mail to each overdue member."
 
     def send_overdue_payment_mail(self):
-        if is_month_when_overdue_payments_emails_do_not_send():
-            logger.info("Intentionally skipping e-mail sending this month.")
+        if is_january():
+            logger.info("Is January: intentionally skipping e-mail sending this month.")
             return
         if today_is_first_of_month():
             send_and_log(Member.objects.dues_payment_pending())
