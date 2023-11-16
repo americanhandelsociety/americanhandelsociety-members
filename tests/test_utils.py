@@ -1,4 +1,4 @@
-from freezegun import freeze_time
+from time_machine import travel
 
 from americanhandelsociety_app.utils import (
     get_member_uuid_from_invoice,
@@ -14,7 +14,8 @@ def test_make_invoice_for_join():
     assert result == f"{MEMBER_UUID}_join"
 
 
-@freeze_time("2012-11-01")
+# @travel("2012-11-01 00:00 +0000")
+@travel("2012-11-01")
 def test_make_invoice_for_renew():
     result = make_invoice_for_renew(MEMBER_UUID)
     assert result == f"{MEMBER_UUID}_renew_2012_11_01"
