@@ -14,7 +14,6 @@ def test_make_invoice_for_join():
     assert result == f"{MEMBER_UUID}_join"
 
 
-# @travel("2012-11-01 00:00 +0000")
 @travel("2012-11-01")
 def test_make_invoice_for_renew():
     result = make_invoice_for_renew(MEMBER_UUID)
