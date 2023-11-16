@@ -10,6 +10,8 @@ from americanhandelsociety_app.management.commands.send_overdue_payment_email im
 from americanhandelsociety_app.models import Member
 from americanhandelsociety_app.utils import year_now
 
+from time_machine import travel
+
 ############
 # DEFAULTS #
 ############
@@ -46,48 +48,17 @@ def mock_send_mail_in_command():
         yield mock
 
 
-@pytest.fixture
-def mock_today_is_first_in_command():
-    with patch(
-        "americanhandelsociety_app.management.commands.send_overdue_payment_email.today_is_first_of_month",
-        return_value=0,
-        autospec=True,
-    ) as mock:
-        yield mock
-
-
-@pytest.fixture
-def mock_january():
-    with patch(
-        "americanhandelsociety_app.management.commands.send_overdue_payment_email.is_january",
-        return_value=0,
-        autospec=True,
-    ) as mock:
-        yield mock
-
-
-@pytest.fixture
-def mock_december():
-    with patch(
-        "americanhandelsociety_app.management.commands.send_overdue_payment_email.is_december",
-        return_value=0,
-        autospec=True,
-    ) as mock:
-        yield mock
-
-
 #########
 # TESTS #
 #########
 
 
+@travel("2023-12-01")
 @pytest.mark.django_db
 def test_overdue_members_sends_mail_without_error(
     mix_of_paid_and_overdue_members,
-    mock_december,
     mock_send_mail_in_command,
 ):
-    mock_december.side_effect = [False]
     members = Member.objects.dues_payment_pending()
     result = send_overdue_payment_mail(members, DEFAULT_TEMPLATE, DEFAULT_DOMAIN)
     mock_send_mail_in_command.assert_has_calls(
@@ -105,13 +76,12 @@ def test_overdue_members_sends_mail_without_error(
     assert len(result) == 0
 
 
+@travel("2023-12-01")
 @pytest.mark.django_db
 def test_exception_handling_for_overdue_payment_email(
     mix_of_paid_and_overdue_members,
-    mock_december,
     mock_send_mail_in_command,
 ):
-    mock_december.side_effect = [False]
     mock_send_mail_in_command.side_effect = [SMTPException("Email delivery failure!")]
     members = Member.objects.dues_payment_pending()
     result = send_overdue_payment_mail(members, DEFAULT_TEMPLATE, DEFAULT_DOMAIN)
@@ -133,70 +103,53 @@ def test_exception_handling_for_overdue_payment_email(
 @pytest.mark.django_db
 def test_management_command_sends_on_appropriate_date(
     mix_of_paid_and_overdue_members,
-    mock_january,
-    mock_december,
-    mock_today_is_first_in_command,
     mock_send_mail_in_command,
 ):
     # command handler uses the same query. if the command handler changes
     # this test may fail, or worse, mysteriously pass
     members = Member.objects.dues_payment_pending()
     command = Command()
-    # Simulate neither January nor December
-    mock_january.side_effect = [False, False]
-    mock_december.side_effect = [False, False]
-    # Simulate not first, but then first
-    mock_today_is_first_in_command.side_effect = [False, True]
-    command.send_overdue_payment_mail()
-    mock_send_mail_in_command.assert_not_called()
-    # Time warp
-    command.send_overdue_payment_mail()
-    mock_send_mail_in_command.assert_has_calls(
-        [
-            call(
-                "A Notification Concerning Your AHS Membership Renewal",
-                f"\n  {m.first_name} {m.last_name},\n\n  Greetings! Your annual membership payment for the American Handel Society is overdue.\n\n  Please login to the AHS website and complete the renewal form:\n\n  https://www.americanhandelsociety.org/\n\n  Kind regards,\n  American Handel Society\n\n",
-                ANY,
-                [m.email],
-                fail_silently=False,
-            )
-            for m in members
-        ]
-    )
+    with travel("1685-02-23"):
+        command.send_overdue_payment_mail()
+        mock_send_mail_in_command.assert_not_called()
+    with travel("2023-03-01"):
+        # Time warp
+        command.send_overdue_payment_mail()
+        mock_send_mail_in_command.assert_has_calls(
+            [
+                call(
+                    "A Notification Concerning Your AHS Membership Renewal",
+                    f"\n  {m.first_name} {m.last_name},\n\n  Greetings! Your annual membership payment for the American Handel Society is overdue.\n\n  Please login to the AHS website and complete the renewal form:\n\n  https://www.americanhandelsociety.org/\n\n  Kind regards,\n  American Handel Society\n\n",
+                    ANY,
+                    [m.email],
+                    fail_silently=False,
+                )
+                for m in members
+            ]
+        )
 
 
+@travel("1985-01-01")
 @pytest.mark.django_db
 def test_management_command_skips_skippable_months(
     mix_of_paid_and_overdue_members,
-    mock_january,
-    mock_today_is_first_in_command,
     mock_send_and_log,
 ):
     command = Command()
-    # Mock to simulate first of january
-    mock_january.side_effect = [True]
-    mock_today_is_first_in_command.side_effect = [True]
     command.send_overdue_payment_mail()
     mock_send_and_log.assert_not_called()
 
 
+@travel("2024-12-01")
 @pytest.mark.django_db
 def test_management_command_final_notice(
     mix_of_paid_and_overdue_members,
-    mock_january,
-    mock_december,
-    mock_today_is_first_in_command,
     mock_send_mail_in_command,
 ):
     # command handler uses the same query. if the command handler changes
     # this test may fail, or worse, mysteriously pass
     members = Member.objects.dues_payment_pending()
     command = Command()
-    # Mock to simulate first of december
-    mock_january.side_effect = [False]
-    mock_december.side_effect = [True]
-    # Simulate not first, but then first
-    mock_today_is_first_in_command.side_effect = [True]
     command.send_overdue_payment_mail()
     year = year_now()
     mock_send_mail_in_command.assert_has_calls(

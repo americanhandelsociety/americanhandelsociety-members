@@ -150,7 +150,7 @@ def test_overdue_members_correctly_filter(mix_of_paid_and_overdue_members):
         [m.membership_type != Member.MembershipType.MESSIAH_CIRCLE for m in members]
     ), f"Messiah Circle members cannot be overdue by definition."
     assert all(
-        [m.date_of_last_membership_payment.year < year for m in members]
+        [m.date_of_last_membership_payment.year == year - 1 for m in members]
     ), "Member's payment year must be overdue to receive payment."
     assert all(
         [m.is_member_via_other_organization == False for m in members]
