@@ -6,6 +6,7 @@ from django.core.exceptions import ValidationError
 import pytest
 
 from americanhandelsociety_app.models import Address, Member
+from americanhandelsociety_app.utils import year_now
 
 
 @pytest.mark.django_db
@@ -139,3 +140,21 @@ def test_address_model_str_representation(address):
         str(address)
         == "The Handel House Trust Ltd, 25 Brook Street, London, W1K 4HB, UK"
     )
+
+
+@pytest.mark.django_db
+def test_overdue_members_correctly_filter(mix_of_paid_and_overdue_members):
+    members = Member.objects.dues_payment_pending()
+    year = year_now()
+    assert all(
+        [m.membership_type != Member.MembershipType.MESSIAH_CIRCLE for m in members]
+    ), f"Messiah Circle members cannot be overdue by definition."
+    assert all(
+        [m.date_of_last_membership_payment.year == year - 1 for m in members]
+    ), "Member's payment year must be overdue to receive payment."
+    assert all(
+        [m.is_member_via_other_organization == False for m in members]
+    ), "Members must have 'is_member_via_other_organization' set to False"
+    assert (
+        len(members) == 5
+    ), f"Only expected 5 members with overdue payments, got {len(members)}."

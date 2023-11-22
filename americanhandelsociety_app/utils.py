@@ -20,4 +20,15 @@ def year_now():
 
 
 def today_is_first_of_month():
+    """Returns boolean indicating if today is the first of the month."""
     return datetime.now(timezone.utc).day == 1
+
+
+def is_january():
+    """Overdue payment e-mails not sent this month."""
+    return datetime.now(timezone.utc).month == 1
+
+
+def is_december():
+    """Final notice sent this month."""
+    return datetime.now(timezone.utc).month == 12

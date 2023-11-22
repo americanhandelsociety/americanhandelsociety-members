@@ -231,20 +231,28 @@ def artificially_backdated_pre_004_migration_members():
 
 @pytest.fixture
 def mix_of_paid_and_overdue_members():
+    # Prepare membership types to create 15 total members.
     membership_types = [Member.MembershipType.MESSIAH_CIRCLE] * 3 + [
         Member.MembershipType.REGULAR
     ] * 12
 
-    # Intentionally backdate the first three
+    # Intentionally backdate the Messiah Circle Members, who are excluded from overdue payment reminders.
     dates = (
         [datetime.utcnow() + relativedelta(years=-3)] * 3
-        + [datetime.utcnow()] * 4
-        + [datetime.utcnow() + relativedelta(years=-3)] * 8
+        + [datetime.utcnow()] * 2
+        + [datetime.utcnow() + relativedelta(years=-1)] * 5
+        + [datetime.utcnow() + relativedelta(years=-3)] * 5
     )
 
     # Make one of the overdue members someone who pays via another organization; such a member should be excluded from renewal reminders.
     is_member_via_other_organization = [False] * 14 + [True]
 
+    # Member distribution:
+    # x3 Messiah Members, this org, paid > 1 year ago
+    # x2 Regular Members, this org, paid this year
+    # x5 Regular Members, this org, paid last year
+    # x4 Regular Members, this org, paid > 1 year ago
+    # x1 Regular Member, other org, paid > 1 year ago (payment irrelevant)
     members_list = [
         Member.objects.create(
             first_name=generate_random_string(),

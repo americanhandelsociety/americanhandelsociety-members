@@ -1,0 +1,14 @@
+{% autoescape off %}
+  {{first_name}} {{last_name}},
+
+  Greetings! Your annual membership payment for the American Handel Society is overdue.
+
+  Your membership in the American Handel Society will be deactivated in {{next_year}} if you do not submit your annual payment before the final day of {{this_year}}.
+
+  Please login to the AHS website and complete the renewal form:
+
+  {{ domain }}{% url 'home' %}
+
+  Kind regards,
+  American Handel Society
+{% endautoescape %}

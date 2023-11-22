@@ -5,6 +5,7 @@ from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.base_user import BaseUserManager
 from django.forms.models import model_to_dict
 from django.utils import timezone
+from americanhandelsociety_app.utils import year_now
 
 
 class MemberManager(BaseUserManager):
@@ -31,6 +32,20 @@ class MemberManager(BaseUserManager):
         superuser.is_staff = True
         superuser.save(using=self._db)
         return superuser
+
+    def dues_payment_pending(self):
+        """Select members with overdue payments.
+
+        Excludes:
+        - lifetime membership members (Messiah Circle)
+        - members with membership via partner organizations
+        - members with payments in the current calendar year
+        - previous members, who haven't paid in > calendar year
+        """
+        return self.exclude(
+            models.Q(is_member_via_other_organization=True)
+            | models.Q(membership_type=self.model.MembershipType.MESSIAH_CIRCLE)
+        ).filter(date_of_last_membership_payment__year=year_now() - 1)
 
 
 class Member(AbstractUser):
