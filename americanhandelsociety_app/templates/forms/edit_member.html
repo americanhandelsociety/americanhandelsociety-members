@@ -60,6 +60,10 @@
             {{form.available_in_directory}} Check this box to be included in the online members directory. (Only members of the American Handel Society can view this directory.)
         </div>
 
+        <div class="checkbox-container">
+            {{form.can_showcase_membership_or_donation_data}} {% if is_circle_member == True %}Are you a Rinaldo, Cleopatra, Theodora, or Messiah member?{% endif %} Have you recently made or plan to make a donation to the AHS? Check this box to be showcased in the newsletter and/or on the website.
+        </div>
+
         <div class="flex-container-row small">
             * Denotes a required field
         </div>

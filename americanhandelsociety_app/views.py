@@ -146,8 +146,16 @@ class EditMember(ProtectedView, View):
 
         address_form = AddressChangeForm(initial=initial_data)
 
+        is_circle_member = member.is_circle_member
+
         return render(
-            request, self.template_name, {"form": form, "address_form": address_form}
+            request,
+            self.template_name,
+            {
+                "form": form,
+                "address_form": address_form,
+                "is_circle_member": is_circle_member,
+            },
         )
 
     def post(self, request, member_uuid):

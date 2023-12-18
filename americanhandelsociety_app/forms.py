@@ -50,6 +50,7 @@ class MemberChangeForm(UserChangeForm):
             "institution",
             "contact_preference",
             "available_in_directory",
+            "can_showcase_membership_or_donation_data",
         )
 
 

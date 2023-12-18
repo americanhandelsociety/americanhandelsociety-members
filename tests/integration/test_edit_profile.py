@@ -165,3 +165,26 @@ def test_update_institution(client, member):
 
     resp = client.get("/profile/")
     assert "Eastman School of Music" in resp.content.decode("utf-8")
+
+
+@pytest.mark.django_db
+def test_updates_can_showcase_membership_or_donation_data(client, member):
+    # arrange, and assert that profile does not render expected message
+    client.force_login(member)
+    resp = client.get("/profile/")
+    assert (
+        "You granted permission to the AHS to showcase your membership tier or donation."
+        not in resp.content.decode("utf-8")
+    )
+
+    # act
+    data = {**model_to_dict(member), "can_showcase_membership_or_donation_data": True}
+    resp = client.post(f"/edit-member/{member.id}", data=data)
+    assert resp.status_code == 302
+
+    # assert
+    resp = client.get("/profile/")
+    assert (
+        "You granted permission to the AHS to showcase your membership tier or donation."
+        in resp.content.decode("utf-8")
+    )
