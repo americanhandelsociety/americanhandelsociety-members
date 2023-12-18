@@ -1,5 +1,6 @@
 import uuid
 
+from django.utils.functional import cached_property
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.base_user import BaseUserManager
@@ -118,6 +119,15 @@ class Member(AbstractUser):
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = ["first_name", "last_name"]
+
+    @cached_property
+    def is_circle_member(self):
+        return self.membership_type in [
+            Member.MembershipType.RINALDO_CIRCLE,
+            Member.MembershipType.CLEOPATRA_CIRCLE,
+            Member.MembershipType.THEODORA_CIRCLE,
+            Member.MembershipType.MESSIAH_CIRCLE,
+        ]
 
 
 class Address(models.Model):

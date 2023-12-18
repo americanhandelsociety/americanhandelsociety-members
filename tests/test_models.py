@@ -158,3 +158,23 @@ def test_overdue_members_correctly_filter(mix_of_paid_and_overdue_members):
     assert (
         len(members) == 5
     ), f"Only expected 5 members with overdue payments, got {len(members)}."
+
+
+@pytest.mark.django_db
+def test_is_circle_member_returns_false(member):
+    assert member.is_circle_member == False
+
+
+@pytest.mark.django_db
+@pytest.mark.parametrize(
+    "choice",
+    [
+        Member.MembershipType.RINALDO_CIRCLE,
+        Member.MembershipType.CLEOPATRA_CIRCLE,
+        Member.MembershipType.THEODORA_CIRCLE,
+        Member.MembershipType.MESSIAH_CIRCLE,
+    ],
+)
+def test_is_circle_member_returns_true(choice, member):
+    member.membership_type = choice
+    assert member.is_circle_member == True
