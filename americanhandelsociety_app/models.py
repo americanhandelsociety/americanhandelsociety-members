@@ -110,6 +110,10 @@ class Member(AbstractUser):
         auto_now=True,
         null=True,
     )
+    can_showcase_membership_or_donation_data = models.BooleanField(
+        default=False,
+        help_text="Denotes if the AHS can showcase the member for being in a high membership 'tier' or contributing a donation to the society.",
+    )
     objects = MemberManager()
 
     USERNAME_FIELD = "email"
