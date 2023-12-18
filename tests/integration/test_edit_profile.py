@@ -2,7 +2,7 @@ import pytest
 
 from django.forms.models import model_to_dict
 
-from americanhandelsociety_app.models import Address
+from americanhandelsociety_app.models import Address, Member
 
 
 @pytest.mark.django_db
@@ -165,6 +165,24 @@ def test_update_institution(client, member):
 
     resp = client.get("/profile/")
     assert "Eastman School of Music" in resp.content.decode("utf-8")
+
+
+@pytest.mark.django_db
+def test_shows_extra_text_for_circle_member(client, member):
+    circle_member_only_text = (
+        "Are you a Rinaldo, Cleopatra, Theodora, or Messiah member?"
+    )
+    client.force_login(member)
+
+    # assert: regular member does not see extra text
+    resp = client.get(f"/edit-member/{member.id}")
+    assert circle_member_only_text not in resp.content.decode("utf-8")
+
+    # assert: "circle" member sees extra text
+    member.membership_type = Member.MembershipType.RINALDO_CIRCLE
+    member.save()
+    resp = client.get(f"/edit-member/{member.id}")
+    assert circle_member_only_text in resp.content.decode("utf-8")
 
 
 @pytest.mark.django_db
