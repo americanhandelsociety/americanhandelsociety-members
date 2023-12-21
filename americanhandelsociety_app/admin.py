@@ -35,7 +35,7 @@ class UpdatedPastMonthFilter(SimpleListFilter):
 
 
 class DuesPaymentStatusFilter(SimpleListFilter):
-    title = "Dues Payment"
+    title = "Dues Payment Status"
     parameter_name = "dues_payment"
 
     def lookups(self, request, model_admin):
@@ -45,32 +45,33 @@ class DuesPaymentStatusFilter(SimpleListFilter):
         ]
 
     def queryset(self, request, queryset):
-        return {
-            "paid": queryset.exclude(
+        val = self.value()
+        if val == "paid":
+            return queryset.exclude(
                 Q(is_member_via_other_organization=True)
                 | Q(membership_type=queryset.model.MembershipType.MESSIAH_CIRCLE)
-            ).filter(date_of_last_membership_payment__year=year_now()),
-            "outstanding": queryset.exclude(
+            ).filter(date_of_last_membership_payment__year=year_now())
+        if val == "outstanding":
+            return queryset.exclude(
                 Q(is_member_via_other_organization=True)
                 | Q(membership_type=queryset.model.MembershipType.MESSIAH_CIRCLE)
-            ).filter(date_of_last_membership_payment__year=year_now() - 1),
-        }.get(self.value(), queryset)
+            ).filter(date_of_last_membership_payment__year=year_now() - 1)
+        return queryset
 
 
 class MessiahCircleFilter(SimpleListFilter):
-    title = "Messiah Circle Members"
+    title = "Lifetime Membership Status"
     parameter_name = "lifetime_membership"
 
     def lookups(self, request, model_admin):
         return [("messiah_circle", "Messiah Circle Lifetime Members")]
 
     def queryset(self, request, queryset):
-        val = self.value()
-        if not val or val != "messiah_circle":
-            return queryset
-        return queryset.filter(
-            membership_type=queryset.model.MembershipType.MESSIAH_CIRCLE
-        )
+        if self.value() == "messiah_circle":
+            return queryset.filter(
+                membership_type=queryset.model.MembershipType.MESSIAH_CIRCLE
+            )
+        return queryset
 
 
 ##############

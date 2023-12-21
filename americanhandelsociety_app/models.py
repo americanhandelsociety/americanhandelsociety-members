@@ -122,7 +122,7 @@ class Member(AbstractUser):
 
     @admin_list_display(description=f"{year_now()} Dues Payment Satisfied")
     def dues_paid_current_calendar_year(self):
-        """Property used in the django admin to reflect payment status.
+        """Method used in the django admin to reflect payment status.
 
         Returns str:
            - None: if not-applicable (Messiah Circle, Other Orgs)
@@ -130,7 +130,7 @@ class Member(AbstractUser):
            - "No" - if not paid this calendar year
 
         As a note, the "No" does not distinguish if the payment was last year or a prior year,
-        meaning that this property is likely unsuitable for e-mail use which targets only members
+        meaning that this method unsuitable for e-mail use which targets only members
         whose are outstanding in due payment and whose last payment was the last calendar year.
         """
         if (
@@ -144,7 +144,7 @@ class Member(AbstractUser):
 
     @admin_list_display(description="Updated Past Month")
     def updated_past_month(self):
-        """Property used in the django admin to reflect profile update status.
+        """Method used in the django admin to reflect profile update status.
 
         Returns str:
            - None: if no update or updated > one month
@@ -158,7 +158,7 @@ class Member(AbstractUser):
 
     @admin_list_display(description="Membership Type")
     def membership(self):
-        """Property used in the django admin to reflect membership type,
+        """Method used in the django admin to reflect membership type,
         formatted.
 
         Nota bene: django expects the second value (first index) in an enum-choices
@@ -174,10 +174,7 @@ class Member(AbstractUser):
         if not self.membership_type:
             return
         if "_" in self.membership_type:
-            membership_str_to_use = self.membership_type
-            if self.membership_type == self.MembershipType.MESSIAH_CIRCLE:
-                membership_str_to_use = f"{membership_str_to_use}_(Lifetime)"
-            return " ".join([val.title() for val in membership_str_to_use.split("_")])
+            return " ".join([val.title() for val in self.membership_type.split("_")])
         return self.membership_type.title()
 
 

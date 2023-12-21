@@ -206,5 +206,5 @@ def test_model_membership_admin_display_method(members_of_all_types):
         "Rinaldo Circle",
         "Cleopatra Circle",
         "Theodora Circle",
-        "Messiah Circle (Lifetime)",
+        "Messiah Circle",
     } == set(member.membership() for member in Member.objects.all())
