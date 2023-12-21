@@ -116,6 +116,10 @@ class Member(AbstractUser):
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = ["first_name", "last_name"]
 
+    #########################
+    # ADMIN DISPLAY METHODS #
+    #########################
+
     @admin_list_display(description=f"{year_now()} Dues Payment Satisfied")
     def dues_paid_current_calendar_year(self):
         """Property used in the django admin to reflect payment status.

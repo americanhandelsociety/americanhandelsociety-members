@@ -58,9 +58,9 @@ def test_new_members_appear_in_filter_by_default(
     assert member == filter_values[0]
 
 
-##############################
-# DUES PAYMENT STATUS FILTER #
-##############################
+#####################################
+# DUES PAYMENT STATUS FILTER  TESTS #
+#####################################
 
 
 @travel("2023-12-01")
@@ -97,9 +97,9 @@ def test_dues_payment_no_keywords_on_filter(mix_of_paid_and_overdue_members):
     assert filter_values.count() == 15
 
 
-##############################
-# LIFETIME MEMBERSHIP FILTER #
-##############################
+#####################################
+# LIFETIME MEMBERSHIP FILTER TESTS #
+#####################################
 
 
 @pytest.mark.django_db

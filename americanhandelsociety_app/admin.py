@@ -10,6 +10,10 @@ from .models import Member, Address
 from django.contrib.admin import SimpleListFilter
 from americanhandelsociety_app.utils import year_now
 
+###############################
+# CUSTOM MEMBER ADMIN FILTERS #
+###############################
+
 
 class UpdatedPastMonthFilter(SimpleListFilter):
     title = "Updated Past Month"
@@ -67,6 +71,11 @@ class MessiahCircleFilter(SimpleListFilter):
         return queryset.filter(
             membership_type=queryset.model.MembershipType.MESSIAH_CIRCLE
         )
+
+
+##############
+# ADMIN SITE #
+##############
 
 
 class Admin(UserAdmin):
