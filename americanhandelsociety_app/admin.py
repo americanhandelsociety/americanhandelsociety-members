@@ -30,7 +30,7 @@ class UpdatedPastMonthFilter(SimpleListFilter):
             return queryset.filter(last_updated__gte=past_month)
 
 
-class DuesPaymentStatus(SimpleListFilter):
+class DuesPaymentStatusFilter(SimpleListFilter):
     title = "Dues Payment"
     parameter_name = "dues_payment"
 
@@ -99,7 +99,7 @@ class Admin(UserAdmin):
         "is_active",
         "id",
         UpdatedPastMonthFilter,
-        DuesPaymentStatus,
+        DuesPaymentStatusFilter,
         MessiahCircleFilter,
     )
     fieldsets = (

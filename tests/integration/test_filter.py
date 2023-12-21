@@ -6,7 +6,7 @@ from django.contrib.admin.sites import AdminSite
 from americanhandelsociety_app.admin import (
     Admin,
     UpdatedPastMonthFilter,
-    DuesPaymentStatus,
+    DuesPaymentStatusFilter,
     MessiahCircleFilter,
 )
 from americanhandelsociety_app.models import Member
@@ -66,7 +66,9 @@ def test_new_members_appear_in_filter_by_default(
 @travel("2023-12-01")
 @pytest.mark.django_db
 def test_dues_payment_up_to_date_filter(mix_of_paid_and_overdue_members):
-    admin_filter = DuesPaymentStatus(None, {"dues_payment": "paid"}, Member, Admin)
+    admin_filter = DuesPaymentStatusFilter(
+        None, {"dues_payment": "paid"}, Member, Admin
+    )
     filter_values = admin_filter.queryset(None, Member.objects.all())
     assert filter_values.count() == 2
     assert all(
@@ -77,7 +79,7 @@ def test_dues_payment_up_to_date_filter(mix_of_paid_and_overdue_members):
 @travel("2023-12-01")
 @pytest.mark.django_db
 def test_dues_payment_outstanding_filter(mix_of_paid_and_overdue_members):
-    admin_filter = DuesPaymentStatus(
+    admin_filter = DuesPaymentStatusFilter(
         None, {"dues_payment": "outstanding"}, Member, Admin
     )
     filter_values = admin_filter.queryset(None, Member.objects.all())
@@ -90,7 +92,7 @@ def test_dues_payment_outstanding_filter(mix_of_paid_and_overdue_members):
 @travel("2023-12-01")
 @pytest.mark.django_db
 def test_dues_payment_not_applicable_filter(mix_of_paid_and_overdue_members):
-    admin_filter = DuesPaymentStatus(
+    admin_filter = DuesPaymentStatusFilter(
         None, {"dues_payment": "not_applicable"}, Member, Admin
     )
     filter_values = admin_filter.queryset(None, Member.objects.all())
@@ -109,7 +111,7 @@ def test_dues_payment_not_applicable_filter(mix_of_paid_and_overdue_members):
 @travel("2023-12-01")
 @pytest.mark.django_db
 def test_dues_payment_no_keywords_on_filter(mix_of_paid_and_overdue_members):
-    admin_filter = DuesPaymentStatus(None, {}, Member, Admin)
+    admin_filter = DuesPaymentStatusFilter(None, {}, Member, Admin)
     filter_values = admin_filter.queryset(None, Member.objects.all())
     assert filter_values.count() == 15
 
