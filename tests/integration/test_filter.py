@@ -12,6 +12,51 @@ from americanhandelsociety_app.admin import (
 from americanhandelsociety_app.models import Member
 from time_machine import travel
 
+#############################
+# last_updated FILTER TESTS #
+#############################
+
+
+@pytest.mark.django_db
+def test_existing_members_dont_appear_in_filter_as_recently_updated(
+    artificially_backdated_pre_004_migration_members,
+):
+    qs = Member.objects.all()
+    updated_past_month_filter = UpdatedPastMonthFilter(
+        None, {"updated_past_month": "updated"}, Member, Admin
+    )
+    filter_values = updated_past_month_filter.queryset(None, qs)
+    assert filter_values.count() == 0
+
+
+@pytest.mark.django_db
+def test_existing_members_appear_in_filter_after_update(
+    artificially_backdated_pre_004_migration_members, address
+):
+    qs = Member.objects.all()
+    random_member = choice(qs)
+    random_member.address = address
+    random_member.save()
+    updated_past_month_filter = UpdatedPastMonthFilter(
+        None, {"updated_past_month": "updated"}, Member, Admin
+    )
+    filter_values = updated_past_month_filter.queryset(None, qs)
+    assert filter_values.count() == 1
+    assert random_member == filter_values[0]
+
+
+@pytest.mark.django_db
+def test_new_members_appear_in_filter_by_default(
+    artificially_backdated_pre_004_migration_members, member
+):
+    qs = Member.objects.all()
+    updated_past_month_filter = UpdatedPastMonthFilter(
+        None, {"updated_past_month": "updated"}, Member, Admin
+    )
+    filter_values = updated_past_month_filter.queryset(None, qs)
+    assert filter_values.count() == 1
+    assert member == filter_values[0]
+
 
 ##############################
 # DUES PAYMENT STATUS FILTER #

@@ -90,17 +90,6 @@ class Admin(UserAdmin):
         "dues_paid_current_calendar_year",
     )
 
-    def updated_past_month(self, obj):
-        if not obj.last_updated:
-            return None
-        if obj.last_updated >= (
-            datetime.utcnow().replace(tzinfo=timezone.utc) - relativedelta(days=30)
-        ):
-            return "Yes"
-        return None
-
-    updated_past_month.short_description = "Updated Past Month"
-
     list_filter = (
         "email",
         "available_in_directory",

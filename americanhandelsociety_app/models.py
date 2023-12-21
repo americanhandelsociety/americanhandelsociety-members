@@ -6,7 +6,7 @@ from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.base_user import BaseUserManager
 from django.forms.models import model_to_dict
 from django.utils import timezone
-from americanhandelsociety_app.utils import year_now
+from americanhandelsociety_app.utils import year_now, past_month
 
 
 class MemberManager(BaseUserManager):
@@ -137,6 +137,20 @@ class Member(AbstractUser):
         if self.date_of_last_membership_payment.year == year_now():
             return "Yes"
         return "No"
+
+    @admin_list_display(description="Updated Past Month")
+    def updated_past_month(self):
+        """Property used in the django admin to reflect profile update status.
+
+        Returns str:
+           - None: if no update or updated > one month
+           - "Yes" - if updated within the past month
+        """
+        if not self.last_updated:
+            return None
+        if self.last_updated >= past_month():
+            return "Yes"
+        return None
 
     @admin_list_display(description="Membership Type")
     def membership(self):
