@@ -91,25 +91,6 @@ def test_dues_payment_outstanding_filter(mix_of_paid_and_overdue_members):
 
 @travel("2023-12-01")
 @pytest.mark.django_db
-def test_dues_payment_not_applicable_filter(mix_of_paid_and_overdue_members):
-    admin_filter = DuesPaymentStatusFilter(
-        None, {"dues_payment": "not_applicable"}, Member, Admin
-    )
-    filter_values = admin_filter.queryset(None, Member.objects.all())
-    assert filter_values.count() == 4
-    assert (
-        filter_values.filter(
-            membership_type=Member.MembershipType.MESSIAH_CIRCLE
-        ).count()
-        == 3
-    ), "Messiah Circle members count unexpected"
-    assert (
-        filter_values.filter(is_member_via_other_organization=True).count() == 1
-    ), "Other Org members count unexpeted"
-
-
-@travel("2023-12-01")
-@pytest.mark.django_db
 def test_dues_payment_no_keywords_on_filter(mix_of_paid_and_overdue_members):
     admin_filter = DuesPaymentStatusFilter(None, {}, Member, Admin)
     filter_values = admin_filter.queryset(None, Member.objects.all())

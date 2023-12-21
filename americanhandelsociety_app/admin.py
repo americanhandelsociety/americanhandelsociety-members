@@ -38,7 +38,6 @@ class DuesPaymentStatusFilter(SimpleListFilter):
         return [
             ("paid", "Dues Paid Current Year"),
             ("outstanding", "Dues Outstanding Current Year"),
-            ("not_applicable", "Dues Payment Not-Applicable"),
         ]
 
     def queryset(self, request, queryset):
@@ -51,10 +50,6 @@ class DuesPaymentStatusFilter(SimpleListFilter):
                 Q(is_member_via_other_organization=True)
                 | Q(membership_type=queryset.model.MembershipType.MESSIAH_CIRCLE)
             ).filter(date_of_last_membership_payment__year=year_now() - 1),
-            "not_applicable": queryset.filter(
-                Q(is_member_via_other_organization=True)
-                | Q(membership_type=queryset.model.MembershipType.MESSIAH_CIRCLE)
-            ),
         }.get(self.value(), queryset)
 
 
