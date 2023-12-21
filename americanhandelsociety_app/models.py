@@ -1,6 +1,7 @@
 import uuid
 
 from django.db import models
+from django.contrib.admin import display as admin_list_display
 from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.base_user import BaseUserManager
 from django.forms.models import model_to_dict
@@ -114,6 +115,28 @@ class Member(AbstractUser):
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = ["first_name", "last_name"]
+
+    @admin_list_display(description=f"{year_now()} Dues Payment Satisfied")
+    def dues_paid_current_calendar_year(self):
+        """Property used in the django admin to reflect payment status.
+
+        Returns str:
+           - None: if not-applicable (Messiah Circle, Other Orgs)
+           - "Yes" - if paid this calendar year
+           - "No" - if not paid this calendar year
+
+        As a note, the "No" does not distinguish if the payment was last year or a prior year,
+        meaning that this property is likely unsuitable for e-mail use which targets only members
+        whose are outstanding in due payment and whose last payment was the last calendar year.
+        """
+        if (
+            self.membership_type == self.MembershipType.MESSIAH_CIRCLE
+            or self.is_member_via_other_organization
+        ):
+            return
+        if self.date_of_last_membership_payment.year == year_now():
+            return "Yes"
+        return "No"
 
 
 class Address(models.Model):
