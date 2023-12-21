@@ -58,11 +58,28 @@ class DuesPaymentStatus(SimpleListFilter):
         }.get(self.value(), queryset)
 
 
+class MessiahCircleFilter(SimpleListFilter):
+    title = "Messiah Circle Members"
+    parameter_name = "lifetime_membership"
+
+    def lookups(self, request, model_admin):
+        return [("messiah_circle", "Messiah Circle Lifetime Members")]
+
+    def queryset(self, request, queryset):
+        val = self.value()
+        if not val or val != "messiah_circle":
+            return queryset
+        return queryset.filter(
+            membership_type=queryset.model.MembershipType.MESSIAH_CIRCLE
+        )
+
+
 class Admin(UserAdmin):
     model = Member
     list_display = (
         "first_name",
         "last_name",
+        "membership",
         "email",
         "id",
         "address",
@@ -94,6 +111,7 @@ class Admin(UserAdmin):
         "id",
         UpdatedPastMonthFilter,
         DuesPaymentStatus,
+        MessiahCircleFilter,
     )
     fieldsets = (
         ("Authentication", {"fields": ("email", "password")}),

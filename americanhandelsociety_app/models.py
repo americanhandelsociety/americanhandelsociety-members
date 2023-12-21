@@ -138,6 +138,30 @@ class Member(AbstractUser):
             return "Yes"
         return "No"
 
+    @admin_list_display(description="Membership Type")
+    def membership(self):
+        """Property used in the django admin to reflect membership type,
+        formatted.
+
+        Nota bene: django expects the second value (first index) in an enum-choices
+        type to be the human-readable representation of the value.
+        c.f. /4.0/ref/models/fields/#django.db.models.Field.choices
+        However, in MembershipType, that first index is the price. Simply
+        putting `membership_type` into the admin list display will display
+        the cost rather than the type. This method fixes that display issue
+        based on the django assumption and also formats the types.
+
+        Returns str or none
+        """
+        if not self.membership_type:
+            return
+        if "_" in self.membership_type:
+            membership_str_to_use = self.membership_type
+            if self.membership_type == self.MembershipType.MESSIAH_CIRCLE:
+                membership_str_to_use = f"{membership_str_to_use}_(Lifetime)"
+            return " ".join([val.title() for val in membership_str_to_use.split("_")])
+        return self.membership_type.title()
+
 
 class Address(models.Model):
     street_address = models.CharField(max_length=500)
