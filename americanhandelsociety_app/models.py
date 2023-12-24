@@ -125,8 +125,7 @@ class Member(AbstractUser):
         """Method used in the django admin to reflect payment status.
 
         Returns str:
-           - None: if not-applicable (Messiah Circle, Other Orgs)
-           - "Yes" - if paid this calendar year
+           - "Yes" - if paid this calendar year or lifetime membership or joint org membership
            - "No" - if not paid this calendar year
 
         As a note, the "No" does not distinguish if the payment was last year or a prior year,
@@ -136,9 +135,8 @@ class Member(AbstractUser):
         if (
             self.membership_type == self.MembershipType.MESSIAH_CIRCLE
             or self.is_member_via_other_organization
+            or self.date_of_last_membership_payment.year == year_now()
         ):
-            return
-        if self.date_of_last_membership_payment.year == year_now():
             return "Yes"
         return "No"
 

@@ -167,9 +167,8 @@ def test_model_dues_payment_status_admin_display_method(
     statuses = [
         member.dues_paid_current_calendar_year() for member in Member.objects.all()
     ]
-    assert len(list(filter(lambda x: x == "Yes", statuses))) == 2
+    assert len(list(filter(lambda x: x == "Yes", statuses))) == 6
     assert len(list(filter(lambda x: x == "No", statuses))) == 9
-    assert len(list(filter(lambda x: x == None, statuses))) == 4
 
 
 @pytest.mark.django_db
