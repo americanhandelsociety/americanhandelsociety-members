@@ -31,16 +31,16 @@
 						<p>{{ request.user.address.country }}</p>
 					{% endif %}
 				</div>
-				<div class="col-xs-12 mt-2">
-					{% if request.user.contact_preference %}
+				{% if request.user.contact_preference %}
+					<div class="col-xs-12 mt-2">
 						<p><i class="fa-solid fa-envelope-open-text"></i> You receive the AHS newsletter in <strong>{{request.user.contact_preference|format_contact_preference}}</strong> format.</p>
-					{% endif %}
-				</div>
-				<div class="col-xs-12 mt-2">
-					{% if request.user.can_showcase_membership_or_donation_data %}
-						<p><i class="fa-solid fa-handshake"></i> You granted permission to the AHS to showcase your membership tier or donation.</p>
-					{% endif %}
-				</div>
+					</div>
+				{% endif %}
+				{% if request.user.is_circle_member %}
+					<div class="col-xs-12 mt-2">
+						<p><i class="fa-solid fa-handshake"></i> {{request.user.publish_member_name_consent|format_publish_member_name_consent}}</p>
+					</div>
+				{% endif %}
 				<div class="col-xs-12 mt-2">
 					{% if request.user.available_in_directory %}
 						<p class="pb-4"><i class="fas fa-eye"></i> Members of the AHS can view your information in the online Members Directory.</p>
