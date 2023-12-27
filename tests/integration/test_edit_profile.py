@@ -168,41 +168,43 @@ def test_update_institution(client, member):
 
 
 @pytest.mark.django_db
-def test_shows_extra_text_for_circle_member(client, member):
-    circle_member_only_text = (
-        "Are you a Rinaldo, Cleopatra, Theodora, or Messiah member?"
-    )
+def test_does_not_render_publish_member_name_consent_field_for_regular_member(
+    client, member
+):
     client.force_login(member)
-
-    # assert: regular member does not see extra text
     resp = client.get(f"/edit-member/{member.id}")
-    assert circle_member_only_text not in resp.content.decode("utf-8")
-
-    # assert: "circle" member sees extra text
-    member.membership_type = Member.MembershipType.RINALDO_CIRCLE
-    member.save()
-    resp = client.get(f"/edit-member/{member.id}")
-    assert circle_member_only_text in resp.content.decode("utf-8")
-
-
-@pytest.mark.django_db
-def test_updates_can_showcase_membership_or_donation_data(client, member):
-    # arrange, and assert that profile does not render expected message
-    client.force_login(member)
-    resp = client.get("/profile/")
     assert (
-        "You granted permission to the AHS to showcase your membership tier or donation."
+        "Rinaldo, Cleopatra, Theodora, and Messiah Circle members: do you consent to publishing your name and membership tier in the AHS newsletter and on the website?"
         not in resp.content.decode("utf-8")
     )
 
+
+@pytest.mark.django_db
+def test_renders_publish_member_name_consent_field_for_circle_member(
+    client, circle_member
+):
+    client.force_login(circle_member)
+    resp = client.get(f"/edit-member/{circle_member.id}")
+    assert (
+        "Rinaldo, Cleopatra, Theodora, and Messiah Circle members: do you consent to publishing your name and membership tier in the AHS newsletter and on the website?"
+        in resp.content.decode("utf-8")
+    )
+
+
+@pytest.mark.django_db
+def test_updates_publish_member_name_consent(client, circle_member):
+    consent_text = "You granted permission to publish your name and membership tier."
+
+    # arrange, and assert that the profile view does not render expected message
+    client.force_login(circle_member)
+    resp = client.get("/profile/")
+    assert consent_text not in resp.content.decode("utf-8")
+
     # act
-    data = {**model_to_dict(member), "can_showcase_membership_or_donation_data": True}
-    resp = client.post(f"/edit-member/{member.id}", data=data)
+    data = {**model_to_dict(circle_member), "publish_member_name_consent": "YES"}
+    resp = client.post(f"/edit-member/{circle_member.id}", data=data)
     assert resp.status_code == 302
 
     # assert
     resp = client.get("/profile/")
-    assert (
-        "You granted permission to the AHS to showcase your membership tier or donation."
-        in resp.content.decode("utf-8")
-    )
+    assert consent_text in resp.content.decode("utf-8")

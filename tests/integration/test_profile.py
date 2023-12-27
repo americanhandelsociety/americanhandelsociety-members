@@ -54,6 +54,31 @@ def test_profile_hides_address_info_when_member_has_no_address(client, member):
 
 
 @pytest.mark.django_db
+@pytest.mark.parametrize(
+    "consent_choice, profile_text",
+    [
+        ("YES", "You granted permission to publish your name and membership tier."),
+        (
+            "NO",
+            "You did not grant permission to publish your name and membership tier.",
+        ),
+        (
+            "ANONYMOUS",
+            "You granted permission to publish your membership tier, but to display your name as &#x27;Anonymous.&#x27;",
+        ),
+    ],
+)
+def test_profile_shows_formatted_publish_member_name_consent(
+    client, circle_member, consent_choice, profile_text
+):
+    circle_member.publish_member_name_consent = consent_choice
+    circle_member.save()
+    client.force_login(circle_member)
+    resp = client.get("/profile/")
+    assert profile_text in resp.content.decode("utf-8")
+
+
+@pytest.mark.django_db
 def test_profile_shows_user_directory_preference(
     client, member, member_not_in_directory
 ):

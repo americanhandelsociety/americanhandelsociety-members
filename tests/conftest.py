@@ -185,6 +185,26 @@ def member(address):
 
 
 @pytest.fixture
+def circle_member(address):
+    data = {
+        "email": "frasi@london.en",
+        "password": "theodora",
+        "first_name": "Giulia",
+        "last_name": "Frasi",
+        "available_in_directory": True,
+        "membership_type": Member.MembershipType.THEODORA_CIRCLE,
+        "contact_preference": "EMAIL",
+        "phone_number": "44 20 1750 1685",
+        "institution": "Covent Garden",
+        "address": address,
+    }
+
+    member = Member.objects.create(**data)
+
+    return member
+
+
+@pytest.fixture
 def member_not_in_directory():
     data = {
         "email": "gismonda@rome.sa",
