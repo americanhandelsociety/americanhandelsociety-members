@@ -56,12 +56,13 @@
         <label class="label-with-border" for="id_contact_preference">Indicate how you prefer to receive the AHS Newsletter.</label>{{form.contact_preference}}
         {{ form.contact_preference.errors }}
 
-        <div class="checkbox-container">
-            {{form.available_in_directory}} Check this box to be included in the online members directory. (Only members of the American Handel Society can view this directory.)
-        </div>
+        {% if form.publish_member_name_consent %}
+            <label for="id_publish_member_name_consent">Rinaldo, Cleopatra, Theodora, and Messiah Circle members: do you consent to publishing your name and membership tier in the AHS newsletter and on the website?</label>{{form.publish_member_name_consent}}
+            {{form.publish_member_name_consent.errors}}
+        {% endif %}
 
         <div class="checkbox-container">
-            {{form.can_showcase_membership_or_donation_data}} {% if is_circle_member == True %}Are you a Rinaldo, Cleopatra, Theodora, or Messiah member?{% endif %} Have you recently made or plan to make a donation to the AHS? Check this box to be showcased in the newsletter and/or on the website.
+            {{form.available_in_directory}} Check this box to be included in the online members directory. (Only members of the American Handel Society can view this directory.)
         </div>
 
         <div class="flex-container-row small">
