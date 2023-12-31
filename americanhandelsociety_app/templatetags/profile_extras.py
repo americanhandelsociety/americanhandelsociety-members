@@ -18,4 +18,4 @@ def format_publish_member_name_consent(value):
     elif value == "NO":
         return "You did not grant permission to publish your name and membership tier."
     elif value == "ANONYMOUS":
-        return "You granted permission to publish your membership tier, but to display your name as 'Anonymous.'"
+        return 'You granted permission to publish your membership tier, but to display your name as "Anonymous."'

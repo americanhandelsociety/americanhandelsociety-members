@@ -64,7 +64,7 @@ def test_profile_hides_address_info_when_member_has_no_address(client, member):
         ),
         (
             "ANONYMOUS",
-            "You granted permission to publish your membership tier, but to display your name as &#x27;Anonymous.&#x27;",
+            "You granted permission to publish your membership tier, but to display your name as &quot;Anonymous.&quot;",
         ),
     ],
 )
