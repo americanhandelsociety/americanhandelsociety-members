@@ -103,7 +103,7 @@ def test_update_available_in_directory(client, member):
 
     resp = client.get("/profile/")
     assert (
-        "Members of the AHS cannot view your information in the online Members Directory."
+        "Members of the AHS cannot view your information in the online membership directory."
         in resp.content.decode("utf-8")
     )
 
@@ -113,7 +113,7 @@ def test_update_available_in_directory(client, member):
 
     resp = client.get("/profile/")
     assert (
-        "Members of the AHS can view your information in the online Members Directory."
+        "Members of the AHS can view your information in the online membership directory."
         in resp.content.decode("utf-8")
     )
 

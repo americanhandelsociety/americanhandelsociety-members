@@ -85,14 +85,14 @@ def test_profile_shows_user_directory_preference(
     client.force_login(member)
     resp = client.get("/profile/")
     assert (
-        "Members of the AHS can view your information in the online Members Directory."
+        "Members of the AHS can view your information in the online membership directory."
         in resp.content.decode("utf-8")
     )
 
     client.force_login(member_not_in_directory)
     resp = client.get("/profile/")
     assert (
-        "Members of the AHS cannot view your information in the online Members Directory."
+        "Members of the AHS cannot view your information in the online membership directory."
         in resp.content.decode("utf-8")
     )
 
