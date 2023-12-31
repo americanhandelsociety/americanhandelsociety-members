@@ -69,7 +69,7 @@ class Member(AbstractUser):
     class ConsentChoice(BaseTextChoices):
         NO = "NO", "No"
         YES = "YES", "Yes"
-        ANONYMOUS = "ANONYMOUS", "Yes, but display member name as 'Anonymous'"
+        ANONYMOUS = "ANONYMOUS", 'Yes, but display name as "Anonymous"'
 
     id = models.UUIDField(
         primary_key=True, unique=True, default=uuid.uuid4, editable=False
