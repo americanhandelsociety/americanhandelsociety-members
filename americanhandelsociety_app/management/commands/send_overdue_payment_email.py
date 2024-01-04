@@ -107,7 +107,10 @@ class Command(BaseCommand):
 
     def send_overdue_payment_mail(self):
         if is_january():
-            logger.info("Is January: intentionally skipping e-mail sending this month.")
+            if today_is_first_of_month():
+                logger.info(
+                    "Is January: intentionally skipping e-mail sending this month."
+                )
             return
         if today_is_first_of_month():
             send_and_log(Member.objects.dues_payment_pending())
