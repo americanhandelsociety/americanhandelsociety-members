@@ -267,3 +267,23 @@ def mix_of_paid_and_overdue_members():
         )
     ]
     return members_list
+
+
+@pytest.fixture
+def members_of_all_types():
+    def not_dunder(dir_val):
+        dunder_fix = "__"
+        return not dir_val.startswith(dunder_fix) and not dir_val.endswith(dunder_fix)
+
+    return [
+        Member.objects.create(
+            first_name=generate_random_string(),
+            last_name=generate_random_string(),
+            email=f"{generate_random_string(length=5)}@ahs.com",
+            membership_type=mem_type,
+        )
+        for mem_type in list(
+            filter(lambda x: not_dunder(x), dir(Member.MembershipType))
+        )
+    ]
+    return members_list

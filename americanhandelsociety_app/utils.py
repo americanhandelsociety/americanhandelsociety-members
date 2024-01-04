@@ -1,5 +1,6 @@
 import re
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
+from dateutil.relativedelta import relativedelta
 
 
 def make_invoice_for_join(member_id: str):
@@ -32,3 +33,7 @@ def is_january():
 def is_december():
     """Final notice sent this month."""
     return datetime.now(timezone.utc).month == 12
+
+
+def past_month():
+    return datetime.utcnow().replace(tzinfo=timezone.utc) - relativedelta(days=30)
