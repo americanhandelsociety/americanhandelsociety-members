@@ -76,7 +76,7 @@ def test_overdue_members_sends_mail_without_error(
     assert len(result) == 0
 
 
-@travel("2023-12-01")
+@travel(f"{year_now()}-12-01")
 @pytest.mark.django_db
 def test_exception_handling_for_overdue_payment_email(
     mix_of_paid_and_overdue_members,
@@ -112,7 +112,7 @@ def test_management_command_sends_on_appropriate_date(
     with travel("1685-02-23"):
         command.send_overdue_payment_mail()
         mock_send_mail_in_command.assert_not_called()
-    with travel("2023-03-01"):
+    with travel(f"{year_now()}-03-01"):
         # Time warp
         command.send_overdue_payment_mail()
         mock_send_mail_in_command.assert_has_calls(

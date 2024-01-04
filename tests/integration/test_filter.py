@@ -11,6 +11,7 @@ from americanhandelsociety_app.admin import (
 )
 from americanhandelsociety_app.models import Member
 from time_machine import travel
+from americanhandelsociety_app.utils import year_now
 
 #############################
 # last_updated FILTER TESTS #
@@ -63,7 +64,7 @@ def test_new_members_appear_in_filter_by_default(
 #####################################
 
 
-@travel("2023-12-01")
+@travel(f"{year_now()}-12-01")
 @pytest.mark.django_db
 def test_dues_payment_up_to_date_filter(mix_of_paid_and_overdue_members):
     admin_filter = DuesPaymentStatusFilter(
@@ -72,11 +73,12 @@ def test_dues_payment_up_to_date_filter(mix_of_paid_and_overdue_members):
     filter_values = admin_filter.queryset(None, Member.objects.all())
     assert filter_values.count() == 2
     assert all(
-        member.date_of_last_membership_payment.year == 2023 for member in filter_values
+        member.date_of_last_membership_payment.year == year_now()
+        for member in filter_values
     )
 
 
-@travel("2023-12-01")
+@travel(f"{year_now()}-12-01")
 @pytest.mark.django_db
 def test_dues_payment_outstanding_filter(mix_of_paid_and_overdue_members):
     admin_filter = DuesPaymentStatusFilter(
@@ -85,11 +87,12 @@ def test_dues_payment_outstanding_filter(mix_of_paid_and_overdue_members):
     filter_values = admin_filter.queryset(None, Member.objects.all())
     assert filter_values.count() == 5
     assert all(
-        member.date_of_last_membership_payment.year == 2022 for member in filter_values
+        member.date_of_last_membership_payment.year == year_now() - 1
+        for member in filter_values
     )
 
 
-@travel("2023-12-01")
+@travel(f"{year_now()}-12-01")
 @pytest.mark.django_db
 def test_dues_payment_no_keywords_on_filter(mix_of_paid_and_overdue_members):
     admin_filter = DuesPaymentStatusFilter(None, {}, Member, Admin)
