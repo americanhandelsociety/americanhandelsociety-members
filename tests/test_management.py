@@ -48,6 +48,16 @@ def mock_send_mail_in_command():
         yield mock
 
 
+@pytest.fixture
+def mock_email_command_logger():
+    with patch(
+        "americanhandelsociety_app.management.commands.send_overdue_payment_email.logger",
+        return_value=0,
+        autospec=True,
+    ) as mock:
+        yield mock
+
+
 #########
 # TESTS #
 #########
@@ -131,13 +141,30 @@ def test_management_command_sends_on_appropriate_date(
 
 @travel("1985-01-01")
 @pytest.mark.django_db
-def test_management_command_skips_skippable_months(
+def test_management_command_skips_skippable_months_but_logs_on_first(
     mix_of_paid_and_overdue_members,
     mock_send_and_log,
+    mock_email_command_logger,
 ):
     command = Command()
     command.send_overdue_payment_mail()
     mock_send_and_log.assert_not_called()
+    mock_email_command_logger.info.assert_has_calls(
+        [call("Is January: intentionally skipping e-mail sending this month.")]
+    )
+
+
+@travel("1985-01-07")
+@pytest.mark.django_db
+def test_management_command_skips_skippable_months_but_doesnt_log_on_other_days(
+    mix_of_paid_and_overdue_members,
+    mock_send_and_log,
+    mock_email_command_logger,
+):
+    command = Command()
+    command.send_overdue_payment_mail()
+    mock_send_and_log.assert_not_called()
+    mock_email_command_logger.info.assert_not_called()
 
 
 @travel("2024-12-01")
