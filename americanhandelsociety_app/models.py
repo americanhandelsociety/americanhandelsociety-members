@@ -1,13 +1,14 @@
 import uuid
 
 from django.db import models
+from django.contrib.admin import display as admin_list_display
 from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.base_user import BaseUserManager
 from django.forms.models import model_to_dict
 from django.utils import timezone
 
 from americanhandelsociety_app.models_utils import BaseTextChoices
-from americanhandelsociety_app.utils import year_now
+from americanhandelsociety_app.utils import year_now, past_month
 
 
 class MemberManager(BaseUserManager):
@@ -118,6 +119,65 @@ class Member(AbstractUser):
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = ["first_name", "last_name"]
+
+    #########################
+    # ADMIN DISPLAY METHODS #
+    #########################
+
+    @admin_list_display(description=f"{year_now()} Dues Payment Satisfied")
+    def dues_paid_current_calendar_year(self):
+        """Method used in the django admin to reflect payment status.
+
+        Returns str:
+           - "Yes" - if paid this calendar year or lifetime membership or joint org membership
+           - "No" - if not paid this calendar year
+
+        As a note, the "No" does not distinguish if the payment was last year or a prior year,
+        meaning that this method unsuitable for e-mail use which targets only members
+        whose are outstanding in due payment and whose last payment was the last calendar year.
+        """
+        if (
+            self.membership_type == self.MembershipType.MESSIAH_CIRCLE
+            or self.is_member_via_other_organization
+            or self.date_of_last_membership_payment.year == year_now()
+        ):
+            return "Yes"
+        return "No"
+
+    @admin_list_display(description="Updated Past Month")
+    def updated_past_month(self):
+        """Method used in the django admin to reflect profile update status.
+
+        Returns str:
+           - None: if no update or updated > one month
+           - "Yes" - if updated within the past month
+        """
+        if not self.last_updated:
+            return None
+        if self.last_updated >= past_month():
+            return "Yes"
+        return None
+
+    @admin_list_display(description="Membership Type")
+    def membership(self):
+        """Method used in the django admin to reflect membership type,
+        formatted.
+
+        Nota bene: django expects the second value (first index) in an enum-choices
+        type to be the human-readable representation of the value.
+        c.f. /4.0/ref/models/fields/#django.db.models.Field.choices
+        However, in MembershipType, that first index is the price. Simply
+        putting `membership_type` into the admin list display will display
+        the cost rather than the type. This method fixes that display issue
+        based on the django assumption and also formats the types.
+
+        Returns str or none
+        """
+        if not self.membership_type:
+            return
+        if "_" in self.membership_type:
+            return " ".join([val.title() for val in self.membership_type.split("_")])
+        return self.membership_type.title()
 
 
 class Address(models.Model):
