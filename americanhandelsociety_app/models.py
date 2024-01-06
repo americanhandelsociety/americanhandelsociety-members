@@ -6,6 +6,8 @@ from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.base_user import BaseUserManager
 from django.forms.models import model_to_dict
 from django.utils import timezone
+
+from americanhandelsociety_app.models_utils import BaseTextChoices
 from americanhandelsociety_app.utils import year_now, past_month
 
 
@@ -50,7 +52,7 @@ class MemberManager(BaseUserManager):
 
 
 class Member(AbstractUser):
-    class MembershipType(models.TextChoices):
+    class MembershipType(BaseTextChoices):
         REGULAR = "REGULAR", "40.00"
         STUDENT = "STUDENT", "20.00"
         RETIRED = "RETIRED", "20.00"
@@ -60,18 +62,15 @@ class Member(AbstractUser):
         THEODORA_CIRCLE = "THEODORA_CIRCLE", "250.00"
         MESSIAH_CIRCLE = "MESSIAH_CIRCLE", "500.00"
 
-        @classmethod
-        def max_length(cls):
-            return max(*(len(choice.value) for choice in cls))
-
-    class ContactPreference(models.TextChoices):
+    class ContactPreference(BaseTextChoices):
         PRINT = "PRINT"
         EMAIL = "EMAIL"
         BOTH = "BOTH"
 
-        @classmethod
-        def max_length(cls):
-            return max(*(len(choice.value) for choice in cls))
+    class ConsentChoice(BaseTextChoices):
+        NO = "NO", "No"
+        YES = "YES", "Yes"
+        ANONYMOUS = "ANONYMOUS", 'Yes, but display name as "Anonymous"'
 
     id = models.UUIDField(
         primary_key=True, unique=True, default=uuid.uuid4, editable=False
@@ -110,6 +109,11 @@ class Member(AbstractUser):
     last_updated = models.DateTimeField(
         auto_now=True,
         null=True,
+    )
+    publish_member_name_consent = models.CharField(
+        max_length=ConsentChoice.max_length(),
+        choices=ConsentChoice.choices,
+        default=ConsentChoice.NO,
     )
     objects = MemberManager()
 
