@@ -178,3 +178,52 @@ def test_is_circle_member_returns_false(member):
 def test_is_circle_member_returns_true(choice, member):
     member.membership_type = choice
     assert member.is_circle_member == True
+
+
+@pytest.mark.django_db
+def test_model_dues_payment_status_admin_display_method(
+    mix_of_paid_and_overdue_members,
+):
+    statuses = [
+        member.dues_paid_current_calendar_year() for member in Member.objects.all()
+    ]
+    assert len(list(filter(lambda x: x == "Yes", statuses))) == 6
+    assert len(list(filter(lambda x: x == "No", statuses))) == 9
+
+
+@pytest.mark.django_db
+def test_model_updated_past_month_model_class_admin_display_method(
+    artificially_backdated_pre_004_migration_members, address
+):
+    assert all(
+        not member.updated_past_month() for member in Member.objects.all()
+    ), "Preconditions not met"
+    random_member = random.choice(artificially_backdated_pre_004_migration_members)
+    random_member.address = address
+    random_member.save()
+    assert (
+        len(
+            list(
+                filter(
+                    lambda member: member.updated_past_month() == "Yes",
+                    Member.objects.all(),
+                )
+            )
+        )
+        == 1
+    )
+
+
+@pytest.mark.django_db
+def test_model_membership_admin_display_method(members_of_all_types):
+    # Mostly testing the formatting
+    assert {
+        "Regular",
+        "Student",
+        "Retired",
+        "Joint",
+        "Rinaldo Circle",
+        "Cleopatra Circle",
+        "Theodora Circle",
+        "Messiah Circle",
+    } == set(member.membership() for member in Member.objects.all())
