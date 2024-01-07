@@ -14,7 +14,7 @@
     <div class="flex-container-column">
         <h3>Update Information</h3>
         <p>Use this form to update your general membership information, mailing address, and preference to show or hide your
-            information in the members directory. You can learn how the American Handel Society uses your personal information by reading the <a href="{% url 'privacy-policy' %}" target="_blank">Privacy Policy</a>.</p>
+            information in the membership directory. You can learn how the American Handel Society uses your personal information by reading the <a href="{% url 'privacy-policy' %}" target="_blank">Privacy Policy</a>.</p>
     </div>
     <form method="post">{% csrf_token %}
         <label for="id_first_name">First name*</label>{{form.first_name}}
@@ -62,7 +62,7 @@
         {% endif %}
 
         <div class="checkbox-container">
-            {{form.available_in_directory}} Check this box to be included in the online members directory. (Only members of the American Handel Society can view this directory.)
+            {{form.available_in_directory}} Check this box to be included in the online membership directory. (Only members of the American Handel Society can view this directory.)
         </div>
 
         <div class="flex-container-row small">
