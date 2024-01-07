@@ -8,6 +8,17 @@ from captcha.fields import CaptchaField
 from .models import Member, Address
 
 
+BASE_MEMBER_CHANGE_FIELDS = [
+    "first_name",
+    "last_name",
+    "email",
+    "phone_number",
+    "institution",
+    "contact_preference",
+    "available_in_directory",
+]
+
+
 class MemberCreationForm(UserCreationForm):
     captcha = CaptchaField(
         error_messages=dict(invalid="Invalid captcha. Please try again.")
@@ -42,15 +53,14 @@ class MemberCreationForm(UserCreationForm):
 class MemberChangeForm(UserChangeForm):
     class Meta:
         model = Member
-        fields = (
-            "first_name",
-            "last_name",
-            "email",
-            "phone_number",
-            "institution",
-            "contact_preference",
-            "available_in_directory",
-        )
+        fields = [*BASE_MEMBER_CHANGE_FIELDS]
+        exclude = ["publish_member_name_consent"]
+
+
+class CircleMemberChangeForm(UserChangeForm):
+    class Meta:
+        model = Member
+        fields = [*BASE_MEMBER_CHANGE_FIELDS, "publish_member_name_consent"]
 
 
 class AddressChangeForm(ModelForm):

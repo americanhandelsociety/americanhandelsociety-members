@@ -34,6 +34,7 @@ from americanhandelsociety_app.constants import (
 )
 from americanhandelsociety_app.forms import (
     AddressChangeForm,
+    CircleMemberChangeForm,
     MemberChangeForm,
     MemberCreationForm,
 )
@@ -116,21 +117,34 @@ class EditMember(ProtectedView, View):
 
     def get(self, request, member_uuid):
         member = Member.objects.get(id=member_uuid)
-        form = MemberChangeForm(
-            initial={
-                "first_name": member.first_name,
-                "last_name": member.last_name,
-                "email": member.email,
-                "phone_number": member.phone_number,
-                "contact_preference": member.contact_preference,
-                "institution": member.institution,
-            },
-            instance=member,
-            use_required_attribute=False,
-        )
 
+        # instantiate Member form; Circle members require an additional form field
+        initial_form_data = {
+            "first_name": member.first_name,
+            "last_name": member.last_name,
+            "email": member.email,
+            "phone_number": member.phone_number,
+            "contact_preference": member.contact_preference,
+            "institution": member.institution,
+        }
+        if member.is_circle_member:
+            form = CircleMemberChangeForm(
+                initial={
+                    **initial_form_data,
+                    "publish_member_name_consent": member.publish_member_name_consent,
+                },
+                instance=member,
+                use_required_attribute=False,
+            )
+        else:
+            form = MemberChangeForm(
+                initial=initial_form_data,
+                instance=member,
+                use_required_attribute=False,
+            )
+
+        # instantiate Address form
         address = member.address
-
         try:
             initial_data = {
                 "street_address": address.street_address,
@@ -143,16 +157,23 @@ class EditMember(ProtectedView, View):
             }
         except AttributeError:
             initial_data = {}
-
         address_form = AddressChangeForm(initial=initial_data)
 
         return render(
-            request, self.template_name, {"form": form, "address_form": address_form}
+            request,
+            self.template_name,
+            {
+                "form": form,
+                "address_form": address_form,
+            },
         )
 
     def post(self, request, member_uuid):
         member = Member.objects.get(id=member_uuid)
-        form = MemberChangeForm(request.POST, instance=member)
+        if member.is_circle_member:
+            form = CircleMemberChangeForm(request.POST, instance=member)
+        else:
+            form = MemberChangeForm(request.POST, instance=member)
         address_form = AddressChangeForm(request.POST, instance=member.address)
 
         if form.is_valid() and address_form.is_valid():

@@ -161,6 +161,26 @@ def test_overdue_members_correctly_filter(mix_of_paid_and_overdue_members):
 
 
 @pytest.mark.django_db
+def test_is_circle_member_returns_false(member):
+    assert member.is_circle_member == False
+
+
+@pytest.mark.django_db
+@pytest.mark.parametrize(
+    "choice",
+    [
+        Member.MembershipType.RINALDO_CIRCLE,
+        Member.MembershipType.CLEOPATRA_CIRCLE,
+        Member.MembershipType.THEODORA_CIRCLE,
+        Member.MembershipType.MESSIAH_CIRCLE,
+    ],
+)
+def test_is_circle_member_returns_true(choice, member):
+    member.membership_type = choice
+    assert member.is_circle_member == True
+
+
+@pytest.mark.django_db
 def test_model_dues_payment_status_admin_display_method(
     mix_of_paid_and_overdue_members,
 ):

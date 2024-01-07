@@ -92,12 +92,14 @@ class Admin(UserAdmin):
         "date_of_last_membership_payment",
         "updated_past_month",
         "is_member_via_other_organization",
+        "publish_member_name_consent",
         "dues_paid_current_calendar_year",
     )
 
     list_filter = (
         "email",
         "available_in_directory",
+        "publish_member_name_consent",
         "address",
         "contact_preference",
         "is_staff",
@@ -123,6 +125,7 @@ class Admin(UserAdmin):
                     "available_in_directory",
                     "date_of_last_membership_payment",
                     "is_member_via_other_organization",
+                    "publish_member_name_consent",
                 )
             },
         ),

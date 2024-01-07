@@ -2,7 +2,7 @@ import pytest
 
 from django.forms.models import model_to_dict
 
-from americanhandelsociety_app.models import Address
+from americanhandelsociety_app.models import Address, Member
 
 
 @pytest.mark.django_db
@@ -165,3 +165,46 @@ def test_update_institution(client, member):
 
     resp = client.get("/profile/")
     assert "Eastman School of Music" in resp.content.decode("utf-8")
+
+
+@pytest.mark.django_db
+def test_does_not_render_publish_member_name_consent_field_for_regular_member(
+    client, member
+):
+    client.force_login(member)
+    resp = client.get(f"/edit-member/{member.id}")
+    assert (
+        "Rinaldo, Cleopatra, Theodora, and Messiah Circle members: do you consent to publishing your name and membership tier in the AHS newsletter and on the website?"
+        not in resp.content.decode("utf-8")
+    )
+
+
+@pytest.mark.django_db
+def test_renders_publish_member_name_consent_field_for_circle_member(
+    client, circle_member
+):
+    client.force_login(circle_member)
+    resp = client.get(f"/edit-member/{circle_member.id}")
+    assert (
+        "Rinaldo, Cleopatra, Theodora, and Messiah Circle members: do you consent to publishing your name and membership tier in the AHS newsletter and on the website?"
+        in resp.content.decode("utf-8")
+    )
+
+
+@pytest.mark.django_db
+def test_updates_publish_member_name_consent(client, circle_member):
+    consent_text = "You granted permission to publish your name and membership tier."
+
+    # arrange, and assert that the profile view does not render expected message
+    client.force_login(circle_member)
+    resp = client.get("/profile/")
+    assert consent_text not in resp.content.decode("utf-8")
+
+    # act
+    data = {**model_to_dict(circle_member), "publish_member_name_consent": "YES"}
+    resp = client.post(f"/edit-member/{circle_member.id}", data=data)
+    assert resp.status_code == 302
+
+    # assert
+    resp = client.get("/profile/")
+    assert consent_text in resp.content.decode("utf-8")
