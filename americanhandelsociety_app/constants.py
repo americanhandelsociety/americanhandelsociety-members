@@ -302,6 +302,18 @@ HOWARD_SERWER_LECTURES = [
 
 KNAPP_FELLOWSHIP_WINNERS = [
     {
+        "year": 2024,
+        "recipient": "Peter Kohanski",
+        "affiliation": "University of  North Texas",
+        "supported_research": 'To support research at the Historical Society of Pennsylvania for his dissertation "Sounding Britain, Crafting Self: Handel, Imperial Identities, and Eighteenth-Century Lives of Empire."',
+    },
+    {
+        "year": 2024,
+        "recipient": "Paul Feller",
+        "affiliation": "Northwestern University",
+        "supported_research": "To support travel to the Ets Haim Library and the Stadsarchief in Amsterdam for his doctoral project on intersection between Handel's music and the Dutch Sephardic community.",
+    },
+    {
         "year": 2022,
         "recipient": "Blake Johnson",
         "affiliation": "University of Missouri-Kansas City Conservatory",
@@ -327,7 +339,7 @@ KNAPP_FELLOWSHIP_WINNERS = [
     },
     {
         "year": 2016,
-        "recipient": "Matthew Gardner (runner-up)",
+        "recipient": "Matthew Gardner",
         "affiliation": "Goethe-Universität, Frankfurt am Main",
         "supported_research": "To support travel to view <em>in situ</em> sources of the oratorio <em>Deborah</em> as he prepares the critical edition for the Hallische Händel-Ausgabe.",
     },
