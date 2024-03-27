@@ -150,9 +150,10 @@ BOARD_OF_DIRECTORS = [
     ("Alison DeSimone", "Norbert Dubowy"),
     ("Fredric Fehleisen", "Roger Freitas"),
     ("Wendy Heller", "Robert Ketterer"),
-    ("Nathan Link", "Ken Nott"),
-    ("Marjorie Pomeroy", "Mark Risinger"),
-    ("John Roberts", "Ayana Smith"),
+    ("Minji Kim", "Nathan Link"),
+    ("Ken Nott", "Marjorie Pomeroy"),
+    ("Mark Risinger", "John Roberts"),
+    ("Ayana Smith", ""),
 ]
 
 HONORARY_DIRECTORS = [
