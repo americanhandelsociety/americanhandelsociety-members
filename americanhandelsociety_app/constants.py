@@ -42,7 +42,7 @@ RESEARCH_MATERIALS = {
         },
         {
             "title": "Händel-Haus Collections",
-            "url": "https://haendelhaus.de/de/hh/forschung/sammlungen",
+            "url": "https://kxp.k10plus.de/DB=9.444/",
             "description": "Includes digitized early printed editions of Handel by John Walsh, portraits of Handel, and other paintings and art relating to Handel. ",
         },
         {
