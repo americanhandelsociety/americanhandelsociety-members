@@ -31,8 +31,12 @@
 				<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 					<a class="dropdown-item" href="{% url 'people' %}">People</a>
 					<!-- <a class="dropdown-item" href="#">Explore</a> -->
-					<a class="dropdown-item" href="{% url 'research-materials' %}">Research Materials</a>
+					<a class="dropdown-item" href="{% url 'research-materials' %}">Research materials</a>
 					<a class="dropdown-item" href="{% url 'donate' %}">Donate</a>
+					{% if request.user.is_authenticated %}
+						<hr class="d-lg-none d-xl-block">
+						<a class="dropdown-item" href="{% url 'join-other-organizations' %}">Join other organizations</a>
+					{% endif %}
 				</ul>
 			</li>
 			{% if request.user.is_authenticated %}

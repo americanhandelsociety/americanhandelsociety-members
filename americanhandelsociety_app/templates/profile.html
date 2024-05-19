@@ -49,7 +49,6 @@
 					{% endif %}
 				</div>
 			</div>
-
 			<div class="row">
 				<div class="col">
 					{% if form_name == 'change-password-success' %}
@@ -67,10 +66,9 @@
 			</div>
 		</div>
 	</div>
-
 	<div class="row">
-		<div class='col profile-card mb-5'>
-			<h2>Membership</h2>
+		<div class='col profile-card'>
+			<h2>Profile</h2>
 			<table class="profile-table">
 				<tr>
 					<th>Last Login</th>
@@ -103,15 +101,15 @@
 				</tr>
 				{% endif %}
 			</table>
-			<div class="btn-container">
-
-			</div>
-			<div class="inner-container other-organizations">
-				<p>Members of the American Handel Society can also become: a member of the Georg-Friedrich-Händel-Gesellschaft in Halle (to receive the <em>Händel-Jahrbuch</em>) or a Friend of The Handel Institute in Great Britain (to receive The Handel Institute Newsletter). <a href="{% url 'join-other-organizations' %}"><strong><i class="fas fa-users"></i>&nbsp;Join Other Organizations.</strong></a></p>
-			</div>
 		</div>
 	</div>
-
+	<div class="row">
+		<div class='col profile-card mb-5'>
+			<h2>Other memberships</h2>
+			<p>Members of the American Handel Society can become a member of the Georg-Friedrich-Händel-Gesellschaft in Halle (to receive the <em>Händel-Jahrbuch</em>) or a Friend of The Handel Institute in Great Britain (to receive The Handel Institute Newsletter). </p>
+			<a class="btn btn-primary mt-4 ms-4 float-end" href="{% url 'join-other-organizations' %}">Join Other Organizations</a>
+		</div>
+	</div>
 </div>
 
 {% endblock %}
