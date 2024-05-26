@@ -23,6 +23,7 @@ pytest-django = "*"
 docker = "*"
 pre-commit = "*"
 black = "*"
+pytest-subtests = "*"
 
 [requires]
 python_version = "3.9"
