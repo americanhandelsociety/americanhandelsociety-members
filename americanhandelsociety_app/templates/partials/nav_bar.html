@@ -33,34 +33,34 @@
 					<!-- <a class="dropdown-item" href="#">Explore</a> -->
 					<a class="dropdown-item" href="{% url 'research-materials' %}">Research materials</a>
 					<a class="dropdown-item" href="{% url 'donate' %}">Donate</a>
-					{% if request.user.is_authenticated %}
-						<hr class="d-lg-none d-xl-block">
-						<a class="dropdown-item" href="{% url 'join-other-organizations' %}">Join other organizations</a>
-					{% endif %}
 				</ul>
 			</li>
 			{% if request.user.is_authenticated %}
 			<!-- Pipe or HR to demarcate profile items-->
 			<li class="nav-item nav-link d-none d-lg-inline-block">|</li>
 			<hr class="d-lg-none d-xl-block">
-			{% if request.user|show_renew_nav_item %}
-				<li class="nav-item glow-nav-item">
-					<svg className={styles.letItGlowLarge} viewBox='0 0 1 1' height='30'>
-						<circle fill='#267abf' stroke='none' cx='.5' cy='.5' r='.2'>
-						<animate
-							attributeName='opacity'
-							dur='2s'
-							values='0.1;1;0.1'
-							repeatCount='indefinite'
-							begin='0.1'
-						/>
-						</circle>
-					</svg>
-					<a class="nav-link" href="{% url 'renew' %}">Renew</a>
-				</li>
-			{% endif %}
-			<li class="nav-item">
-				<a class="nav-link" href="{% url 'profile' %}">Profile</a>
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Membership</a>
+				<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+					<li><a class="dropdown-item" href="{% url 'profile' %}">Profile</a></li>
+					{% if request.user|show_renew_nav_item %}
+					<li><a class="dropdown-item" href="{% url 'renew' %}">
+						<svg className={styles.letItGlowLarge} viewBox='0 0 1 1' height='30'>
+							<circle fill='#267abf' stroke='none' cx='.5' cy='.5' r='.2'>
+							<animate
+								attributeName='opacity'
+								dur='2s'
+								values='0.1;1;0.1'
+								repeatCount='indefinite'
+								begin='0.1'
+							/>
+							</circle>
+						</svg>
+						Renew
+					</a></li>
+					{% endif %}
+					<li><a class="dropdown-item" href="{% url 'join-other-organizations' %}">Join other organizations</a></li>
+				</ul>
 			</li>
 			<li class="nav-item">
 				<a class="nav-link" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Logout</a>
@@ -69,7 +69,6 @@
 			<li class="nav-item">
 				<a class="nav-link" href="{% url 'join' %}">Join</a>
 			</li>
-
 			<!-- Pipe or HR to demarcate login item-->
 			<li class="nav-item nav-link d-none d-lg-inline-block">|</li>
 			<hr class="d-lg-none d-xl-block">
