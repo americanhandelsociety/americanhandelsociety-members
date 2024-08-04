@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Conference{% endblock %}
+
+{% block extra_css %}
+<link href="{% static 'css/conference.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+<div class="db-col-container border-top">
+    <div class="inner-container">
+        <div>
+            <h2>2025 AMERICAN HANDEL SOCIETY CONFERENCE</h2>
+            <h3>February 6–9, 2025 | Boston, Massachusetts</h3>
+        </div>
+        <p>Join us in Boston for an enriching experience at the American Handel Society's biennial conference! The event promises stimulating papers and discussions, engaging performances, and a wonderful opportunity to connect with Handelians from around the world.</p>
+        <p><strong>Cost: $190.</strong> Single-day and student rates will be available.</p>
+        <button class="btn btn-primary">Registration opens October 1</button>
+    </div>
+    <img src="{% static 'images/hudson_handel.jpg' %}">
+</div>
+
+<div class="outer-container">
+    <div class="card">
+        <h2>Call for Papers: 2025 American Handel Society Conference, Boston, MA</h2>
+        <p>The Society invites submissions of abstracts for papers on any topic connected with Handel’s life, his music, his close contemporaries, or the contexts in which his music was composed or performed. Given the setting, the Program Committee would especially welcome papers dealing with the performance, reception, and circulation of Handel’s music in Boston, the American colonies and post-revolutionary America, or elsewhere on the American continent. Abstracts of up to 500 words should be sent to Wendy Heller (<a href="mailto:wbheller@princeton.edu">wbheller@princeton.edu</a>) by September 15, 2024. </p>
+    </div>
+</div>
+
+<div class="concerts">
+    <h2>CONCERTS</h2>
+    <p><em>Tickets must be purchased separately through the respective websites. Use code sent to attendees upon registration.</em></p>
+    <div class="concerts-event">
+        <img src="{% static 'images/concert_handel_haydn.png' %}">
+        <div>
+            <h3>Friday, February 7 @ 7:30pm</h3>
+            <p><a href="https://handelandhaydn.org/concerts/2024-25/love-handel/">Love, Handel with Joélle Harvey (soprano) and the Handel + Haydn Society Orchestra</a>, conducted by Jonathan Cohen, performing Handel’s Cantatas, Il delirio amoroso and Tra le fiamme, and Concerto Grosso, Op. 6, no. 1.</p>
+            <p>Jordan Hall, New England Conservatory (30 Gainsborough Street)</p>
+        </div>
+    </div>
+    <div class="concerts-event">
+        <img src="{% static 'images/concert_corti.jpg' %}">
+        <div>
+            <h3>Saturday, February 8 @ 8pm</h3>
+            <p><a href="https://bemf.org/concert-season/francesco-corti/">Francesco Corti, harpsichord and organ</a>, performing a solo work for harpsichord, and joining the BEMF Chamber Ensemble and director Robert Mealy to present two Organ Concertos by Handel, Op. 4, nos. 1 and 4.</p>
+            <p>First Lutheran Church, Boston (299 Berkeley Street)</p>
+        </div>
+    </div>
+
+</div>
+
+<div class="db-col-container">
+    <img src="{% static 'images/colonnade_boston.jpg' %}">
+
+    <div class="inner-container">
+        <h3>HOTEL ACCOMODATION</h3>
+        <p><a href="https://www.colonnadehotel.com/">The Colonnade Boston</a><br>
+            120 Huntington Avenue<br>
+            +1 617-424-7000
+        </p>
+        <p><strong>Special Group Rate:</strong> $189/night for a single or a double (available until January 15, 2025)</p>
+        <p><strong>Booking:</strong> Block code will be sent upon registration.</p>
+    </div>
+</div>
+
+
+
+
+{% include 'partials/footer.html' %}
+
+{% endblock %}
