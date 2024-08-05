@@ -11,6 +11,7 @@ from americanhandelsociety_app.views import (
     Logout,
     Home,
     Events,
+    Conference,
     Awards,
     Newsletter,
     Renew,
@@ -35,6 +36,7 @@ from django.contrib.auth.views import (
 urlpatterns = [
     path("", Home.as_view(), name="home"),
     path("events/", Events.as_view(), name="events"),
+    path("conference/", Conference.as_view(), name="conference"),
     path("awards/", Awards.as_view(), name="awards"),
     path("newsletter/", Newsletter.as_view(), name="newsletter"),
     path("research-materials/", ResearchMaterials.as_view(), name="research-materials"),

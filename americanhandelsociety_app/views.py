@@ -278,6 +278,16 @@ class Events(View):
         )
 
 
+class Conference(View):
+    template_name = "conference.html"
+
+    def get(self, request):
+        images_content = [
+            '"George Frideric Handel," by Thomas Hudson, Public domain, via Wikimedia Commons.',
+        ]
+        return render(request, self.template_name, {"images_content": images_content})
+
+
 class Awards(View):
     template_name = "awards.html"
 

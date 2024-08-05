@@ -122,7 +122,7 @@ a.disabled {
   }
 }
 
-/* Reusable flex containers and items */
+/* Layouts (containers and items) */
 .outer-container {
   display: flex;
   flex-direction: column;
@@ -148,6 +148,40 @@ a.disabled {
   flex-direction: column;
   width: 100%;
   margin: auto;
+}
+
+/* Two-column layouts (e.g., for the Conference page) */
+.db-col-container {
+  /* flex */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6rem;
+
+  width: 80%;
+  margin: auto;
+  padding: 6rem 0;
+}
+
+.db-col-container .inner-container {
+  display: flex;
+  gap: 2rem;
+}
+
+.db-col-container img {
+  object-fit: contain;
+  width: 100%;
+}
+
+.db-col-container .border-top {
+  border-top: 1px solid #e8e8e8;
+}
+
+@media screen and (min-width: 0px) and (max-width: 820px) {
+  .db-col-container {
+    flex-direction: column;
+  }
 }
 
 .page-banner-header {
