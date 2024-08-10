@@ -4,7 +4,7 @@
 {% block title %}Awards{% endblock %}
 
 {% block extra_css %}
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/2.1.3/css/dataTables.dataTables.css">
 <link href="{% static 'css/data_table.css' %}" rel="stylesheet">
 <link href="{% static 'css/awards.css' %}" rel="stylesheet">
 {% endblock %}
@@ -65,8 +65,8 @@
 
 {% block extra_js %}
 <!-- TODO: Why do I need jQuery import if I import it in base.html -->
-<script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+<script src="{% static 'js/jquery-3.7.1.min.js' %}"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/2.1.3/js/dataTables.min.js"></script>
 <script>
     $(document).ready(function () {
         var myTable = $('#knappWinners').dataTable({
