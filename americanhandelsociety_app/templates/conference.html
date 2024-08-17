@@ -45,7 +45,7 @@
             {% for item in conference_agenda %}
             <tr>
                 <td>{{item.date}}</td>
-                <td>{{item.description}}</td>
+                <td>{{item.description | safe}}</td>
                 <td>{{item.location}}</td>
             </tr>
             {% endfor %}
@@ -104,9 +104,7 @@
             "lengthChange": false,
             "ordering": false,
             "paging": false,
-            "infoCallback": function (settings, start, end, max, total, pre) {
-                return `Showing ${total} of ${max}`;
-            },
+            "infoCallback": () => {},
             "language": {
                 "search": "",
                 "searchPlaceholder": "Search...",

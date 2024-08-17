@@ -470,12 +470,7 @@ BOSTON_25_AGENDA = [
     {
         "date": "Thursday, February 6",
         "location": "College Club of Boston",
-        "description": "Howard Serwer Memorial Lecture",
-    },
-    {
-        "date": "Thursday, February 6",
-        "location": "Jordan Hall, New England Conservatory",
-        "description": "Concert—Love, Handel, Handel + Haydn Society",
+        "description": "<strong>Howard Serwer Memorial Lecture</strong><p>Ayana Smith discusses Handel's sonic representations of visual disturbances in a paper titled: \"Deathly Images: Discourses of Sight and Sound in Handel's London Operas.\"</p>",
     },
     {
         "date": "Friday, February 7",
@@ -489,6 +484,21 @@ BOSTON_25_AGENDA = [
     },
     {
         "date": "Friday, February 7",
+        "location": "Jordan Hall, New England Conservatory",
+        "description": "Concert—Love, Handel, Handel + Haydn Society",
+    },
+    {
+        "date": "Saturday, February 8",
+        "location": "College Club of Boston",
+        "description": "Morning Paper Session",
+    },
+    {
+        "date": "Saturday, February 8",
+        "location": "College Club of Boston",
+        "description": "Afternoon Paper Session",
+    },
+    {
+        "date": "Saturday, February 8",
         "location": "First Lutheran Church, Boston (299 Berkeley Street)",
         "description": "Concert—Francesco Corti, Boston Early Music Festival",
     },
