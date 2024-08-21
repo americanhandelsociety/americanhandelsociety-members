@@ -459,3 +459,52 @@ KNAPP_FELLOWSHIP_WINNERS = [
         "supported_research": "To complete the recipient's dissertation: \"Handel's Compositional Process: A Study of Selected Oratorios.\"",
     },
 ]
+
+
+BOSTON_25_AGENDA = [
+    {
+        "date": "Thursday, February 6",
+        "location": "College Club of Boston",
+        "description": "Welcome Reception",
+    },
+    {
+        "date": "Thursday, February 6",
+        "location": "College Club of Boston",
+        "description": "<strong>Howard Serwer Memorial Lecture</strong><p>Ayana Smith discusses Handel's sonic representations of visual disturbances in a paper titled: \"Deathly Images: Discourses of Sight and Sound in Handel's London Operas.\"</p>",
+    },
+    {
+        "date": "Friday, February 7",
+        "location": "Concert Hall, MIT New Music Building",
+        "description": "Morning Paper Session",
+    },
+    {
+        "date": "Friday, February 7",
+        "location": "Concert Hall, MIT New Music Building",
+        "description": "Afternoon Paper Session",
+    },
+    {
+        "date": "Friday, February 7",
+        "location": "Jordan Hall, New England Conservatory",
+        "description": "Concert—Love, Handel, Handel + Haydn Society",
+    },
+    {
+        "date": "Saturday, February 8",
+        "location": "College Club of Boston",
+        "description": "Morning Paper Session",
+    },
+    {
+        "date": "Saturday, February 8",
+        "location": "College Club of Boston",
+        "description": "Afternoon Paper Session",
+    },
+    {
+        "date": "Saturday, February 8",
+        "location": "First Lutheran Church, Boston (299 Berkeley Street)",
+        "description": "Concert—Francesco Corti, Boston Early Music Festival",
+    },
+    {
+        "date": "Sunday, February 9",
+        "location": "College Club of Boston",
+        "description": "Morning Paper Session",
+    },
+]

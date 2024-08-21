@@ -27,6 +27,7 @@ from americanhandelsociety_app.newsletters import (
 
 from americanhandelsociety_app.constants import (
     BOARD_OF_DIRECTORS,
+    BOSTON_25_AGENDA,
     HONORARY_DIRECTORS,
     HOWARD_SERWER_LECTURES,
     KNAPP_FELLOWSHIP_WINNERS,
@@ -285,7 +286,13 @@ class Conference(View):
         images_content = [
             '"George Frideric Handel," by Thomas Hudson, Public domain, via Wikimedia Commons.',
         ]
-        return render(request, self.template_name, {"images_content": images_content})
+
+        print(BOSTON_25_AGENDA, "BOSTON_25_AGENDA")
+        return render(
+            request,
+            self.template_name,
+            {"images_content": images_content, "conference_agenda": BOSTON_25_AGENDA},
+        )
 
 
 class Awards(View):

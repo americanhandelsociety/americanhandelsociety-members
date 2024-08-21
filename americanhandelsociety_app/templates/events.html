@@ -4,7 +4,7 @@
 {% block title %}Events{% endblock %}
 
 {% block extra_css %}
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/2.1.3/css/dataTables.dataTables.css">
 <link href="{% static 'css/data_table.css' %}" rel="stylesheet">
 <link href="{% static 'css/events.css' %}" rel="stylesheet">
 {% endblock %}
@@ -23,7 +23,7 @@
 
 <div class="outer-container">
 <div class="card">
-    <h2>Call for Papers: 2025 American Handel Society Conference, Boston, MA</h2>
+    <h2>Call for Papers: <a href="{% url 'conference' %}">2025 American Handel Society Conference, Boston, MA</a></h2>
     <p>The biennial conference of the American Handel Society will take place in Boston, Massachusetts, from February 6–9, 2025. The conference will include academic panels, the Howard Serwer Memorial Lecture given by Dr. Ayana Smith (Associate Professor of Music at Indiana University Bloomington), and performances by Boston’s Handel and Haydn Society and the Boston Early Music Festival.</p>
     <p>The Society invites submissions of abstracts for papers on any topic connected with Handel’s life, his music, his close contemporaries, or the contexts in which his music was composed or performed. Given the setting, the Program Committee would especially welcome papers dealing with the performance, reception, and circulation of Handel’s music in Boston, the American colonies and post-revolutionary America, or elsewhere on the American continent. Abstracts of up to 500 words should be sent to Wendy Heller (<a href="mailto:wbheller@princeton.edu">wbheller@princeton.edu</a>) by September 15, 2024. </p>
 </div>
@@ -34,7 +34,6 @@
     <div class="inner-container-col padding-sm">
         <p class="font-sm margin-sm"><strong>February 24-26, 2023</strong></p>
         <p class="margin-sm">Jacobs School of Music at Indiana University Bloomington</p>
-        <p class="font-sm"><a href="https://jacobsacademy.indiana.edu/descriptions/american-handel-society-conference.html" target="_blank"><i class="fas fa-external-link-square-alt"></i> Visit website</a></p>
     </div>
     <div class="inner-container-col padding-sm">
         <p class="font-sm margin-sm"><strong>March 11–14, 2021</strong></p>
@@ -48,7 +47,6 @@
     <div class="inner-container-col">
         <p class="font-sm margin-sm"><strong>April 23-26, 2015</strong></p>
         <p class="margin-sm">Iowa City</p>
-        <p class="font-sm"><a href="https://music.uiowa.edu/resources/news/joint-meeting-american-handel-society-society-seventeenth-century-music" target="_blank"><i class="fas fa-external-link-square-alt"></i> Visit website</a></p>
     </div>
 </div>
 
@@ -108,8 +106,8 @@
 
 {% block extra_js %}
 <!-- TODO: Why do I need jQuery import if I import it in base.html -->
-<script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+<script src="{% static 'js/jquery-3.7.1.min.js' %}"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/2.1.3/js/dataTables.min.js"></script>
 <script>
     $(document).ready(function () {
         var myTable = $('#lectures').dataTable({
