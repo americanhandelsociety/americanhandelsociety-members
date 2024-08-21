@@ -11,6 +11,7 @@ class NewslettersData:
             f"americanhandelsociety_app/static/{directory_path}"
         )
         self.articles = {
+            "Summer 2024": '<p>Rogers, Patrick J. "Two Roads Diverged in a Wood," 1-3.</p><p>Beeks, Graydon. "Report from Halle," 1, 3-4.</p>',
             "Spring 2024": '<p>Hoggs, Katharine. "Handel\'s Will: Love and Legacy," 4.</p><p>Risinger, Mark P. "Handel: Made in America," 1–2.</p><p>Roberts, John H. Terence Best (1929–2024), 1, 3.</p>',
             "Winter 2023": '<p>Harris, Ellen T. "London Handel Institute Conference Report, November 2023," 1-3.</p><p>Kim, Minji. "Handel and Haydn Society\'s Performance of <em>Israel in Egypt</em>," 1, 4.</p>',
             "Summer 2023": '<p>Beeks, Graydon. "Report from Halle 2023," 1, 4–5.</p><p>Howard, Luke. "\'We Most Heartily Wish to Never Hear It Again\': The Falsettist in 19th-Century Performances of Handel\'s <em>Messiah</em>," 1–3.</p>',
@@ -171,8 +172,14 @@ class NewslettersData:
 # makes it challenging to dynamically iterate over static files in a production environment.
 PREVIEW_NEWSLETTERS = [
     {
+        "id": "2024_summer",
+        "filename": "newsletters/previews/AHS_Summer_2024_Preview.pdf",
+        "articles": '<p>Rogers, Patrick J. "Two Roads Diverged in a Wood," 1-3.</p><p>Beeks, Graydon. "Report from Halle," 1, 3-4.</p>',
+        "friendly_name": 'Summer 2024<br><span class="preview-label">Preview</span>',
+    },
+    {
         "id": "2024_spring",
-        "filename": "newsletters/previews/AHS_Spring_2024_Preview.pdf",
+        "filename": "newsletters/previews/AHS_Spring_2024_preview.pdf",
         "articles": '<p>Hoggs, Katharine. "Handel\'s Will: Love and Legacy," 4.</p><p>Risinger, Mark P. "Handel: Made in America," 1–2.</p><p>Roberts, John H. Terence Best (1929–2024), 1, 3.</p>',
         "friendly_name": 'Spring 2024<br><span class="preview-label">Preview</span>',
     },
@@ -182,15 +189,15 @@ PREVIEW_NEWSLETTERS = [
         "articles": '<p>Harris, Ellen T. "London Handel Institute Conference Report, November 2023," 1-3.</p><p>Kim, Minji. "Handel and Haydn Society\'s Performance of <em>Israel in Egypt</em>," 1, 4.</p>',
         "friendly_name": 'Winter 2023<br><span class="preview-label">Preview</span>',
     },
-    {
-        "id": "2023_summer",
-        "filename": "newsletters/previews/Handel_Summer_2023_preview.pdf",
-        "articles": '<p>Beeks, Graydon. "Report from Halle 2023," 1, 4–5.</p><p>Howard, Luke. "\'We Most Heartily Wish to Never Hear It Again\': The Falsettist in 19th-Century Performances of Handel\'s <em>Messiah</em>," 1–3.</p>',
-        "friendly_name": 'Summer 2023<br><span class="preview-label">Preview</span>',
-    },
 ]
 
 MEMBERS_ONLY_NEWSLETTERS = [
+    {
+        "id": "2024_summer",
+        "filename": "newsletters/members_only/AHS_Summer_2024.pdf",
+        "articles": '<p>Rogers, Patrick J. "Two Roads Diverged in a Wood," 1-3.</p><p>Beeks, Graydon. "Report from Halle," 1, 3-4.</p>',
+        "friendly_name": 'Summer 2024<br><span class="members-only-label">Members Only</span>',
+    },
     {
         "id": "2024_spring",
         "filename": "newsletters/members_only/AHS_Spring_2024.pdf",
@@ -203,15 +210,15 @@ MEMBERS_ONLY_NEWSLETTERS = [
         "articles": '<p>Harris, Ellen T. "London Handel Institute Conference Report, November 2023," 1-3.</p><p>Kim, Minji. "Handel and Haydn Society\'s Performance of <em>Israel in Egypt</em>," 1, 4.</p>',
         "friendly_name": 'Winter 2023<br><span class="members-only-label">Members Only</span>',
     },
-    {
-        "id": "2023_summer",
-        "filename": "newsletters/members_only/Handel_Summer_2023.pdf",
-        "articles": '<p>Beeks, Graydon. "Report from Halle 2023," 1, 4–5.</p><p>Howard, Luke. "\'We Most Heartily Wish to Never Hear It Again\': The Falsettist in 19th-Century Performances of Handel\'s <em>Messiah</em>," 1–3.</p>',
-        "friendly_name": 'Summer 2023<br><span class="members-only-label">Members Only</span>',
-    },
 ]
 
 NEWSLETTERS_DATA = [
+    {
+        "id": "2023_summer",
+        "filename": "newsletters/Handel_Summer_2023.pdf",
+        "articles": '<p>Beeks, Graydon. "Report from Halle 2023," 1, 4–5.</p><p>Howard, Luke. "\'We Most Heartily Wish to Never Hear It Again\': The Falsettist in 19th-Century Performances of Handel\'s <em>Messiah</em>," 1–3.</p>',
+        "friendly_name": "Summer 2023",
+    },
     {
         "id": "2023_spring",
         "filename": "newsletters/Handel_Spring_2023.pdf",
