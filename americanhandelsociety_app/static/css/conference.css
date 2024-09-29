@@ -1,3 +1,11 @@
+.schedule {
+    margin-top: 24px;
+}
+
+.schedule h2 {
+    text-align: center;
+}
+
 .concerts {
     /* flex */
     display: flex;
