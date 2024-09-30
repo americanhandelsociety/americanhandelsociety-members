@@ -18,20 +18,12 @@
             <h3>February 6–9, 2025 | Boston, Massachusetts</h3>
         </div>
         <p>Join us in Boston for an enriching experience at the American Handel Society's biennial conference! The event promises stimulating papers and discussions, engaging performances, and a wonderful opportunity to connect with Handelians from around the world.</p>
-        <p><strong>Cost: $190.</strong> Single-day and student rates will be available.</p>
-        <button class="btn btn-primary">Registration opens October 1</button>
+        <button zeffy-form-link="https://www.zeffy.com/embed/ticketing/104222e0-9bf6-4d2e-bae5-5e4c82592142?modal=true" class="btn btn-primary">Register</button>
     </div>
     <img src="{% static 'images/hudson_handel.jpg' %}">
 </div>
 
-<div class="outer-container">
-    <div class="card">
-        <h2>Call for Papers: 2025 American Handel Society Conference, Boston, MA</h2>
-        <p>The Society invites submissions of abstracts for papers on any topic connected with Handel’s life, his music, his close contemporaries, or the contexts in which his music was composed or performed. Given the setting, the Program Committee would especially welcome papers dealing with the performance, reception, and circulation of Handel’s music in Boston, the American colonies and post-revolutionary America, or elsewhere on the American continent. Abstracts of up to 500 words should be sent to Wendy Heller (<a href="mailto:wbheller@princeton.edu">wbheller@princeton.edu</a>) by September 15, 2024. </p>
-    </div>
-</div>
-
-<div class="outer-container">
+<div class="outer-container schedule">
     <h2>PRELIMINARY SCHEDULE</h2>
     <table id="boston2025" class="table grouped-row-table">
         <thead>
@@ -89,7 +81,6 @@
     </div>
 </div>
 
-
 {% include 'partials/footer.html' %}
 
 {% block extra_js %}
@@ -127,6 +118,7 @@
         });
     });
 </script>
+<script src="https://zeffy-scripts.s3.ca-central-1.amazonaws.com/embed-form-script.min.js"></script>
 {% endblock %}
 
 {% endblock %}
