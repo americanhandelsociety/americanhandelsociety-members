@@ -6,3 +6,7 @@
 .glow-nav-item > a {
     padding-left: 0;
 }
+
+.navbar-light .navbar-nav .nav-link {
+    color: #212529;
+}
