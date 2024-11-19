@@ -32,6 +32,7 @@ cp .env.example .env
 # then, install requirements
 pipenv install
 ```
+
 **3. Run migrations.**
 
 ```bash
