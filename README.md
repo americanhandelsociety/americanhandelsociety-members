@@ -27,6 +27,12 @@ docker compose up postgres
 cp .env.example .env
 ```
 
+```bash
+# first, install pipenv: https://pipenv.pypa.io/en/latest/
+# then, install requirements
+pipenv install
+```
+
 **3. Run migrations.**
 
 ```bash

@@ -1,1 +1,1 @@
-RENEWAL_FLOW = "renewal_flow"
+# currently, no flags!
