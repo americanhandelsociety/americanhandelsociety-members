@@ -17,7 +17,6 @@ from americanhandelsociety_app.utils import (
     year_now,
 )
 from paypal.standard.forms import PayPalPaymentsForm
-from waffle import flag_is_active
 
 from americanhandelsociety_app.newsletters import (
     MEMBERS_ONLY_NEWSLETTERS,
@@ -40,7 +39,6 @@ from americanhandelsociety_app.forms import (
     MemberCreationForm,
 )
 from americanhandelsociety_app.models import Member
-from americanhandelsociety.waffle import RENEWAL_FLOW
 
 
 logger = logging.getLogger(__name__)
@@ -72,9 +70,7 @@ class Profile(ProtectedView, View):
         )
         renewal_date = datetime(year_of_last_membership_payment + 1, 1, 1)
 
-        if year_of_last_membership_payment < year_now() or flag_is_active(
-            request, RENEWAL_FLOW
-        ):
+        if year_of_last_membership_payment < year_now():
             renewal_msg = "Your annual membership payment is due. Please renew today!"
             payment_overdue = True
         else:
