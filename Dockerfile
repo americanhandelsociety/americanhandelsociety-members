@@ -1,5 +1,5 @@
 # Credit: https://github.com/datamade/how-to/blob/master/docker/templates/python-docker-env/%7B%7Bcookiecutter.directory_name%7D%7D/Dockerfile
-FROM python:3.9
+FROM python:3.10.15
 
 LABEL maintainer "Regina Compton <reginafcompton@gmail.com>"
 
