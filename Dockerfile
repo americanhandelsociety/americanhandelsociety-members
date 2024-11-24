@@ -10,6 +10,7 @@ RUN apt-get install --no-install-recommends --assume-yes curl
 
 COPY ./Pipfile /app/Pipfile
 COPY ./Pipfile.lock /app/Pipfile.lock
+RUN pip install --upgrade pip
 RUN pip install pipenv && pipenv install --system && pipenv install --dev --system
 
 COPY entrypoint.sh entrypoint.sh
