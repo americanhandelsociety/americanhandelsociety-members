@@ -10,3 +10,20 @@
 .navbar-light .navbar-nav .nav-link {
     color: #212529;
 }
+
+li.nav-item form {
+    padding-top: 0 !important;
+    height: 0 !important;
+}
+
+li.nav-item form > button {
+    /* make button look like a link */
+    border: none;
+    background: transparent;
+
+    /* ensure icon and "Logout" text are aligned */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+}
