@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "6cf2fe181399de722e7ccaf4c26504fdfef22d009bae3d9b911b232f5add1d2a"
+            "sha256": "de071a49c4e7ecbb2033bc13d19b130090fecc9c2366e2700256a78bb01b59c0"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -145,20 +145,20 @@
         },
         "dj-database-url": {
             "hashes": [
-                "sha256:3e792567b0aa9a4884860af05fe2aa4968071ad351e033b6db632f97ac6db9de",
-                "sha256:9f9b05058ddf888f1e6f840048b8d705ff9395e3b52a07165daa3d8b9360551b"
+                "sha256:ae52e8e634186b57e5a45e445da5dc407a819c2ceed8a53d1fac004cc5288787",
+                "sha256:bb0d414ba0ac5cd62773ec7f86f8cc378a9dbb00a80884c2fc08cc570452521e"
             ],
             "index": "pypi",
-            "version": "==2.2.0"
+            "version": "==2.3.0"
         },
         "django": {
             "hashes": [
-                "sha256:59304646ebc6a77b9b6a59adc67d51ecb03c5e3d63ed1f14c909cdfda84e8010",
-                "sha256:d5a8a14da819a8b9237ee4d8c78dfe056ff6e8a7511987be627192225113ee75"
+                "sha256:3a9fd52b8dbeae335ddf4a9dfa6c6a0853a1122f1fb071a8d5eca979f73a05c8",
+                "sha256:7d29e14dfbc19cb6a95a4bd669edbde11f5d4c6a71fdaa42c2d40b6846e807f7"
             ],
             "index": "pypi",
-            "markers": "python_version >= '3.8'",
-            "version": "==4.0"
+            "markers": "python_version >= '3.10'",
+            "version": "==5.0"
         },
         "django-add-default-value": {
             "hashes": [
@@ -185,11 +185,11 @@
         },
         "django-simple-captcha": {
             "hashes": [
-                "sha256:20273009a7beb44297e9f6c7a6bd21ada3d2fa93c314d2f6bf5e394ceeb6a297",
-                "sha256:3359cb033c489eae6544a80ad92517db3d35b3b328b3b427393399c3d7f55275"
+                "sha256:3ae9a7e650cb0cdbcfd4a75aa91fdf25dcc523ef541a7b1f004bd4357798fc03",
+                "sha256:d188516d326fadd2d5ad076eb89649d55c02cabafe3fdcc2154ac18e9f6d4b97"
             ],
             "index": "pypi",
-            "version": "==0.5.20"
+            "version": "==0.6.0"
         },
         "django-waffle": {
             "hashes": [
