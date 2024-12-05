@@ -7,6 +7,7 @@ from time_machine import travel
 from americanhandelsociety_app.models import Member
 
 
+# Re-add test when doing
 # def test_returns_403_if_user_is_not_authenticated(client):
 #     resp = client.post(f"/membership-renewal-webhook/", data={})
 #     assert resp.status_code == 403
@@ -15,7 +16,7 @@ from americanhandelsociety_app.models import Member
 @pytest.mark.django_db
 def test_returns_400_if_payload_omits_email(client, member):
     data = {
-        "membership_type": Member.MembershipType.REGULAR.value,
+        "membership_type": "Regular",
         "first_name": member.first_name,
         "last_name": member.last_name,
     }
@@ -44,7 +45,7 @@ def test_returns_400_if_payload_omits_membership_type(client, member):
 def test_returns_400_if_payload_omits_first_name(client, member):
     data = {
         "email": member.email,
-        "membership_type": Member.MembershipType.REGULAR.value,
+        "membership_type": "Regular",
         "last_name": member.last_name,
     }
 
@@ -58,7 +59,7 @@ def test_returns_400_if_payload_omits_first_name(client, member):
 def test_returns_400_if_payload_omits_last_name(client, member):
     data = {
         "email": member.email,
-        "membership_type": Member.MembershipType.REGULAR.value,
+        "membership_type": "Regular",
         "first_name": member.first_name,
     }
 
@@ -73,7 +74,7 @@ def test_returns_400_if_email_does_not_match_existing_record(client, member):
     bad_email = "user@test.com"
     data = {
         "email": bad_email,
-        "membership_type": Member.MembershipType.REGULAR.value,
+        "membership_type": "Regular",
         "first_name": member.first_name,
         "last_name": member.last_name,
     }
@@ -89,7 +90,7 @@ def test_returns_400_if_email_does_not_match_existing_record(client, member):
 
 @pytest.mark.django_db
 def test_returns_400_if_membership_type_is_not_valid(client, member):
-    bad_type = "Invalid type"
+    bad_type = "INVALID"
     data = {
         "email": member.email,
         "membership_type": bad_type,
@@ -110,7 +111,7 @@ def test_returns_400_if_membership_type_is_not_valid(client, member):
 def test_success(client, member, subtests):
     data = {
         "email": member.email,
-        "membership_type": Member.MembershipType.CLEOPATRA_CIRCLE.value,
+        "membership_type": "Cleopatra Circle",
         "first_name": member.first_name,
         "last_name": member.last_name,
     }

@@ -51,7 +51,9 @@ class MembershipRenewalWebhook(View):
 
         member.is_active = True
         member.date_of_last_membership_payment = datetime.now(timezone.utc)
-        member.membership_type = membership_type
+        member.membership_type = Member.MembershipType.undo_friendly_name(
+            membership_type
+        )
         # Sync first and last name with whatever the User entered in the Zeffy form.
         member.first_name = first_name
         member.last_name = last_name
