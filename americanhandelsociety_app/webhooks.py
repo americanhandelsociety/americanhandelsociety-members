@@ -14,18 +14,8 @@ from americanhandelsociety_app.models import Member
 logger = logging.getLogger(__name__)
 
 
-class ProtectedAPIView(LoginRequiredMixin):
-    raise_exception = True
-
-    def dispatch(self, request, *args, **kwargs):
-        if not request.user.is_authenticated:
-            return JsonResponse({"error": "403 Forbidden"}, status=403)
-
-        return super().dispatch(request, *args, **kwargs)
-
-
 @method_decorator(csrf_exempt, name="dispatch")
-class MembershipRenewalWebhook(ProtectedAPIView, View):
+class MembershipRenewalWebhook(View):
     def _handle_error(self, error: dict, status_code: int = 400):
         logger.error(error)
         return JsonResponse(error, status=status_code)

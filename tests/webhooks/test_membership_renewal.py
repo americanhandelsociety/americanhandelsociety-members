@@ -7,9 +7,9 @@ from time_machine import travel
 from americanhandelsociety_app.models import Member
 
 
-def test_returns_403_if_user_is_not_authenticated(client):
-    resp = client.post(f"/membership-renewal-webhook/", data={})
-    assert resp.status_code == 403
+# def test_returns_403_if_user_is_not_authenticated(client):
+#     resp = client.post(f"/membership-renewal-webhook/", data={})
+#     assert resp.status_code == 403
 
 
 @pytest.mark.django_db
@@ -20,7 +20,6 @@ def test_returns_400_if_payload_omits_email(client, member):
         "last_name": member.last_name,
     }
 
-    client.force_login(member)
     resp = client.post(f"/membership-renewal-webhook/", data=data)
 
     assert resp.status_code == 400
@@ -35,7 +34,6 @@ def test_returns_400_if_payload_omits_membership_type(client, member):
         "last_name": member.last_name,
     }
 
-    client.force_login(member)
     resp = client.post(f"/membership-renewal-webhook/", data=data)
 
     assert resp.status_code == 400
@@ -50,7 +48,6 @@ def test_returns_400_if_payload_omits_first_name(client, member):
         "last_name": member.last_name,
     }
 
-    client.force_login(member)
     resp = client.post(f"/membership-renewal-webhook/", data=data)
 
     assert resp.status_code == 400
@@ -65,7 +62,6 @@ def test_returns_400_if_payload_omits_last_name(client, member):
         "first_name": member.first_name,
     }
 
-    client.force_login(member)
     resp = client.post(f"/membership-renewal-webhook/", data=data)
 
     assert resp.status_code == 400
@@ -82,7 +78,6 @@ def test_returns_400_if_email_does_not_match_existing_record(client, member):
         "last_name": member.last_name,
     }
 
-    client.force_login(member)
     resp = client.post(f"/membership-renewal-webhook/", data=data)
 
     assert resp.status_code == 400
@@ -102,7 +97,6 @@ def test_returns_400_if_membership_type_is_not_valid(client, member):
         "last_name": member.last_name,
     }
 
-    client.force_login(member)
     resp = client.post(f"/membership-renewal-webhook/", data=data)
 
     assert resp.status_code == 400
@@ -121,7 +115,6 @@ def test_success(client, member, subtests):
         "last_name": member.last_name,
     }
 
-    client.force_login(member)
     resp = client.post(f"/membership-renewal-webhook/", data=data)
 
     with subtests.test("returns 'ok' response"):
