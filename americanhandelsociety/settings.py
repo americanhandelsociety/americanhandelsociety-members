@@ -174,7 +174,6 @@ STATICFILES_FINDERS = (
     "django.contrib.staticfiles.finders.AppDirectoriesFinder",
 )
 
-
 # Slack integration
 SLACK_ALERTS_URL = os.getenv("SLACK_ALERTS_URL", "")
 
