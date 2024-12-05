@@ -6,6 +6,7 @@ from django.core.exceptions import ValidationError, ObjectDoesNotExist
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic.base import View
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from americanhandelsociety_app.models import Member
 
@@ -13,9 +14,18 @@ from americanhandelsociety_app.models import Member
 logger = logging.getLogger(__name__)
 
 
-# TODO: protect this endpoint with basic auth – and we can create a Zapier user account
+class ProtectedAPIView(LoginRequiredMixin):
+    raise_exception = True
+
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            return JsonResponse({"error": "403 Forbidden"}, status=403)
+
+        return super().dispatch(request, *args, **kwargs)
+
+
 @method_decorator(csrf_exempt, name="dispatch")
-class MembershipRenewalWebhook(View):
+class MembershipRenewalWebhook(ProtectedAPIView, View):
     def _handle_error(self, error: dict, status_code: int = 400):
         logger.error(error)
         return JsonResponse(error, status=status_code)
