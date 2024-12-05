@@ -1,14 +1,9 @@
 import logging
+from datetime import datetime, timezone
 
 from django.utils.decorators import method_decorator
 from django.core.exceptions import ValidationError, ObjectDoesNotExist
-from django.http import (
-    JsonResponse,
-    HttpResponseRedirect,
-    HttpResponseNotAllowed,
-    HttpResponse,
-    HttpResponseBadRequest,
-)
+from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic.base import View
 
@@ -54,16 +49,19 @@ class MembershipRenewalWebhook(View):
         member.membership_type = membership_type
         member.date_of_last_membership_payment = datetime.now(timezone.utc)
 
-        # Run full_clean to validate membership_type choices.
+        try:
+            # Run full_clean to validate membership_type choices.
+            member.full_clean()
+        except ValidationError as e:
+            return self._handle_error({"error": {"message": e.messages}})
 
-        # TODO: test!!!!
-        member.full_clean()
         member.save()
+
         return JsonResponse(
             {
                 "member_uuid": member_uuid,
                 "date_of_last_membership_payment": member.date_of_last_membership_payment,
-                is_active: True,
+                "is_active": True,
             },
             status=200,
         )
