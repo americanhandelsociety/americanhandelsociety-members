@@ -1,7 +1,5 @@
 from pathlib import Path
 
-from django.core.files.storage import FileSystemStorage
-
 from .settings import *
 
 
