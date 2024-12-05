@@ -38,26 +38,33 @@ class MembershipRenewalWebhook(ProtectedAPIView, View):
 
     def post(self, request):
         try:
-            member_uuid = self._validate_required_field(
-                field_name="member_uuid", value=request.POST.get("member_uuid")
+            email = self._validate_required_field(
+                field_name="email", value=request.POST.get("email")
             )
             membership_type = self._validate_required_field(
                 field_name="membership_type", value=request.POST.get("membership_type")
+            )
+            first_name = self._validate_required_field(
+                field_name="first_name", value=request.POST.get("first_name")
+            )
+            last_name = self._validate_required_field(
+                field_name="last_name", value=request.POST.get("last_name")
             )
         except ValidationError as e:
             return self._handle_error({e.code: e.message})
 
         try:
-            member = Member.objects.get(id=member_uuid)
-        except ValidationError as e:
-            return self._handle_error({"member_uuid": "Not a valid UUID."})
+            member = Member.objects.get(email=email)
         except ObjectDoesNotExist:
-            msg = f"ObjectDoesNotExist: Cannot find a Member with id '{member_uuid}'"
-            return self._handle_error({"member_uuid": msg})
+            msg = f"ObjectDoesNotExist: Cannot find a Member with email '{email}'"
+            return self._handle_error({"email": msg})
 
         member.is_active = True
-        member.membership_type = membership_type
         member.date_of_last_membership_payment = datetime.now(timezone.utc)
+        member.membership_type = membership_type
+        # Sync first and last name with whatever the User entered in the Zeffy form.
+        member.first_name = first_name
+        member.last_name = last_name
 
         try:
             # Run full_clean to validate membership_type choices.
@@ -69,7 +76,7 @@ class MembershipRenewalWebhook(ProtectedAPIView, View):
 
         return JsonResponse(
             {
-                "member_uuid": member_uuid,
+                "email": email,
                 "date_of_last_membership_payment": member.date_of_last_membership_payment,
                 "is_active": True,
             },

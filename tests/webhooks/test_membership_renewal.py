@@ -13,19 +13,27 @@ def test_returns_403_if_user_is_not_authenticated(client):
 
 
 @pytest.mark.django_db
-def test_returns_400_if_payload_omits_member_uuid(client, member):
-    data = {"membership_type": "Regular"}
+def test_returns_400_if_payload_omits_email(client, member):
+    data = {
+        "membership_type": Member.MembershipType.REGULAR.value,
+        "first_name": member.first_name,
+        "last_name": member.last_name,
+    }
 
     client.force_login(member)
     resp = client.post(f"/membership-renewal-webhook/", data=data)
 
     assert resp.status_code == 400
-    assert resp.json() == {"member_uuid": "Required field."}
+    assert resp.json() == {"email": "Required field."}
 
 
 @pytest.mark.django_db
 def test_returns_400_if_payload_omits_membership_type(client, member):
-    data = {"member_uuid": member.id}
+    data = {
+        "email": member.email,
+        "first_name": member.first_name,
+        "last_name": member.last_name,
+    }
 
     client.force_login(member)
     resp = client.post(f"/membership-renewal-webhook/", data=data)
@@ -35,37 +43,63 @@ def test_returns_400_if_payload_omits_membership_type(client, member):
 
 
 @pytest.mark.django_db
-def test_returns_400_if_member_uuid_is_invalid(client, member):
-    data = {"membership_type": "Regular", "member_uuid": 1234}
-
-    client.force_login(member)
-    resp = client.post(f"/membership-renewal-webhook/", data=data)
-
-    assert resp.status_code == 400
-    assert resp.json() == {"member_uuid": "Not a valid UUID."}
-
-
-@pytest.mark.django_db
-def test_returns_400_if_member_uuid_does_not_match_existing_record(client, member):
+def test_returns_400_if_payload_omits_first_name(client, member):
     data = {
-        "membership_type": "Regular",
-        "member_uuid": "cccccccc-4444-5555-bbbb-777777777777",
+        "email": member.email,
+        "membership_type": Member.MembershipType.REGULAR.value,
+        "last_name": member.last_name,
     }
 
     client.force_login(member)
     resp = client.post(f"/membership-renewal-webhook/", data=data)
 
     assert resp.status_code == 400
+    assert resp.json() == {"first_name": "Required field."}
+
+
+@pytest.mark.django_db
+def test_returns_400_if_payload_omits_last_name(client, member):
+    data = {
+        "email": member.email,
+        "membership_type": Member.MembershipType.REGULAR.value,
+        "first_name": member.first_name,
+    }
+
+    client.force_login(member)
+    resp = client.post(f"/membership-renewal-webhook/", data=data)
+
+    assert resp.status_code == 400
+    assert resp.json() == {"last_name": "Required field."}
+
+
+@pytest.mark.django_db
+def test_returns_400_if_email_does_not_match_existing_record(client, member):
+    bad_email = "user@test.com"
+    data = {
+        "email": bad_email,
+        "membership_type": Member.MembershipType.REGULAR.value,
+        "first_name": member.first_name,
+        "last_name": member.last_name,
+    }
+
+    client.force_login(member)
+    resp = client.post(f"/membership-renewal-webhook/", data=data)
+
+    assert resp.status_code == 400
+
     assert resp.json() == {
-        "member_uuid": "ObjectDoesNotExist: Cannot find a Member with id 'cccccccc-4444-5555-bbbb-777777777777'"
+        "email": f"ObjectDoesNotExist: Cannot find a Member with email '{bad_email}'"
     }
 
 
 @pytest.mark.django_db
 def test_returns_400_if_membership_type_is_not_valid(client, member):
+    bad_type = "Invalid type"
     data = {
-        "membership_type": "Invalid type",
-        "member_uuid": str(member.id),
+        "email": member.email,
+        "membership_type": bad_type,
+        "first_name": member.first_name,
+        "last_name": member.last_name,
     }
 
     client.force_login(member)
@@ -73,7 +107,7 @@ def test_returns_400_if_membership_type_is_not_valid(client, member):
 
     assert resp.status_code == 400
     assert resp.json() == {
-        "error": {"message": ["Value 'Invalid type' is not a valid choice."]}
+        "error": {"message": [f"Value '{bad_type}' is not a valid choice."]}
     }
 
 
@@ -81,8 +115,10 @@ def test_returns_400_if_membership_type_is_not_valid(client, member):
 @pytest.mark.django_db
 def test_success(client, member, subtests):
     data = {
+        "email": member.email,
         "membership_type": Member.MembershipType.CLEOPATRA_CIRCLE.value,
-        "member_uuid": str(member.id),
+        "first_name": member.first_name,
+        "last_name": member.last_name,
     }
 
     client.force_login(member)
@@ -92,7 +128,7 @@ def test_success(client, member, subtests):
         assert resp.status_code == 200
         assert all(
             key in resp.json().keys()
-            for key in ("member_uuid", "date_of_last_membership_payment", "is_active")
+            for key in ("email", "date_of_last_membership_payment", "is_active")
         )
 
     member.refresh_from_db()
