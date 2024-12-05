@@ -160,7 +160,7 @@ DATETIME_FORMAT = "%B %-d, %Y, %-I:%M"
 
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.1/howto/static-files/
+# https://docs.djangoproject.com/en/5.0/howto/static-files/
 STATIC_URL = "/static/"
 STATIC_ROOT = "/static"
 STORAGES = {
