@@ -1,13 +1,12 @@
 from datetime import datetime, timezone
 from dateutil.relativedelta import relativedelta
 
+from django.contrib.admin import SimpleListFilter
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.db.models import Q
 
 from .models import Member, Address
-
-from django.contrib.admin import SimpleListFilter
 from americanhandelsociety_app.utils import year_now
 
 ###############################
@@ -27,9 +26,8 @@ class UpdatedPastMonthFilter(SimpleListFilter):
     def queryset(self, request, queryset):
         if not self.value():
             return queryset
-        past_month = datetime.utcnow().replace(tzinfo=timezone.utc) - relativedelta(
-            days=30
-        )
+
+        past_month = datetime.now(timezone.utc) - relativedelta(days=30)
         if self.value() == "updated":
             return queryset.filter(last_updated__gte=past_month)
 

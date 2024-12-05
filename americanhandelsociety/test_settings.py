@@ -30,10 +30,14 @@ MIDDLEWARE = [
 ]
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.1/howto/static-files/
 STATIC_URL = "/static/"
-STATIC_ROOT = None
-STATICFILES_STORAGE = None
+STATIC_ROOT = "/tmp/test_static"  # Fake writable path
+STORAGES = {
+    "staticfiles": {
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
+        "LOCATION": STATIC_ROOT,
+    },
+}
 
 # Slack integration
 SLACK_ALERTS_URL = ""
