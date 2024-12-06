@@ -28,7 +28,7 @@ class MembershipRenewalWebhook(View):
 
     def post(self, request):
         try:
-            email = self._validate_required_field(
+            buyer_email = self._validate_required_field(
                 field_name="email", value=request.POST.get("email")
             )
             membership_type = self._validate_required_field(
@@ -44,10 +44,13 @@ class MembershipRenewalWebhook(View):
             return self._handle_error({e.code: e.message})
 
         try:
+            # The User may use a email for their payment (e.g., if they use Apple or Google pay) that differs from the email associated with
+            # their AHS account. We ask users to confirm their AHS email in such cases.
+            email = request.POST.get("confirmed_member_email", None) or buyer_email
             member = Member.objects.get(email=email)
         except ObjectDoesNotExist:
             msg = f"ObjectDoesNotExist: Cannot find a Member with email '{email}'"
-            return self._handle_error({"email": msg})
+            return self._handle_error({"error": {"message": msg}})
 
         member.is_active = True
         member.date_of_last_membership_payment = datetime.now(timezone.utc)
@@ -68,7 +71,7 @@ class MembershipRenewalWebhook(View):
 
         return JsonResponse(
             {
-                "email": email,
+                "member_email": email,
                 "date_of_last_membership_payment": member.date_of_last_membership_payment,
                 "is_active": True,
             },

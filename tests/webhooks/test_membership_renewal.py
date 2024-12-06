@@ -84,7 +84,9 @@ def test_returns_400_if_email_does_not_match_existing_record(client, member):
     assert resp.status_code == 400
 
     assert resp.json() == {
-        "email": f"ObjectDoesNotExist: Cannot find a Member with email '{bad_email}'"
+        "error": {
+            "message": f"ObjectDoesNotExist: Cannot find a Member with email '{bad_email}'"
+        }
     }
 
 
@@ -122,7 +124,7 @@ def test_success(client, member, subtests):
         assert resp.status_code == 200
         assert all(
             key in resp.json().keys()
-            for key in ("email", "date_of_last_membership_payment", "is_active")
+            for key in ("member_email", "date_of_last_membership_payment", "is_active")
         )
 
     member.refresh_from_db()
@@ -138,3 +140,19 @@ def test_success(client, member, subtests):
             member.date_of_last_membership_payment.date()
             == datetime.strptime("2024-01-01", "%Y-%m-%d").date()
         )
+
+
+@pytest.mark.django_db
+def test_uses_ahs_confirmed_email_for_lookup(client, member):
+    data = {
+        "email": "something.for.payment@test.com",
+        "membership_type": "Cleopatra Circle",
+        "first_name": member.first_name,
+        "last_name": member.last_name,
+        "confirmed_member_email": member.email,
+    }
+
+    resp = client.post(f"/membership-renewal-webhook/", data=data)
+
+    assert resp.status_code == 200
+    assert resp.json()["member_email"] == member.email
