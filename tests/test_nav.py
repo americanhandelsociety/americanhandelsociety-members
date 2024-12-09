@@ -51,7 +51,7 @@ def test_nav_join_other_orgs_link(client, member, subtests):
 
 @pytest.mark.django_db
 def test_nav_renew_link(client, member, subtests):
-    renew_link = '<a class="dropdown-item" href="/renew/">'
+    renew_link = '<a class="dropdown-item" href="/profile/#membership">'
 
     with subtests.test("user is not authenticated"):
         resp = client.get("/")
