@@ -24,11 +24,12 @@
 </div>
 
 <div class="outer-container schedule">
-    <h2>PRELIMINARY SCHEDULE</h2>
+    <h2>Program Schedule</h2>
     <table id="boston2025" class="table grouped-row-table">
         <thead>
             <tr>
                 <th>Date</th>
+                <th>Time</th>
                 <th>Description</th>
                 <th>Location</th>
             </tr>
@@ -37,6 +38,7 @@
             {% for item in conference_agenda %}
             <tr>
                 <td>{{item.date}}</td>
+                <td>{{item.time}}</td>
                 <td>{{item.description | safe}}</td>
                 <td>{{item.location}}</td>
             </tr>
@@ -109,7 +111,6 @@
 
                 api.column(groupColumn, { page: 'current' }).data().each(function (group, i) {
                     if (last !== group) {
-                        console.log(group);
                         $(rows).eq(i).before('<tr class="group"><td colspan="5">' + group + '</td></tr>');
                         last = group;
                     }

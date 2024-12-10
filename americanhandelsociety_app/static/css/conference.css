@@ -43,3 +43,7 @@
 .card {
     margin: 40px 0 80px;
 }
+
+h3.tr-header {
+    font-size: 2rem;
+}
