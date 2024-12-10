@@ -462,48 +462,169 @@ KNAPP_FELLOWSHIP_WINNERS = [
 
 
 BOSTON_25_AGENDA = [
+    # Thursday
     {
         "date": "Thursday, February 6",
-        "location": "College Club of Boston",
+        "time": "6:00pm",
+        "location": "College Club of Boston (44 Commonwealth Avenue)",
         "description": "Welcome Reception",
     },
     {
         "date": "Thursday, February 6",
+        "time": "6:45pm",
         "location": "College Club of Boston",
         "description": "<strong>Howard Serwer Memorial Lecture</strong><p>Ayana Smith discusses Handel's sonic representations of visual disturbances in a paper titled: \"Deathly Images: Discourses of Sight and Sound in Handel's London Operas.\"</p>",
     },
+    # Friday
     {
         "date": "Friday, February 7",
+        "time": "8:00am",
+        "location": "The Colonnade Boston",
+        "description": "Bus 1 leaves The Colonnade for MIT",
+    },
+    {
+        "date": "Friday, February 7",
+        "time": "8:30am",
+        "location": "The Colonnade Boston",
+        "description": "Bus 2 leaves The Colonnade for MIT",
+    },
+    {
+        "date": "Friday, February 7",
+        "time": "8:30am",
         "location": "Concert Hall, MIT New Music Building",
-        "description": "Morning Paper Session",
+        "description": '<i class="fa-solid fa-utensils"></i> Breakfast',
     },
     {
         "date": "Friday, February 7",
+        "time": "9:00am",
         "location": "Concert Hall, MIT New Music Building",
-        "description": "Afternoon Paper Session",
+        "description": '<i class="fa-solid fa-hands-clapping"></i> Welcome',
     },
     {
         "date": "Friday, February 7",
-        "location": "Jordan Hall, New England Conservatory",
-        "description": "Concert—Love, Handel, Handel + Haydn Society",
+        "time": "",
+        "location": "",
+        "description": "<h3 class='tr-header'>Paper Session 1</h3><p>Bells and Whistles: Handel's Sounds of Love and Madness (Chair, TBA)</p>",
     },
+    {
+        "date": "Friday, February 7",
+        "time": "9:10am",
+        "location": "Concert Hall, MIT New Music Building",
+        "description": 'Minji Kim (Andover, MA)<p>"Make poor Saul stark mad": Sonic Effect of Bells in Handel\'s Saul</p>',
+    },
+    {
+        "date": "Friday, February 7",
+        "time": "9:50am",
+        "location": "Concert Hall, MIT New Music Building",
+        "description": 'Blake Johnson (Campbellsville University)<p>"Where Love or Honour Calls": The Role of the Oboe in Handel\'s Early Operas, 1705–15</p>',
+    },
+    {
+        "date": "Friday, February 7",
+        "time": "10:20am",
+        "location": "Concert Hall, MIT New Music Building",
+        "description": '<i class="fa-solid fa-mug-hot"></i> Coffee break',
+    },
+    {
+        "date": "Friday, February 7",
+        "time": "",
+        "location": "",
+        "description": "<h3 class='tr-header'>Paper Session 2</h3><p>Handelian Encounters (Chair, TBA)</p>",
+    },
+    {
+        "date": "Friday, February 7",
+        "time": "10:40am",
+        "location": "Concert Hall, MIT New Music Building",
+        "description": "Ruth Eldredge Thomas (Provo, UT)<p>J. S. Bach, the Handelian Sublime, and the Natural Theological Argument in 19th-Century Anglo-American Thought</p>",
+    },
+    {
+        "date": "Friday, February 7",
+        "time": "11:20am",
+        "location": "Concert Hall, MIT New Music Building",
+        "description": 'Kenneth Nott (Hartt School of Music)<p>Lou Harrison and "The Divine Mr. Handel"</p>',
+    },
+    {
+        "date": "Friday, February 7",
+        "time": "12:15pm",
+        "location": "TBD",
+        "description": "<h3 class='tr-header'>Lunchtime concert</h3>Paul Traver Memorial Concert. Singers of MIT Chamber Chorus and soloists from Emmanuel Music, conducted by Ryan Turner, will perform Handel's first setting of \"As pants the hart\" and other works by Victoria and Palestrina.</p><p>Free admission.</p>",
+    },
+    {
+        "date": "Friday, February 7",
+        "time": "1:00pm",
+        "location": "",
+        "description": '<i class="fa-solid fa-utensils"></i> Lunch',
+    },
+    {
+        "date": "Friday, February 7",
+        "time": "",
+        "location": "",
+        "description": "<h3 class='tr-header'>Paper Session 3</h3><p>Handel in America (Chair, TBA)</p>",
+    },
+    {
+        "date": "Friday, February 7",
+        "time": "2:30pm",
+        "location": "Concert Hall, MIT New Music Building",
+        "description": "Joseph Lockwood (Newcastle University)<p>Zadok the Priest and the Imperial Soundscape in Boston on the Brink of Revolution</p>",
+    },
+    {
+        "date": "Friday, February 7",
+        "time": "3:10pm",
+        "location": "Concert Hall, MIT New Music Building",
+        "description": "Berta Joncus (Guildhall School of Music & Drama)<p>Handel Melodies and Anti-Slavery Activism: Music for the Common Good</p>",
+    },
+    {
+        "date": "Friday, February 7",
+        "time": "3:50pm",
+        "location": "Concert Hall, MIT New Music Building",
+        "description": '<i class="fa-solid fa-mug-hot"></i> Coffee break',
+    },
+    {
+        "date": "Friday, February 7",
+        "time": "4:10pm",
+        "location": "Concert Hall, MIT New Music Building",
+        "description": "Stephen Nissenbaum (Underhill, VT)<p>Handel Comes to America 1927</p>",
+    },
+    {
+        "date": "Friday, February 7",
+        "time": "5:00pm",
+        "location": "MIT New Music Building",
+        "description": "Bus 1 leaves MIT for The Colonnade",
+    },
+    {
+        "date": "Friday, February 7",
+        "time": "5:30pm",
+        "location": "MIT New Music Building",
+        "description": "Bus 2 leaves MIT for The Colonnade",
+    },
+    {
+        "date": "Friday, February 7",
+        "time": "7:30pm",
+        "location": "Jordan Hall, New England Conservatory (30 Gainsborough Street)",
+        "description": "<h3 class='tr-header'>Concert</h3>Joélle Harvey (soprano) and the Handel + Haydn Society, conducted by Jonathan Cohen.",
+    },
+    # Saturday
     {
         "date": "Saturday, February 8",
+        "time": "0:00pm",
         "location": "College Club of Boston",
         "description": "Morning Paper Session",
     },
     {
         "date": "Saturday, February 8",
+        "time": "0:00pm",
         "location": "College Club of Boston",
         "description": "Afternoon Paper Session",
     },
     {
         "date": "Saturday, February 8",
+        "time": "0:00pm",
         "location": "First Lutheran Church, Boston (299 Berkeley Street)",
         "description": "Concert—Francesco Corti, Boston Early Music Festival",
     },
+    # Sunday
     {
         "date": "Sunday, February 9",
+        "time": "0:00pm",
         "location": "College Club of Boston",
         "description": "Morning Paper Session",
     },
