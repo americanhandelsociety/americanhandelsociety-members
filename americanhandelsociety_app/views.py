@@ -283,7 +283,6 @@ class Conference(View):
             '"George Frideric Handel," by Thomas Hudson, Public domain, via Wikimedia Commons.',
         ]
 
-        print(BOSTON_25_AGENDA, "BOSTON_25_AGENDA")
         return render(
             request,
             self.template_name,
