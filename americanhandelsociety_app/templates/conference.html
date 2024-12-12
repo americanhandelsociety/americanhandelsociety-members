@@ -24,21 +24,22 @@
 </div>
 
 <div class="outer-container schedule">
-    <h2>PRELIMINARY SCHEDULE</h2>
+    <h2>Program Schedule</h2>
+    <p class="pdfs"><a href="{% static '2025_Conference_Schedule.pdf' %}" target="_blank"><i class="fas fa-download" aria-hidden="true"></i> Schedule as PDF</a> | <a href="#"><i class="fa-solid fa-book"></i> Abstracts (coming soon!)</a></p>
     <table id="boston2025" class="table grouped-row-table">
         <thead>
             <tr>
                 <th>Date</th>
+                <th>Time</th>
                 <th>Description</th>
-                <th>Location</th>
             </tr>
         </thead>
         <tbody>
             {% for item in conference_agenda %}
             <tr>
-                <td>{{item.date}}</td>
+                <td>{{item.date | safe}}</td>
+                <td>{{item.time}}</td>
                 <td>{{item.description | safe}}</td>
-                <td>{{item.location}}</td>
             </tr>
             {% endfor %}
         </tbody>
@@ -109,7 +110,6 @@
 
                 api.column(groupColumn, { page: 'current' }).data().each(function (group, i) {
                     if (last !== group) {
-                        console.log(group);
                         $(rows).eq(i).before('<tr class="group"><td colspan="5">' + group + '</td></tr>');
                         last = group;
                     }

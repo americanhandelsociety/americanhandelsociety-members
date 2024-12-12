@@ -462,49 +462,246 @@ KNAPP_FELLOWSHIP_WINNERS = [
 
 
 BOSTON_25_AGENDA = [
+    # Thursday
     {
-        "date": "Thursday, February 6",
-        "location": "College Club of Boston",
+        "date": "Thursday, February 6</br>College Club of Boston",
+        "time": "6:00pm",
         "description": "Welcome Reception",
     },
     {
-        "date": "Thursday, February 6",
-        "location": "College Club of Boston",
-        "description": "<strong>Howard Serwer Memorial Lecture</strong><p>Ayana Smith discusses Handel's sonic representations of visual disturbances in a paper titled: \"Deathly Images: Discourses of Sight and Sound in Handel's London Operas.\"</p>",
+        "date": "Thursday, February 6</br>College Club of Boston",
+        "time": "6:45pm",
+        "description": "<h3 class='tr-header'>Howard Serwer Memorial Lecture</h3></strong>Ayana Smith<p>\"Deathly Images: Discourses of Sight and Sound in Handel's London Operas.\"</p>",
+    },
+    # Friday
+    {
+        "date": "Friday, February 7</br>Concert Hall, MIT New Music Building",
+        "time": "8:00am",
+        "description": "Bus 1 leaves The Colonnade for MIT",
     },
     {
-        "date": "Friday, February 7",
+        "date": "Friday, February 7</br>Concert Hall, MIT New Music Building",
+        "time": "8:30am",
+        "description": "Bus 2 leaves The Colonnade for MIT",
+    },
+    {
+        "date": "Friday, February 7</br>Concert Hall, MIT New Music Building",
+        "time": "8:30am",
+        "description": '<i class="fa-solid fa-utensils"></i> Breakfast',
+    },
+    {
+        "date": "Friday, February 7</br>Concert Hall, MIT New Music Building",
+        "time": "9:00am",
+        "description": '<i class="fa-solid fa-hands-clapping"></i> Welcome',
+    },
+    {
+        "date": "Friday, February 7</br>Concert Hall, MIT New Music Building",
+        "time": "",
+        "description": "<h3 class='tr-header'>Paper Session 1</h3><p>Bells and Whistles: Handel's Sounds of Love and Madness (Chair, TBA)</p>",
+    },
+    {
+        "date": "Friday, February 7</br>Concert Hall, MIT New Music Building",
+        "time": "9:10am",
+        "description": "Minji Kim (Andover, MA), \"'Make poor Saul stark mad': Sonic Effect of Bells in Handel's Saul\"",
+    },
+    {
+        "date": "Friday, February 7</br>Concert Hall, MIT New Music Building",
+        "time": "9:50am",
+        "description": "Blake Johnson (Campbellsville University), \"'Where Love or Honour Calls': The Role of the Oboe in Handel's Early Operas, 1705–15\"",
+    },
+    {
+        "date": "Friday, February 7</br>Concert Hall, MIT New Music Building",
+        "time": "10:20am",
+        "description": '<i class="fa-solid fa-mug-hot"></i> Coffee break',
+    },
+    {
+        "date": "Friday, February 7</br>Concert Hall, MIT New Music Building",
+        "time": "",
+        "description": "<h3 class='tr-header'>Paper Session 2</h3><p>Handelian Encounters (Chair, TBA)</p>",
+    },
+    {
+        "date": "Friday, February 7</br>Concert Hall, MIT New Music Building",
+        "time": "10:40am",
+        "description": 'Ruth Eldredge Thomas (Provo, UT), "J. S. Bach, the Handelian Sublime, and the Natural Theological Argument in 19th-Century Anglo-American Thought"',
+    },
+    {
+        "date": "Friday, February 7</br>Concert Hall, MIT New Music Building",
+        "time": "11:20am",
+        "description": "Kenneth Nott (Hartt School of Music), \"Lou Harrison and 'The Divine Mr. Handel'\"",
+    },
+    {
+        "date": "Friday, February 7</br>Concert Hall, MIT New Music Building",
+        "time": "12:15pm",
+        "description": "<h3 class='tr-header'>Lunchtime concert</h3>Paul Traver Memorial Concert. Singers of MIT Chamber Chorus and soloists from Emmanuel Music, conducted by Ryan Turner, will perform Handel's first setting of \"As pants the hart\" and other works by Victoria and Palestrina.</p><p>Free admission.</p>",
+    },
+    {
+        "date": "Friday, February 7</br>Concert Hall, MIT New Music Building",
+        "time": "1:00pm",
+        "description": '<i class="fa-solid fa-utensils"></i> Lunch',
+    },
+    {
+        "date": "Friday, February 7</br>Concert Hall, MIT New Music Building",
+        "time": "",
+        "description": "<h3 class='tr-header'>Paper Session 3</h3><p>Handel in America (Chair, TBA)</p>",
+    },
+    {
+        "date": "Friday, February 7</br>Concert Hall, MIT New Music Building",
+        "time": "2:30pm",
+        "description": 'Joseph Lockwood (Newcastle University), "Zadok the Priest and the Imperial Soundscape in Boston on the Brink of Revolution"',
+    },
+    {
+        "date": "Friday, February 7</br>Concert Hall, MIT New Music Building",
+        "time": "3:10pm",
+        "description": 'Berta Joncus (Guildhall School of Music & Drama), "Handel Melodies and Anti-Slavery Activism: Music for the Common Good"',
+    },
+    {
+        "date": "Friday, February 7</br>Concert Hall, MIT New Music Building",
+        "time": "3:50pm",
+        "description": '<i class="fa-solid fa-mug-hot"></i> Coffee break',
+    },
+    {
+        "date": "Friday, February 7</br>Concert Hall, MIT New Music Building",
+        "time": "4:10pm",
         "location": "Concert Hall, MIT New Music Building",
-        "description": "Morning Paper Session",
+        "description": 'Stephen Nissenbaum (Underhill, VT), "Handel Comes to America 1927"',
     },
     {
-        "date": "Friday, February 7",
-        "location": "Concert Hall, MIT New Music Building",
-        "description": "Afternoon Paper Session",
+        "date": "Friday, February 7</br>Concert Hall, MIT New Music Building",
+        "time": "5:00pm",
+        "description": "Bus 1 leaves MIT for The Colonnade",
     },
     {
-        "date": "Friday, February 7",
-        "location": "Jordan Hall, New England Conservatory",
-        "description": "Concert—Love, Handel, Handel + Haydn Society",
+        "date": "Friday, February 7</br>Concert Hall, MIT New Music Building",
+        "time": "5:30pm",
+        "description": "Bus 2 leaves MIT for The Colonnade",
     },
     {
-        "date": "Saturday, February 8",
-        "location": "College Club of Boston",
-        "description": "Morning Paper Session",
+        "date": "Friday, February 7</br>Concert Hall, MIT New Music Building",
+        "time": "7:30pm",
+        "location": "Jordan Hall, New England Conservatory (30 Gainsborough Street)",
+        "description": "<h3 class='tr-header'>Concert</h3><p>Joélle Harvey (soprano) and the Handel + Haydn Society, conducted by Jonathan Cohen.</p><p>Jordan Hall, New England Conservatory (30 Gainsborough Street)</p>",
+    },
+    # Saturday
+    {
+        "date": "Saturday, February 8</br>College Club of Boston",
+        "time": "8:30am",
+        "description": '<i class="fa-solid fa-utensils"></i> Breakfast',
     },
     {
-        "date": "Saturday, February 8",
-        "location": "College Club of Boston",
-        "description": "Afternoon Paper Session",
+        "date": "Saturday, February 8</br>College Club of Boston",
+        "time": "",
+        "description": "<h3 class='tr-header'>Paper Session 4</h3><p>Reconstructions (Chair, TBA)</p>",
     },
     {
-        "date": "Saturday, February 8",
+        "date": "Saturday, February 8</br>College Club of Boston",
+        "time": "9:00am",
+        "description": 'Graydon Beeks (Pomona College)<p>"Sir Watkin Williams Wynn, 4th Bart. (1749–1789) as a Collector of Handel\'s Music"</p>',
+    },
+    {
+        "date": "Saturday, February 8</br>College Club of Boston",
+        "time": "9:40am",
+        "description": "Alex McCargar (Vienna, Austria), \"Johann Oswald Harms and Handel's 'Lost' Nero\"",
+    },
+    {
+        "date": "Saturday, February 8</br>College Club of Boston",
+        "time": "10:20am",
+        "description": '<i class="fa-solid fa-mug-hot"></i> Coffee break',
+    },
+    {
+        "date": "Saturday, February 8</br>College Club of Boston",
+        "time": "10:40am",
+        "description": "Michael Burden (University of Oxford), \"A Ghostly Opera Conundrum: Did Porpora 'Rival' Handel?\"",
+    },
+    {
+        "date": "Saturday, February 8</br>College Club of Boston",
+        "time": "11:20am",
+        "description": "Ruth Smith (Cambridge, UK), \"Handel's Solomon and Solomon's Temple\"",
+    },
+    {
+        "date": "Saturday, February 8</br>College Club of Boston",
+        "time": "12:00pm",
+        "description": '<i class="fa-solid fa-utensils"></i> Lunch / AHS Board Meeting (College Club)',
+    },
+    {
+        "date": "Saturday, February 8</br>College Club of Boston",
+        "time": "",
+        "description": "<h3 class='tr-header'>Paper Session 5</h3><p>Oratorios: From Composer to Editor (Chair, TBA)</p>",
+    },
+    {
+        "date": "Saturday, February 8</br>College Club of Boston",
+        "time": "2:00pm",
+        "description": 'Fred Fehleisen (The Juilliard School), "Handel\'s First Day on the Job—22 August 1741—and its Implications"',
+    },
+    {
+        "date": "Saturday, February 8</br>College Club of Boston",
+        "time": "2:40pm",
+        "description": 'Mark Risinger (New York, NY), "On the Rhetorical Structure and Function of Handel\'s Oratorio Choruses"',
+    },
+    {
+        "date": "Saturday, February 8</br>College Club of Boston",
+        "time": "3:20pm",
+        "description": '<i class="fa-solid fa-mug-hot"></i> Coffee break',
+    },
+    {
+        "date": "Saturday, February 8</br>College Club of Boston",
+        "time": "3:40pm",
+        "description": 'Annette Landgraf (Hallische Händel-Ausgabe), "The Different Historical Editions of Judas Maccabaeus and Challenges for a Modern Edition"',
+    },
+    {
+        "date": "Saturday, February 8</br>College Club of Boston",
+        "time": "4:20pm",
+        "description": "Donald Burrows (Milton Keynes, UK), \"'In the manner of an oratorio': Interpreting the Bottom Stave in Handel's Score of Messiah\"",
+    },
+    {
+        "date": "Saturday, February 8</br>College Club of Boston",
+        "time": "8:00pm",
         "location": "First Lutheran Church, Boston (299 Berkeley Street)",
-        "description": "Concert—Francesco Corti, Boston Early Music Festival",
+        "description": "<h3 class='tr-header'>Concert</h3><p>Francesco Corti, harpsichord and organ, joins the Boston Early Music Festival Chamber Ensemble and director Robert Mealy.</p><p>First Lutheran Church, Boston (299 Berkeley Street)</p>",
+    },
+    # Sunday
+    {
+        "date": "Sunday, February 9</br>College Club of Boston",
+        "time": "8:30am",
+        "description": '<i class="fa-solid fa-utensils"></i> Breakfast',
     },
     {
-        "date": "Sunday, February 9",
-        "location": "College Club of Boston",
-        "description": "Morning Paper Session",
+        "date": "Sunday, February 9</br>College Club of Boston",
+        "time": "9:00am",
+        "description": "Open Business Meeting",
+    },
+    {
+        "date": "Sunday, February 9</br>College Club of Boston",
+        "time": "",
+        "description": "<h3 class='tr-header'>Paper Session 6</h3><p>Competition, Prime donne, and Theatricality (Chair, TBA)</p>",
+    },
+    {
+        "date": "Sunday, February 9</br>College Club of Boston",
+        "time": "10:10am",
+        "description": 'Francesca Greppi (University of Bologna), "The Tradition of Soprano Pairing at Venetian Teatro Grimani di San Giovanni Grisostomo: Bordoni and Cuzzoni\'s Early Collaborations in Italy"',
+    },
+    {
+        "date": "Sunday, February 9</br>College Club of Boston",
+        "time": "10:50am",
+        "description": 'David Vickers (Royal Northern College of Music), "Giulia Frasi and Italian Music in London"',
+    },
+    {
+        "date": "Sunday, February 9</br>College Club of Boston",
+        "time": "11:20am",
+        "description": '<i class="fa-solid fa-mug-hot"></i> Coffee break',
+    },
+    {
+        "date": "Sunday, February 9</br>College Club of Boston",
+        "time": "11:40am",
+        "description": 'Yseult Martinez (University of Angers), "Female Cross-Dressing and Men\'s Redemption on the London Opera Stage: Handel and Transvestite Heroines during the 1730s"',
+    },
+    {
+        "date": "Sunday, February 9</br>College Club of Boston",
+        "time": "12:20pm",
+        "description": 'Matthew Gardner (Tübingen University), "Handel\'s Theatre Singers 1737–1741"',
+    },
+    {
+        "date": "Sunday, February 9</br>College Club of Boston",
+        "time": "1:00pm",
+        "description": "<i class='fa-solid fa-hands-clapping'></i> Closing Remarks",
     },
 ]
