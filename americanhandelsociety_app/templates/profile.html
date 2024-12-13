@@ -94,7 +94,7 @@
 						{% if payment_overdue %}
 							<p class="renewal-msg-error"><i class="fas fa-bell"></i> {{ renewal_msg }}</p>
 							<button zeffy-form-link="{% generate_renewal_url member %}" class="btn btn-primary">Renew membership</button>
-							<p class="beta-msg"><i class="fa-solid fa-circle-info"></i> Beta feature! The AHS uses Zeffy to process membership payments. Please report issues to <a href="mailto:reginafcompton@gmail.com">reginafcompton@gmail.com</a>.</p>
+							<p class="beta-msg"><i class="fa-solid fa-circle-info"></i> Beta feature! American Handel Society uses Zeffy to process membership payments. Report issues to <a href="mailto:reginafcompton@gmail.com">reginafcompton@gmail.com</a>.</p>
 						{% else %}
 							<div class="renewal-msg">{{ renewal_msg }}</div>
 						{% endif %}
