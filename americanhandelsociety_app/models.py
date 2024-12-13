@@ -65,7 +65,7 @@ class Member(AbstractUser):
 
         @classmethod
         def undo_friendly_name(self, value: str):
-            return value.upper().replace(" ", "_")
+            return value.upper().replace("AHS ", "").replace(" ", "_")
 
     class ContactPreference(BaseTextChoices):
         PRINT = "PRINT"
