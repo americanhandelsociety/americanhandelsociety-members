@@ -1,14 +1,14 @@
-import json
 import logging
 import os
 from time import sleep
+from datetime import datetime
+from dateutil.relativedelta import relativedelta
+from string import ascii_lowercase
+from random import sample
 
 import docker
 import pytest
-from string import ascii_lowercase
-from random import sample
-from datetime import datetime
-from dateutil.relativedelta import relativedelta
+from rest_framework.authtoken.models import Token
 
 from americanhandelsociety_app.models import Member, Address
 
@@ -205,6 +205,17 @@ def circle_member(address):
 
 
 @pytest.fixture
+def auth_headers():
+    superuser = Member.objects.create_superuser(
+        email="admin@superuser.com",
+        password="supersecret",
+    )
+    token, _ = Token.objects.get_or_create(user=superuser)
+
+    return {"HTTP_AUTHORIZATION": f"Token {token.key}"}
+
+
+@pytest.fixture
 def member_not_in_directory():
     data = {
         "email": "gismonda@rome.sa",
@@ -306,4 +317,3 @@ def members_of_all_types():
             filter(lambda x: not_dunder(x), dir(Member.MembershipType))
         )
     ]
-    return members_list
