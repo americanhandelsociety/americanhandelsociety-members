@@ -1,3 +1,7 @@
+ZEFFY_EMBED_URL_FOR_RENEWAL_FORM = (
+    "https://www.zeffy.com/embed/ticketing/membership-form-5"
+)
+
 RESEARCH_MATERIALS = {
     "open_source": [
         {

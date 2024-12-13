@@ -62,6 +62,7 @@ class Profile(ProtectedView, View):
     template_name = "profile.html"
 
     def get(self, request, *args, **kwargs):
+        member = Member.objects.select_related("address").get(id=request.user.id)
         is_messiah_circle_member = (
             request.user.membership_type == Member.MembershipType.MESSIAH_CIRCLE
         )
@@ -87,6 +88,7 @@ class Profile(ProtectedView, View):
             self.template_name,
             context={
                 **kwargs,
+                "member": member,
                 "form_name": form_name,
                 "renewal_date": renewal_date,
                 "payment_overdue": payment_overdue,

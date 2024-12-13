@@ -28,8 +28,15 @@
     padding: 1.2rem 1.2rem 1.2rem 0;
 }
 
-.renewal-msg {
+.renewal-msg, .beta-msg {
     font-size: 1.6rem;
+}
+
+.beta-msg {
+    margin: 20px 0px;
+}
+
+.renewal-msg {
     color: #b0b0b0;
     margin: 4px 0 20px 0;
 }
