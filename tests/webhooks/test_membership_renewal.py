@@ -16,7 +16,7 @@ from americanhandelsociety_app.models import Member
 @pytest.mark.django_db
 def test_returns_400_if_payload_omits_email(client, member):
     data = {
-        "membership_type": "Regular",
+        "membership_type": "AHS Regular",
         "first_name": member.first_name,
         "last_name": member.last_name,
     }
@@ -24,7 +24,7 @@ def test_returns_400_if_payload_omits_email(client, member):
     resp = client.post(f"/membership-renewal-webhook/", data=data)
 
     assert resp.status_code == 400
-    assert resp.json() == {"email": "Required field."}
+    assert resp.json() == {"email": ["This field is required."]}
 
 
 @pytest.mark.django_db
@@ -38,7 +38,7 @@ def test_returns_400_if_payload_omits_membership_type(client, member):
     resp = client.post(f"/membership-renewal-webhook/", data=data)
 
     assert resp.status_code == 400
-    assert resp.json() == {"membership_type": "Required field."}
+    assert resp.json() == {"membership_type": ["This field is required."]}
 
 
 @pytest.mark.django_db
@@ -52,7 +52,7 @@ def test_returns_400_if_payload_omits_first_name(client, member):
     resp = client.post(f"/membership-renewal-webhook/", data=data)
 
     assert resp.status_code == 400
-    assert resp.json() == {"first_name": "Required field."}
+    assert resp.json() == {"first_name": ["This field is required."]}
 
 
 @pytest.mark.django_db
@@ -66,28 +66,7 @@ def test_returns_400_if_payload_omits_last_name(client, member):
     resp = client.post(f"/membership-renewal-webhook/", data=data)
 
     assert resp.status_code == 400
-    assert resp.json() == {"last_name": "Required field."}
-
-
-@pytest.mark.django_db
-def test_returns_400_if_email_does_not_match_existing_record(client, member):
-    bad_email = "user@test.com"
-    data = {
-        "email": bad_email,
-        "membership_type": "Regular",
-        "first_name": member.first_name,
-        "last_name": member.last_name,
-    }
-
-    resp = client.post(f"/membership-renewal-webhook/", data=data)
-
-    assert resp.status_code == 400
-
-    assert resp.json() == {
-        "error": {
-            "message": f"ObjectDoesNotExist: Cannot find a Member with email '{bad_email}'"
-        }
-    }
+    assert resp.json() == {"last_name": ["This field is required."]}
 
 
 @pytest.mark.django_db
@@ -103,8 +82,26 @@ def test_returns_400_if_membership_type_is_not_valid(client, member):
     resp = client.post(f"/membership-renewal-webhook/", data=data)
 
     assert resp.status_code == 400
+    assert resp.json() == {"membership_type": [f'"{bad_type}" is not a valid choice.']}
+
+
+@pytest.mark.django_db
+def test_returns_400_if_email_does_not_match_existing_record(client, member):
+    bad_email = "user@test.com"
+    data = {
+        "email": bad_email,
+        "membership_type": "Regular",
+        "first_name": member.first_name,
+        "last_name": member.last_name,
+    }
+
+    resp = client.post(f"/membership-renewal-webhook/", data=data)
+
+    assert resp.status_code == 400
     assert resp.json() == {
-        "error": {"message": [f"Value '{bad_type}' is not a valid choice."]}
+        "error": {
+            "message": f"ObjectDoesNotExist: Cannot find a Member with email '{bad_email}'"
+        }
     }
 
 

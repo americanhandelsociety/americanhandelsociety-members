@@ -1,79 +1,83 @@
 import logging
 from datetime import datetime, timezone
 
-from django.utils.decorators import method_decorator
-from django.core.exceptions import ValidationError, ObjectDoesNotExist
-from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_exempt
-from django.views.generic.base import View
-from django.contrib.auth.mixins import LoginRequiredMixin
+from rest_framework.generics import GenericAPIView
+from rest_framework.response import Response
+from rest_framework.exceptions import ValidationError
+from rest_framework import status, serializers
 
 from americanhandelsociety_app.models import Member
-
 
 logger = logging.getLogger(__name__)
 
 
-@method_decorator(csrf_exempt, name="dispatch")
-class MembershipRenewalWebhook(View):
-    def _handle_error(self, error: dict, status_code: int = 400):
+class MemberRenewalSerializer(serializers.ModelSerializer):
+    confirmed_member_email = serializers.EmailField(required=False)
+
+    class Meta:
+        model = Member
+        fields = [
+            "email",
+            "membership_type",
+            "first_name",
+            "last_name",
+            "confirmed_member_email",
+        ]
+        # overwrite model constraints: (1) "membership_type" MUST BE included, and (2) do not apply email unique constraint
+        extra_kwargs = {
+            "membership_type": {"required": True, "allow_blank": False},
+            "email": {"validators": []},
+        }
+
+    def to_internal_value(self, data):
+        data_copy = data.copy()
+        membership_type = data.get("membership_type")
+        if membership_type:
+            membership_type = Member.MembershipType.undo_friendly_name(membership_type)
+            data_copy["membership_type"] = membership_type
+
+        return super().to_internal_value(data_copy)
+
+
+class MembershipRenewalWebhook(GenericAPIView):
+    serializer_class = MemberRenewalSerializer
+
+    def handle_error(self, error: dict, status_code: int = status.HTTP_400_BAD_REQUEST):
         logger.error(error)
-        return JsonResponse(error, status=status_code)
+        return Response(error, status=status_code)
 
-    def _validate_required_field(self, field_name, value):
-        if not value:
-            raise ValidationError("Required field.", code=field_name)
+    def post(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
 
-        return value
-
-    def post(self, request):
-        try:
-            buyer_email = self._validate_required_field(
-                field_name="email", value=request.POST.get("email")
-            )
-            membership_type = self._validate_required_field(
-                field_name="membership_type", value=request.POST.get("membership_type")
-            )
-            first_name = self._validate_required_field(
-                field_name="first_name", value=request.POST.get("first_name")
-            )
-            last_name = self._validate_required_field(
-                field_name="last_name", value=request.POST.get("last_name")
-            )
-        except ValidationError as e:
-            return self._handle_error({e.code: e.message})
+        email = serializer.data.get("confirmed_member_email") or serializer.data.get(
+            "email"
+        )
 
         try:
-            # The User may use a email for their payment (e.g., if they use Apple or Google pay) that differs from the email associated with
-            # their AHS account. We ask users to confirm their AHS email in such cases.
-            email = request.POST.get("confirmed_member_email", None) or buyer_email
             member = Member.objects.get(email=email)
-        except ObjectDoesNotExist:
+        except Member.DoesNotExist:
             msg = f"ObjectDoesNotExist: Cannot find a Member with email '{email}'"
-            return self._handle_error({"error": {"message": msg}})
+            return self.handle_error({"error": {"message": msg}})
 
         member.is_active = True
         member.date_of_last_membership_payment = datetime.now(timezone.utc)
-        member.membership_type = Member.MembershipType.undo_friendly_name(
-            membership_type
-        )
-        # Sync first and last name with whatever the User entered in the Zeffy form.
-        member.first_name = first_name
-        member.last_name = last_name
+        member.membership_type = serializer.data.get("membership_type")
+        member.first_name = serializer.data.get("first_name")
+        member.last_name = serializer.data.get("last_name")
 
         try:
-            # Run full_clean to validate membership_type choices.
             member.full_clean()
         except ValidationError as e:
-            return self._handle_error({"error": {"message": e.messages}})
+            return self.handle_error({"error": {"message": e.messages}})
 
         member.save()
 
-        return JsonResponse(
+        return Response(
             {
                 "member_email": email,
                 "date_of_last_membership_payment": member.date_of_last_membership_payment,
                 "is_active": True,
             },
-            status=200,
+            status=status.HTTP_200_OK,
         )
