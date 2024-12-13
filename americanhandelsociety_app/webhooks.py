@@ -5,6 +5,8 @@ from rest_framework.generics import GenericAPIView
 from rest_framework.response import Response
 from rest_framework.exceptions import ValidationError
 from rest_framework import status, serializers
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.permissions import IsAdminUser
 
 from americanhandelsociety_app.models import Member
 
@@ -40,6 +42,8 @@ class MemberRenewalSerializer(serializers.ModelSerializer):
 
 
 class MembershipRenewalWebhook(GenericAPIView):
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAdminUser]
     serializer_class = MemberRenewalSerializer
 
     def handle_error(self, error: dict, status_code: int = status.HTTP_400_BAD_REQUEST):
