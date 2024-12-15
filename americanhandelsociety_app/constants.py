@@ -502,7 +502,7 @@ BOSTON_25_AGENDA = [
     {
         "date": "Friday, February 7</br>Concert Hall, MIT New Music Building",
         "time": "9:10am",
-        "description": "Minji Kim (Andover, MA), \"'Make poor Saul stark mad': Sonic Effect of Bells in Handel's Saul\"",
+        "description": "Minji Kim (Andover, MA), \"'Make poor Saul stark mad': Sonic Effect of Bells in Handel's <em>Saul</em>\"",
     },
     {
         "date": "Friday, February 7</br>Concert Hall, MIT New Music Building",
@@ -522,7 +522,7 @@ BOSTON_25_AGENDA = [
     {
         "date": "Friday, February 7</br>Concert Hall, MIT New Music Building",
         "time": "10:40am",
-        "description": 'Ruth Eldredge Thomas (Provo, UT), "J. S. Bach, the Handelian Sublime, and the Natural Theological Argument in 19th-Century Anglo-American Thought"',
+        "description": 'Ruth Eldredge Thomas (Durham University), "J. S. Bach, the Handelian Sublime, and the Natural Theological Argument in 19th-Century Anglo-American Thought"',
     },
     {
         "date": "Friday, February 7</br>Concert Hall, MIT New Music Building",
@@ -600,7 +600,7 @@ BOSTON_25_AGENDA = [
     {
         "date": "Saturday, February 8</br>College Club of Boston",
         "time": "9:40am",
-        "description": "Alex McCargar (Vienna, Austria), \"Johann Oswald Harms and Handel's 'Lost' Nero\"",
+        "description": "Alex McCargar (University of Vienna), \"Johann Oswald Harms and Handel's 'Lost' Nero\"",
     },
     {
         "date": "Saturday, February 8</br>College Club of Boston",
@@ -615,7 +615,7 @@ BOSTON_25_AGENDA = [
     {
         "date": "Saturday, February 8</br>College Club of Boston",
         "time": "11:20am",
-        "description": "Ruth Smith (Cambridge, UK), \"Handel's Solomon and Solomon's Temple\"",
+        "description": "Ruth Smith (Cambridge, UK), \"Handel's <em>Solomon</em> and Solomon's Temple\"",
     },
     {
         "date": "Saturday, February 8</br>College Club of Boston",
@@ -645,12 +645,12 @@ BOSTON_25_AGENDA = [
     {
         "date": "Saturday, February 8</br>College Club of Boston",
         "time": "3:40pm",
-        "description": 'Annette Landgraf (Hallische Händel-Ausgabe), "The Different Historical Editions of Judas Maccabaeus and Challenges for a Modern Edition"',
+        "description": 'Annette Landgraf (Hallische Händel-Ausgabe), "The Different Historical Editions of <em>Judas Maccabaeus</em> and Challenges for a Modern Edition"',
     },
     {
         "date": "Saturday, February 8</br>College Club of Boston",
         "time": "4:20pm",
-        "description": "Donald Burrows (Milton Keynes, UK), \"'In the manner of an oratorio': Interpreting the Bottom Stave in Handel's Score of Messiah\"",
+        "description": "Donald Burrows (Milton Keynes, UK), \"'In the manner of an oratorio': Interpreting the Bottom Stave in Handel's Score of <em>Messiah</em>\"",
     },
     {
         "date": "Saturday, February 8</br>College Club of Boston",
@@ -692,7 +692,7 @@ BOSTON_25_AGENDA = [
     {
         "date": "Sunday, February 9</br>College Club of Boston",
         "time": "11:40am",
-        "description": 'Yseult Martinez (University of Angers), "Female Cross-Dressing and Men\'s Redemption on the London Opera Stage: Handel and Transvestite Heroines during the 1730s"',
+        "description": 'Yseult Martinez (Sorbonne University), "Female Cross-Dressing and Men\'s Redemption on the London Opera Stage: Handel and Transvestite Heroines during the 1730s"',
     },
     {
         "date": "Sunday, February 9</br>College Club of Boston",
