@@ -63,6 +63,10 @@ class Member(AbstractUser):
         THEODORA_CIRCLE = "THEODORA_CIRCLE", "250.00"
         MESSIAH_CIRCLE = "MESSIAH_CIRCLE", "500.00"
 
+        @classmethod
+        def undo_friendly_name(self, value: str):
+            return value.upper().replace("AHS ", "").replace(" ", "_")
+
     class ContactPreference(BaseTextChoices):
         PRINT = "PRINT"
         EMAIL = "EMAIL"

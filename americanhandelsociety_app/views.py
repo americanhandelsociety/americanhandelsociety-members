@@ -1,6 +1,6 @@
 import copy
 import logging
-from datetime import datetime, timezone
+from datetime import datetime
 
 from django.conf import settings
 from django.contrib.auth.mixins import LoginRequiredMixin
