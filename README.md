@@ -53,8 +53,21 @@ pipenv run python manage.py runserver
 pipenv run pre-commit install
 ```
 
-# Paypal Integration
-The join and renewal flow integrate with Paypal. Do the following to setup Paypal for local testing:
+# Payment integrations
+
+### Membership renewals
+The renewal flow uses a Zeffy + Zapier integration. The following steps upfold per member renewal:
+
+1. The `Profile` page renders a button that exposes an in-modal Zeffy form. (See [constants.py](https://github.com/americanhandelsociety/americanhandelsociety-members/blob/main/americanhandelsociety_app/constants.py) for the URL.)
+1. A user completes the form / submits payment.
+1. The completed form triggers a "Zap" in Zapier. ([Setup instructions.](https://support.zeffy.com/integrating-zeffy-with-zapier))
+1. The Zap POSTs to a webhook hosted by the AHS Django app (`/membership-renewal-webhook/`). N.b., the AHS webhook uses token auth; the Zap is configured to include an `Authorization` header using a API `Token` that belongs to an AHS admin.
+1. The webhook updates the relevant `Member` record with the data from the Zapier (i.e., membership type, renewal date, and first and last name – if changed). N.b., the AHS also uses Zeffy to collect Society Conference payments. Conference forms trigger a Zap, but the webhook cannot process the data and returns a 400; this does not affect the health of the payment integration, other then creating useless error messages and emails to the AHS gmail account.
+
+[![Zapier failure message](https://github.com/americanhandelsociety/americanhandelsociety-members/blob/master/americanhandelsociety_app/static/images/zapier_400.png?raw=true)]
+
+### Becoming a member
+The join flow integrates with Paypal. (N.b., it should be deprecated in the future.) Do the following to setup Paypal for local testing:
 
 1. Serve your localhost using [ngrok](https://ngrok.com/).
 1. Assign the value of your ngrok domain to `NGROK_DOMAIN` in your `.env` file, e.g., `NGROK_DOMAIN=a057-2601-249-8c00-4a80-7564-842e-4d6-5a53.ngrok.io`.
