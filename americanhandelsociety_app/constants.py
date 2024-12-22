@@ -1,5 +1,5 @@
 ZEFFY_EMBED_URL_FOR_RENEWAL_FORM = (
-    "https://www.zeffy.com/embed/ticketing/membership-form-5"
+    "https://www.zeffy.com/en-US/ticketing/b643f160-3d22-4b95-b9f5-8d442fe49643"
 )
 
 RESEARCH_MATERIALS = {
