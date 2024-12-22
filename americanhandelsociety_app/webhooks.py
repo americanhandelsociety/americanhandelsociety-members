@@ -77,6 +77,8 @@ class MembershipRenewalWebhook(GenericAPIView):
 
         member.save()
 
+        logger.info(f"Successful renewal! Member id starts with: {str(member.id)[0:8]}")
+
         return Response(
             {
                 "member_email": email,
