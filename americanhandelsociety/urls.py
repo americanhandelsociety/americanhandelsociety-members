@@ -1,5 +1,11 @@
 from django.contrib import admin
 from django.urls import path, include
+from django.contrib.auth.views import (
+    PasswordResetView,
+    PasswordResetCompleteView,
+    PasswordResetConfirmView,
+    PasswordResetDoneView,
+)
 
 from americanhandelsociety_app.views import (
     Join,
@@ -26,12 +32,7 @@ from americanhandelsociety_app.views import (
     EditMember,
     JoinOtherOrganizations,
 )
-from django.contrib.auth.views import (
-    PasswordResetView,
-    PasswordResetCompleteView,
-    PasswordResetConfirmView,
-    PasswordResetDoneView,
-)
+from americanhandelsociety_app.webhooks import MembershipRenewalWebhook
 
 urlpatterns = [
     path("", Home.as_view(), name="home"),
@@ -75,6 +76,12 @@ urlpatterns = [
     path("renew/", Renew.as_view(), name="renew"),
     path("renewal-confirm/", RenewalConfirmation.as_view(), name="renew-confirm"),
     path("paypal/", include("paypal.standard.ipn.urls")),
+    # Zapier
+    path(
+        "membership-renewal-webhook/",
+        MembershipRenewalWebhook.as_view(),
+        name="membership_renewal_webhook",
+    ),
     # Django captcha
     path("captcha/", include("captcha.urls")),
 ]
