@@ -62,7 +62,7 @@ The renewal flow uses a Zeffy + Zapier integration. It works like so:
 1. The Zap POSTs to a webhook hosted by the AHS Django app (`/membership-renewal-webhook/`). N.b., the AHS webhook uses token auth; the Zap must be configured to include an `Authorization` header.
 1. The webhook updates the relevant `Member` record with the data from the Zapier (i.e., membership type, renewal date, and first and last name – if changed). N.b., the AHS also uses Zeffy to collect Society Conference payments. Conference forms also trigger a Zap, but the webhook cannot process the data and returns a 400.
 
-[![Zapier failure message](https://github.com/[username]/[reponame]/blob/[branch]/image.jpg?raw=true)]
+[![Zapier failure message](https://github.com/americanhandelsociety/americanhandelsociety-members/blob/master/americanhandelsociety_app/static/images/zapier_400.png?raw=true)]
 
 
 The join flow integrates with Paypal. (N.b., it should be deprecated in the future.) Do the following to setup Paypal for local testing:
