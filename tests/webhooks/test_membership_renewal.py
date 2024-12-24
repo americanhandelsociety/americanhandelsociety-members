@@ -27,7 +27,7 @@ def test_returns_401_if_user_is_not_an_admin(client, member):
 @pytest.mark.django_db
 def test_returns_400_if_payload_omits_email(client, member, auth_headers):
     data = {
-        "membership_type": "AHS Regular",
+        "membership_type": "Regular",
         "first_name": member.first_name,
         "last_name": member.last_name,
     }

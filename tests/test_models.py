@@ -92,14 +92,14 @@ def test_membership_type_does_not_accept_invalid_choice():
 @pytest.mark.parametrize(
     "friendly_name,value",
     [
-        ("AHS Regular", Member.MembershipType.REGULAR.value),
-        ("AHS Student", Member.MembershipType.STUDENT.value),
-        ("AHS Retired", Member.MembershipType.RETIRED.value),
-        ("AHS Joint", Member.MembershipType.JOINT.value),
-        ("AHS Rinaldo Circle", Member.MembershipType.RINALDO_CIRCLE.value),
-        ("AHS Cleopatra Circle", Member.MembershipType.CLEOPATRA_CIRCLE.value),
-        ("AHS Theodora Circle", Member.MembershipType.THEODORA_CIRCLE.value),
-        ("AHS Messiah Circle", Member.MembershipType.MESSIAH_CIRCLE.value),
+        ("Regular", Member.MembershipType.REGULAR.value),
+        ("Student", Member.MembershipType.STUDENT.value),
+        ("Retired", Member.MembershipType.RETIRED.value),
+        ("Joint", Member.MembershipType.JOINT.value),
+        ("Rinaldo Circle", Member.MembershipType.RINALDO_CIRCLE.value),
+        ("Cleopatra Circle", Member.MembershipType.CLEOPATRA_CIRCLE.value),
+        ("Theodora Circle", Member.MembershipType.THEODORA_CIRCLE.value),
+        ("Messiah Circle", Member.MembershipType.MESSIAH_CIRCLE.value),
     ],
 )
 def test_membership_type_undo_friendly_name(friendly_name, value):
