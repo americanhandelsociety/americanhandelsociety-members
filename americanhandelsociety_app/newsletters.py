@@ -1,8 +1,6 @@
 import os
 import re
 
-from django.conf import settings
-
 
 class NewslettersData:
     def __init__(self, directory_path="newsletters"):
@@ -11,6 +9,7 @@ class NewslettersData:
             f"americanhandelsociety_app/static/{directory_path}"
         )
         self.articles = {
+            "Winter 2024": '<p>2025 American Handel Society Conference - Schedule and Details</p><p>Beeks, Graydon. "Two Sets of Lessons for Princess Louisa," 1, 4–5.</p>',
             "Summer 2024": '<p>Rogers, Patrick J. "Two Roads Diverged in a Wood," 1-3.</p><p>Beeks, Graydon. "Report from Halle," 1, 3-4.</p>',
             "Spring 2024": '<p>Hoggs, Katharine. "Handel\'s Will: Love and Legacy," 4.</p><p>Risinger, Mark P. "Handel: Made in America," 1–2.</p><p>Roberts, John H. Terence Best (1929–2024), 1, 3.</p>',
             "Winter 2023": '<p>Harris, Ellen T. "London Handel Institute Conference Report, November 2023," 1-3.</p><p>Kim, Minji. "Handel and Haydn Society\'s Performance of <em>Israel in Egypt</em>," 1, 4.</p>',
@@ -172,6 +171,12 @@ class NewslettersData:
 # makes it challenging to dynamically iterate over static files in a production environment.
 PREVIEW_NEWSLETTERS = [
     {
+        "id": "2024_winter",
+        "filename": "newsletters/previews/AHS_Winter_2024_Preview.pdf",
+        "articles": '<p>2025 American Handel Society Conference - Schedule and Details</p><p>Beeks, Graydon. "Two Sets of Lessons for Princess Louisa," 1, 4–5.</p>',
+        "friendly_name": 'Winter 2024<br><span class="preview-label">Preview</span>',
+    },
+    {
         "id": "2024_summer",
         "filename": "newsletters/previews/AHS_Summer_2024_Preview.pdf",
         "articles": '<p>Rogers, Patrick J. "Two Roads Diverged in a Wood," 1-3.</p><p>Beeks, Graydon. "Report from Halle," 1, 3-4.</p>',
@@ -183,15 +188,15 @@ PREVIEW_NEWSLETTERS = [
         "articles": '<p>Hoggs, Katharine. "Handel\'s Will: Love and Legacy," 4.</p><p>Risinger, Mark P. "Handel: Made in America," 1–2.</p><p>Roberts, John H. Terence Best (1929–2024), 1, 3.</p>',
         "friendly_name": 'Spring 2024<br><span class="preview-label">Preview</span>',
     },
-    {
-        "id": "2023_winter",
-        "filename": "newsletters/previews/AHS_Winter_2023_Preview.pdf",
-        "articles": '<p>Harris, Ellen T. "London Handel Institute Conference Report, November 2023," 1-3.</p><p>Kim, Minji. "Handel and Haydn Society\'s Performance of <em>Israel in Egypt</em>," 1, 4.</p>',
-        "friendly_name": 'Winter 2023<br><span class="preview-label">Preview</span>',
-    },
 ]
 
 MEMBERS_ONLY_NEWSLETTERS = [
+    {
+        "id": "2024_winter",
+        "filename": "newsletters/members_only/AHS_Winter_2024.pdf",
+        "articles": '<p>2025 American Handel Society Conference - Schedule and Details</p><p>Beeks, Graydon. "Two Sets of Lessons for Princess Louisa," 1, 4–5.</p>',
+        "friendly_name": 'Winter 2024<br><span class="members-only-label">Members Only</span>',
+    },
     {
         "id": "2024_summer",
         "filename": "newsletters/members_only/AHS_Summer_2024.pdf",
@@ -204,15 +209,15 @@ MEMBERS_ONLY_NEWSLETTERS = [
         "articles": '<p>Hoggs, Katharine. "Handel\'s Will: Love and Legacy," 4.</p><p>Risinger, Mark P. "Handel: Made in America," 1–2.</p><p>Roberts, John H. Terence Best (1929–2024), 1, 3.</p>',
         "friendly_name": 'Spring 2024<br><span class="members-only-label">Members Only</span>',
     },
-    {
-        "id": "2023_winter",
-        "filename": "newsletters/members_only/AHS_Winter_2023.pdf",
-        "articles": '<p>Harris, Ellen T. "London Handel Institute Conference Report, November 2023," 1-3.</p><p>Kim, Minji. "Handel and Haydn Society\'s Performance of <em>Israel in Egypt</em>," 1, 4.</p>',
-        "friendly_name": 'Winter 2023<br><span class="members-only-label">Members Only</span>',
-    },
 ]
 
 NEWSLETTERS_DATA = [
+    {
+        "id": "2023_winter",
+        "filename": "newsletters/AHS_Winter_2023.pdf",
+        "articles": '<p>Harris, Ellen T. "London Handel Institute Conference Report, November 2023," 1-3.</p><p>Kim, Minji. "Handel and Haydn Society\'s Performance of <em>Israel in Egypt</em>," 1, 4.</p>',
+        "friendly_name": "Winter 2023",
+    },
     {
         "id": "2023_summer",
         "filename": "newsletters/Handel_Summer_2023.pdf",
