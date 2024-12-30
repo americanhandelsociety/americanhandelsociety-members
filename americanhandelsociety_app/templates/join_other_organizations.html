@@ -15,9 +15,16 @@
         Members of the American Handel Society can become: a member of the Georg-Friedrich-Händel-Gesellschaft in Halle (to receive the <em>Händel-Jahrbuch</em>)
         or a Friend of The Handel Institute in Great Britain<span class="red-font">*</span> (to receive The Handel Institute Newsletter).
     </p>
-    <div class="alert-info"><i class="fa-solid fa-circle-info"></i> You must pay dues for London and Halle societies <strong>before May 15</strong>.</div>
+    <div class="alert-info">
+        <i class="fa-solid fa-circle-info"></i> You must pay dues for London and Halle societies <strong>before May 15</strong>.
+        {% if is_student %}<br><i class="fa-solid fa-graduation-cap"></i> You qualify for student membership rates.{% endif %}
+    </div>
     <p>Members of Georg-Friedrich-Händel-Gesellschaft can also join – for half price – the Goettingen and Karlsruhe Handel societies: Georg-Friedrich-Händel-Gesellschaft<span class="red-font">*</span>, Göttinger-Händel-Gesellschaft<span class="red-font">*</span><span class="red-font">†</span>, and Händel-Gesellschaft Karlsruhe<span class="red-font">*</span></p>
-    <button zeffy-form-link="https://www.zeffy.com/embed/ticketing/renewal-for-german-and-london-handel-societies?modal=true" class="btn btn-primary">Join other organizations</button>
+    {% if is_student %}
+        <button zeffy-form-link="https://www.zeffy.com/embed/ticketing/student-renewal-for-german-and-london-handel-societies?modal=true" class="btn btn-primary">Join other organizations</button>
+    {% else %}
+        <button zeffy-form-link="https://www.zeffy.com/embed/ticketing/renewal-for-german-and-london-handel-societies?modal=true" class="btn btn-primary">Join other organizations</button>
+    {% endif %}
     <p class="member-description">
         <small><span class="red-font">*</span> This organization does not have a reduced rate for retirees.</small><br>
         <small><span class="red-font">†</span> This organization has additional categories of Regular Membership that require a higher membership fee but provide additional benefits <a href="https://www.haendel-festspiele.de/en/partners-and-supporters/getting-involved-in-person/haendel-gesellschaft/mitgliedschaft.html" target="_blank">(see its website)</a>. Arrangements for these other categories may be made directly with Mrs. Pomeroy Kelly by mail: Marjorie Pomeroy Kelly, Treasurer, THE AMERICAN HANDEL SOCIETY, 49 Christopher Hollow Road, Sandwich, MA 02563.</small>
