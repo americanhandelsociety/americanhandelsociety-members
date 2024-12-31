@@ -244,8 +244,17 @@ class People(ListView):
 class JoinOtherOrganizations(ProtectedView, View):
     template_name = "join_other_organizations.html"
 
-    def get(self, request):
-        return render(request, self.template_name)
+    def get(self, request, *args, **kwargs):
+        is_student = request.user.membership_type == Member.MembershipType.STUDENT
+
+        return render(
+            request,
+            self.template_name,
+            context={
+                **kwargs,
+                "is_student": is_student,
+            },
+        )
 
 
 # public-facing views with static content
