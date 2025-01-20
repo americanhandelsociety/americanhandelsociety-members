@@ -541,7 +541,7 @@ BOSTON_25_AGENDA = [
     {
         "date": "Friday, February 7</br>Erdely Music & Culture Space, Linde Music Building, Massachusetts Institute of Technology (201 Amherst Street, Cambridge)",
         "time": "12:15pm",
-        "description": "<h3 class='tr-header'>Lunchtime concert</h3>Paul Traver Memorial Concert. Singers of MIT Chamber Chorus and soloists from Emmanuel Music, conducted by Ryan Turner, will perform Handel's first setting of \"As pants the hart\" and other works by Victoria and Palestrina.</p><p>Free admission.</p><p>Thomas Tull Concert Hall, Linde Music Building, MIT</p>",
+        "description": "<h3 class='tr-header'>Paul Traver Memorial Concert</h3>Singers of MIT Chamber Chorus and soloists from Emmanuel Music, conducted by Ryan Turner, will perform Handel's first setting of \"As pants the hart\" and other works by Victoria and Palestrina.</p><p>Free admission.</p><p>Thomas Tull Concert Hall, Linde Music Building, MIT</p>",
     },
     {
         "date": "Friday, February 7</br>Erdely Music & Culture Space, Linde Music Building, Massachusetts Institute of Technology (201 Amherst Street, Cambridge)",
@@ -619,7 +619,7 @@ BOSTON_25_AGENDA = [
     {
         "date": "Saturday, February 8</br>College Club of Boston (44 Commonwealth Avenue)",
         "time": "10:55am",
-        "description": "Ruth Smith (Cambridge, UK), \"Handel's <em>Solomon</em> and Solomon's Temple\"",
+        "description": "Ruth Smith (The Handel Institute), \"Handel's <em>Solomon</em> and Solomon's Temple\"",
     },
     {
         "date": "Saturday, February 8</br>College Club of Boston (44 Commonwealth Avenue)",
@@ -676,7 +676,7 @@ BOSTON_25_AGENDA = [
     {
         "date": "Sunday, February 9</br>College Club of Boston (44 Commonwealth Avenue)",
         "time": "",
-        "description": "<h3 class='tr-header'>Paper Session 6</h3><p>Competition, Prime donne, and Theatricality (Chair, TBA)</p>",
+        "description": "<h3 class='tr-header'>Paper Session 6</h3><p>Competition, <em>Prime donne</em>, and Theatricality (Chair, TBA)</p>",
     },
     {
         "date": "Sunday, February 9</br>College Club of Boston (44 Commonwealth Avenue)",
