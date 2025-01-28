@@ -480,7 +480,7 @@ BOSTON_25_AGENDA = [
     {
         "date": "Thursday, February 6</br>College Club of Boston (44 Commonwealth Avenue)",
         "time": "6:50pm",
-        "description": "<h3 class='tr-header'>Howard Serwer Memorial Lecture</h3></strong>Ayana Smith (Indiana University, Jacobs School of Music)<p>\"Deathly Images: Discourses of Sight and Sound in Handel's London Operas.\"</p>",
+        "description": "<h3 class='tr-header'>Howard Serwer Memorial Lecture</h3></strong><p><em>Chair, Graydon Beeks</em></p><p>Ayana Smith (Indiana University, Jacobs School of Music), \"Deathly Images: Discourses of Sight and Sound in Handel's London Operas\"</p>",
     },
     # Friday
     {
@@ -506,7 +506,7 @@ BOSTON_25_AGENDA = [
     {
         "date": "Friday, February 7</br>Erdely Music & Culture Space, Linde Music Building, Massachusetts Institute of Technology (201 Amherst Street, Cambridge)",
         "time": "",
-        "description": "<h3 class='tr-header'>Paper Session 1</h3><p>Bells and Whistles: Handel's Sounds of Love and Madness (Chair, TBA)</p>",
+        "description": "<h3 class='tr-header'>Paper Session 1</h3><p><em>Chair, Mark Risinger</em></p><p>Bells and Whistles: Handel's Sounds of Love and Madness </p>",
     },
     {
         "date": "Friday, February 7</br>Erdely Music & Culture Space, Linde Music Building, Massachusetts Institute of Technology (201 Amherst Street, Cambridge)",
@@ -526,7 +526,7 @@ BOSTON_25_AGENDA = [
     {
         "date": "Friday, February 7</br>Erdely Music & Culture Space, Linde Music Building, Massachusetts Institute of Technology (201 Amherst Street, Cambridge)",
         "time": "",
-        "description": "<h3 class='tr-header'>Paper Session 2</h3><p>Handelian Encounters (Chair, TBA)</p>",
+        "description": "<h3 class='tr-header'>Paper Session 2</h3><p><em>Chair, Mark Risinger</em></p><p>Handelian Encounters</p>",
     },
     {
         "date": "Friday, February 7</br>Erdely Music & Culture Space, Linde Music Building, Massachusetts Institute of Technology (201 Amherst Street, Cambridge)",
@@ -551,7 +551,7 @@ BOSTON_25_AGENDA = [
     {
         "date": "Friday, February 7</br>Erdely Music & Culture Space, Linde Music Building, Massachusetts Institute of Technology (201 Amherst Street, Cambridge)",
         "time": "",
-        "description": "<h3 class='tr-header'>Paper Session 3</h3><p>Handel in America (Chair, TBA)</p>",
+        "description": "<h3 class='tr-header'>Paper Session 3</h3><p><em>Chair, Wendy Heller</em></p><p>Handel in America</p>",
     },
     {
         "date": "Friday, February 7</br>Erdely Music & Culture Space, Linde Music Building, Massachusetts Institute of Technology (201 Amherst Street, Cambridge)",
@@ -599,7 +599,7 @@ BOSTON_25_AGENDA = [
     {
         "date": "Saturday, February 8</br>College Club of Boston (44 Commonwealth Avenue)",
         "time": "",
-        "description": "<h3 class='tr-header'>Paper Session 4</h3><p>Reconstructions (Chair, TBA)</p>",
+        "description": "<h3 class='tr-header'>Paper Session 4</h3><p><em>Chair, Robert Ketterer</em></p><p>Reconstructions</p>",
     },
     {
         "date": "Saturday, February 8</br>College Club of Boston (44 Commonwealth Avenue)",
@@ -629,7 +629,7 @@ BOSTON_25_AGENDA = [
     {
         "date": "Saturday, February 8</br>College Club of Boston (44 Commonwealth Avenue)",
         "time": "",
-        "description": "<h3 class='tr-header'>Paper Session 5</h3><p>Oratorios: From Composer to Editor (Chair, TBA)</p>",
+        "description": "<h3 class='tr-header'>Paper Session 5</h3><p><em>Chair, Berta Joncus</em></p><p>Oratorios: From Composer to Editor</p>",
     },
     {
         "date": "Saturday, February 8</br>College Club of Boston (44 Commonwealth Avenue)",
@@ -676,7 +676,7 @@ BOSTON_25_AGENDA = [
     {
         "date": "Sunday, February 9</br>College Club of Boston (44 Commonwealth Avenue)",
         "time": "",
-        "description": "<h3 class='tr-header'>Paper Session 6</h3><p>Competition, <em>Prime donne</em>, and Theatricality (Chair, TBA)</p>",
+        "description": "<h3 class='tr-header'>Paper Session 6</h3><p><em>Chair, Nathan Link</em></p><p>Competition, <em>Prime donne</em>, and Theatricality</p>",
     },
     {
         "date": "Sunday, February 9</br>College Club of Boston (44 Commonwealth Avenue)",
