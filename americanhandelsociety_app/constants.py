@@ -1,3 +1,5 @@
+from django.templatetags.static import static
+
 ZEFFY_EMBED_URL_FOR_RENEWAL_FORM = (
     "https://www.zeffy.com/embed/ticketing/membership-renewal-3"
 )
@@ -541,7 +543,7 @@ BOSTON_25_AGENDA = [
     {
         "date": "Friday, February 7</br>Erdely Music & Culture Space, Linde Music Building, Massachusetts Institute of Technology (201 Amherst Street, Cambridge)",
         "time": "12:15pm",
-        "description": "<h3 class='tr-header'>Paul Traver Memorial Concert</h3>Singers of MIT Chamber Chorus and soloists from Emmanuel Music, conducted by Ryan Turner, will perform Handel's first setting of \"As pants the hart\" and other works by Victoria and Palestrina.</p><p>Free admission.</p><p>Thomas Tull Concert Hall, Linde Music Building, MIT</p>",
+        "description": f"<h3 class='tr-header'>Paul Traver Memorial Concert</h3>Singers of MIT Chamber Chorus and soloists from Emmanuel Music, conducted by Ryan Turner, will perform Handel's first setting of \"As pants the hart\" and other works by Victoria and Palestrina.</p><p>Free admission.</p><p>Thomas Tull Concert Hall, Linde Music Building, MIT</p><p><a href={static('2025_Paul_Traver_Memorial_Concert.pdf')} target='_blank'><i class='fas fa-download' aria-hidden='true'></i> Download program</a></p>",
     },
     {
         "date": "Friday, February 7</br>Erdely Music & Culture Space, Linde Music Building, Massachusetts Institute of Technology (201 Amherst Street, Cambridge)",
