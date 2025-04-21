@@ -9,6 +9,7 @@ class NewslettersData:
             f"americanhandelsociety_app/static/{directory_path}"
         )
         self.articles = {
+            "Spring 2025": '<p>Lockwood, Joe. "American Handel Society Conference 2025," 1–3.</p><p>Kim, Minji. "Handel and Haydn Society\'s <i>Crossing The Deep</i>," 1, 4.</p>',
             "Winter 2024": '<p>2025 American Handel Society Conference - Schedule and Details</p><p>Beeks, Graydon. "Two Sets of Lessons for Princess Louisa," 1, 4–5.</p>',
             "Summer 2024": '<p>Rogers, Patrick J. "Two Roads Diverged in a Wood," 1-3.</p><p>Beeks, Graydon. "Report from Halle," 1, 3-4.</p>',
             "Spring 2024": '<p>Hoggs, Katharine. "Handel\'s Will: Love and Legacy," 4.</p><p>Risinger, Mark P. "Handel: Made in America," 1–2.</p><p>Roberts, John H. Terence Best (1929–2024), 1, 3.</p>',
@@ -171,6 +172,12 @@ class NewslettersData:
 # makes it challenging to dynamically iterate over static files in a production environment.
 PREVIEW_NEWSLETTERS = [
     {
+        "id": "2025_spring",
+        "filename": "newsletters/previews/AHS_Spring_2025_Preview.pdf",
+        "articles": '<p>Lockwood, Joe. "American Handel Society Conference 2025," 1–3.</p><p>Kim, Minji. "Handel and Haydn Society\'s <i>Crossing The Deep</i>," 1, 4.</p>',
+        "friendly_name": 'Spring 2025<br><span class="preview-label">Preview</span>',
+    },
+    {
         "id": "2024_winter",
         "filename": "newsletters/previews/AHS_Winter_2024_Preview.pdf",
         "articles": '<p>2025 American Handel Society Conference - Schedule and Details</p><p>Beeks, Graydon. "Two Sets of Lessons for Princess Louisa," 1, 4–5.</p>',
@@ -182,15 +189,15 @@ PREVIEW_NEWSLETTERS = [
         "articles": '<p>Rogers, Patrick J. "Two Roads Diverged in a Wood," 1-3.</p><p>Beeks, Graydon. "Report from Halle," 1, 3-4.</p>',
         "friendly_name": 'Summer 2024<br><span class="preview-label">Preview</span>',
     },
-    {
-        "id": "2024_spring",
-        "filename": "newsletters/previews/AHS_Spring_2024_preview.pdf",
-        "articles": '<p>Hoggs, Katharine. "Handel\'s Will: Love and Legacy," 4.</p><p>Risinger, Mark P. "Handel: Made in America," 1–2.</p><p>Roberts, John H. Terence Best (1929–2024), 1, 3.</p>',
-        "friendly_name": 'Spring 2024<br><span class="preview-label">Preview</span>',
-    },
 ]
 
 MEMBERS_ONLY_NEWSLETTERS = [
+    {
+        "id": "2025_spring",
+        "filename": "newsletters/members_only/AHS_Spring_2025.pdf",
+        "articles": '<p>Lockwood, Joe. "American Handel Society Conference 2025," 1–3.</p><p>Kim, Minji. "Handel and Haydn Society\'s <i>Crossing The Deep</i>," 1, 4.</p>',
+        "friendly_name": 'Spring 2025<br><span class="members-only-label">Members Only</span>',
+    },
     {
         "id": "2024_winter",
         "filename": "newsletters/members_only/AHS_Winter_2024.pdf",
@@ -203,15 +210,15 @@ MEMBERS_ONLY_NEWSLETTERS = [
         "articles": '<p>Rogers, Patrick J. "Two Roads Diverged in a Wood," 1-3.</p><p>Beeks, Graydon. "Report from Halle," 1, 3-4.</p>',
         "friendly_name": 'Summer 2024<br><span class="members-only-label">Members Only</span>',
     },
-    {
-        "id": "2024_spring",
-        "filename": "newsletters/members_only/AHS_Spring_2024.pdf",
-        "articles": '<p>Hoggs, Katharine. "Handel\'s Will: Love and Legacy," 4.</p><p>Risinger, Mark P. "Handel: Made in America," 1–2.</p><p>Roberts, John H. Terence Best (1929–2024), 1, 3.</p>',
-        "friendly_name": 'Spring 2024<br><span class="members-only-label">Members Only</span>',
-    },
 ]
 
 NEWSLETTERS_DATA = [
+    {
+        "id": "2024_spring",
+        "filename": "newsletters/AHS_Spring_2024.pdf",
+        "articles": '<p>Hoggs, Katharine. "Handel\'s Will: Love and Legacy," 4.</p><p>Risinger, Mark P. "Handel: Made in America," 1–2.</p><p>Roberts, John H. Terence Best (1929–2024), 1, 3.</p>',
+        "friendly_name": "Spring 2024",
+    },
     {
         "id": "2023_winter",
         "filename": "newsletters/AHS_Winter_2023.pdf",
