@@ -210,7 +210,7 @@ class Newsletter(View):
 
         # print(
         #     NewslettersData(
-        #         directory_path="newsletters/members_only"
+        #         directory_path="newsletters/previews"
         #     ).generate_newsletters_data()
         # )
 
