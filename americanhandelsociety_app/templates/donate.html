@@ -27,16 +27,12 @@
         <li>Support for Paul Traver Memorial Concert</li>
         <li>Support for ongoing activities of the Society</li>
     </ul>
-    <p>If you wish to contribute to these causes, you may do so by clicking the "Donate Now" button below. Please specify the category or categories you wish to support by entering a message during checkout.</p>
+    <p>If you wish to contribute to these causes, you may do so by clicking the "Donate now" button below. Please specify the category or categories you wish to support by entering a message during checkout.</p>
 </div>
 
 <div class="img-banner">
     <h1>Donate to the American Handel Society.</h1>
-    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-        <input type="hidden" name="cmd" value="_s-xclick">
-        <input type="hidden" name="hosted_button_id" value="537HKFG7JQTVC">
-        <input type="submit" value="Donate Now" name="submit" title="PayPal - The safer, easier way to pay online!" class="btn btn-primary">
-    </form>
+    <button zeffy-form-link="https://www.zeffy.com/embed/donation-form/donate-to-american-handel-society?modal=true" class="btn btn-primary">Donate now</button>
 </div>
 
 <div class="outer-container">
@@ -44,5 +40,9 @@
 </div>
 
 {% include 'partials/footer.html' %}
+
+{% block extra_js %}
+<script src="https://zeffy-scripts.s3.ca-central-1.amazonaws.com/embed-form-script.min.js"></script>
+{% endblock %}
 
 {% endblock %}
