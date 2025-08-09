@@ -22,11 +22,8 @@ ul.donate-list {
     height: 300px;
 }
 
-.img-banner form {
+.img-banner button {
     width: 80%;
-    height: auto;
-    margin: 0;
-    padding: 0;
 }
 
 /* Small screens */
