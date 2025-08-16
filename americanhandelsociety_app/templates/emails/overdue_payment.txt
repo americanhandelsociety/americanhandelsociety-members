@@ -7,6 +7,8 @@
 
   {{ domain }}{% url 'home' %}
 
+  We apologize if you received this email in error. Do not reply directly; please email our web developer (reginafcompton@gmail.com) with issues.
+
   Kind regards,
   American Handel Society
 {% endautoescape %}
