@@ -75,7 +75,7 @@ def test_overdue_members_sends_mail_without_error(
         [
             call(
                 "A Notification Concerning Your AHS Membership Renewal",
-                f"\n  {m.first_name} {m.last_name},\n\n  Greetings! Your annual membership payment for the American Handel Society is overdue.\n\n  Please login to the AHS website and complete the renewal form:\n\n  https://www.americanhandelsociety.org/\n\n  Kind regards,\n  American Handel Society\n\n",
+                f"\n  {m.first_name} {m.last_name},\n\n  Greetings! Your annual membership payment for the American Handel Society is overdue.\n\n  Please login to the AHS website and complete the renewal form:\n\n  https://www.americanhandelsociety.org/\n\n  We apologize if you received this email in error. Do not reply directly; please email our web developer (reginafcompton@gmail.com) with issues.\n\n  Kind regards,\n  American Handel Society\n\n",
                 ANY,
                 [m.email],
                 fail_silently=False,
@@ -99,7 +99,7 @@ def test_exception_handling_for_overdue_payment_email(
         [
             call(
                 "A Notification Concerning Your AHS Membership Renewal",
-                f"\n  {m.first_name} {m.last_name},\n\n  Greetings! Your annual membership payment for the American Handel Society is overdue.\n\n  Please login to the AHS website and complete the renewal form:\n\n  https://www.americanhandelsociety.org/\n\n  Kind regards,\n  American Handel Society\n\n",
+                f"\n  {m.first_name} {m.last_name},\n\n  Greetings! Your annual membership payment for the American Handel Society is overdue.\n\n  Please login to the AHS website and complete the renewal form:\n\n  https://www.americanhandelsociety.org/\n\n  We apologize if you received this email in error. Do not reply directly; please email our web developer (reginafcompton@gmail.com) with issues.\n\n  Kind regards,\n  American Handel Society\n\n",
                 ANY,
                 [m.email],
                 fail_silently=False,
@@ -129,7 +129,7 @@ def test_management_command_sends_on_appropriate_date(
             [
                 call(
                     "A Notification Concerning Your AHS Membership Renewal",
-                    f"\n  {m.first_name} {m.last_name},\n\n  Greetings! Your annual membership payment for the American Handel Society is overdue.\n\n  Please login to the AHS website and complete the renewal form:\n\n  https://www.americanhandelsociety.org/\n\n  Kind regards,\n  American Handel Society\n\n",
+                    f"\n  {m.first_name} {m.last_name},\n\n  Greetings! Your annual membership payment for the American Handel Society is overdue.\n\n  Please login to the AHS website and complete the renewal form:\n\n  https://www.americanhandelsociety.org/\n\n  We apologize if you received this email in error. Do not reply directly; please email our web developer (reginafcompton@gmail.com) with issues.\n\n  Kind regards,\n  American Handel Society\n\n",
                     ANY,
                     [m.email],
                     fail_silently=False,
