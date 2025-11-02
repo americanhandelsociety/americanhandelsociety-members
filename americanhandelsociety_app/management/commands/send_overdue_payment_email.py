@@ -9,6 +9,7 @@ from django.template.loader import render_to_string
 from americanhandelsociety_app.models import Member
 from americanhandelsociety_app.utils import (
     today_is_first_of_month,
+    today_is_fifteenth_of_month,
     is_january,
     is_december,
     year_now,
@@ -111,6 +112,9 @@ class Command(BaseCommand):
                 logger.info(
                     "Is January: intentionally skipping e-mail sending this month."
                 )
+            elif today_is_fifteenth_of_month():
+                # TODO: Send an email to all active members reminding them about the renewal.
+                logger.info("TODO")
             return
         if today_is_first_of_month():
             send_and_log(Member.objects.dues_payment_pending())
