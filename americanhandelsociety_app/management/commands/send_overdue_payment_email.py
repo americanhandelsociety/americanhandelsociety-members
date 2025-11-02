@@ -80,6 +80,41 @@ def send_overdue_payment_mail(
     return failed_ids
 
 
+def send_january_reminder_email(members, email_template, email_kwargs):
+    failed_ids = []
+    for member in members:
+        try:
+            send_mail(
+                "Time to renew your annual AHS membership!",
+                render_to_string(
+                    email_template,
+                    {
+                        "first_name": member.first_name,
+                        "last_name": member.last_name,
+                        **email_kwargs,
+                    },
+                ),
+                FROM,
+                [member.email],
+                fail_silently=False,
+            )
+        except Exception as exc:
+            logger.info(f"Sending mail failed with {type(exc)}. Details: {exc}.")
+            failed_ids.append(member.id)
+
+    failed_count = len(failed_ids)
+    sent_count = len(members) - failed_count
+    base = f"Sent a total of {sent_count} emails, with {failed_count} failures."
+    if failed_ids:
+        base = (
+            base
+            + " IDs of members whose e-mail sending failed:\n\t"
+            + "\n\t".join(failed_ids)
+        )
+    logger.info(base)
+    return sent_count
+
+
 def send_and_log(members):
     is_final_notice_month = is_december()
     log_expected(members)
@@ -112,8 +147,11 @@ class Command(BaseCommand):
                     "Is January: intentionally skipping e-mail sending this month."
                 )
             elif today_is_fifteenth_of_month():
-                # TODO: Send an email to all active members reminding them about the renewal.
-                logger.info("TODO")
+                send_january_reminder_email(
+                    Member.objects.dues_payment_pending(),
+                    "emails/january_membership_renewal_reminder.txt",
+                    {"domain": assume_url()},
+                )
             return
         if today_is_first_of_month():
             send_and_log(Member.objects.dues_payment_pending())
