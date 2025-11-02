@@ -57,7 +57,6 @@ def send_overdue_payment_mail(
     members, email_template, email_kwargs, prepend_subject=False
 ):
     email_subject = f"Final Notice: {SUBJECT}" if prepend_subject else SUBJECT
-    domain = assume_url()
     failed_ids = []
     for member in members:
         try:
@@ -97,7 +96,7 @@ def send_and_log(members):
         base = (
             base
             + " IDs of members whose e-mail sending failed:\n\t"
-            + "\n\t".join(failed_ids)
+            + "\n\t".join(failures)
         )
     logger.info(base)
     return sent_count
