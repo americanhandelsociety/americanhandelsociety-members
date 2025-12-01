@@ -13,7 +13,7 @@ RESEARCH_MATERIALS = {
         },
         {
             "title": "British Library Digitised Manuscripts",
-            "url": "https://www.bl.uk/manuscripts/",
+            "url": "https://www.bl.uk/collection/digitised-manuscripts-archives",
             "description": "The British Library hosts digitized copies of most of Handel's autograph manuscripts available for free through their online catalog",
         },
         {
