@@ -9,6 +9,7 @@ from django.template.loader import render_to_string
 from americanhandelsociety_app.models import Member
 from americanhandelsociety_app.utils import (
     today_is_first_of_month,
+    today_is_fifteenth_of_month,
     is_january,
     is_december,
     year_now,
@@ -52,12 +53,13 @@ def log_expected(members):
     logger.info(info)
 
 
-def send_overdue_payment_mail(
-    members, email_template, email_kwargs, prepend_subject=False
-):
-    email_subject = f"Final Notice: {SUBJECT}" if prepend_subject else SUBJECT
-    domain = assume_url()
+def send_overdue_payment_mail(email_template, email_kwargs, prepend_subject=False):
+    members = Member.objects.dues_payment_pending()
+
+    log_expected(members)
+
     failed_ids = []
+    email_subject = f"Final Notice: {SUBJECT}" if prepend_subject else SUBJECT
     for member in members:
         try:
             send_mail(
@@ -77,29 +79,51 @@ def send_overdue_payment_mail(
         except Exception as exc:
             logger.info(f"Sending mail failed with {type(exc)}. Details: {exc}.")
             failed_ids.append(member.id)
-    return failed_ids
+
+    log_results(members, failed_ids)
 
 
-def send_and_log(members):
-    is_final_notice_month = is_december()
+def send_january_reminder_email(email_template, email_kwargs):
+    members = Member.objects.dues_payment_pending()
+
     log_expected(members)
-    failures = send_overdue_payment_mail(
-        members,
-        determine_email_template(is_final_notice_month),
-        collect_email_kwargs(is_final_notice_month),
-        prepend_subject=is_final_notice_month,
-    )
-    failed_count = len(failures)
+
+    failed_ids = []
+    email_subject = "Time to renew your annual AHS membership!"
+    for member in members:
+        try:
+            send_mail(
+                email_subject,
+                render_to_string(
+                    email_template,
+                    {
+                        "first_name": member.first_name,
+                        "last_name": member.last_name,
+                        **email_kwargs,
+                    },
+                ),
+                FROM,
+                [member.email],
+                fail_silently=False,
+            )
+        except Exception as exc:
+            logger.info(f"Sending mail failed with {type(exc)}. Details: {exc}.")
+            failed_ids.append(member.id)
+
+    log_results(members, failed_ids)
+
+
+def log_results(members, failed_ids):
+    failed_count = len(failed_ids)
     sent_count = len(members) - failed_count
     base = f"Sent a total of {sent_count} emails, with {failed_count} failures."
-    if failures:
+    if failed_ids:
         base = (
             base
             + " IDs of members whose e-mail sending failed:\n\t"
-            + "\n\t".join(failed_ids)
+            + "\n\t".join([str(i) for i in failed_ids])
         )
     logger.info(base)
-    return sent_count
 
 
 class Command(BaseCommand):
@@ -111,9 +135,19 @@ class Command(BaseCommand):
                 logger.info(
                     "Is January: intentionally skipping e-mail sending this month."
                 )
+            elif today_is_fifteenth_of_month():
+                send_january_reminder_email(
+                    "emails/january_membership_renewal_reminder.txt",
+                    {"domain": assume_url()},
+                )
             return
         if today_is_first_of_month():
-            send_and_log(Member.objects.dues_payment_pending())
+            is_final_notice_month = is_december()
+            send_overdue_payment_mail(
+                determine_email_template(is_final_notice_month),
+                collect_email_kwargs(is_final_notice_month),
+                prepend_subject=is_final_notice_month,
+            )
 
     def handle(self, *args, **kwargs):
         self.send_overdue_payment_mail()
