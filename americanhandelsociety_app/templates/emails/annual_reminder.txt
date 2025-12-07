@@ -1,0 +1,12 @@
+{% autoescape off %}
+  {{first_name}} {{last_name}},
+
+  Greetings! It is time to renew your annual membership with the American Handel Society.
+
+  Please login to the AHS website and complete the renewal form:
+
+  {{ domain }}{% url 'home' %}
+
+  Kind regards,
+  American Handel Society
+{% endautoescape %}
