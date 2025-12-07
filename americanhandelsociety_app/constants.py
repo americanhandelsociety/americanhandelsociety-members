@@ -153,13 +153,12 @@ RESEARCH_MATERIALS = {
 
 BOARD_OF_DIRECTORS = [
     ("Graydon Beeks", "Ireri Chávez-Bárcenas"),
-    ("Alison DeSimone", "Norbert Dubowy"),
-    ("Fredric Fehleisen", "Roger Freitas"),
-    ("Wendy Heller", "Robert Ketterer"),
-    ("Minji Kim", "Nathan Link"),
-    ("Ken Nott", "Marjorie Pomeroy"),
-    ("Mark Risinger", "John Roberts"),
-    ("Ayana Smith", ""),
+    ("Norbert Dubowy", "Fredric Fehleisen"),
+    ("Roger Freitas", "Wendy Heller"),
+    ("Robert Ketterer", "Minji Kim"),
+    ("Nathan Link", "Ken Nott"),
+    ("Marjorie Pomeroy", "Mark Risinger"),
+    ("John Roberts", "Ayana Smith"),
 ]
 
 HONORARY_DIRECTORS = [
