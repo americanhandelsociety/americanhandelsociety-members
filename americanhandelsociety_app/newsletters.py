@@ -9,6 +9,7 @@ class NewslettersData:
             f"americanhandelsociety_app/static/{directory_path}"
         )
         self.articles = {
+            "Winter 2025": "<p>Burrows, Donald. \"'Let's Imitate Her Notes Above': Recomposing an Air from <em>Alexander's Feast</em>,\" 1, 4.</p><p>Nissenbaum, Stephen. \"From Göttingen to Northampton: Handel's Operas Come to America, 1927–1931,\" 1–3.</p>",
             "Summer 2025": '<p>Beeks, Graydon. "Report from Halle 2025," 1, 4–5.</p><p>Nott, Kenneth. "Keiser\'s <em>Octavia</em> at Boston Early Music Festival 2025," 1–3.</p>',
             "Spring 2025": '<p>Lockwood, Joe. "American Handel Society Conference 2025," 1–3.</p><p>Kim, Minji. "Handel and Haydn Society\'s <i>Crossing The Deep</i>," 1, 4.</p>',
             "Winter 2024": '<p>2025 American Handel Society Conference - Schedule and Details</p><p>Beeks, Graydon. "Two Sets of Lessons for Princess Louisa," 1, 4–5.</p>',
@@ -173,6 +174,12 @@ class NewslettersData:
 # makes it challenging to dynamically iterate over static files in a production environment.
 PREVIEW_NEWSLETTERS = [
     {
+        "id": "2025_winter",
+        "filename": "newsletters/previews/AHS_Winter_2025_Preview.pdf",
+        "articles": "<p>Burrows, Donald. \"'Let's Imitate Her Notes Above': Recomposing an Air from <em>Alexander's Feast</em>,\" 1, 4.</p><p>Nissenbaum, Stephen. \"From Göttingen to Northampton: Handel's Operas Come to America, 1927–1931,\" 1–3.</p>",
+        "friendly_name": 'Winter 2025<br><span class="preview-label">Preview</span>',
+    },
+    {
         "id": "2025_summer",
         "filename": "newsletters/previews/AHS_Summer_2025_Preview.pdf",
         "articles": '<p>Beeks, Graydon. "Report from Halle 2025," 1, 4–5.</p><p>Nott, Kenneth. "Keiser\'s <em>Octavia</em> at Boston Early Music Festival 2025," 1–3.</p>',
@@ -184,15 +191,15 @@ PREVIEW_NEWSLETTERS = [
         "articles": '<p>Lockwood, Joe. "American Handel Society Conference 2025," 1–3.</p><p>Kim, Minji. "Handel and Haydn Society\'s <i>Crossing The Deep</i>," 1, 4.</p>',
         "friendly_name": 'Spring 2025<br><span class="preview-label">Preview</span>',
     },
-    {
-        "id": "2024_winter",
-        "filename": "newsletters/previews/AHS_Winter_2024_Preview.pdf",
-        "articles": '<p>2025 American Handel Society Conference - Schedule and Details</p><p>Beeks, Graydon. "Two Sets of Lessons for Princess Louisa," 1, 4–5.</p>',
-        "friendly_name": 'Winter 2024<br><span class="preview-label">Preview</span>',
-    },
 ]
 
 MEMBERS_ONLY_NEWSLETTERS = [
+    {
+        "id": "2025_winter",
+        "filename": "newsletters/members_only/AHS_Winter_2025.pdf",
+        "articles": "<p>Burrows, Donald. \"'Let's Imitate Her Notes Above': Recomposing an Air from <em>Alexander's Feast</em>,\" 1, 4.</p><p>Nissenbaum, Stephen. \"From Göttingen to Northampton: Handel's Operas Come to America, 1927–1931,\" 1–3.</p>",
+        "friendly_name": 'Winter 2025<br><span class="members-only-label">Members Only</span>',
+    },
     {
         "id": "2025_summer",
         "filename": "newsletters/members_only/AHS_Summer_2025.pdf",
@@ -205,15 +212,15 @@ MEMBERS_ONLY_NEWSLETTERS = [
         "articles": '<p>Lockwood, Joe. "American Handel Society Conference 2025," 1–3.</p><p>Kim, Minji. "Handel and Haydn Society\'s <i>Crossing The Deep</i>," 1, 4.</p>',
         "friendly_name": 'Spring 2025<br><span class="members-only-label">Members Only</span>',
     },
-    {
-        "id": "2024_winter",
-        "filename": "newsletters/members_only/AHS_Winter_2024.pdf",
-        "articles": '<p>2025 American Handel Society Conference - Schedule and Details</p><p>Beeks, Graydon. "Two Sets of Lessons for Princess Louisa," 1, 4–5.</p>',
-        "friendly_name": 'Winter 2024<br><span class="members-only-label">Members Only</span>',
-    },
 ]
 
 NEWSLETTERS_DATA = [
+    {
+        "id": "2024_winter",
+        "filename": "newsletters/AHS_Winter_2024.pdf",
+        "articles": '<p>2025 American Handel Society Conference - Schedule and Details</p><p>Beeks, Graydon. "Two Sets of Lessons for Princess Louisa," 1, 4–5.</p>',
+        "friendly_name": "Winter 2024",
+    },
     {
         "id": "2024_summer",
         "filename": "newsletters/AHS_Summer_2024.pdf",
