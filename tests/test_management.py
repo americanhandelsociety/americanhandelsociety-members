@@ -70,7 +70,7 @@ def test_overdue_members_sends_mail_without_error(
     mock_send_mail_in_command,
 ):
     members = Member.objects.dues_payment_pending()
-    result = send_overdue_payment_mail(members, DEFAULT_TEMPLATE, DEFAULT_DOMAIN)
+    result = send_overdue_payment_mail(DEFAULT_TEMPLATE, DEFAULT_DOMAIN)
     mock_send_mail_in_command.assert_has_calls(
         [
             call(
