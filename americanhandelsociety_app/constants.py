@@ -308,6 +308,12 @@ HOWARD_SERWER_LECTURES = [
 
 KNAPP_FELLOWSHIP_WINNERS = [
     {
+        "year": 2026,
+        "recipient": "José Luis Segura Maldonado",
+        "affiliation": "Universidad Nacional Autónoma de México",
+        "supported_research": "To publish an edition of two guitar transcriptions of Handel's variation music – one made by Ramón Noble (Mexico, 1920-1999) and another by Mauro Giuliani (Italy, 1781-1829) – perform both transcriptions, and produce a performance video to make the project widely accessible for educational use.",
+    },
+    {
         "year": 2024,
         "recipient": "Peter Kohanski",
         "affiliation": "University of  North Texas",

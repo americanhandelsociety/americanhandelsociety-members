@@ -9,6 +9,7 @@ class NewslettersData:
             f"americanhandelsociety_app/static/{directory_path}"
         )
         self.articles = {
+            "Spring 2026": '<p>Hawks, Katie. "Cambridge Handel Opera Company, <em>Imeneo</em>, Festival Theatre, Cambridge, UK, March 23–28, 2026," 1, 3. </p><p>Howard, Luke. "Report from the Fourteenth Handel Institute Conference, London (2025)," 1–2.</p>',
             "Winter 2025": "<p>Burrows, Donald. \"'Let's Imitate Her Notes Above': Recomposing an Air from <em>Alexander's Feast</em>,\" 1, 4.</p><p>Nissenbaum, Stephen. \"From Göttingen to Northampton: Handel's Operas Come to America, 1927–1931,\" 1–3.</p>",
             "Summer 2025": '<p>Beeks, Graydon. "Report from Halle 2025," 1, 4–5.</p><p>Nott, Kenneth. "Keiser\'s <em>Octavia</em> at Boston Early Music Festival 2025," 1–3.</p>',
             "Spring 2025": '<p>Lockwood, Joe. "American Handel Society Conference 2025," 1–3.</p><p>Kim, Minji. "Handel and Haydn Society\'s <i>Crossing The Deep</i>," 1, 4.</p>',
@@ -174,6 +175,12 @@ class NewslettersData:
 # makes it challenging to dynamically iterate over static files in a production environment.
 PREVIEW_NEWSLETTERS = [
     {
+        "id": "2026_spring",
+        "filename": "newsletters/previews/AHS_Spring_2026_Preview.pdf",
+        "articles": '<p>Hawks, Katie. "Cambridge Handel Opera Company, <em>Imeneo</em>, Festival Theatre, Cambridge, UK, March 23–28, 2026," 1, 3. </p><p>Howard, Luke. "Report from the Fourteenth Handel Institute Conference, London (2025)," 1–2.</p>',
+        "friendly_name": 'Spring 2026<br><span class="preview-label">Preview</span>',
+    },
+    {
         "id": "2025_winter",
         "filename": "newsletters/previews/AHS_Winter_2025_Preview.pdf",
         "articles": "<p>Burrows, Donald. \"'Let's Imitate Her Notes Above': Recomposing an Air from <em>Alexander's Feast</em>,\" 1, 4.</p><p>Nissenbaum, Stephen. \"From Göttingen to Northampton: Handel's Operas Come to America, 1927–1931,\" 1–3.</p>",
@@ -185,15 +192,15 @@ PREVIEW_NEWSLETTERS = [
         "articles": '<p>Beeks, Graydon. "Report from Halle 2025," 1, 4–5.</p><p>Nott, Kenneth. "Keiser\'s <em>Octavia</em> at Boston Early Music Festival 2025," 1–3.</p>',
         "friendly_name": 'Summer 2025<br><span class="preview-label">Preview</span>',
     },
-    {
-        "id": "2025_spring",
-        "filename": "newsletters/previews/AHS_Spring_2025_Preview.pdf",
-        "articles": '<p>Lockwood, Joe. "American Handel Society Conference 2025," 1–3.</p><p>Kim, Minji. "Handel and Haydn Society\'s <i>Crossing The Deep</i>," 1, 4.</p>',
-        "friendly_name": 'Spring 2025<br><span class="preview-label">Preview</span>',
-    },
 ]
 
 MEMBERS_ONLY_NEWSLETTERS = [
+    {
+        "id": "2026_spring",
+        "filename": "newsletters/members_only/AHS_Spring_2026.pdf",
+        "articles": '<p>Hawks, Katie. "Cambridge Handel Opera Company, <em>Imeneo</em>, Festival Theatre, Cambridge, UK, March 23–28, 2026," 1, 3. </p><p>Howard, Luke. "Report from the Fourteenth Handel Institute Conference, London (2025)," 1–2.</p>',
+        "friendly_name": 'Spring 2026<br><span class="members-only-label">Members Only</span>',
+    },
     {
         "id": "2025_winter",
         "filename": "newsletters/members_only/AHS_Winter_2025.pdf",
@@ -206,15 +213,15 @@ MEMBERS_ONLY_NEWSLETTERS = [
         "articles": '<p>Beeks, Graydon. "Report from Halle 2025," 1, 4–5.</p><p>Nott, Kenneth. "Keiser\'s <em>Octavia</em> at Boston Early Music Festival 2025," 1–3.</p>',
         "friendly_name": 'Summer 2025<br><span class="members-only-label">Members Only</span>',
     },
-    {
-        "id": "2025_spring",
-        "filename": "newsletters/members_only/AHS_Spring_2025.pdf",
-        "articles": '<p>Lockwood, Joe. "American Handel Society Conference 2025," 1–3.</p><p>Kim, Minji. "Handel and Haydn Society\'s <i>Crossing The Deep</i>," 1, 4.</p>',
-        "friendly_name": 'Spring 2025<br><span class="members-only-label">Members Only</span>',
-    },
 ]
 
 NEWSLETTERS_DATA = [
+    {
+        "id": "2025_spring",
+        "filename": "newsletters/AHS_Spring_2025.pdf",
+        "articles": '<p>Lockwood, Joe. "American Handel Society Conference 2025," 1–3.</p><p>Kim, Minji. "Handel and Haydn Society\'s <i>Crossing The Deep</i>," 1, 4.</p>',
+        "friendly_name": "Spring 2025",
+    },
     {
         "id": "2024_winter",
         "filename": "newsletters/AHS_Winter_2024.pdf",
