@@ -173,6 +173,12 @@ HONORARY_DIRECTORS = [
 
 HOWARD_SERWER_LECTURES = [
     {
+        "year": 2025,
+        "speaker": "Ayana Smith",
+        "title": "Deathly Images: Discourses of Sight and Sound in Handel's London Operas",
+        "location": "Boston, MA",
+    },
+    {
         "year": 2023,
         "speaker": "Nathan Link",
         "title": "Narrative and Drama in Handel's Operas",
